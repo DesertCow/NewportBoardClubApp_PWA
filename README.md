@@ -1,7 +1,7 @@
 <div align="center">
 <h1>The Board Club App</h1>
 <h4>V1.0</h4>
- #####################################################################################################################
+ #######################################################################################
 <h4>An application designed to allow members of the board club to view boards, events, rental information, and general information about the club.</h4>
 </div>
 
@@ -11,7 +11,7 @@
 ## Table-of-Contents
 
 * [Deployment](#deployment)
-* [Description](#description)
+* [Goal](#description)
 * [Features](#features)
 * [Installation](#installation)
 * [Wireframe](#wireframe)
@@ -19,9 +19,14 @@
 * [Demo](#demo)
 
 
-## [Description](#table-of-contents)
+
+<br>
+
+## [Goals](#table-of-contents)
 
 ---
+
+The goal of this application to make members want to go surf by providing them with the all the infomation they need to have a great suf session. While also enticing members to try new surfboards and also feel apart of **The Board Club** community though local events and online interaction. Learning to surf is a time consuming and difficult task and this application aims to help beginners get the relevent information to make the right decision on equipment, location, and techniqe to help drive improvement with each session and to have a sense of communutity while they imbark on this difficult challenge.
 
 <br>
 <br>
@@ -31,6 +36,66 @@
 
 ---
 
+<br>
+
+* Surfboard Database :surfer:
+  * Description
+  * Specs
+  * MFG Link
+  * Photos
+  * Comments/Feedback
+  * Rating
+
+<br>
+
+* Rental Infromation 🧾
+  * Equipment
+  * Prices / Hours
+
+<br>
+
+* Events Page :confetti_ball:
+  * Upcoming Events
+  * Previous Events
+  * Calender View
+
+<br>
+
+* About :question:
+  * General Club Info
+  * Shaper Info/Links/Deals
+  * Club Press
+
+<br>
+
+* Surf Diary :open_book:
+  * :building_construction: **Flush Out Feature Set...**  :building_construction:
+
+<br>
+
+* Live WX :partly_sunny:
+  * Water Temp
+  * Tempeture
+  * Wind
+  * Sky Conditions
+
+<br>
+
+* Surf Resources :open_book:
+  * Beginner Videos
+  * Equipment Tips
+  * Local Surf Spots Beta
+  * Newport Surf Map
+
+
+<br>
+
+* Push Notification :loudspeaker:
+  * Surfboard Overdue
+  * New Surfboards
+  * Upcoming Events
+  * Swell / Conditions
+ 
 <br>
 <br>
 
@@ -55,6 +120,36 @@
 
 ---
 
+* <h3> Software Stack </h3>
+
+  * **Databases**
+    * SQL (Surfboards)
+    * MongoDB (User)
+<br>
+
+  * **Server** (Node 18.6.0)
+    * Packages
+      * Package 1
+      * Package 2
+      * Package 3
+      * Package 4
+<br>
+
+  * **Client** (React 18.2.0)
+    * Packages
+      * Package 1
+      * Package 2
+      * Package 3
+      * Package 4
+
+<br>
+
+* <h3> Hardware/Deploy </h3>
+
+  * Railway (Databases)
+  * Back4App (Host)
+  * Version Control (gitHub)
+
 <br>
 <br>
 
@@ -63,6 +158,10 @@
 ## [Demo](#table-of-contents)
 
 ---
+
+ <p align="center">
+  <img src="./Dev_Docs/Technical_Difficulties.png" width="774" height="486" alt="Demo 1")
+</p>
 
 <br>
 <br>
