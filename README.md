@@ -1,7 +1,7 @@
 <div align="center">
 <h1>The Board Club App</h1>
  <p align="center">
-  <img src="./Dev_Docs/Art/BOARD_CLUB_LOGO_1.png" width="350" height="250" alt="Demo 1")
+  <img src="./Dev_Docs/Art/BOARD_CLUB_LOGO_1.jpg" width="350" height="250" alt="Demo 1")
 </p>
 <h4>An application designed to allow members of the board club to view boards, events, rental information, and general information about the club.</h4>
 </div>
@@ -128,7 +128,7 @@ The goal of this application to make members want to go surf by providing them w
     * SQL (relational)
       * Surfboards
       * Events
-      
+
     * MongoDB (non-relational)
       * User
 
