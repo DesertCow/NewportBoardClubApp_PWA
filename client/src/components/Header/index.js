@@ -11,6 +11,7 @@ const Header = () => {
             className="homePageLogo"
             alt="Board Club Logo" />
         </div>
+        <h1 className="homeTitle text-center mt-5"> Branch Check!</h1>
       </div>
     </div>
   );
