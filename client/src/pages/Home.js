@@ -13,17 +13,17 @@ import { useNavigate } from "react-router-dom";
 function Home() {
 
 
-
+  const navigate = useNavigate();
 
   return (
     <div className="d-flex flex-column min-vh-100">
       <h1 className="homeTitle text-center mt-5"> The Board Club App [From Homes.js]</h1>
 
-      {/* <div className="text-center">
-        <img src={require("../img/Food_Truck_Icon.png")}
-          className="homePageTruck"
-          alt="Truck Logo" />
-      </div> */}
+      <div className="text-center">
+        <img src={require("../img/BC_Logo_Clear_1.png")}
+          className="homePageLogo"
+          alt="Board Club Logo" />
+      </div>
 
       {/* <div className="text-center homeMenu row d-flex align-items-center justify-content-center">
         <div className="row px-5 py-3">

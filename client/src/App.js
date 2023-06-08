@@ -33,14 +33,14 @@ export default function App() {
 
   return (
 
-    <h1 className="homeTitle text-center mt-5"> The Board Club App [From App.js]</h1>
+    // <h1 className="homeTitle text-center mt-5"> The Board Club App [From App.js]</h1>
 
     // <ApolloProvider client={client}>
-    //   <Router>
-    //     <Routes>
-    //       <Route path="/" element={<Home />} />
-    //     </Routes>
-    //   </Router>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
     // </ApolloProvider>
   );
 }
