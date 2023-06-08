@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 // import menuPDF from '../img/Salt_Lick_Menu_DWood-PDF.pdf';
 // import MainFooter from '../components/Footer';
 
+import Header from '../components/Header';
+
 //* React Toastify
 // import { toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
@@ -17,13 +19,18 @@ function Home() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
+      {/* <header className="mt-auto mb-0"> */}
+      <header className="">
+        <Header />
+      </header>
+
       <h1 className="homeTitle text-center mt-5"> The Board Club App [From Homes.js]</h1>
 
-      <div className="text-center">
+      {/* <div className="text-center">
         <img src={require("../img/BC_Logo_Clear_1.png")}
           className="homePageLogo"
           alt="Board Club Logo" />
-      </div>
+      </div> */}
 
       {/* <div className="text-center homeMenu row d-flex align-items-center justify-content-center">
         <div className="row px-5 py-3">

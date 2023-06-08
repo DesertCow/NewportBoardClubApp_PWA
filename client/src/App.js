@@ -14,7 +14,6 @@ import {
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-
 //* Page Import
 
 import Home from './pages/Home';

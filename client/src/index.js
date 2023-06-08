@@ -1,8 +1,10 @@
 // import React from "react";
 // import ReactDOM from "react-dom";
 import App from './App';
+import 'bootstrap';
 import "./style.css";
 import "./reset.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import { BrowserRouter as Router } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
@@ -23,7 +25,7 @@ const root = createRoot(rootElement);
 
 root.render(
   <div>
-    <h1 className="homeTitle text-center mt-5"> The Board Club App [From Index.js]</h1>
+    {/* <h1 className="homeTitle text-center mt-5"> The Board Club App [From Index.js]</h1> */}
     <App />
   </div>
 );
