@@ -1,0 +1,23 @@
+{
+  "name": "board-club-app",
+  "version": "1.0.0",
+  "description": "<div align=\"center\"> <h1>The Board Club App</h1>  <p align=\"center\">   <img src=\"./Dev_Docs/Art/BOARD_CLUB_LOGO_1.jpg\" width=\"350\" height=\"250\" alt=\"Demo 1\") </p> <h4>An application designed to allow members of the board club to view boards, events, rental information, and general information about the club.</h4> </div>",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/server.js && cd client/ && npm run start",
+    "startAll": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
+    "build": "cd client/ && npm install && npm run build",
+    "seed": "node seeds/seed.js",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DesertCow/boardClubApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DesertCow/boardClubApp/issues"
+  },
+  "homepage": "https://github.com/DesertCow/boardClubApp#readme"
+}

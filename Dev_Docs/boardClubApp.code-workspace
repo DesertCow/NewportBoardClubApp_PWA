@@ -7,5 +7,7 @@
 			"path": "../../SaltLickTruck"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "SaltLickTruck"
+	}
 }
