@@ -14,6 +14,9 @@ import {
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
+import { MaterialSymbol } from 'react-material-symbols';
+import 'react-material-symbols/dist/rounded.css'; 
+
 //* Page Import
 
 import Home from './pages/Home';

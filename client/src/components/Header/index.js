@@ -3,7 +3,7 @@ const Header = () => {
 
   return (
 
-    <div className="mt-auto mb-0">
+    <div className="HeaderClass mt-auto mb-0">
 
       <div className="d-flex align-items-center justify-content-left">
         <div className="text-center">
@@ -11,7 +11,7 @@ const Header = () => {
             className="homePageLogo"
             alt="Board Club Logo" />
         </div>
-        <h1 className="homeTitle text-center mt-5"> Branch Check!</h1>
+        {/* <h1 className="homeTitle text-center mt-5"> Branch Check!</h1> */}
       </div>
     </div>
   );

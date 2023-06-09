@@ -4,3 +4,13 @@
 
     width: 176px;
 }
+
+.NavBarClass {
+  background-color: #C3C3C3;
+}
+
+.HeaderClass {
+  /* background-color: #F9F9F9; */
+  background-color: #c3c3c3b5;
+  opacity: .9;
+}
