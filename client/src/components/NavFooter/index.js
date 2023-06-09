@@ -18,19 +18,16 @@ const NavFooter = () => {
           <Nav className="d-flex flex-row p-0">
             <Nav.Link className="col mx-5 px-3" href="/">
               <div className="text-center">
-                {/* <img src={require("../../img/Home_Icon.png")} className="navFooterHomeIcon" alt="Home Icon" /> */}
                 <MaterialSymbol icon="house" size={60} fill grade={-25} color='black' />
               </div>
             </Nav.Link>
-            <Nav.Link className="col mx-5 px-3" href="/main_Menu">
+            <Nav.Link className="col mx-5 px-3" href="/surf_log">
               <div className="text-center">
-                {/* <img src={require("../../img/Restauran_Menu_Icon.png")} className="navFooterHomeIcon" alt="Home Icon" /> */}
-                <MaterialSymbol icon="account_circle" size={60} fill grade={-25} color='black' />
+                <MaterialSymbol icon="import_contacts" size={60} fill grade={-25} color='black' />
               </div>
             </Nav.Link>
-            <Nav.Link className="col mx-5 px-3" href="/user/cart">
+            <Nav.Link className="col mx-5 px-3" href="/user_settings">
               <div className="text-center">
-                {/* <img src={require("../../img/Take_Out_Icon.png")} className="navFooterHomeIcon" alt="Home Icon" /> */}
                 <MaterialSymbol icon="settings" size={60} fill grade={-25} color='black' />
               </div>
             </Nav.Link>

@@ -27,11 +27,11 @@ function Home() {
         <Header />
       </header>
 
-      <h1 className="homeTitle text-center mt-5"> The Board Club App [From Homes.js]</h1>
+      {/* <h1 className="homeTitle text-center mt-5"> The Board Club App [From Homes.js]</h1> */}
 
       {/* <NavFooter /> */}
 
-      <MaterialSymbol icon="folder" size={24} fill grade={-25} color='red' />
+      {/* <MaterialSymbol icon="folder" size={24} fill grade={-25} color='red' /> */}
 
       {/* <NavFooter /> */}
 
