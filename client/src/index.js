@@ -25,7 +25,6 @@ const root = createRoot(rootElement);
 
 root.render(
   <div>
-    {/* <h1 className="homeTitle text-center mt-5"> The Board Club App [From Index.js]</h1> */}
     <App />
   </div>
 );
