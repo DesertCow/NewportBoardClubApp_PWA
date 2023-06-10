@@ -1,3 +1,11 @@
+//
+//
+
+import Container from 'react-bootstrap/Container';
+import { MaterialSymbol } from 'react-material-symbols';
+
+
+
 const Header = () => {
 
 
@@ -11,7 +19,22 @@ const Header = () => {
             className="homePageLogo"
             alt="Board Club Logo" />
         </div>
-        {/* <h1 className="homeTitle text-center mt-5"> Branch Check!</h1> */}
+
+        <Container className="m-5">
+          <div className="d-flex flex-col">
+            <div className="d-flex flex-row">
+              <div className="text-center">
+                <img src={require("../../img/tide_icon.png")}
+                  className="headerTideIcon"
+                  alt="Tide Icon" />
+              </div>
+            </div>
+            <div className="d-flex flex-row">
+              <MaterialSymbol icon="settings" size={60} fill grade={-25} color='black' />
+            </div>
+          </div>
+
+        </Container>
       </div>
     </div>
   );
