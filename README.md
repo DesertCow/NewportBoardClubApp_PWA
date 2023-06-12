@@ -39,13 +39,13 @@ The goal of this application to make members want to go surf by providing them w
 
 <br>
 
-* Surfboard Database :surfer:
-  * Description
-  * Specs
-  * MFG Link
-  * Photos
-  * Comments/Feedback
-  * Rating
+* ~~Surfboard Database :surfer:~~
+  * ~~Description~~
+  * ~~Specs~~
+  * ~~MFG Link~~
+  * ~~Photos~~
+  * ~~Comments/Feedback~~
+  * ~~Rating~~
 
 <br>
 

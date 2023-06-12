@@ -5,6 +5,13 @@
     width: 176px;
 }
 
+.headerTideIcon {
+
+    height: 33px;
+    width: 33px;
+}
+
+
 .NavBarClass {
   background-color: #C3C3C3;
 }
@@ -13,4 +20,27 @@
   /* background-color: #F9F9F9; */
   background-color: #c3c3c3b5;
   opacity: .9;
+}
+
+.headerTideIcon {
+  font-size: 10px;
+}
+
+.headerCurrentTide {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.headerTideArrow {
+  font-size: 10px;
+}
+
+.headerWindSpeed {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.headerTempText {
+  font-size: 20px;
+  font-weight: 700;
 }
