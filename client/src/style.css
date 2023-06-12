@@ -60,5 +60,15 @@
 
 }
 
+.surfKnowledgeBTN {
+  height: 150px;
+  font-weight: 600;
+  font-size: 25px;
+  background-color: #1cadb2e2;
+  opacity: 80%;
+  border-radius: 15px;
+
+}
+
 
 
