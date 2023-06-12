@@ -22,6 +22,10 @@ import 'react-material-symbols/dist/rounded.css';
 import Home from './pages/Home';
 import SurfLogHome from './pages/SurfLogHome';
 import UserSettings from './pages/UserSettings';
+import ClubEvents from './pages/ClubEvents';
+import SurfKnowledge from './pages/SurfKnowledge';
+import SurfRentals from './pages/SurfRentals';
+import AboutClub from './pages/AboutClub';
 
 
 //* Component Import
@@ -45,6 +49,10 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/surf_log" element={<SurfLogHome />} />
         <Route path="/user_settings" element={<UserSettings />} />
+        <Route path="/club_events" element={<ClubEvents />} />
+        <Route path="/surf_knowledge" element={<SurfKnowledge />} />
+        <Route path="/surf_rentals" element={<SurfRentals />} />
+        <Route path="/about_club" element={<AboutClub />} />
       </Routes>
     </Router>
     // </ApolloProvider>

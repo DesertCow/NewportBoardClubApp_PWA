@@ -20,6 +20,31 @@ function Home() {
 
   const navigate = useNavigate();
 
+    const handleClubEvents = async (event) => {
+    event.preventDefault();
+    navigate("/club_events");
+    };
+
+    const handleSurfLog = async (event) => {
+    event.preventDefault();
+    navigate("/surf_log");
+    };
+
+    const handleSurfKnowledge = async (event) => {
+    event.preventDefault();
+    navigate("/surf_knowledge");
+    };
+
+    const handleRentals = async (event) => {
+    event.preventDefault();
+    navigate("/surf_rentals");
+    };
+
+    const handleAbout = async (event) => {
+    event.preventDefault();
+    navigate("/about_club");
+    };
+
   return (
     <div className="d-flex flex-column min-vh-100">
       {/* <header className="mt-auto mb-0"> */}
@@ -41,26 +66,23 @@ function Home() {
           alt="Board Club Logo" />
       </div> */}
 
-      {/* <div className="text-center homeMenu row d-flex align-items-center justify-content-center">
+      <div className="text-center homeMenu row d-flex align-items-center justify-content-center">
         <div className="row px-5 py-3">
-          <div className="homeMenuBtn p-2" onClick={(event) => handleMainMenu(event)}>Order</div>
+          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Club Events</div>
         </div>
         <div className="row px-5 py-3">
-          <a href={menuPDF} className="pdfDownload" download="Salt_Lick_Menu_DWood-PDF.pdf" target='_blank' rel="noreferrer">
-            <h1 type="submit" className="pdfDownloadText m-2">Menu Download (PDF)</h1>
-          </a>
+          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleSurfLog(event)}>Surf Log</div>
         </div>
         <div className="row px-5 py-3">
-          <div className="homeMenuBtn p-2" onClick={(event) => handleLogin(event)}>Login</div>
+          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleSurfKnowledge(event)}>Surf Knowledge</div>
         </div>
         <div className="row px-5 py-3">
-          <div className="homeMenuBtn p-2" onClick={(event) => handleRegister(event)}>Sign Up</div>
+          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleRentals(event)}>Rentals</div>
         </div>
-        <div className="row px-5 py-3">
-          <div className="homeMenuBtn p-2" onClick={(event) => handleContact(event)}>Contact Information</div>
+        <div className="row px-5 py-3 mb-5">
+          <div className="homeBTNs p-2 mb-5 d-flex align-items-center justify-content-center" onClick={(event) => handleAbout(event)}>About</div>
         </div>
-
-      </div> */}
+      </div>
 
       <footer className="mt-auto mb-0">
         <NavFooter />

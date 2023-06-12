@@ -11,7 +11,8 @@ const Header = () => {
   const currentWindSpeed = 10;
   const currentAirTemp = 75;
   const currentWaterTemp = 63;
-  // const currentWindSpeed = 10;
+  const currentTide = 2.4;
+  const currentTideDirection = "Rising";
 
 
   return (
@@ -50,7 +51,7 @@ const Header = () => {
                     </div>
                   </div>
                   <div class="col headerCurrentTide pt-3 d-flex align-items-center justify-content-center">
-                    0.4 ft
+                    {currentTide} ft
                   </div>
                   <div class="col headerTideArrow pt-0 d-flex align-items-center justify-content-center">
                      <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' />

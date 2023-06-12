@@ -5,10 +5,7 @@ import NavFooter from '../components/NavFooter';
 
 
 
-
-
-
-function SurfLogHome() {
+function AboutClub() {
 
   return (
 
@@ -17,15 +14,14 @@ function SurfLogHome() {
         <Header />
       </header>
 
-    <h1 className="homeTitle text-center mt-5"> Surf Log Home!</h1>
+      <h1 className="homeTitle text-center mt-5"> About Club Page!</h1>
 
       <footer className="mt-auto mb-0">
         <NavFooter />
       </footer>
     </div>
-
   )
 
 }
 
-export default SurfLogHome;
+export default AboutClub;
