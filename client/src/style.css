@@ -1,5 +1,17 @@
 
 
+@font-face {
+  font-family: "Catamaran-Bold";
+  src: local("Catamaran-Bold"),
+    url("./fonts/Catamaran-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Catamaran-ExtraBold";
+  src: local("Catamaran-ExtraBold"),
+    url("./fonts/Catamaran-ExtraBold.ttf") format("truetype");
+}
+
 .homePageLogo {
 
     width: 176px;
@@ -51,8 +63,9 @@
 }
 
 .homeBTNs {
+  font-family: "Catamaran-ExtraBold";
   height: 150px;
-  font-weight: 600;
+  font-weight: 900;
   font-size: 25px;
   background-color: #678e8fe2;
   opacity: 80%;
@@ -61,6 +74,7 @@
 }
 
 .surfKnowledgeBTN {
+  font-family: "Catamaran-ExtraBold";
   height: 150px;
   font-weight: 600;
   font-size: 25px;
@@ -70,5 +84,45 @@
 
 }
 
+.rentalTitle {
+  font-family: "Catamaran-ExtraBold";
+  font-weight: 800;
+  font-size: 40px;
+}
 
+.rentalDes {
+  font-family: "Catamaran-Bold";
+  font-size: 18px;
+}
 
+.rentalBox {
+  height: 335px;
+  width: 450px;
+  outline-style: solid;
+  outline-width: 5px;
+  outline-color: black;
+}
+
+.rentalItemsTitle {
+  font-family: "Catamaran-ExtraBold";
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.rentalItemsPrice {
+  font-family: "Catamaran-ExtraBold";
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.rentalQuestion {
+  height: 105px;
+  width: 450px;
+  outline-style: solid;
+  outline-width: 5px;
+  outline-color: black;
+  font-family: "Catamaran-ExtraBold";
+  font-weight: 800;
+  font-size: 20px;
+  background-color: #C3C3C3;
+}

@@ -17,6 +17,9 @@ import { useParams } from 'react-router-dom';
 import { MaterialSymbol } from 'react-material-symbols';
 import 'react-material-symbols/dist/rounded.css';
 
+//* Font Import
+import "./fonts/Catamaran-Bold.ttf"
+
 //* Page Import
 
 import Home from './pages/Home';
