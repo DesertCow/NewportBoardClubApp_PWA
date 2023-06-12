@@ -12,9 +12,9 @@ const NavFooter = () => {
 
   return (
 
-    <div className="mb-0 mt-4">
-      <Navbar className="NavBarClass d-flex" fixed="bottom" expand="lg" variant="light" bg="light">
-        <Container className="p-0 justify-content-center">
+    <div className="mb-0 mt-3 FooterClass">
+      <Navbar className="d-flex FooterClass" fixed="bottom" expand="lg" variant="light" bg="light">
+        <Container className="p-0 justify-content-center FooterClass">
           <Nav className="d-flex flex-row p-0">
             <Nav.Link className="col mx-5 px-3" href="/">
               <div className="text-center">
