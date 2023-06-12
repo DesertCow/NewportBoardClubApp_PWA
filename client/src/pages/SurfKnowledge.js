@@ -4,11 +4,7 @@ import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
 
 
-
-
-
-
-function SurfLogHome() {
+function SurfKnowledge() {
 
   return (
 
@@ -17,15 +13,15 @@ function SurfLogHome() {
         <Header />
       </header>
 
-    <h1 className="homeTitle text-center mt-5"> Surf Log Home!</h1>
+      <h1 className="homeTitle text-center mt-5"> Surf Knowledge Page!</h1>
+
 
       <footer className="mt-auto mb-0">
         <NavFooter />
       </footer>
     </div>
-
-  )
+  );
 
 }
 
-export default SurfLogHome;
+export default SurfKnowledge;

@@ -37,10 +37,23 @@
 
 .headerWindSpeed {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .headerTempText {
   font-size: 20px;
   font-weight: 700;
 }
+
+.homeBTNs {
+  height: 150px;
+  font-weight: 600;
+  font-size: 25px;
+  background-color: #678e8fe2;
+  opacity: 80%;
+  border-radius: 15px;
+
+}
+
+
+
