@@ -8,6 +8,11 @@ import { MaterialSymbol } from 'react-material-symbols';
 
 const Header = () => {
 
+  const currentWindSpeed = 10;
+  const currentAirTemp = 75;
+  const currentWaterTemp = 63;
+  // const currentWindSpeed = 10;
+
 
   return (
 
@@ -22,112 +27,71 @@ const Header = () => {
 
         <div class="container">
           <div class="row">
-            <div class="col">
+
+            <div class="col d-flex align-items-center justify-content-center">
               <div className="text-center">
                 <img src={require("../../img/BC_Logo_Clear_1.png")}
                   className="homePageLogo"
                   alt="Board Club Logo" />
               </div>
             </div>
-            <div class="col d-flex align-items-center">
+
+            <div class="col-2">
                  {/* SPACER BOX! */}
             </div>
-            <div class="col d-flex align-items-center">
-                 {/* SPACER BOX! */}
-            </div>
-            <div class="col d-flex align-items-center">
-                <div class="row">
-                  <div class="col headerTideIcon pt-0 mt-3">
+
+            <div class="col-2 d-flex align-items-center justify-content-center">
+                <div class="row mt-2">
+                  <div class="col headerTideIcon py-2 d-flex align-items-center justify-content-center">
                     <div className="text-center">
                       <img src={require("../../img/tide_icon.png")}
                         className="headerTideIcon"
                       alt="Tide Icon" />
                     </div>
                   </div>
-                  <div class="col headerCurrentTide text-center pt-2">
+                  <div class="col headerCurrentTide pt-3 d-flex align-items-center justify-content-center">
                     0.4 ft
                   </div>
-                  <div class="col headerTideArrow pt-0">
+                  <div class="col headerTideArrow pt-0 d-flex align-items-center justify-content-center">
                      <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' />
                   </div>
                 </div>
             </div>
-            <div class="col d-flex align-items-center">
-              <div class="row">
-                <div class="col">
-                  Column
-                </div>
-                <div class="col">
-                  Column
-                </div>
-                <div class="w-100"></div>
-                <div class="col">
-                  Column
-                </div>
-                <div class="col">
-                  Column
+
+            <div class="col-3 d-flex align-items-center">
+              <div class="col">
+                <div class="row d-flex align-items-center">
+                  <div class="py-1 d-flex align-items-center justify-content-center">
+                    <div class="col">
+                      <MaterialSymbol icon="air" size={30} fill grade={-25} color='black' />
+                    </div>
+                    <div class="col headerWindSpeed">
+                      {currentWindSpeed} mph
+                    </div> 
+                  </div>
+                  <div class="py-1 d-flex align-items-center justify-content-center">
+                    <div class="col">
+                      <MaterialSymbol icon="partly_cloudy_day" size={30} fill grade={-25} color='black' />
+                    </div>
+                    <div class="col headerTempText">
+                      {currentAirTemp} &deg;F
+                    </div> 
+                  </div>
+                  <div class="py-1 d-flex align-items-center justify-content-center">
+                    <div class="col">
+                      <MaterialSymbol icon="waves" size={30} fill grade={-25} color='black' />
+                    </div>
+                    <div class="col headerTempText">
+                      {currentWaterTemp} &deg;F
+                    </div>                    
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
-          {/* <div class="row">
-            <div class="col">
-              1 of 3
-            </div>
-            <div class="col">
-              2 of 3
-            </div>
-            <div class="col">
-              3 of 3
-            </div>
-          </div> */}
+
         </div>
-          {/* <div class="d-flex flex-column justify-content-end">
-              <div className="text-center">
-                <img src={require("../../img/tide_icon.png")}
-                  className="headerTideIcon"
-                  alt="Tide Icon" />
-              </div>
-            <div>
-              <p className="m-2 headerTideText text-center">3.4 ft</p>
-            </div>
-            <div className="text-center">
-                <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' />
-            </div>
-
-            <div class='some-page-wrapper'>
-              <div class='flex-row'>
-                <div class='flex-column'>
-                  <div class='blue-column'>
-                    Some Text in Column One
-                  </div>
-                </div>
-                <div class='column'>
-                  <div class='green-column'>
-                    Some Text in Column Two
-                  </div>
-                </div>
-              </div>
-            </div> */}
-
-          {/* <div class="d-flex flex-column justify-content-end">
-              <div className="text-center">
-                <img src={require("../../img/tide_icon.png")}
-                  className="headerTideIcon"
-                  alt="Tide Icon" />
-              </div>
-            <div>
-              <p className="m-2 headerTideText">3.4 ft</p>
-            </div>
-            <div className="">
-                <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' />
-            </div>
-          </div> */}
-          {/* </div> */}
-
-
-        {/* </Container> */}
-      {/* </div> */}
     </div>
   );
 };
