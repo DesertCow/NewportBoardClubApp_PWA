@@ -1,5 +1,7 @@
 
 
+/*? ============= Font Import ============= */
+
 @font-face {
   font-family: "Catamaran-Bold";
   src: local("Catamaran-Bold"),
@@ -12,6 +14,14 @@
     url("./fonts/Catamaran-ExtraBold.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Catamaran-Regular";
+  src: local("Catamaran-Regular"),
+    url("./fonts/Catamaran-Regular.ttf") format("truetype");
+}
+
+/*? ============= Home Page ============= */
+
 .homePageLogo {
 
     width: 176px;
@@ -23,6 +33,18 @@
     width: 33px;
 }
 
+.homeBTNs {
+  font-family: "Catamaran-ExtraBold";
+  height: 150px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: #678e8fe2;
+  opacity: 80%;
+  border-radius: 15px;
+
+}
+
+/*? ============= Header Component ============= */
 
 .NavBarClass {
   background-color: #C3C3C3;
@@ -30,11 +52,6 @@
 
 .HeaderClass {
   /* background-color: #F9F9F9; */
-  background-color: #c3c3c3b5;
-  opacity: .9;
-}
-
-.FooterClass {
   background-color: #c3c3c3b5;
   opacity: .9;
 }
@@ -62,16 +79,15 @@
   font-weight: 700;
 }
 
-.homeBTNs {
-  font-family: "Catamaran-ExtraBold";
-  height: 150px;
-  font-weight: 900;
-  font-size: 25px;
-  background-color: #678e8fe2;
-  opacity: 80%;
-  border-radius: 15px;
+/*? ============= Footer Component ============= */
 
+.FooterClass {
+  background-color: #c3c3c3b5;
+  opacity: .9;
 }
+
+
+/*? ============= Surf Knowledge Page ============= */
 
 .surfKnowledgeBTN {
   font-family: "Catamaran-ExtraBold";
@@ -83,6 +99,8 @@
   border-radius: 15px;
 
 }
+
+/*? ============= Rental Page ============= */
 
 .rentalTitle {
   font-family: "Catamaran-ExtraBold";
@@ -125,4 +143,49 @@
   font-weight: 800;
   font-size: 20px;
   background-color: #C3C3C3;
+}
+
+/*? ============= About Club Page ============= */
+
+.aboutClubPhoto {
+  width: 510px;
+  opacity: 95%;
+  /* border: rgb(118, 118, 118); */
+  /* border-width: 5px; */
+  /* border-style: solid; */
+}
+
+.aboutHours {
+  font-family: "Catamaran-Regular";
+  font-weight: 600;
+}
+
+.closedMondays {
+  font-family: "Catamaran-Bold";
+  font-weight: 900;
+}
+
+.aboutInfoFont {
+  font-family: "Catamaran-Regular";
+  font-weight: 500;
+}
+
+.staffTitle {
+  font-family: "Catamaran-Bold";
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.aboutStaffPhoto {
+  width: 450px;
+  opacity: 95%;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.aboutSpacer {
+  margin-bottom: 125px;
 }
