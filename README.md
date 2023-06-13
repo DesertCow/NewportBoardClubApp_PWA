@@ -160,7 +160,8 @@ The goal of this application to make members want to go surf by providing them w
       * ~~Surfboards~~
       * Events
 <br>
-    * MongoDB (non-relational)
+
+   * MongoDB (non-relational)
       * User
 
 <br>
