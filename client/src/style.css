@@ -14,6 +14,12 @@
     url("./fonts/Catamaran-ExtraBold.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Catamaran-Regular";
+  src: local("Catamaran-Regular"),
+    url("./fonts/Catamaran-Regular.ttf") format("truetype");
+}
+
 /*? ============= Home Page ============= */
 
 .homePageLogo {
@@ -141,3 +147,45 @@
 
 /*? ============= About Club Page ============= */
 
+.aboutClubPhoto {
+  width: 510px;
+  opacity: 95%;
+  /* border: rgb(118, 118, 118); */
+  /* border-width: 5px; */
+  /* border-style: solid; */
+}
+
+.aboutHours {
+  font-family: "Catamaran-Regular";
+  font-weight: 600;
+}
+
+.closedMondays {
+  font-family: "Catamaran-Bold";
+  font-weight: 900;
+}
+
+.aboutInfoFont {
+  font-family: "Catamaran-Regular";
+  font-weight: 500;
+}
+
+.staffTitle {
+  font-family: "Catamaran-Bold";
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.aboutStaffPhoto {
+  width: 450px;
+  opacity: 95%;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.aboutSpacer {
+  margin-bottom: 125px;
+}
