@@ -155,11 +155,11 @@ The goal of this application to make members want to go surf by providing them w
 
 * <h3> Software Stack </h3>
 
-  * **Databases**
+ * **Databases**
     * SQL (relational)
-      * Surfboards
+      * ~~Surfboards~~
       * Events
-
+<br>
     * MongoDB (non-relational)
       * User
 
