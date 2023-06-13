@@ -25,15 +25,12 @@
 
 ## [Goals](#table-of-contents)
 
-
 The goal of this application to make members want to go surf by providing them with the all the infomation they need to have a great suf session. While also enticing members to try new surfboards and also feel apart of **The Board Club** community though local events and online interaction. Learning to surf is a time consuming and difficult task and this application aims to help beginners get the relevent information to make the right decision on equipment, location, and techniqe to help drive improvement with each session and to have a sense of communutity while they imbark on this difficult challenge.
 
 <br>
 <br>
 
-
 ## [Features](#table-of-contents)
-
 
 <br>
 
@@ -99,15 +96,12 @@ The goal of this application to make members want to go surf by providing them w
 <br>
 <br>
 
-
 ## [Installation](#table-of-contents)
-
 
 <br>
 <br>
 
 ## [Wireframe](#table-of-contents)
-
 
  <p align="center">
   <img src="./Dev_Docs/Wireframes/Home_Page.png" height="300" alt="Demo 1"/img>
@@ -157,10 +151,7 @@ The goal of this application to make members want to go surf by providing them w
 <br>
 <br>
 
-
-
 ## [Technology](#table-of-contents)
-
 
 * <h3> Software Stack </h3>
 
@@ -200,10 +191,7 @@ The goal of this application to make members want to go surf by providing them w
 <br>
 <br>
 
-
-
 ## [Demo](#table-of-contents)
-
 
  <p align="center">
   <img src="./Dev_Docs/Art/Technical_Difficulties.png" width="774" height="486" alt="Demo 1"/img>
@@ -211,4 +199,3 @@ The goal of this application to make members want to go surf by providing them w
 
 <br>
 <br>
-
