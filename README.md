@@ -113,6 +113,51 @@ The goal of this application to make members want to go surf by providing them w
 
 ---
 
+ <p align="center">
+  <img src="./Dev_Docs/Wireframes/Home_Page.png" height="300" alt="Demo 1"/img>
+  <p align="center"><strong>Home Page</strong></p>
+</p>
+
+<br>
+<br>
+
+ <p align="center">
+  <img src="./Dev_Docs/Wireframes/Club_Events_Page.png" height="300" alt="Demo 1"/img>
+  <p align="center"><strong>Club Events</strong></p>
+</p>
+
+<br>
+<br>
+
+ <p align="center">
+  <img src="./Dev_Docs/Wireframes/Surf_Log_Home.png" height="300" alt="Demo 1"/img>
+  <p align="center"><strong>Surf Log</strong></p>
+</p>
+
+<br>
+<br>
+
+ <p align="center">
+  <img src="./Dev_Docs/Wireframes/Rental_Page.png" height="300" alt="Demo 1"/img>
+  <p align="center"><strong>Rental Page</strong></p>
+</p>
+
+<br>
+<br>
+
+ <p align="center">
+  <img src="./Dev_Docs/Wireframes/Surf_Knowledge_Page.png" height="300" alt="Demo 1"/img>
+  <p align="center"><strong>Surf Knowledge</strong></p>
+</p>
+
+<br>
+<br>
+
+ <p align="center">
+  <img src="./Dev_Docs/Wireframes/About_Page.png" height="300" alt="Demo 1"/img>
+  <p align="center"><strong>About Page</strong></p>
+</p>
+
 <br>
 <br>
 
@@ -167,7 +212,7 @@ The goal of this application to make members want to go surf by providing them w
 ---
 
  <p align="center">
-  <img src="./Dev_Docs/Art/Technical_Difficulties.png" width="774" height="486" alt="Demo 1")
+  <img src="./Dev_Docs/Art/Technical_Difficulties.png" width="774" height="486" alt="Demo 1"/img>
 </p>
 
 <br>
