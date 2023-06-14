@@ -20,30 +20,30 @@ function Home() {
 
   const navigate = useNavigate();
 
-    const handleClubEvents = async (event) => {
-    event.preventDefault();
-    navigate("/club_events");
-    };
+  const handleClubEvents = async (event) => {
+  event.preventDefault();
+  navigate("/club_events");
+  };
 
-    const handleSurfLog = async (event) => {
-    event.preventDefault();
-    navigate("/surf_log");
-    };
+  const handleSurfLog = async (event) => {
+  event.preventDefault();
+  navigate("/surf_log");
+  };
 
-    const handleSurfKnowledge = async (event) => {
-    event.preventDefault();
-    navigate("/surf_knowledge");
-    };
+  const handleSurfKnowledge = async (event) => {
+  event.preventDefault();
+  navigate("/surf_knowledge");
+  };
 
-    const handleRentals = async (event) => {
-    event.preventDefault();
-    navigate("/surf_rentals");
-    };
+  const handleRentals = async (event) => {
+  event.preventDefault();
+  navigate("/surf_rentals");
+  };
 
-    const handleAbout = async (event) => {
-    event.preventDefault();
-    navigate("/about_club");
-    };
+  const handleAbout = async (event) => {
+  event.preventDefault();
+  navigate("/about_club");
+  };
 
   return (
     <div className="d-flex flex-column min-vh-100">
