@@ -24,6 +24,8 @@ import "./fonts/Catamaran-Bold.ttf"
 
 import Home from './pages/Home';
 import SurfLogHome from './pages/SurfLogHome';
+import CreateNewSession from './pages/CreateNewSurfSession';
+import ViewPreviousSessions from './pages/ViewPreviousSessions';
 import UserSettings from './pages/UserSettings';
 import ClubEvents from './pages/ClubEvents';
 import SurfKnowledge from './pages/SurfKnowledge';
@@ -51,6 +53,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/surf_log" element={<SurfLogHome />} />
+        <Route path="/surf_log/create_new_session" element={<CreateNewSession />} />
+        <Route path="/surf_log/view_previous_sessions" element={<ViewPreviousSessions />} />
         <Route path="/user_settings" element={<UserSettings />} />
         <Route path="/club_events" element={<ClubEvents />} />
         <Route path="/surf_knowledge" element={<SurfKnowledge />} />

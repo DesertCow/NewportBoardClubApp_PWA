@@ -24,7 +24,7 @@ const root = createRoot(rootElement);
 // const { auth } = require('express-openid-connect');
 
 root.render(
-  <div>
+  <div className="masterFrameWidth">
     <App />
   </div>
 );

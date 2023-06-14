@@ -1,5 +1,9 @@
 
 
+.masterFrameWidth {
+  /* width: 545px; */
+}
+
 /*? ============= Font Import ============= */
 
 @font-face {
@@ -188,4 +192,61 @@
 
 .aboutSpacer {
   margin-bottom: 125px;
+}
+
+/*? ============= Surf Log Home ============= */
+
+.surfLogHomeBTNs {
+  font-family: "Catamaran-ExtraBold";
+  height: 150px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: #3bd87ae2;
+  opacity: 80%;
+  border-radius: 15px;
+
+}
+
+.sessionDetails {
+  font-family: "Catamaran-Regular";
+  /* font-weight: 900; */
+  font-size: 28px;
+}
+
+.welcomeText {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 30px;
+}
+
+.userPhoto {
+
+    height: 150px;
+    width: 150px;
+    outline-style: solid;
+    outline-width: 10px;
+    outline-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+
+}
+
+.sessionDataBox {
+
+  width: 450px;
+  outline-style: solid;
+  outline-width: 8px;
+  outline-color: rgb(0, 0, 0);
+
+}
+
+.surfLogSpacer {
+  margin-bottom: 105px;
+}
+
+.userDataBG {
+  background-image: url("./img/Newport-Beach-Surf.jpg");
+  /* width: 450px; */
 }
