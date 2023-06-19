@@ -250,3 +250,35 @@
   background-image: url("./img/Newport-Beach-Surf.jpg");
   /* width: 450px; */
 }
+
+
+/*? ============= Events Page ============= */
+
+.eventPageBtns {
+  font-family: "Catamaran-ExtraBold";
+  height: 70px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: #6f6f6f75;
+  opacity: 80%;
+  border-radius: 15px;
+
+}
+
+.eventPageBtns_LIVE {
+  font-family: "Catamaran-ExtraBold";
+  height: 70px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: #3bd87ae2;
+  opacity: 80%;
+  border-radius: 15px;
+
+}
+
+.eventsTabBox {
+  /* background-color: #3bd87ae2; */
+  border-style: solid;
+  border-color: #6f6f6f75;
+  border-width: 8px;
+}
