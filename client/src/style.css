@@ -265,20 +265,55 @@
 
 }
 
-.eventPageBtns_LIVE {
+.eventPageBtns_Upcoming {
   font-family: "Catamaran-ExtraBold";
   height: 70px;
   font-weight: 900;
   font-size: 25px;
-  background-color: #3bd87ae2;
+  background-color: #3b94d852;
+  opacity: 80%;
+  border-radius: 15px;
+
+}
+
+.eventPageBtns_History {
+  font-family: "Catamaran-ExtraBold";
+  height: 70px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: #3bd87a;
   opacity: 80%;
   border-radius: 15px;
 
 }
 
 .eventsTabBox {
-  /* background-color: #3bd87ae2; */
+  background-color: #3b94d836;
   border-style: solid;
   border-color: #6f6f6f75;
   border-width: 8px;
+}
+
+.eventsTabBox_Previous {
+  background-color: #3bd87a3b;
+  border-style: solid;
+  border-color: #6f6f6f75;
+  border-width: 8px;
+}
+
+.eventsTabBox_Upcoming {
+  background-color: #3b94d836;
+  border-style: solid;
+  border-color: #6f6f6f75;
+  border-width: 8px;
+}
+
+.currentEventsBtns {
+  font-family: "Catamaran-ExtraBold";
+  height: 450px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: #d33bd857;
+  opacity: 80%;
+  border-radius: 15px;
 }

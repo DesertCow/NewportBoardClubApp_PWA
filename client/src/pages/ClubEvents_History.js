@@ -23,17 +23,16 @@ function ClubEvents_Current() {
         <Header />
       </header>
 
+      <EventPageHeaderHistory />
+
+      {/* <h1 className="homeTitle text-center flex-row"> CLUB EVENTS HISTORY!</h1> */}
+
       <div>
-        <EventPageHeaderHistory />
-      </div>
-
-      <h1 className="homeTitle text-center mt-5"> CLUB EVENTS HISTORY!</h1>
-
-      {/* <div>
-         <div className="row px-5 py-3">
-          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Club Events</div>
+         <div className="px-2 py-3">
+          <div className="currentEventsBtns mb-2 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #1</div>
+          <div className="currentEventsBtns my-4 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #2</div>
         </div>
-      </div> */}
+      </div>
 
       <footer className="mt-auto mb-0">
         <NavFooter />
