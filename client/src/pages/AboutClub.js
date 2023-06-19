@@ -27,8 +27,15 @@ function AboutClub() {
         <h1 className="aboutHours text-center mt-4"> Club Hours:</h1>
         <h3 className="aboutHours text-center mt-0"> 8am - 6pm</h3>
         <h1 className="closedMondays text-center mt-0">Closed on Monday</h1>
-        <p className="aboutInfoFont text-center mt-4 px-2">
-          The Board Club is a Newport Beach surf club that provides our members with unlimited access and exchanges to a large variety of quality surfboards from established shapers throughout California. From 7'2" single fins and old school longboards to the latest high-performance shortboards, every surfer now has the ultimate quiver for all wave conditions. Membership also includes social events and activities, networking opportunities, surfboard design education, surf coaching, ocean skills and fitness training, photo and video surf sessions, and special discounts to local businesses throughout the Newport Beach community.
+        <p className="aboutInfoFont text-center mt-4 px-4 mx-3">
+          The Board Club is a Newport Beach surf club that provides our members with unlimited access and exchanges to a large variety of 
+          quality surfboards from established shapers throughout California. From 7'2" single fins and old school longboards to the latest 
+          high-performance shortboards, every surfer now has the ultimate quiver for all wave conditions. 
+        </p>
+        <p className="aboutInfoFont text-center mt-4 px-4 mx-3">
+          Membership also includes social 
+          events and activities, networking opportunities, surfboard design education, surf coaching, ocean skills and fitness training, 
+          photo and video surf sessions, and special discounts to local businesses throughout the Newport Beach community.
         </p>
 
         <h1 className="staffTitle text-center mt-5">The Founder: Peter Belden</h1>
