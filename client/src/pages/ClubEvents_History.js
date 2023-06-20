@@ -12,8 +12,11 @@ function ClubEvents_Current() {
   const navigate = useNavigate();
 
   const handleClubEvents = async (event) => {
+
+    console.log("Historic Event Clicked!");
+
     event.preventDefault();
-    navigate("/club_events/current_events");
+    navigate("/club_events/eventHistory");
   };
 
   return (
@@ -27,10 +30,12 @@ function ClubEvents_Current() {
 
       {/* <h1 className="homeTitle text-center flex-row"> CLUB EVENTS HISTORY!</h1> */}
 
-      <div>
+      <div className="mb-5 pb-3">
          <div className="px-2 py-3">
-          <div className="currentEventsBtns mb-2 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #1</div>
-          <div className="currentEventsBtns my-4 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #2</div>
+          <div className="historyEventsBtns mb-2 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #1</div>
+          <div className="historyEventsBtns my-4 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #2</div>
+          <div className="historyEventsBtns my-4 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #3</div>
+          <div className="historyEventsBtns my-4 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #4</div>
         </div>
       </div>
 

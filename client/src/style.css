@@ -313,7 +313,18 @@
   height: 450px;
   font-weight: 900;
   font-size: 25px;
-  background-color: #d33bd857;
+  background-color: #3b94d836;
   opacity: 80%;
   border-radius: 15px;
 }
+
+.historyEventsBtns {
+  font-family: "Catamaran-ExtraBold";
+  height: 450px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: #3bd87a3b;
+  opacity: 80%;
+  border-radius: 15px;
+}
+

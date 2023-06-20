@@ -14,6 +14,9 @@ function ClubEvents_Current() {
   const navigate = useNavigate();
 
   const handleClubEvents = async (event) => {
+
+    console.log("Upcoming Event Clicked!");
+
     event.preventDefault();
     navigate("/club_events/current_events");
   };
@@ -32,7 +35,7 @@ function ClubEvents_Current() {
 
       {/* <h1 className="text-center mt-5"> CURRENT EVENTS PAGE!</h1> */}
 
-      <div>
+      <div className="mb-5 pb-3">
          <div className="px-2 py-3">
           <div className="currentEventsBtns mb-2 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Current Club Event #1</div>
           <div className="currentEventsBtns my-4 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Current Club Event #2</div>
