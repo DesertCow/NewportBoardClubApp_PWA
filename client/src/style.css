@@ -332,3 +332,47 @@
   border-radius: 15px;
 }
 
+
+
+/*? ============= User Settings Page ============= */
+
+.userSettings {
+
+}
+
+.avatarIcon {
+  width: 200px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.editProfileText {
+  font-family: "Catamaran-ExtraBold";
+  /* height: 450px; */
+  font-weight: 900;
+}
+
+.applyMainFont {
+  font-family: "Catamaran-ExtraBold";
+}
+
+.editSpacer {
+  width: 100px;
+}
+
+.profileSaveBtn {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 30px;
+  height: 100px;
+  width: 450px;
+  font-weight: 900;
+  background-color: #1cadb29e;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
