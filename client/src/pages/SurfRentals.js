@@ -106,7 +106,7 @@ function SurfRentals() {
         </div>
       </Container>
 
-      <Container className="d-flex justify-content-center mt-5 pt-4">
+      <Container className="d-flex justify-content-center mt-5 rentalsSpacer">
         <div className="rentalQuestion text-center">
           <p className="pt-3">Any Question? Give Us A Call</p>
           <a style={{textDecoration: 'none'}} href="tel:19494387171">(949) 438-7171</a>
