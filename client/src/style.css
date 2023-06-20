@@ -250,3 +250,81 @@
   background-image: url("./img/Newport-Beach-Surf.jpg");
   /* width: 450px; */
 }
+
+
+/*? ============= Events Page ============= */
+
+.eventPageBtns {
+  font-family: "Catamaran-ExtraBold";
+  height: 70px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: #6f6f6f75;
+  opacity: 80%;
+  border-radius: 15px;
+
+}
+
+.eventPageBtns_Upcoming {
+  font-family: "Catamaran-ExtraBold";
+  height: 70px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: #3b94d852;
+  opacity: 80%;
+  border-radius: 15px;
+
+}
+
+.eventPageBtns_History {
+  font-family: "Catamaran-ExtraBold";
+  height: 70px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: #3bd87a;
+  opacity: 80%;
+  border-radius: 15px;
+
+}
+
+.eventsTabBox {
+  background-color: #3b94d836;
+  border-style: solid;
+  border-color: #6f6f6f75;
+  border-width: 8px;
+}
+
+.eventsTabBox_Previous {
+  background-color: #3bd87a3b;
+  border-style: solid;
+  border-color: #6f6f6f75;
+  border-width: 8px;
+}
+
+.eventsTabBox_Upcoming {
+  background-color: #3b94d836;
+  border-style: solid;
+  border-color: #6f6f6f75;
+  border-width: 8px;
+}
+
+.currentEventsBtns {
+  font-family: "Catamaran-ExtraBold";
+  height: 450px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: #3b94d836;
+  opacity: 80%;
+  border-radius: 15px;
+}
+
+.historyEventsBtns {
+  font-family: "Catamaran-ExtraBold";
+  height: 450px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: #3bd87a3b;
+  opacity: 80%;
+  border-radius: 15px;
+}
+
