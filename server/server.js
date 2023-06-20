@@ -9,11 +9,15 @@
 const { ApolloServer, gql } = require("@apollo/server");
 const express = require("express");
 
+const { ApolloServerPluginDrainHttpServer } = require('@apollo/server/plugin/drainHttpServer');
+
 // import cors from 'cors';
 const cors = require("cors");
 const http = require('http');
 // import cors from 'cors';
-const { json } = require("body-parser");
+// const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
+// const { json } = require("json");
 const path = require('path');
 
 const { expressMiddleware } = require("@apollo/server/express4");
@@ -28,11 +32,19 @@ const { typeDefs, resolvers } = require('./db/schemas');
 const app = express();
 const httpServer = http.createServer(app);
 
-//* Apply Configuration to App
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+});
+
+
+//* Apply Configuration to App
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+
+// const server = new ApolloServer({ typeDefs, resolvers });
 
 
 
@@ -69,14 +81,30 @@ console.log("\n\x1b[34mServer Import Complete \nStarting Connections...\x1b")
 async function serverStart() {
 
   //* Start ApolloServer
-  await server.start()
+  // await server.start()
+  await server.start();
+
+  app.use(
+    '/',
+    cors(),
+    // 50mb is the limit that `startStandaloneServer` uses, but you may configure this to suit your needs
+    bodyParser.json({ limit: '50mb' }),
+    // expressMiddleware accepts the same arguments:
+    // an Apollo Server instance and optional configuration options
+    expressMiddleware(server, {
+      context: async ({ req }) => ({ token: req.headers.token }),
+    }),
+  );
+
+  await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  await console.log(`🚀 Server ready at http://localhost:4000/`);
 
   //* Apollo Middleware Insert
   // app.use('/graphql', cors(), json(), expressMiddleware(server));
   
-  await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  // await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
 
-  console.log("🚀 Server ready at http://localhost:4000/");
+  // console.log("🚀 Server ready at http://localhost:4000/");
 
   //* Apollo Middleware Insert
   // server.applyMiddleware({ app });
