@@ -3,6 +3,7 @@
 
 //* Models for SQL and MongoDB 
 // const { UserMongo, FoodItem, Category, Orders } = require('../../models');
+const { UserMongo } = require('../../models');
 
 //* SQL Connection
 // const sequelize = require('../sqlConnection');
