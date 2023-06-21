@@ -43,46 +43,51 @@ const Header = () => {
 
   var liveWind = "null";
   var liveWaterTemp = "null";
-  // var liveAirTemp = "null";
+  var liveAirTemp = "null";
   var liveTideMSL = "null";
   var liveTideDir = "null";
   var dataArray = "null";
 
   if (!loading) {
     // data = String(JSON.stringify(data.getWX))
-    console.log("STRING = " + String(JSON.stringify(data.getWX.airTemp)));
-    console.log("Weather Data 1 = " + data.getWX.airTemp);
+    console.log("STRING = " + String(JSON.stringify(data)));
+    // console.log("STRING = " + data[1]);
+    // console.log("Weather Data 1 = " + data.getWX.airTemp);
     // dataArray = data.split(",");
     // console.log("Weather Data 2a = " + dataArray[0]);
     
-    console.log("Weather Data 2b = " + dataArray[1]);
+    // console.log("Weather Data 2b = " + dataArray[1]);
 
     var liveAirTemp = data.getWX.airTemp;
+    // var liveAirTemp = data.getWX.airTemp;
+    // var liveAirTemp = data.getWX;
     console.log("Air Temp: " + liveAirTemp)
     // var liveAirTempArray = liveAirTemp.split(":");
     // liveAirTemp = liveAirTempArray[1];
     // liveAirTemp = liveAirTemp.split("}}");
     // console.log("Air Temp (Live): " + liveAirTemp);
 
-    liveWind = dataArray[5];
-    // var liveWindArray = liveWind.split(":");
+    // liveWind = dataArray[5];
+    // var liveWind = data.getWX.wind;
     // liveWind = liveWindArray[1];
     // liveWind = liveWind.split("}}");
     // liveWind = liveWind[0].split(",");
-    // console.log("Wind (Live): " + liveWind[0]);
+    console.log("Wind (Live): " + liveWind);
 
-    liveWaterTemp = dataArray[4];
+    // liveWaterTemp = dataArray[4];
     // var liveWaterTempArray = liveWaterTemp.split(":");
     // liveWaterTemp = liveWaterTempArray[1];
     // console.log("Water Temp (Demo): = " + liveWaterTemp);
+    console.log("Water Temp (Live): " + liveWaterTemp);
     
-    liveTideMSL = dataArray[2];
+    // liveTideMSL = dataArray[2];
     // var liveTideMSLArray = liveTideMSL.split(":");
     // liveTideMSL = liveTideMSLArray[1];
     // console.log("Tide MSL (Demo): = " + liveTideMSL);
     // console.log("Weather Data 2c = " + dataArray[2]);
+    console.log("Tide (Live): " + liveTideMSL);
     
-    liveTideDir = dataArray[3];
+    // liveTideDir = dataArray[3];
     // var liveTideDirArray = liveTideDir.split(":");
     // liveTideDir = liveTideDirArray[1];
     // console.log("Tide Rising (Demo): = " + liveTideDir);
@@ -91,16 +96,21 @@ const Header = () => {
     // console.log("Weather Data 2e = " + dataArray[4]);
     // console.log("Weather Data 2f = " + dataArray[5]);
 
+    console.log("Tide Rising (Live): " + liveTideDir);
+
   }
+
+
 
   // WX Variables
 
-  const currentWindSpeed = liveWind;
-  const currentAirTemp = liveAirTemp;
-  const currentWaterTemp = liveWaterTemp;
+
+  
+  // const currentWindSpeed = liveWind;
+  // const currentAirTemp = liveAirTemp;
+  // const currentWaterTemp = liveWaterTemp;
   const currentTide = liveTideMSL;
   const currentTideRise = liveTideDir;
-
 
   let tideDirIcon;
 
@@ -110,6 +120,9 @@ const Header = () => {
 
   if (liveTideDir == "false") {
       tideDirIcon = <MaterialSymbol icon="arrow_downward" size={60} fill grade={-25} color='black' />
+  }
+  if (liveTideDir == "Null") {
+      tideDirIcon = <MaterialSymbol icon="arrow_downward" size={60} fill grade={-25} color='red' />
   }
 
   return (
@@ -158,7 +171,7 @@ const Header = () => {
                       <MaterialSymbol icon="air" size={30} fill grade={-25} color='black' />
                     </div>
                     <div className="col headerWindSpeed">
-                      {currentWindSpeed} mph
+                      {liveWind} mph
                     </div> 
                   </div>
                   <div className="py-1 d-flex align-items-center justify-content-center">
@@ -166,7 +179,7 @@ const Header = () => {
                       <MaterialSymbol icon="partly_cloudy_day" size={30} fill grade={-25} color='black' />
                     </div>
                     <div className="col headerTempText">
-                      {currentAirTemp} &deg;F
+                      {liveAirTemp} &deg;F
                     </div> 
                   </div>
                   <div className="py-1 d-flex align-items-center justify-content-center">
@@ -174,7 +187,7 @@ const Header = () => {
                       <MaterialSymbol icon="waves" size={30} fill grade={-25} color='black' />
                     </div>
                     <div className="col headerTempText">
-                      {currentWaterTemp} &deg;F
+                      {liveWaterTemp} &deg;F
                     </div>                    
                   </div>
                 </div>

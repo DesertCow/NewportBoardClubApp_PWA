@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 
 export const getWX_Q = gql`
-    query GetWX {
+    query WeatherData {
       getWX {
         airTemp
         tideMSL
