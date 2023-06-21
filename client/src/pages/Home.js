@@ -3,6 +3,9 @@
 import { useNavigate } from "react-router-dom";
 import { MaterialSymbol } from 'react-material-symbols';
 
+import { useQuery } from '@apollo/client';
+import { getWX_Q } from '../utils/queries';
+
 // import menuPDF from '../img/Salt_Lick_Menu_DWood-PDF.pdf';
 // import MainFooter from '../components/Footer';
 
@@ -44,6 +47,35 @@ function Home() {
   event.preventDefault();
   navigate("/about_club");
   };
+
+  //* Get Latest Weather Data
+  // var { loading, data } = useQuery(getWX_Q)
+
+  // while(loading) {
+  //   // Wait for loading to complete
+  // }
+
+  // if (!loading) {
+  //   data = String(JSON.stringify(data))
+  //   console.log("Weather Data 1 = " + data);
+  //   var dataArray = data.split(",")
+  //   console.log("Weather Data 2a = " + dataArray[0]);
+    
+  //   console.log("Weather Data 2b = " + dataArray[1]);
+  //   var liveWind = dataArray[1];
+  //   var liveWindArray = liveWind.split(":");
+  //   liveWind = liveWindArray[1];
+  //   console.log("Live Wind = " + liveWind);
+
+  //   console.log("Weather Data 2c = " + dataArray[2]);
+  //   console.log("Weather Data 2d = " + dataArray[3]);
+  //   console.log("Weather Data 2e = " + dataArray[4]);
+  //   console.log("Weather Data 2f = " + dataArray[5]);
+
+  // }
+
+  // }
+  
 
   return (
     <div className="d-flex flex-column min-vh-100">

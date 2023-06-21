@@ -23,10 +23,10 @@ const resolvers = {
   getWX: async() => {
 
       return {
-        wind: 15,
-        airTemp: 74,
-        waterTemp: 65,
-        tideMSL: 3.4,
+        wind: 10,
+        airTemp: 76,
+        waterTemp: 63,
+        tideMSL: 5.4,
         tideRise: true
         // measurement: itemData.measurement,
         // subMenuNumber: itemData.top_category
