@@ -6,17 +6,13 @@ import { MaterialSymbol } from 'react-material-symbols';
 
 import { useNavigate } from "react-router-dom";
 
+import { useQuery } from '@apollo/client';
+import { getWX_Q } from '../../utils/queries';
+
 
 
 const Header = () => {
 
-  // WX Variables
-
-  const currentWindSpeed = 10;
-  const currentAirTemp = 75;
-  const currentWaterTemp = 63;
-  const currentTide = 2.4;
-  const currentTideDirection = "Rising";
 
   // Event Handlers
 
@@ -33,6 +29,81 @@ const Header = () => {
   // navigate("/");
   console.log("Display Weather Widget Overlay!");
   };
+
+
+
+  //  let var liveAirTemp = "null";
+
+    //* Get Latest Weather Data
+  var { loading, data } = useQuery(getWX_Q)
+
+  // while(loading) {
+  //   // Wait for loading to complete
+  // }
+
+ 
+
+  if (!loading) {
+    data = String(JSON.stringify(data))
+    // console.log("Weather Data 1 = " + data);
+    var dataArray = data.split(",")
+    // console.log("Weather Data 2a = " + dataArray[0]);
+    
+    // console.log("Weather Data 2b = " + dataArray[1]);
+
+    var liveAirTemp = dataArray[1];
+    var liveAirTempArray = liveAirTemp.split(":");
+    liveAirTemp = liveAirTempArray[1];
+    liveAirTemp = liveAirTemp.split("}}");
+    console.log("Air Temp (Live): " + liveAirTemp);
+
+    var liveWind = dataArray[5];
+    var liveWindArray = liveWind.split(":");
+    liveWind = liveWindArray[1];
+    liveWind = liveWind.split("}}");
+    liveWind = liveWind[0].split(",");
+    console.log("Wind (Live): " + liveWind[0]);
+
+    var liveWaterTemp = dataArray[4];
+    var liveWaterTempArray = liveWaterTemp.split(":");
+    liveWaterTemp = liveWaterTempArray[1];
+    console.log("Water Temp (Demo): = " + liveWaterTemp);
+    
+    var liveTideMSL = dataArray[2];
+    var liveTideMSLArray = liveTideMSL.split(":");
+    liveTideMSL = liveTideMSLArray[1];
+    console.log("Tide MSL (Demo): = " + liveTideMSL);
+    // console.log("Weather Data 2c = " + dataArray[2]);
+    
+    var liveTideDir = dataArray[3];
+    var liveTideDirArray = liveTideDir.split(":");
+    liveTideDir = liveTideDirArray[1];
+    console.log("Tide Rising (Demo): = " + liveTideDir);
+
+    // console.log("Weather Data 2d = " + dataArray[3]);
+    // console.log("Weather Data 2e = " + dataArray[4]);
+    // console.log("Weather Data 2f = " + dataArray[5]);
+
+  }
+
+  // WX Variables
+
+  const currentWindSpeed = liveWind;
+  const currentAirTemp = liveAirTemp;
+  const currentWaterTemp = liveWaterTemp;
+  const currentTide = liveTideMSL;
+  const currentTideRise = liveTideDir;
+
+
+  let tideDirIcon;
+
+  if (liveTideDir == "true") {
+      tideDirIcon = <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' />
+  } 
+
+  if (liveTideDir == "false") {
+      tideDirIcon = <MaterialSymbol icon="arrow_downward" size={60} fill grade={-25} color='black' />
+  }
 
   return (
 
@@ -66,7 +137,8 @@ const Header = () => {
                     {currentTide} ft
                   </div>
                   <div className="col headerTideArrow pt-0 d-flex align-items-center justify-content-center">
-                     <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' />
+                     {/* <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' /> */}
+                     {tideDirIcon}
                   </div>
                 </div>
             </div>

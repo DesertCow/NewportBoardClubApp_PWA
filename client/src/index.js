@@ -6,6 +6,13 @@ import "./style.css";
 import "./reset.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/',
+  cache: new InMemoryCache(),
+});
+
 // import { BrowserRouter as Router } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 
@@ -25,6 +32,8 @@ const root = createRoot(rootElement);
 
 root.render(
   <div className="masterFrameWidth">
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </div>
 );

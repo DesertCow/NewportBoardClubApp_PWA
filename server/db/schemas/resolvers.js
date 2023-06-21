@@ -13,12 +13,80 @@ const bcrypt = require("bcrypt")
 // const jwt = require("jsonwebtoken")
 // const { signToken } = require('../../utils/auth');
 
+const { useState, useEffect } = require("react");
+const fetch = require("node-fetch");
+
 
 
 
 const resolvers = {
 
   Query: {
+    
+  getWX: async() => {
+
+
+    // Access Weather API to pull current Data
+
+    let url = "https://api.weather.gov/points/33.610846,-117.931436"
+
+      // fetch(url)
+      //   .then((response) => {
+      //     return response.json();
+      //   })
+      //   .then((data) => {
+      //     let pointForecast = String(JSON.stringify(data.properties.forecast))
+      //     console.log(pointForecast)
+      //     let pointForecastURL = pointForecast.substr(1, pointForecast.length - 2);
+      //     console.log("URL: " + pointForecastURL)
+          
+      //     fetch(pointForecastURL)
+      //     .then((response) => {
+      //       return response.json();
+      //     })
+      //     .then((data) => {
+      //       console.log(data.properties.periods[0])
+      //       // console.log(data.properties.periods[1])
+      //       // console.log(data.properties.periods[2])
+      //     })
+      //   })
+        
+      //   .catch(function() {
+      //     // handle the error
+      //   });
+
+      let wxStationURL = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
+
+      let finalLiveWindSpeed = "null";
+      let finalAirTemp = "null";
+      let finalWaterTemp = "null";
+      let finalLiveTideMSL = "null";
+
+
+      await fetch(wxStationURL)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          // console.log(data.observations[0].imperial);
+          let liveWxData = data.observations[0].imperial;
+
+          console.log(liveWxData.windSpeed)
+          finalLiveWindSpeed = liveWxData.windSpeed;
+          finalAirTemp = liveWxData.temp
+        })
+
+        return {
+          wind: finalLiveWindSpeed,
+          airTemp: finalAirTemp,
+          waterTemp: 63,
+          tideMSL: 5.4,
+          tideRise: true
+          // measurement: itemData.measurement,
+          // subMenuNumber: itemData.top_category
+          // quantity: 1
+        }
+    },   
 
   },
 
