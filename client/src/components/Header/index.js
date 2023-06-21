@@ -30,12 +30,18 @@ const Header = () => {
   console.log("Display Weather Widget Overlay!");
   };
 
+
+
+  //  let var liveAirTemp = "null";
+
     //* Get Latest Weather Data
   var { loading, data } = useQuery(getWX_Q)
 
   // while(loading) {
   //   // Wait for loading to complete
   // }
+
+ 
 
   if (!loading) {
     data = String(JSON.stringify(data))
