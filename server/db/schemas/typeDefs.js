@@ -9,6 +9,7 @@ const typeDefs = `#graphql
 
   type Query {
     login(email: String!, password: String!): Auth
+    getWX: WX
   }
 
   type Mutation {
@@ -38,6 +39,14 @@ const typeDefs = `#graphql
     loginValid: Boolean
     loginToken: String
     customerName: String
+  }
+
+  type WX {
+        wind: Int
+        airTemp: Int
+        waterTemp: Int
+        tideMSL: Float
+        tideRise: Boolean
   }
 
 `;

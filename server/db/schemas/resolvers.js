@@ -19,6 +19,20 @@ const bcrypt = require("bcrypt")
 const resolvers = {
 
   Query: {
+    
+  getWX: async() => {
+
+      return {
+        wind: 15,
+        airTemp: 74,
+        waterTemp: 65,
+        tideMSL: 3.4,
+        tideRise: true
+        // measurement: itemData.measurement,
+        // subMenuNumber: itemData.top_category
+        // quantity: 1
+      }
+    },   
 
   },
 
