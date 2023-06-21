@@ -55,30 +55,30 @@ const Header = () => {
     var liveAirTempArray = liveAirTemp.split(":");
     liveAirTemp = liveAirTempArray[1];
     liveAirTemp = liveAirTemp.split("}}");
-    console.log("Live Air Temp = " + liveAirTemp);
+    console.log("Air Temp (Live): " + liveAirTemp);
 
     var liveWind = dataArray[5];
     var liveWindArray = liveWind.split(":");
     liveWind = liveWindArray[1];
     liveWind = liveWind.split("}}");
     liveWind = liveWind[0].split(",");
-    console.log("Live Wind = " + liveWind[0]);
+    console.log("Wind (Live): " + liveWind[0]);
 
     var liveWaterTemp = dataArray[4];
     var liveWaterTempArray = liveWaterTemp.split(":");
     liveWaterTemp = liveWaterTempArray[1];
-    console.log("Live Water Temp = " + liveWaterTemp);
+    console.log("Water Temp (Demo): = " + liveWaterTemp);
     
     var liveTideMSL = dataArray[2];
     var liveTideMSLArray = liveTideMSL.split(":");
     liveTideMSL = liveTideMSLArray[1];
-    console.log("Live Tide MSL = " + liveTideMSL);
+    console.log("Tide MSL (Demo): = " + liveTideMSL);
     // console.log("Weather Data 2c = " + dataArray[2]);
     
     var liveTideDir = dataArray[3];
     var liveTideDirArray = liveTideDir.split(":");
     liveTideDir = liveTideDirArray[1];
-    console.log("Live Rising Tide? = " + liveTideDir);
+    console.log("Tide Rising (Demo): = " + liveTideDir);
 
     // console.log("Weather Data 2d = " + dataArray[3]);
     // console.log("Weather Data 2e = " + dataArray[4]);
