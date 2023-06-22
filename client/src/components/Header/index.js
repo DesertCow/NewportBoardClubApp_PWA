@@ -41,144 +41,161 @@ const Header = () => {
   //   // Wait for loading to complete
   // }
 
- 
-
-  if (!loading) {
-    data = String(JSON.stringify(data))
-    // console.log("Weather Data 1 = " + data);
-    var dataArray = data.split(",")
-    // console.log("Weather Data 2a = " + dataArray[0]);
-    
-    // console.log("Weather Data 2b = " + dataArray[1]);
-
-    var liveAirTemp = dataArray[1];
-    var liveAirTempArray = liveAirTemp.split(":");
-    liveAirTemp = liveAirTempArray[1];
-    liveAirTemp = liveAirTemp.split("}}");
-    console.log("Air Temp (Live): " + liveAirTemp);
-
-    var liveWind = dataArray[5];
-    var liveWindArray = liveWind.split(":");
-    liveWind = liveWindArray[1];
-    liveWind = liveWind.split("}}");
-    liveWind = liveWind[0].split(",");
-    console.log("Wind (Live): " + liveWind[0]);
-
-    var liveWaterTemp = dataArray[4];
-    var liveWaterTempArray = liveWaterTemp.split(":");
-    liveWaterTemp = liveWaterTempArray[1];
-    console.log("Water Temp (Demo): = " + liveWaterTemp);
-    
-    var liveTideMSL = dataArray[2];
-    var liveTideMSLArray = liveTideMSL.split(":");
-    liveTideMSL = liveTideMSLArray[1];
-    console.log("Tide MSL (Demo): = " + liveTideMSL);
-    // console.log("Weather Data 2c = " + dataArray[2]);
-    
-    var liveTideDir = dataArray[3];
-    var liveTideDirArray = liveTideDir.split(":");
-    liveTideDir = liveTideDirArray[1];
-    console.log("Tide Rising (Demo): = " + liveTideDir);
-
-    // console.log("Weather Data 2d = " + dataArray[3]);
-    // console.log("Weather Data 2e = " + dataArray[4]);
-    // console.log("Weather Data 2f = " + dataArray[5]);
-
-  }
-
-  // WX Variables
-
-  const currentWindSpeed = liveWind;
-  const currentAirTemp = liveAirTemp;
-  const currentWaterTemp = liveWaterTemp;
-  const currentTide = liveTideMSL;
-  const currentTideRise = liveTideDir;
-
-
+  let wxStationURL = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
   let tideDirIcon;
 
-  if (liveTideDir == "true") {
-      tideDirIcon = <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' />
-  } 
+  var liveWind = "null";
+  var liveWaterTemp = "null";
+  var liveAirTemp = "null";
+  var liveTideMSL = "null";
+  var liveTideDir = "null";
+  var dataArray = "null";
 
-  if (liveTideDir == "false") {
-      tideDirIcon = <MaterialSymbol icon="arrow_downward" size={60} fill grade={-25} color='black' />
+
+  async function wxUndergroundFetch() {
+      fetch(wxStationURL)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      // console.log(data.observations[0].imperial);
+      let liveWxData = data.observations[0].imperial;
+
+      liveWind = liveWxData.windSpeed;
+      liveAirTemp = liveWxData.temp;
+      liveTideDir = true;
+
+
+      console.log("WIND: " + liveWind)
+      console.log("AIR: " + liveAirTemp)
+      console.log("Tide Arrow: " + liveTideDir)
+
+      // loading = false;
+
+    })
   }
 
-  return (
+  console.log(loading);
 
-    <div className="HeaderClass mt-auto mb-0 mr-5">
 
-        <div className="container">
-          <div className="row">
+  if(loading) {
 
-            <div className="col d-flex align-items-center justify-content-center">
-              <div className="text-center" onClick={(event) => handleLogoClick(event)}>
-                <img src={require("../../img/BC_Logo_Clear_1.png")}
-                  className="homePageLogo"
-                  alt="Board Club Logo" />
+    return (
+
+      <h1>LOADING!</h1>
+
+    )
+    
+
+  }
+
+  if(!loading) {
+
+    // data = String(JSON.stringify(data.getWX))
+    // console.log("STRING = " + String(JSON.stringify(data.getWX.airTemp)));
+    // console.log("STRING = " + String(JSON.stringify(data.getWX)));
+    console.log("STRING = " + String(JSON.stringify(data.getWX)));
+
+    // liveWind = String(JSON.stringify(data));
+
+    liveWind = data.getWX.wind;
+    liveAirTemp = data.getWX.airTemp;
+    liveWaterTemp = data.getWX.waterTemp;
+
+
+    liveTideMSL = data.getWX.tideMSL;
+    liveTideDir = data.getWX.tideRise;
+
+    // wxUndergroundFetch();
+
+    // var liveData = data;
+    // console.log("STRING = " + liveData.getWX);  
+
+    
+    if (liveTideDir) {
+        tideDirIcon = <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='green' />
+    } 
+
+    if (!liveTideDir) {
+        tideDirIcon = <MaterialSymbol icon="arrow_downward" size={60} fill grade={-25} color='red' />
+    }
+    
+  } 
+    return (
+
+        <div className="HeaderClass mt-auto mb-0 mr-5">
+
+            <div className="container">
+              <div className="row">
+
+                <div className="col d-flex align-items-center justify-content-center">
+                  <div className="text-center" onClick={(event) => handleLogoClick(event)}>
+                    <img src={require("../../img/BC_Logo_Clear_1.png")}
+                      className="homePageLogo"
+                      alt="Board Club Logo" />
+                  </div>
+                </div>
+
+                <div className="col-2">
+                    {/* SPACER BOX! */}
+                </div>
+
+                <div className="col-2 d-flex align-items-center justify-content-center" onClick={(event) => handleWeatherWidgetClick(event)}>
+                    <div className="row mt-2">
+                      <div className="col headerTideIcon py-2 d-flex align-items-center justify-content-center">
+                        <div className="text-center">
+                          <img src={require("../../img/tide_icon.png")}
+                            className="headerTideIcon"
+                          alt="Tide Icon" />
+                        </div>
+                      </div>
+                      <div className="col headerCurrentTide pt-3 d-flex align-items-center justify-content-center">
+                        {liveTideMSL} ft
+                      </div>
+                      <div className="col headerTideArrow pt-0 d-flex align-items-center justify-content-center">
+                        {/* <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' /> */}
+                        {tideDirIcon}
+                      </div>
+                    </div>
+                </div>
+
+                <div className="col-3 d-flex align-items-center" onClick={(event) => handleWeatherWidgetClick(event)}>
+                  <div className="col">
+                    <div className="row d-flex align-items-center">
+                      <div className="py-1 d-flex align-items-center justify-content-center">
+                        <div className="col">
+                          <MaterialSymbol icon="air" size={30} fill grade={-25} color='black' />
+                        </div>
+                        <div className="col headerWindSpeed">
+                          {liveWind} mph
+                        </div> 
+                      </div>
+                      <div className="py-1 d-flex align-items-center justify-content-center">
+                        <div className="col">
+                          <MaterialSymbol icon="partly_cloudy_day" size={30} fill grade={-25} color='black' />
+                        </div>
+                        <div className="col headerTempText">
+                          {liveAirTemp} &deg;F
+                        </div> 
+                      </div>
+                      <div className="py-1 d-flex align-items-center justify-content-center">
+                        <div className="col">
+                          <MaterialSymbol icon="waves" size={30} fill grade={-25} color='black' />
+                        </div>
+                        <div className="col headerTempText">
+                          {liveWaterTemp} &deg;F
+                        </div>                    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
-            <div className="col-2">
-                 {/* SPACER BOX! */}
-            </div>
-
-            <div className="col-2 d-flex align-items-center justify-content-center" onClick={(event) => handleWeatherWidgetClick(event)}>
-                <div className="row mt-2">
-                  <div className="col headerTideIcon py-2 d-flex align-items-center justify-content-center">
-                    <div className="text-center">
-                      <img src={require("../../img/tide_icon.png")}
-                        className="headerTideIcon"
-                      alt="Tide Icon" />
-                    </div>
-                  </div>
-                  <div className="col headerCurrentTide pt-3 d-flex align-items-center justify-content-center">
-                    {currentTide} ft
-                  </div>
-                  <div className="col headerTideArrow pt-0 d-flex align-items-center justify-content-center">
-                     {/* <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' /> */}
-                     {tideDirIcon}
-                  </div>
-                </div>
-            </div>
-
-            <div className="col-3 d-flex align-items-center" onClick={(event) => handleWeatherWidgetClick(event)}>
-              <div className="col">
-                <div className="row d-flex align-items-center">
-                  <div className="py-1 d-flex align-items-center justify-content-center">
-                    <div className="col">
-                      <MaterialSymbol icon="air" size={30} fill grade={-25} color='black' />
-                    </div>
-                    <div className="col headerWindSpeed">
-                      {currentWindSpeed} mph
-                    </div> 
-                  </div>
-                  <div className="py-1 d-flex align-items-center justify-content-center">
-                    <div className="col">
-                      <MaterialSymbol icon="partly_cloudy_day" size={30} fill grade={-25} color='black' />
-                    </div>
-                    <div className="col headerTempText">
-                      {currentAirTemp} &deg;F
-                    </div> 
-                  </div>
-                  <div className="py-1 d-flex align-items-center justify-content-center">
-                    <div className="col">
-                      <MaterialSymbol icon="waves" size={30} fill grade={-25} color='black' />
-                    </div>
-                    <div className="col headerTempText">
-                      {currentWaterTemp} &deg;F
-                    </div>                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
         </div>
-
-    </div>
-  );
+      );
+  
 };
 
 export default Header;

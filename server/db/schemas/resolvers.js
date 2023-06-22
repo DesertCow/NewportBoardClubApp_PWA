@@ -82,9 +82,6 @@ const resolvers = {
           waterTemp: 63,
           tideMSL: 5.4,
           tideRise: true
-          // measurement: itemData.measurement,
-          // subMenuNumber: itemData.top_category
-          // quantity: 1
         }
     },   
 
