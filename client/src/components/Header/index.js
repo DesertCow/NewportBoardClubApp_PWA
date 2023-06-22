@@ -51,31 +51,7 @@ const Header = () => {
   var liveTideDir = "null";
   var dataArray = "null";
 
-
-  async function wxUndergroundFetch() {
-      fetch(wxStationURL)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      // console.log(data.observations[0].imperial);
-      let liveWxData = data.observations[0].imperial;
-
-      liveWind = liveWxData.windSpeed;
-      liveAirTemp = liveWxData.temp;
-      liveTideDir = true;
-
-
-      console.log("WIND: " + liveWind)
-      console.log("AIR: " + liveAirTemp)
-      console.log("Tide Arrow: " + liveTideDir)
-
-      // loading = false;
-
-    })
-  }
-
-  console.log(loading);
+  // console.log(loading);
 
 
   if(loading) {
@@ -92,9 +68,9 @@ const Header = () => {
   if(!loading) {
 
     // data = String(JSON.stringify(data.getWX))
-    // console.log("STRING = " + String(JSON.stringify(data.getWX.airTemp)));
-    // console.log("STRING = " + String(JSON.stringify(data.getWX)));
     console.log("STRING = " + String(JSON.stringify(data.getWX)));
+    // console.log("STRING = " + String(JSON.stringify(data.getWX)));
+    // console.log("STRING = " + String(JSON.stringify(data.getWX)));
 
     // liveWind = String(JSON.stringify(data));
 

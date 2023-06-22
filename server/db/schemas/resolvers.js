@@ -25,44 +25,17 @@ const resolvers = {
     
   getWX: async() => {
 
-
-    // Access Weather API to pull current Data
-
-    let url = "https://api.weather.gov/points/33.610846,-117.931436"
-
-      // fetch(url)
-      //   .then((response) => {
-      //     return response.json();
-      //   })
-      //   .then((data) => {
-      //     let pointForecast = String(JSON.stringify(data.properties.forecast))
-      //     console.log(pointForecast)
-      //     let pointForecastURL = pointForecast.substr(1, pointForecast.length - 2);
-      //     console.log("URL: " + pointForecastURL)
-          
-      //     fetch(pointForecastURL)
-      //     .then((response) => {
-      //       return response.json();
-      //     })
-      //     .then((data) => {
-      //       console.log(data.properties.periods[0])
-      //       // console.log(data.properties.periods[1])
-      //       // console.log(data.properties.periods[2])
-      //     })
-      //   })
-        
-      //   .catch(function() {
-      //     // handle the error
-      //   });
-
       let wxStationURL = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
+      let waterTempURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_temperature&datum=STND&time_zone=gmt&units=english&format=json";
+
+
 
       let finalLiveWindSpeed = "null";
       let finalAirTemp = "null";
       let finalWaterTemp = "null";
       let finalLiveTideMSL = "null";
 
-
+      //* Fetch Wind and Air temp data
       await fetch(wxStationURL)
         .then((response) => {
           return response.json();
@@ -74,18 +47,37 @@ const resolvers = {
           console.log(liveWxData.windSpeed)
           finalLiveWindSpeed = liveWxData.windSpeed;
           finalAirTemp = liveWxData.temp
+
         })
 
-        return {
-          wind: finalLiveWindSpeed,
-          airTemp: finalAirTemp,
-          waterTemp: 63,
-          tideMSL: 5.4,
-          tideRise: true
-        }
-    },   
+        //* Fetch Tide and Water Temp Data
+        await fetch(waterTempURL)
+          .then((response) => {
+            return response.json();
+          })
+          .then((waterData) => {
+            // console.log(waterData.data[0].v);
+            // console.log(waterData);
+            finalWaterTemp = waterData.data[0].v;
+            console.log("Water Temp = " + finalWaterTemp);
+            // let liveWxData = data.observations[0].imperial;
 
-  },
+            // console.log(liveWxData.windSpeed)
+            // finalLiveWindSpeed = liveWxData.windSpeed;
+            
+          })
+
+          return {
+            wind: finalLiveWindSpeed,
+            airTemp: finalAirTemp,
+            // waterTemp: finalWaterTemp,
+            waterTemp: 63,
+            tideMSL: 5.4,
+            tideRise: true
+          }
+
+        }
+    },
 
   Mutation: {
     createUser: async (parent, { email, password, customerName }) => {
