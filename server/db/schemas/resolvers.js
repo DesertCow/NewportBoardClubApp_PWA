@@ -103,8 +103,9 @@ const resolvers = {
             }
 
             if(previousTide == "null") {
-              console.log("Null Updated")
+              console.log("First Run, Value updated!")
               previousTide = tideMSL;
+              tideRising = false;
             }
             
             
@@ -115,8 +116,8 @@ const resolvers = {
             airTemp: finalAirTemp,
             waterTemp: finalWaterTemp,
             tideMSL: parseFloat(tideMSL).toFixed(2),
-            // tideRise: tideRising
-            tideRise: true
+            tideRise: tideRising
+            // tideRise: true
           }
 
         }
