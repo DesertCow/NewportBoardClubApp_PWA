@@ -36,13 +36,13 @@ const Header = () => {
 
 
   let tideDirIcon;
+  let previousTideMeasurement;
 
   var liveWind = "null";
   var liveWaterTemp = "null";
   var liveAirTemp = "null";
   var liveTideMSL = "null";
   var liveTideDir = "null";
-
 
   if(loading) {
 
@@ -68,7 +68,8 @@ const Header = () => {
 
 
     //* Logic for Tide Direction Icon
-    
+
+
     if (liveTideDir) {
         tideDirIcon = <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='green' />
     } 

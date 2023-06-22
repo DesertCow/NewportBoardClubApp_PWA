@@ -16,6 +16,8 @@ const bcrypt = require("bcrypt")
 const { useState, useEffect } = require("react");
 const fetch = require("node-fetch");
 
+let previousTide = "null";
+let tideRising = "false";
 
 
 
@@ -35,7 +37,7 @@ const resolvers = {
       let finalAirTemp = "null";
       let finalWaterTemp = "null";
       let finalLiveTideMSL = "null";
-
+      
       //* Fetch Wind and Air temp data
       await fetch(wxStationURL)
         .then((response) => {
@@ -74,16 +76,46 @@ const resolvers = {
           .then((tideData) => {
             // console.log(tideData);
 
-            tideMSL = tideData.data[0].s;
-            tideMSL = parseFloat(tideMSL).toFixed(2);
+            tideMSL = parseFloat(tideData.data[0].s);
+            // tideMSL = parseFloat(tideMSL).toFixed(2);
             console.log("Tide MSL: " + tideMSL + " ft");
+
+            
+            console.log("Previous Tide: " + previousTide)
+            console.log("Current Tide: " + tideMSL)
+
+            if(previousTide == tideMSL) {
+              console.log("Tide Unchanged!")
+            }
+
+            if(tideMSL > previousTide) {
+              
+              tideRising = true;
+              console.log("Tide Rising: " + tideRising)
+              previousTide = tideMSL;
+            }
+
+            if(tideMSL < previousTide) {
+              
+              tideRising = false;
+              console.log("Tide Falling: " + tideRising)
+              previousTide = tideMSL;
+            }
+
+            if(previousTide == "null") {
+              console.log("Null Updated")
+              previousTide = tideMSL;
+            }
+            
+            
           })
 
           return {
             wind: finalLiveWindSpeed,
             airTemp: finalAirTemp,
             waterTemp: finalWaterTemp,
-            tideMSL: tideMSL,
+            tideMSL: parseFloat(tideMSL).toFixed(2),
+            // tideRise: tideRising
             tideRise: true
           }
 
