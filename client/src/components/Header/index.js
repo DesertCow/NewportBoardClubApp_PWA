@@ -14,7 +14,7 @@ import { getWX_Q } from '../../utils/queries';
 const Header = () => {
 
 
-  // Event Handlers
+  //* Event Handlers
 
   const navigate = useNavigate();
 
@@ -31,17 +31,10 @@ const Header = () => {
   };
 
 
-
-  //  let var liveAirTemp = "null";
-
-    //* Get Latest Weather Data
+  //* Get Latest Weather Data from App Server
   var { loading, data } = useQuery(getWX_Q)
 
-  // while(loading) {
-  //   // Wait for loading to complete
-  // }
 
-  let wxStationURL = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
   let tideDirIcon;
 
   var liveWind = "null";
@@ -49,9 +42,6 @@ const Header = () => {
   var liveAirTemp = "null";
   var liveTideMSL = "null";
   var liveTideDir = "null";
-  var dataArray = "null";
-
-  // console.log(loading);
 
 
   if(loading) {
@@ -67,26 +57,17 @@ const Header = () => {
 
   if(!loading) {
 
-    // data = String(JSON.stringify(data.getWX))
-    console.log("STRING = " + String(JSON.stringify(data.getWX)));
-    // console.log("STRING = " + String(JSON.stringify(data.getWX)));
-    // console.log("STRING = " + String(JSON.stringify(data.getWX)));
-
-    // liveWind = String(JSON.stringify(data));
-
     liveWind = data.getWX.wind;
     liveAirTemp = data.getWX.airTemp;
     liveWaterTemp = data.getWX.waterTemp;
-
-
     liveTideMSL = data.getWX.tideMSL;
+    
+    
+    //? Not Working!
     liveTideDir = data.getWX.tideRise;
 
-    // wxUndergroundFetch();
 
-    // var liveData = data;
-    // console.log("STRING = " + liveData.getWX);  
-
+    //* Logic for Tide Direction Icon
     
     if (liveTideDir) {
         tideDirIcon = <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='green' />
@@ -97,6 +78,7 @@ const Header = () => {
     }
     
   } 
+
     return (
 
         <div className="HeaderClass mt-auto mb-0 mr-5">

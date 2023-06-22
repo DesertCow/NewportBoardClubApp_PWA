@@ -27,6 +27,7 @@ const resolvers = {
 
       let wxStationURL = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
       let waterTempURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_temperature&datum=STND&time_zone=gmt&units=english&format=json";
+      let tideStationURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_level&datum=STND&time_zone=lst&units=english&format=json";
 
 
 
@@ -44,13 +45,15 @@ const resolvers = {
           // console.log(data.observations[0].imperial);
           let liveWxData = data.observations[0].imperial;
 
-          console.log(liveWxData.windSpeed)
+          
           finalLiveWindSpeed = liveWxData.windSpeed;
           finalAirTemp = liveWxData.temp
+          console.log("\nWind Speed: " + finalLiveWindSpeed + " mph")
+          console.log("Air Temp: " + finalAirTemp + " F")
 
         })
 
-        //* Fetch Tide and Water Temp Data
+        //* Fetch Water Temp Data
         await fetch(waterTempURL)
           .then((response) => {
             return response.json();
@@ -59,23 +62,28 @@ const resolvers = {
             // console.log(waterData.data[0].v);
             // console.log(waterData);
             finalWaterTemp = waterData.data[0].v;
-            console.log("Water Temp = " + finalWaterTemp);
-            // let liveWxData = data.observations[0].imperial;
-
-            // console.log(liveWxData.windSpeed)
-            // finalLiveWindSpeed = liveWxData.windSpeed;
+            console.log("Water Temp: " + finalWaterTemp + " F");
             
           })
 
+        //* Fetch Tide Data
+        await fetch(tideStationURL)
+          .then((response) => {
+            return response.json();
+          })
+          .then((tideData) => {
+            // console.log(tideData);
 
-          console.log("Water Temp 2 = " + finalWaterTemp);
+            tideMSL = tideData.data[0].s;
+            tideMSL = parseFloat(tideMSL).toFixed(2);
+            console.log("Tide MSL: " + tideMSL + " ft");
+          })
 
           return {
             wind: finalLiveWindSpeed,
             airTemp: finalAirTemp,
             waterTemp: finalWaterTemp,
-            // waterTemp: 63,
-            tideMSL: 5.4,
+            tideMSL: tideMSL,
             tideRise: true
           }
 
