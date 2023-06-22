@@ -16,6 +16,8 @@ const bcrypt = require("bcrypt")
 const { useState, useEffect } = require("react");
 const fetch = require("node-fetch");
 
+let previousTide = "null";
+let tideRising = "false";
 
 
 
@@ -25,44 +27,18 @@ const resolvers = {
     
   getWX: async() => {
 
-
-    // Access Weather API to pull current Data
-
-    let url = "https://api.weather.gov/points/33.610846,-117.931436"
-
-      // fetch(url)
-      //   .then((response) => {
-      //     return response.json();
-      //   })
-      //   .then((data) => {
-      //     let pointForecast = String(JSON.stringify(data.properties.forecast))
-      //     console.log(pointForecast)
-      //     let pointForecastURL = pointForecast.substr(1, pointForecast.length - 2);
-      //     console.log("URL: " + pointForecastURL)
-          
-      //     fetch(pointForecastURL)
-      //     .then((response) => {
-      //       return response.json();
-      //     })
-      //     .then((data) => {
-      //       console.log(data.properties.periods[0])
-      //       // console.log(data.properties.periods[1])
-      //       // console.log(data.properties.periods[2])
-      //     })
-      //   })
-        
-      //   .catch(function() {
-      //     // handle the error
-      //   });
-
       let wxStationURL = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
+      let waterTempURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_temperature&datum=STND&time_zone=gmt&units=english&format=json";
+      let tideStationURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_level&datum=STND&time_zone=lst&units=english&format=json";
+
+
 
       let finalLiveWindSpeed = "null";
       let finalAirTemp = "null";
       let finalWaterTemp = "null";
       let finalLiveTideMSL = "null";
-
-
+      
+      //* Fetch Wind and Air temp data
       await fetch(wxStationURL)
         .then((response) => {
           return response.json();
@@ -71,21 +47,81 @@ const resolvers = {
           // console.log(data.observations[0].imperial);
           let liveWxData = data.observations[0].imperial;
 
-          console.log(liveWxData.windSpeed)
+          
           finalLiveWindSpeed = liveWxData.windSpeed;
           finalAirTemp = liveWxData.temp
+          console.log("\nWind Speed: " + finalLiveWindSpeed + " mph")
+          console.log("Air Temp: " + finalAirTemp + " F")
+
         })
 
-        return {
-          wind: finalLiveWindSpeed,
-          airTemp: finalAirTemp,
-          waterTemp: 63,
-          tideMSL: 5.4,
-          tideRise: true
-        }
-    },   
+        //* Fetch Water Temp Data
+        await fetch(waterTempURL)
+          .then((response) => {
+            return response.json();
+          })
+          .then((waterData) => {
+            // console.log(waterData.data[0].v);
+            // console.log(waterData);
+            finalWaterTemp = waterData.data[0].v;
+            console.log("Water Temp: " + finalWaterTemp + " F");
+            
+          })
 
-  },
+        //* Fetch Tide Data
+        await fetch(tideStationURL)
+          .then((response) => {
+            return response.json();
+          })
+          .then((tideData) => {
+            // console.log(tideData);
+
+            tideMSL = parseFloat(tideData.data[0].s);
+            // tideMSL = parseFloat(tideMSL).toFixed(2);
+            console.log("Tide MSL: " + tideMSL + " ft");
+
+            
+            console.log("Previous Tide: " + previousTide)
+            console.log("Current Tide: " + tideMSL)
+
+            if(previousTide == tideMSL) {
+              console.log("Tide Unchanged!")
+            }
+
+            if(tideMSL > previousTide) {
+              
+              tideRising = true;
+              console.log("Tide Rising: " + tideRising)
+              previousTide = tideMSL;
+            }
+
+            if(tideMSL < previousTide) {
+              
+              tideRising = false;
+              console.log("Tide Falling: " + tideRising)
+              previousTide = tideMSL;
+            }
+
+            if(previousTide == "null") {
+              console.log("First Run, Value updated!")
+              previousTide = tideMSL;
+              tideRising = false;
+            }
+            
+            
+          })
+
+          return {
+            wind: finalLiveWindSpeed,
+            airTemp: finalAirTemp,
+            waterTemp: finalWaterTemp,
+            tideMSL: parseFloat(tideMSL).toFixed(2),
+            tideRise: tideRising
+            // tideRise: true
+          }
+
+        }
+    },
 
   Mutation: {
     createUser: async (parent, { email, password, customerName }) => {

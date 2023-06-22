@@ -44,7 +44,7 @@ const typeDefs = `#graphql
   type WX {
         wind: Int
         airTemp: Int
-        waterTemp: Int
+        waterTemp: Float
         tideMSL: Float
         tideRise: Boolean
   }
