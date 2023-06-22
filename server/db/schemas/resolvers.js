@@ -67,11 +67,14 @@ const resolvers = {
             
           })
 
+
+          console.log("Water Temp 2 = " + finalWaterTemp);
+
           return {
             wind: finalLiveWindSpeed,
             airTemp: finalAirTemp,
-            // waterTemp: finalWaterTemp,
-            waterTemp: 63,
+            waterTemp: finalWaterTemp,
+            // waterTemp: 63,
             tideMSL: 5.4,
             tideRise: true
           }
