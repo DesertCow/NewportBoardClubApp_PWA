@@ -66,17 +66,6 @@ const Header = () => {
       liveTideDir = true;
 
 
-      if (liveTideDir == "true") {
-          tideDirIcon = <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' />
-      } 
-
-      if (liveTideDir == "false") {
-          tideDirIcon = <MaterialSymbol icon="arrow_downward" size={60} fill grade={-25} color='black' />
-      }
-      if (liveTideDir == "Null") {
-          tideDirIcon = <MaterialSymbol icon="arrow_downward" size={60} fill grade={-25} color='red' />
-      }
-
       console.log("WIND: " + liveWind)
       console.log("AIR: " + liveAirTemp)
       console.log("Tide Arrow: " + liveTideDir)
@@ -105,16 +94,33 @@ const Header = () => {
     // data = String(JSON.stringify(data.getWX))
     // console.log("STRING = " + String(JSON.stringify(data.getWX.airTemp)));
     // console.log("STRING = " + String(JSON.stringify(data.getWX)));
-    console.log("STRING = " + String(JSON.stringify(data)));
+    console.log("STRING = " + String(JSON.stringify(data.getWX)));
 
-    liveWind = String(JSON.stringify(data));
+    // liveWind = String(JSON.stringify(data));
 
-    wxUndergroundFetch();
+    liveWind = data.getWX.wind;
+    liveAirTemp = data.getWX.airTemp;
+    liveWaterTemp = data.getWX.waterTemp;
+
+
+    liveTideMSL = data.getWX.tideMSL;
+    liveTideDir = data.getWX.tideRise;
+
+    // wxUndergroundFetch();
 
     // var liveData = data;
     // console.log("STRING = " + liveData.getWX);  
-    
 
+    
+    if (liveTideDir) {
+        tideDirIcon = <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='green' />
+    } 
+
+    if (!liveTideDir) {
+        tideDirIcon = <MaterialSymbol icon="arrow_downward" size={60} fill grade={-25} color='red' />
+    }
+    
+  } 
     return (
 
         <div className="HeaderClass mt-auto mb-0 mr-5">
@@ -189,7 +195,6 @@ const Header = () => {
 
         </div>
       );
-    }
   
 };
 
