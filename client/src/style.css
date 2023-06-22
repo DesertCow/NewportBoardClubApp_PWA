@@ -65,7 +65,7 @@
 }
 
 .headerCurrentTide {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -74,12 +74,12 @@
 }
 
 .headerWindSpeed {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 900;
 }
 
 .headerTempText {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -101,7 +101,10 @@
   background-color: #1cadb2e2;
   opacity: 80%;
   border-radius: 15px;
-
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
 }
 
 /*? ============= Rental Page ============= */
@@ -375,4 +378,31 @@
   -moz-border-radius: 30px;
   -ms-border-radius: 30px;
   -o-border-radius: 30px;
+}
+
+/*? ============= Create New Surf Session ============= */
+
+.smallBoxRow {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 30px;
+  height: 90px;
+  border: #c3c3c3b5;
+  border-width: 5px;
+  border-style: solid;
+}
+
+.datePicker {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 12px;
+
+}
+
+.timePicker {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 20px;
+  /* padding: 30px; */
+}
+
+.dateFont {
+  font-size: 25px;
 }

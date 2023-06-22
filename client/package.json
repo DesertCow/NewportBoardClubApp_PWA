@@ -7,13 +7,15 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.0",
     "jquery": "^3.7.0",
-    "popper.js": "^1.16.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-material-symbols": "^4.1.1",
+    "react-popper": "^2.3.0",
     "react-router-dom": "^6.12.1",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "react-select-datepicker": "^2.1.2",
+    "react-time-picker": "^6.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

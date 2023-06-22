@@ -95,9 +95,9 @@ const Header = () => {
                   </div>
                 </div>
 
-                <div className="col-2">
+                {/* <div className="col-2"> */}
                     {/* SPACER BOX! */}
-                </div>
+                {/* </div> */}
 
                 <div className="col-2 d-flex align-items-center justify-content-center" onClick={(event) => handleWeatherWidgetClick(event)}>
                     <div className="row mt-2">
