@@ -49,6 +49,8 @@ const resolvers = {
 
             // console.log("Surfline Raw: " + JSON.stringify(surflineDataRaw))
             // console.log("Surfline Raw: " + JSON.stringify(surflineDataRaw.data[0].waterTemp.max))
+
+            console.log("\x1b[36m\n ☎️  Surfline API Request ☎️\x1b[0m")
             
             finalLiveTideMSL = surflineDataRaw.data[0].tide.current.height;
             finalWaterTemp = surflineDataRaw.data[0].waterTemp.max;
