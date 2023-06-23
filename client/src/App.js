@@ -37,6 +37,9 @@ import SurfRentals from './pages/SurfRentals';
 import AboutClub from './pages/AboutClub';
 
 
+
+
+
 //* Component Import
 
 
@@ -46,6 +49,8 @@ export default function App() {
   require('./style.css')
   require('./reset.css')
   // require('./img/Salt_Lick_Menu_DWood-PDF.pdf')
+
+
 
 
   return (

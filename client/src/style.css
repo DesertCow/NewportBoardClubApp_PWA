@@ -65,7 +65,7 @@
 }
 
 .headerCurrentTide {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -74,13 +74,15 @@
 }
 
 .headerWindSpeed {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 900;
+  white-space: nowrap;
 }
 
 .headerTempText {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 /*? ============= Footer Component ============= */
@@ -101,7 +103,10 @@
   background-color: #1cadb2e2;
   opacity: 80%;
   border-radius: 15px;
-
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
 }
 
 /*? ============= Rental Page ============= */
@@ -375,4 +380,91 @@
   -moz-border-radius: 30px;
   -ms-border-radius: 30px;
   -o-border-radius: 30px;
+}
+
+/*? ============= Create New Surf Session ============= */
+
+.smallBoxRow {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 30px;
+  height: 90px;
+  border: #c3c3c3b5;
+  border-width: 5px;
+  border-style: solid;
+}
+
+.surfboardSection {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 30px;
+  height: 90px;
+  /* border: #c3c3c3b5; */
+  border-width: 15px;
+  border-top: #c3c3c3b5;
+  border-left: #c3c3c3b5;
+  border-right: #c3c3c3b5;
+  border-bottom: #1cadb200;
+  border-style: solid;
+}
+
+.surfboardSectionMiddle {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 30px;
+  height: 90px;
+  /* border: #c3c3c3b5; */
+  border-width: 5px;
+  border-top: #c3c3c300;
+  border-left: #c3c3c3b5;
+  border-right: #c3c3c3b5;
+  border-bottom: #1cadb200;
+  border-style: solid;
+}
+
+.surfboardSectionEnd {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 30px;
+  height: 90px;
+  /* border: #c3c3c3b5; */
+  border-width: 5px;
+  border-top: #c3c3c300;
+  border-left: #c3c3c3b5;
+  border-right: #c3c3c3;
+  border-bottom: #c3c3c3b5;
+  border-style: solid;
+}
+
+.surfboardMainBox {
+  border: #c3c3c3b5;
+  border-style: solid;
+  border-width: 5px;
+  /* margin-bottom: 400px; */
+}
+
+.datePicker {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 12px;
+
+}
+
+.textBox {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 30px;
+}
+
+.textEntry {
+  font-family: "Catamaran-Regular";
+  font-size: 15px;
+}
+
+.timePicker {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 20px;
+  /* padding: 30px; */
+}
+
+.dateFont {
+  font-size: 25px;
+}
+
+.endSpacer {
+  margin-bottom: 97px;
 }
