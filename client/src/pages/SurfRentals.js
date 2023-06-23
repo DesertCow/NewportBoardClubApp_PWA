@@ -85,7 +85,7 @@ function SurfRentals() {
             </div>
             <div className="flex-col p-4 text-center">
               <div className="rentalItemsPrice flex-row mt-0">
-                1 Week
+                Week
               </div>
               <div className="rentalItemsPrice flex-row mt-3">
                 $180
@@ -108,7 +108,7 @@ function SurfRentals() {
 
       <Container className="d-flex justify-content-center mt-5 rentalsSpacer">
         <div className="rentalQuestion text-center">
-          <p className="pt-3">Any Question? Give Us A Call</p>
+          <p className="pt-3">Any Questions? Give Us A Call</p>
           <a style={{textDecoration: 'none'}} href="tel:19494387171">(949) 438-7171</a>
         </div>
       </Container>

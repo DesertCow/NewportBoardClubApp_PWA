@@ -15,6 +15,7 @@ const bcrypt = require("bcrypt")
 
 const { useState, useEffect } = require("react");
 const fetch = require("node-fetch");
+const { response } = require("express");
 
 let previousTide = "null";
 let tideRising = "false";
@@ -27,96 +28,55 @@ const resolvers = {
     
   getWX: async() => {
 
-      let wxStationURL = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
-      let waterTempURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_temperature&datum=STND&time_zone=gmt&units=english&format=json";
-      let tideStationURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_level&datum=STND&time_zone=lst&units=english&format=json";
+        let wxStationURL = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
+        let waterTempURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_temperature&datum=STND&time_zone=gmt&units=english&format=json";
+        let tideStationURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_level&datum=STND&time_zone=lst&units=english&format=json";
+        let surfline36thURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnabled=true&units%5BswellHeight%5D=FT&units%5Btemperature%5D=F&units%5BtideHeight%5D=FT&units%5BwaveHeight%5D=FT&units%5BwindSpeed%5D=MPH&spotIds=5842041f4e65fad6a770882a";
 
 
+        let finalLiveWindSpeed = "null";
+        let finalAirTemp = "null";
+        let finalWaterTemp = "null";
+        let finalLiveTideMSL = "null";
+        let finalTideDir = "null";
 
-      let finalLiveWindSpeed = "null";
-      let finalAirTemp = "null";
-      let finalWaterTemp = "null";
-      let finalLiveTideMSL = "null";
-      
-      //* Fetch Wind and Air temp data
-      await fetch(wxStationURL)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          // console.log(data.observations[0].imperial);
-          let liveWxData = data.observations[0].imperial;
+        //* Fetch Surfline Live Conditions Data
+        await fetch(surfline36thURL)
+          .then((response) => {
+            return response.json();
+          })
+          .then((surflineDataRaw) => {
+
+            // console.log("Surfline Raw: " + JSON.stringify(surflineDataRaw))
+            // console.log("Surfline Raw: " + JSON.stringify(surflineDataRaw.data[0].waterTemp.max))
+            
+            finalLiveTideMSL = surflineDataRaw.data[0].tide.current.height;
+            finalWaterTemp = surflineDataRaw.data[0].waterTemp.max;
+            finalAirTemp = surflineDataRaw.data[0].weather.temperature;
+            finalLiveWindSpeed = surflineDataRaw.data[0].wind.speed;
+
+            if(surflineDataRaw.data[0].tide.next.type == "LOW")
+            {
+              // console.log("Next Tide: " + surflineDataRaw.data[0].tide.next.type)
+              finalTideDir = false;
+            }
+
+            if(surflineDataRaw.data[0].tide.next.type == "HIGH")
+            {
+              // console.log("Next Tide: " + surflineDataRaw.data[0].tide.next.type)
+              finalTideDir = true;
+            }
+
+          })
 
           
-          finalLiveWindSpeed = liveWxData.windSpeed;
-          finalAirTemp = liveWxData.temp
-          console.log("\nWind Speed: " + finalLiveWindSpeed + " mph")
-          console.log("Air Temp: " + finalAirTemp + " F")
-
-        })
-
-        //* Fetch Water Temp Data
-        await fetch(waterTempURL)
-          .then((response) => {
-            return response.json();
-          })
-          .then((waterData) => {
-            // console.log(waterData.data[0].v);
-            // console.log(waterData);
-            finalWaterTemp = waterData.data[0].v;
-            console.log("Water Temp: " + finalWaterTemp + " F");
-            
-          })
-
-        //* Fetch Tide Data
-        await fetch(tideStationURL)
-          .then((response) => {
-            return response.json();
-          })
-          .then((tideData) => {
-            // console.log(tideData);
-
-            tideMSL = parseFloat(tideData.data[0].s);
-            // tideMSL = parseFloat(tideMSL).toFixed(2);
-            console.log("Tide MSL: " + tideMSL + " ft");
-
-            
-            console.log("Previous Tide: " + previousTide)
-            console.log("Current Tide: " + tideMSL)
-
-            if(previousTide == tideMSL) {
-              console.log("Tide Unchanged!")
-            }
-
-            if(tideMSL > previousTide) {
-              
-              tideRising = true;
-              console.log("Tide Rising: " + tideRising)
-              previousTide = tideMSL;
-            }
-
-            if(tideMSL < previousTide) {
-              
-              tideRising = false;
-              console.log("Tide Falling: " + tideRising)
-              previousTide = tideMSL;
-            }
-
-            if(previousTide == "null") {
-              console.log("First Run, Value updated!")
-              previousTide = tideMSL;
-              tideRising = false;
-            }
-            
-            
-          })
-
+      
           return {
             wind: finalLiveWindSpeed,
             airTemp: finalAirTemp,
             waterTemp: finalWaterTemp,
-            tideMSL: parseFloat(tideMSL).toFixed(2),
-            tideRise: tideRising
+            tideMSL: finalLiveTideMSL,
+            tideRise: finalTideDir
             // tideRise: true
           }
 

@@ -183,7 +183,7 @@ function CreateNewSession() {
           </div>
       </div>
       <div className="surfboardMainBox">
-        <div className="d-flex flex-row justify-content-center align-items-center surfboardSection">
+        <div className="d-flex flex-row justify-content-left align-items-center surfboardSection">
           <div className="m-4 dateFont">
              Shaper:
           </div>
@@ -211,50 +211,56 @@ function CreateNewSession() {
             </div>
           </div>
         </div>
-        <div className="d-flex flex-row justify-content-center align-items-center surfboardSectionMiddle">
+        <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
           <div className="m-4 dateFont">
-              Model:
+              Model: 
           </div>
-          <div className="">
-            <div className="dropdown">
-              <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Model:
-              </button>
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#">TBD</a>
-                <a className="dropdown-item" href="#">TBD</a>
-                <a className="dropdown-item" href="#">TBD</a>
-                <a className="dropdown-item" href="#">TBD</a>
-                <a className="dropdown-item" href="#">TBD</a>
-                <a className="dropdown-item" href="#">TBD</a>
-                <a className="dropdown-item" href="#">TBD</a>
-              </div>
-            </div>
-          </div>
+          <input name="myInput" className="modelInputBox"/>
         </div>
-        <div className="d-flex flex-row justify-content-center align-items-center surfboardSectionMiddle">
+        <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
           <div className="m-4 dateFont">
               Length:
           </div>
           <div className="">
             <div className="dropdown">
               <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Length:
+                Feet
               </button>
               <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#">5 - 5.5 ft</a>
-                <a className="dropdown-item" href="#">5.5 - 6 ft</a>
-                <a className="dropdown-item" href="#">6 - 6.5 ft</a>
-                <a className="dropdown-item" href="#">6.5 - 7 ft</a>
-                <a className="dropdown-item" href="#">7 - 7.5 ft</a>
-                <a className="dropdown-item" href="#">8 - 8.5 ft</a>
-                <a className="dropdown-item" href="#">9 - 9.5 ft</a>
-                <a className="dropdown-item" href="#">10+ ft</a>
+                <a className="dropdown-item" href="#">4</a>
+                <a className="dropdown-item" href="#">5</a>
+                <a className="dropdown-item" href="#">6</a>
+                <a className="dropdown-item" href="#">7</a>
+                <a className="dropdown-item" href="#">8</a>
+                <a className="dropdown-item" href="#">9</a>
+                <a className="dropdown-item" href="#">10</a>
+                <a className="dropdown-item" href="#">11</a>
+                <a className="dropdown-item" href="#">12</a>
+              </div>
+            </div>
+          </div>
+          <div className=" mx-3 ">
+            <div className="dropdown">
+              <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Inches
+              </button>
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a className="dropdown-item" href="#">1</a>
+                <a className="dropdown-item" href="#">2</a>
+                <a className="dropdown-item" href="#">3</a>
+                <a className="dropdown-item" href="#">4</a>
+                <a className="dropdown-item" href="#">5</a>
+                <a className="dropdown-item" href="#">6</a>
+                <a className="dropdown-item" href="#">7</a>
+                <a className="dropdown-item" href="#">8</a>
+                <a className="dropdown-item" href="#">9</a>
+                <a className="dropdown-item" href="#">10</a>
+                <a className="dropdown-item" href="#">11</a>
               </div>
             </div>
           </div>
         </div>
-        <div className="d-flex flex-row justify-content-center align-items-center surfboardSectionEnd">
+        <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionEnd">
           <div className="m-4 dateFont">
               Fin Setup:
           </div>

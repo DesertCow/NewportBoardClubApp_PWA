@@ -2,6 +2,7 @@
 
 import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
+import Container from 'react-bootstrap/esm/Container';
 
 
 
@@ -9,7 +10,7 @@ function AboutClub() {
 
   return (
 
-    <div className="d-flex flex-column min-vh-100">
+    <div className="d-flex flex-column justify-content-center min-vh-100">
       <header className="">
         <Header />
       </header>
@@ -55,11 +56,22 @@ function AboutClub() {
         <h1 className="staffTitle text-center mt-2">Staff: Will Thompson</h1>
           <div className="text-center">
             <img src={require("../img/Will+Thompson.jpg")}
-              className="aboutStaffPhoto aboutSpacer"
+              className="aboutStaffPhoto"
               alt="Will Thompson headshot" />
           </div>
 
       </div>
+
+      <div className="d-flex justify-content-center align-items-center">
+        <Container className="d-flex justify-content-center align-items-center mt-5 mx-4 aboutSpacer">
+          <div className="aboutQuestions text-center">
+            <p className="pt-3">Any Questions? Give Us A Call</p>
+            <a style={{textDecoration: 'none'}} href="tel:19494387171">(949) 438-7171</a>
+          </div>
+        </Container>
+      </div>
+
+
       <footer className="mt-auto mb-0">
         <NavFooter />
       </footer>
