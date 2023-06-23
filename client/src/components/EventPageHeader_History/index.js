@@ -25,9 +25,9 @@ function EventPageHeaderHistory() {
 
       <div className="eventsTabBox_Previous">
          {/* <div className="d-flex align-items-center justify-content-center col px-5 py-3"> */}
-         <div className="d-flex flex-col px-0 py-1 align-items-center justify-content-center">
-          <div className="eventPageBtns_Upcoming p-3 m-3 text-center" onClick={(event) => handleCurrentEvents(event)}>Upcoming Events</div>
-          <div className="eventPageBtns_History p-3 m-3 text-center" onClick={(event) => handleEventHistory(event)}>Previous Events</div>
+         <div className="d-flex px-0 py-1 my-3 align-items-center justify-content-center">
+          <div className="eventPageBtns_Upcoming p-3 mx-2 d-flex flex-column align-items-center justify-content-center" onClick={(event) => handleCurrentEvents(event)}>Upcoming Events</div>
+          <div className="eventPageBtns_History p-3 mx-2 d-flex flex-column align-items-center justify-content-center" onClick={(event) => handleEventHistory(event)}>Previous Events</div>
         </div>
       </div>
 
