@@ -445,6 +445,16 @@
 
 }
 
+.textBox {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 30px;
+}
+
+.textEntry {
+  font-family: "Catamaran-Regular";
+  font-size: 15px;
+}
+
 .timePicker {
   font-family: "Catamaran-ExtraBold";
   font-size: 20px;
