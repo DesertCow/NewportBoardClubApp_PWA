@@ -82,7 +82,7 @@ const Header = () => {
 
     return (
 
-        <div className="HeaderClass mt-auto mb-0 mr-5">
+        <div className="HeaderClass mt-auto mb-0">
 
             <div className="container">
               <div className="row">
@@ -119,29 +119,29 @@ const Header = () => {
                 </div>
 
                 <div className="col-3 d-flex align-items-center" onClick={(event) => handleWeatherWidgetClick(event)}>
-                  <div className="col">
+                  <div className="col px-3">
                     <div className="row d-flex align-items-center">
-                      <div className="py-1 d-flex align-items-center justify-content-center">
+                      <div className="px-3 py-2 d-flex align-items-center justify-content-center">
                         <div className="col">
                           <MaterialSymbol icon="air" size={30} fill grade={-25} color='black' />
                         </div>
-                        <div className="col headerWindSpeed">
+                        <div className="px-3 headerWindSpeed">
                           {liveWind} mph
                         </div> 
                       </div>
-                      <div className="py-1 d-flex align-items-center justify-content-center">
+                      <div className="px-3 py-2 d-flex align-items-center justify-content-center">
                         <div className="col">
                           <MaterialSymbol icon="partly_cloudy_day" size={30} fill grade={-25} color='black' />
                         </div>
-                        <div className="col headerTempText">
+                        <div className="px-3 headerTempText">
                           {liveAirTemp} &deg;F
                         </div> 
                       </div>
-                      <div className="py-1 d-flex align-items-center justify-content-center">
+                      <div className="px-3 py-2 d-flex align-items-center justify-content-center">
                         <div className="col">
                           <MaterialSymbol icon="waves" size={30} fill grade={-25} color='black' />
                         </div>
-                        <div className="col headerTempText">
+                        <div className="px-3 headerTempText">
                           {liveWaterTemp} &deg;F
                         </div>                    
                       </div>
