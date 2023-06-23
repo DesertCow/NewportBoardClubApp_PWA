@@ -187,11 +187,11 @@ const Header = () => {
 
 
     if (liveTideDir) {
-        tideDirIcon = <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='green' />
+        tideDirIcon = <MaterialSymbol icon="keyboard_double_arrow_up" size={60} fill grade={-25} color='black' />
     } 
 
     if (!liveTideDir) {
-        tideDirIcon = <MaterialSymbol icon="arrow_downward" size={60} fill grade={-25} color='red' />
+        tideDirIcon = <MaterialSymbol icon="keyboard_double_arrow_down" size={60} fill grade={-25} color='black' />
     }
     
   } 
