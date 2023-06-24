@@ -10,6 +10,7 @@ const typeDefs = `#graphql
   type Query {
     login(email: String!, password: String!): Auth
     getWX: WX
+    getWidgetWX: WidgetWX
   }
 
   type Mutation {
@@ -47,6 +48,22 @@ const typeDefs = `#graphql
         waterTemp: Float
         tideMSL: Float
         tideRise: Boolean
+  }
+
+  type WidgetWX {
+        wind: Int
+        windType: String
+        airTemp: Int
+        waterTemp: Float
+        tideMSL: Float
+        tideRise: Boolean
+        nextTideType: String
+        nextTideHeight: Float
+        nextTideTime: String
+        surfHeightBlackies: String
+        surfHeight36th: String
+        surfHeight56th: String
+        surfHeightRiver: String
   }
 
 `;

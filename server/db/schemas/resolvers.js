@@ -20,19 +20,15 @@ const { response } = require("express");
 let previousTide = "null";
 let tideRising = "false";
 
-
+//* API URLs
+let surfline36thURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnabled=true&units%5BswellHeight%5D=FT&units%5Btemperature%5D=F&units%5BtideHeight%5D=FT&units%5BwaveHeight%5D=FT&units%5BwindSpeed%5D=MPH&spotIds=5842041f4e65fad6a770882a";
+let surflineBatchURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnabled=true&units%5BswellHeight%5D=FT&units%5Btemperature%5D=F&units%5BtideHeight%5D=FT&units%5BwaveHeight%5D=FT&units%5BwindSpeed%5D=MPH&spotIds=584204204e65fad6a7709115%2C5842041f4e65fad6a770882a%2C5842041f4e65fad6a7708e54%2C5842041f4e65fad6a77088ee";
 
 const resolvers = {
 
   Query: {
     
   getWX: async() => {
-
-        let wxStationURL = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
-        let waterTempURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_temperature&datum=STND&time_zone=gmt&units=english&format=json";
-        let tideStationURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_level&datum=STND&time_zone=lst&units=english&format=json";
-        let surfline36thURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnabled=true&units%5BswellHeight%5D=FT&units%5Btemperature%5D=F&units%5BtideHeight%5D=FT&units%5BwaveHeight%5D=FT&units%5BwindSpeed%5D=MPH&spotIds=5842041f4e65fad6a770882a";
-
 
         let finalLiveWindSpeed = "null";
         let finalAirTemp = "null";
@@ -79,10 +75,92 @@ const resolvers = {
             waterTemp: finalWaterTemp,
             tideMSL: finalLiveTideMSL,
             tideRise: finalTideDir
-            // tideRise: true
           }
 
-        }
+        },
+
+      getWidgetWX: async() => {
+
+
+        let finalNextTideTime = "null";
+
+        //* Fetch Surfline Live Conditions Data
+        await fetch(surflineBatchURL)
+          .then((response) => {
+            return response.json();
+          })
+          .then((surflineDataRaw) => {
+
+            // console.log("Surfline Raw: " + JSON.stringify(surflineDataRaw))
+            // console.log("Surfline Raw: " + JSON.stringify(surflineDataRaw.data[0].waterTemp.max))
+
+            console.log("\x1b[36m\n ☎️  Surfline API Request ☎️\x1b[0m")
+            
+            finalTideMSL = surflineDataRaw.data[0].tide.current.height;
+            finalNextTideType = surflineDataRaw.data[0].tide.next.type;
+
+            // finalNextTideTime = new Date(surflineDataRaw.data[0].tide.next.timestamp).toTimeString();
+            // finalNextTideTime = new Date(surflineDataRaw.data[0]);
+            finalNextTideTime = new Date(surflineDataRaw.data[0].tide.next.timestamp * 1000);
+            // finalNextTideTime = finalNextTideTime.toLocaleTimeString();
+            finalNextTideHeight = surflineDataRaw.data[0].tide.next.height
+
+            // console.log(surflineDataRaw.data[0].tide.next.timestamp);
+            // console.log(finalNextTideTime);
+            // console.log(finalNextTideTime.toTimeString());
+            console.log(finalNextTideTime.toLocaleTimeString());
+
+            // finalNextTideTime = surflineDataRaw.data[0].tide.next.timestamp;
+
+            finalSurfHeight56th = surflineDataRaw.data[2].waveHeight.min + "-" + surflineDataRaw.data[2].waveHeight.max;
+            finalSurfHeight36th = surflineDataRaw.data[0].waveHeight.min + "-" + surflineDataRaw.data[0].waveHeight.max;
+            finalSurfHeightBlackies = surflineDataRaw.data[3].waveHeight.min + "-" + surflineDataRaw.data[3].waveHeight.max;
+            finalSurfHeightRiver = surflineDataRaw.data[1].waveHeight.min + "-" + surflineDataRaw.data[1].waveHeight.max;
+
+            // console.log("Blackies Surf: " + finalSurfHeightBlackies);
+            // console.log("36th Surf: " + finalSurfHeight36th);
+            // console.log("56th Surf: " + finalSurfHeight56th);
+            // console.log("River Jetties Surf: " + finalSurfHeightRiver);
+
+            finalWaterTemp = surflineDataRaw.data[0].waterTemp.max;
+            finalAirTemp = surflineDataRaw.data[0].weather.temperature;
+            finalWind = surflineDataRaw.data[0].wind.speed;
+            finalWindType = surflineDataRaw.data[0].wind.directionType;
+            
+
+            if(surflineDataRaw.data[0].tide.next.type == "LOW")
+            {
+              // console.log("Next Tide: " + surflineDataRaw.data[0].tide.next.type)
+              finalTideDir = false;
+            }
+
+            if(surflineDataRaw.data[0].tide.next.type == "HIGH")
+            {
+              // console.log("Next Tide: " + surflineDataRaw.data[0].tide.next.type)
+              finalTideDir = true;
+            }
+
+          })
+
+          return {
+            wind: finalWind,
+            windType: finalWindType,
+            airTemp: finalAirTemp,
+            waterTemp: finalWaterTemp,
+            tideMSL: finalTideMSL,
+            tideRise: finalTideDir,
+            nextTideType: finalNextTideType,
+            nextTideHeight: finalNextTideHeight,
+            nextTideTime: finalNextTideTime.toLocaleTimeString(),
+            surfHeight36th: finalSurfHeight36th,
+            surfHeight56th: finalSurfHeight56th,
+            surfHeightBlackies: finalSurfHeightBlackies,
+            surfHeightRiver: finalSurfHeightRiver,
+          }
+
+
+
+      },
     },
 
   Mutation: {
