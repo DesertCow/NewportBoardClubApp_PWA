@@ -22,6 +22,7 @@ let tideRising = "false";
 
 //* API URLs
 let surfline36thURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnabled=true&units%5BswellHeight%5D=FT&units%5Btemperature%5D=F&units%5BtideHeight%5D=FT&units%5BwaveHeight%5D=FT&units%5BwindSpeed%5D=MPH&spotIds=5842041f4e65fad6a770882a";
+let surflineBatchURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnabled=true&units%5BswellHeight%5D=FT&units%5Btemperature%5D=F&units%5BtideHeight%5D=FT&units%5BwaveHeight%5D=FT&units%5BwindSpeed%5D=MPH&spotIds=584204204e65fad6a7709115%2C5842041f4e65fad6a770882a%2C5842041f4e65fad6a7708e54%2C5842041f4e65fad6a77088ee";
 
 const resolvers = {
 
@@ -74,7 +75,6 @@ const resolvers = {
             waterTemp: finalWaterTemp,
             tideMSL: finalLiveTideMSL,
             tideRise: finalTideDir
-            // tideRise: true
           }
 
         },
@@ -85,7 +85,7 @@ const resolvers = {
         let finalNextTideTime = "null";
 
         //* Fetch Surfline Live Conditions Data
-        await fetch(surfline36thURL)
+        await fetch(surflineBatchURL)
           .then((response) => {
             return response.json();
           })
@@ -101,20 +101,26 @@ const resolvers = {
 
             // finalNextTideTime = new Date(surflineDataRaw.data[0].tide.next.timestamp).toTimeString();
             // finalNextTideTime = new Date(surflineDataRaw.data[0]);
-            finalNextTideTime = new Date(surflineDataRaw.data[0].tide.next.timestamp);
+            finalNextTideTime = new Date(surflineDataRaw.data[0].tide.next.timestamp * 1000);
+            // finalNextTideTime = finalNextTideTime.toLocaleTimeString();
             finalNextTideHeight = surflineDataRaw.data[0].tide.next.height
 
-            console.log(surflineDataRaw.data[0].tide.next.timestamp);
-            console.log(finalNextTideTime);
-            console.log(finalNextTideTime.toTimeString());
-            console.log(finalNextTideTime.toLocaleString());
+            // console.log(surflineDataRaw.data[0].tide.next.timestamp);
+            // console.log(finalNextTideTime);
+            // console.log(finalNextTideTime.toTimeString());
+            console.log(finalNextTideTime.toLocaleTimeString());
 
             // finalNextTideTime = surflineDataRaw.data[0].tide.next.timestamp;
 
-            finalSurfHeight36th = surflineDataRaw.data[0].waveHeight.min + "-" + surflineDataRaw.data[0].waveHeight.max
+            finalSurfHeight56th = surflineDataRaw.data[2].waveHeight.min + "-" + surflineDataRaw.data[2].waveHeight.max;
+            finalSurfHeight36th = surflineDataRaw.data[0].waveHeight.min + "-" + surflineDataRaw.data[0].waveHeight.max;
+            finalSurfHeightBlackies = surflineDataRaw.data[3].waveHeight.min + "-" + surflineDataRaw.data[3].waveHeight.max;
+            finalSurfHeightRiver = surflineDataRaw.data[1].waveHeight.min + "-" + surflineDataRaw.data[1].waveHeight.max;
 
-            // console.log(finalSurfHeightBlackies)
-            // console.log(surflineDataRaw.data[0].waveHeight.min + "-" + surflineDataRaw.data[0].waveHeight.max)
+            // console.log("Blackies Surf: " + finalSurfHeightBlackies);
+            // console.log("36th Surf: " + finalSurfHeight36th);
+            // console.log("56th Surf: " + finalSurfHeight56th);
+            // console.log("River Jetties Surf: " + finalSurfHeightRiver);
 
             finalWaterTemp = surflineDataRaw.data[0].waterTemp.max;
             finalAirTemp = surflineDataRaw.data[0].weather.temperature;
@@ -145,10 +151,11 @@ const resolvers = {
             tideRise: finalTideDir,
             nextTideType: finalNextTideType,
             nextTideHeight: finalNextTideHeight,
-            nextTideTime: finalNextTideTime,
-            // surfHeightBlackies: finalSurfHeightBlackies,
+            nextTideTime: finalNextTideTime.toLocaleTimeString(),
             surfHeight36th: finalSurfHeight36th,
-            // surfHeight56th: AAAAAAAA,
+            surfHeight56th: finalSurfHeight56th,
+            surfHeightBlackies: finalSurfHeightBlackies,
+            surfHeightRiver: finalSurfHeightRiver,
           }
 
 

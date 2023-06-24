@@ -63,6 +63,7 @@ const typeDefs = `#graphql
         surfHeightBlackies: String
         surfHeight36th: String
         surfHeight56th: String
+        surfHeightRiver: String
   }
 
 `;
