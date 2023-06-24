@@ -46,7 +46,7 @@ const resolvers = {
             // console.log("Surfline Raw: " + JSON.stringify(surflineDataRaw))
             // console.log("Surfline Raw: " + JSON.stringify(surflineDataRaw.data[0].waterTemp.max))
 
-            console.log("\x1b[36m\n ☎️  Surfline API Request ☎️\x1b[0m")
+            console.log("\x1b[36m\n ☎️  Surfline API Request ☎️ \n         [getWX]\x1b[0m")
             
             finalLiveTideMSL = surflineDataRaw.data[0].tide.current.height;
             finalWaterTemp = surflineDataRaw.data[0].waterTemp.max;
@@ -94,7 +94,7 @@ const resolvers = {
             // console.log("Surfline Raw: " + JSON.stringify(surflineDataRaw))
             // console.log("Surfline Raw: " + JSON.stringify(surflineDataRaw.data[0].waterTemp.max))
 
-            console.log("\x1b[36m\n ☎️  Surfline API Request ☎️\x1b[0m")
+            console.log("\x1b[36m\n ☎️  Surfline API Request ☎️\n       [getWidgetWX]\x1b[0m")
             
             finalTideMSL = surflineDataRaw.data[0].tide.current.height;
             finalNextTideType = surflineDataRaw.data[0].tide.next.type;
@@ -108,7 +108,7 @@ const resolvers = {
             // console.log(surflineDataRaw.data[0].tide.next.timestamp);
             // console.log(finalNextTideTime);
             // console.log(finalNextTideTime.toTimeString());
-            console.log(finalNextTideTime.toLocaleTimeString());
+            // console.log(finalNextTideTime.toLocaleTimeString());
 
             // finalNextTideTime = surflineDataRaw.data[0].tide.next.timestamp;
 
