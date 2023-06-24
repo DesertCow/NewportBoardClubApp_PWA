@@ -22,7 +22,7 @@ const WeatherWidget = () => {
 
     return (
 
-      <div className="modal fade px-2 opacity-75 weatherWidgetMain" id="weatherWidget" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div className="modal fade px-2 opacity-75 weatherWidgetMain" id="weatherWidget" tabIndex="-1" role="dialog" aria-labelledby="WeatherModel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
 
@@ -30,7 +30,7 @@ const WeatherWidget = () => {
               {/* <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button> */}
-              <div className="d-flex w-100 justify-content-around">
+              <div className="d-flex w-100 justify-content-center">
                 <div className="d-flex col-8">
                   <div className="row-3">
                   </div>
@@ -45,7 +45,7 @@ const WeatherWidget = () => {
                   <MaterialSymbol icon="waves" size={50} fill grade={-25} color='black' />
                 </div>
               </div>
-              <div className="d-flex w-100 justify-content-around mt-3">
+              <div className="d-flex w-100 justify-content-center mt-3">
                 <div className="d-flex col-8">
                   <div className="row-3">
                   </div>
