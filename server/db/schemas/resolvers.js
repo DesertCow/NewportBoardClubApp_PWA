@@ -101,14 +101,20 @@ const resolvers = {
 
             // finalNextTideTime = new Date(surflineDataRaw.data[0].tide.next.timestamp).toTimeString();
             // finalNextTideTime = new Date(surflineDataRaw.data[0]);
-            const nextTideDate = new Date(surflineDataRaw.data[0].tide.next.timestamp);
+            finalNextTideTime = new Date(surflineDataRaw.data[0].tide.next.timestamp);
+            finalNextTideHeight = surflineDataRaw.data[0].tide.next.height
 
             console.log(surflineDataRaw.data[0].tide.next.timestamp);
-            console.log(nextTideDate);
+            console.log(finalNextTideTime);
             console.log(finalNextTideTime.toTimeString());
             console.log(finalNextTideTime.toLocaleString());
 
             // finalNextTideTime = surflineDataRaw.data[0].tide.next.timestamp;
+
+            finalSurfHeight36th = surflineDataRaw.data[0].waveHeight.min + "-" + surflineDataRaw.data[0].waveHeight.max
+
+            // console.log(finalSurfHeightBlackies)
+            // console.log(surflineDataRaw.data[0].waveHeight.min + "-" + surflineDataRaw.data[0].waveHeight.max)
 
             finalWaterTemp = surflineDataRaw.data[0].waterTemp.max;
             finalAirTemp = surflineDataRaw.data[0].weather.temperature;
@@ -138,11 +144,10 @@ const resolvers = {
             tideMSL: finalTideMSL,
             tideRise: finalTideDir,
             nextTideType: finalNextTideType,
-            // nextTideHeight: finalNextTideTime,
+            nextTideHeight: finalNextTideHeight,
             nextTideTime: finalNextTideTime,
-            // surfHeightBlackies: AAAAAAAA,
-            // surfHeightLowerJetty: AAAAAAAA,
-            // surfHeight36th: AAAAAAAA,
+            // surfHeightBlackies: finalSurfHeightBlackies,
+            surfHeight36th: finalSurfHeight36th,
             // surfHeight56th: AAAAAAAA,
           }
 

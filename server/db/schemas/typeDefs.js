@@ -61,7 +61,6 @@ const typeDefs = `#graphql
         nextTideHeight: Float
         nextTideTime: String
         surfHeightBlackies: String
-        surfHeightLowerJetty: String
         surfHeight36th: String
         surfHeight56th: String
   }
