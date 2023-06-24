@@ -6,11 +6,14 @@ import { MaterialSymbol } from 'react-material-symbols';
 import { useQuery } from '@apollo/client';
 import { getWX_Q } from '../utils/queries';
 
+import { React } from 'react';
+
 // import menuPDF from '../img/Salt_Lick_Menu_DWood-PDF.pdf';
 // import MainFooter from '../components/Footer';
 
 import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
+import WeatherWidget from "../components/WeatherWidget";
 
 //* React Toastify
 // import { toast } from "react-toastify";
@@ -78,25 +81,17 @@ function Home() {
   
 
   return (
+
     <div className="d-flex flex-column min-vh-100">
       {/* <header className="mt-auto mb-0"> */}
       <header className="">
         <Header />
       </header>
 
-      {/* <h1 className="homeTitle text-center mt-5"> The Board Club App [From Homes.js]</h1> */}
+      
+      {/* Weather Widget Component */}
+      <WeatherWidget />
 
-      {/* <NavFooter /> */}
-
-      {/* <MaterialSymbol icon="folder" size={24} fill grade={-25} color='red' /> */}
-
-      {/* <NavFooter /> */}
-
-      {/* <div className="text-center">
-        <img src={require("../img/BC_Logo_Clear_1.png")}
-          className="homePageLogo"
-          alt="Board Club Logo" />
-      </div> */}
 
       <div className="text-center homeMenu row d-flex align-items-center justify-content-center">
         <div className="row px-5 py-3">

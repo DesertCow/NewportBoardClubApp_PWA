@@ -48,19 +48,12 @@ const Header = () => {
 
 
   let tideDirIcon;
-  let previousTideMeasurement;
-
-  var liveWind = "null";
-  var liveWaterTemp = "null";
-  var liveAirTemp = "null";
-  var liveTideMSL = "null";
-  var liveTideDir = "null";
 
   if(loading) {
 
     return (
 
-              <div className="HeaderClass mt-auto mb-0">
+      <div className="HeaderClass mt-auto mb-0">
 
             <div className="container">
               <div className="row px-1">
@@ -173,26 +166,15 @@ const Header = () => {
 
   if(!loading) {
 
-    liveWind = data.getWX.wind;
-    liveAirTemp = data.getWX.airTemp;
-    liveWaterTemp = data.getWX.waterTemp;
-    liveTideMSL = data.getWX.tideMSL;
-    
-    
-    //? Not Working!
-    liveTideDir = data.getWX.tideRise;
-
 
     //* Logic for Tide Direction Icon
+      if (data.getWX.tideRise) {
+          tideDirIcon = <MaterialSymbol icon="keyboard_double_arrow_up" size={60} fill grade={-25} color='black' />
+      } 
 
-
-    if (liveTideDir) {
-        tideDirIcon = <MaterialSymbol icon="keyboard_double_arrow_up" size={60} fill grade={-25} color='black' />
-    } 
-
-    if (!liveTideDir) {
-        tideDirIcon = <MaterialSymbol icon="keyboard_double_arrow_down" size={60} fill grade={-25} color='black' />
-    }
+      if (!data.getWX.tideRise) {
+          tideDirIcon = <MaterialSymbol icon="keyboard_double_arrow_down" size={60} fill grade={-25} color='black' />
+      }
     
   } 
 
@@ -215,7 +197,7 @@ const Header = () => {
                     {/* SPACER BOX! */}
                 {/* </div> */}
 
-                <div className="col-2 d-flex align-items-center justify-content-center" onClick={(event) => handleWeatherWidgetClick(event)}>
+                <div className="col-2 d-flex align-items-center justify-content-center" type="button" data-toggle="modal" data-target="#weatherWidget">
                     <div className="row mt-2">
                       <div className="col headerTideIcon py-2 d-flex align-items-center justify-content-center">
                         <div className="text-center">
@@ -225,7 +207,7 @@ const Header = () => {
                         </div>
                       </div>
                       <div className="col headerCurrentTide pt-3 d-flex align-items-center justify-content-center">
-                        {liveTideMSL} ft
+                        {data.getWX.tideMSL} ft
                       </div>
                       <div className="col headerTideArrow pt-0 d-flex align-items-center justify-content-center">
                         {/* <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' /> */}
@@ -234,7 +216,7 @@ const Header = () => {
                     </div>
                 </div>
 
-                <div className="col-3 d-flex align-items-center" onClick={(event) => handleWeatherWidgetClick(event)}>
+                <div className="col-3 d-flex align-items-center" data-toggle="modal" type="button" data-target="#weatherWidget">
                   <div className="col px-3">
                     <div className="row d-flex align-items-center">
                       <div className="px-3 py-2 d-flex align-items-center justify-content-center">
@@ -242,7 +224,7 @@ const Header = () => {
                           <MaterialSymbol icon="air" size={30} fill grade={-25} color='black' />
                         </div>
                         <div className="px-3 headerWindSpeed">
-                          {liveWind} mph
+                          {data.getWX.wind} mph
                         </div> 
                       </div>
                       <div className="px-3 py-2 d-flex align-items-center justify-content-center">
@@ -250,7 +232,7 @@ const Header = () => {
                           <MaterialSymbol icon="partly_cloudy_day" size={30} fill grade={-25} color='black' />
                         </div>
                         <div className="px-3 headerTempText">
-                          {liveAirTemp} &deg;F
+                          {data.getWX.airTemp} &deg;F
                         </div> 
                       </div>
                       <div className="px-3 py-2 d-flex align-items-center justify-content-center">
@@ -258,7 +240,7 @@ const Header = () => {
                           <MaterialSymbol icon="waves" size={30} fill grade={-25} color='black' />
                         </div>
                         <div className="px-3 headerTempText">
-                          {liveWaterTemp} &deg;F
+                          {data.getWX.waterTemp} &deg;F
                         </div>                    
                       </div>
                     </div>

@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
 import Container from 'react-bootstrap/esm/Container';
 
-
+import WeatherWidget from "../components/WeatherWidget";
 
 function AboutClub() {
 
@@ -14,6 +14,9 @@ function AboutClub() {
       <header className="">
         <Header />
       </header>
+
+      {/* Weather Widget Component */}
+      <WeatherWidget />
 
      <div className="justify-content-center mt-5">
         {/* <div className="text-center" onClick={(event) => handleLogoClick(event)}> */}

@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
+// GraphQL Server URL
 const client = new ApolloClient({
   uri: 'http://192.168.25.22:4000',
   cache: new InMemoryCache(),

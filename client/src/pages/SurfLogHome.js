@@ -2,7 +2,7 @@
 
 import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
-
+import WeatherWidget from "../components/WeatherWidget";
 
 import { useNavigate } from "react-router-dom";
 
@@ -38,6 +38,9 @@ function SurfLogHome() {
       <header className="">
         <Header />
       </header>
+
+      {/* Weather Widget Component */}
+      <WeatherWidget />
 
       <div className="userDataBG">
         <div className="justify-content-center mt-5">
