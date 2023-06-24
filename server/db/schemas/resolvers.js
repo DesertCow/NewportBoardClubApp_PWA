@@ -20,19 +20,14 @@ const { response } = require("express");
 let previousTide = "null";
 let tideRising = "false";
 
-
+//* API URLs
+let surfline36thURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnabled=true&units%5BswellHeight%5D=FT&units%5Btemperature%5D=F&units%5BtideHeight%5D=FT&units%5BwaveHeight%5D=FT&units%5BwindSpeed%5D=MPH&spotIds=5842041f4e65fad6a770882a";
 
 const resolvers = {
 
   Query: {
     
   getWX: async() => {
-
-        let wxStationURL = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
-        let waterTempURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_temperature&datum=STND&time_zone=gmt&units=english&format=json";
-        let tideStationURL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=9410230&product=water_level&datum=STND&time_zone=lst&units=english&format=json";
-        let surfline36thURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnabled=true&units%5BswellHeight%5D=FT&units%5Btemperature%5D=F&units%5BtideHeight%5D=FT&units%5BwaveHeight%5D=FT&units%5BwindSpeed%5D=MPH&spotIds=5842041f4e65fad6a770882a";
-
 
         let finalLiveWindSpeed = "null";
         let finalAirTemp = "null";
@@ -82,7 +77,78 @@ const resolvers = {
             // tideRise: true
           }
 
-        }
+        },
+
+      getWidgetWX: async() => {
+
+
+        let finalNextTideTime = "null";
+
+        //* Fetch Surfline Live Conditions Data
+        await fetch(surfline36thURL)
+          .then((response) => {
+            return response.json();
+          })
+          .then((surflineDataRaw) => {
+
+            // console.log("Surfline Raw: " + JSON.stringify(surflineDataRaw))
+            // console.log("Surfline Raw: " + JSON.stringify(surflineDataRaw.data[0].waterTemp.max))
+
+            console.log("\x1b[36m\n ☎️  Surfline API Request ☎️\x1b[0m")
+            
+            finalTideMSL = surflineDataRaw.data[0].tide.current.height;
+            finalNextTideType = surflineDataRaw.data[0].tide.next.type;
+
+            // finalNextTideTime = new Date(surflineDataRaw.data[0].tide.next.timestamp).toTimeString();
+            // finalNextTideTime = new Date(surflineDataRaw.data[0]);
+            const nextTideDate = new Date(surflineDataRaw.data[0].tide.next.timestamp);
+
+            console.log(surflineDataRaw.data[0].tide.next.timestamp);
+            console.log(nextTideDate);
+            console.log(finalNextTideTime.toTimeString());
+            console.log(finalNextTideTime.toLocaleString());
+
+            // finalNextTideTime = surflineDataRaw.data[0].tide.next.timestamp;
+
+            finalWaterTemp = surflineDataRaw.data[0].waterTemp.max;
+            finalAirTemp = surflineDataRaw.data[0].weather.temperature;
+            finalWind = surflineDataRaw.data[0].wind.speed;
+            finalWindType = surflineDataRaw.data[0].wind.directionType;
+            
+
+            if(surflineDataRaw.data[0].tide.next.type == "LOW")
+            {
+              // console.log("Next Tide: " + surflineDataRaw.data[0].tide.next.type)
+              finalTideDir = false;
+            }
+
+            if(surflineDataRaw.data[0].tide.next.type == "HIGH")
+            {
+              // console.log("Next Tide: " + surflineDataRaw.data[0].tide.next.type)
+              finalTideDir = true;
+            }
+
+          })
+
+          return {
+            wind: finalWind,
+            windType: finalWindType,
+            airTemp: finalAirTemp,
+            waterTemp: finalWaterTemp,
+            tideMSL: finalTideMSL,
+            tideRise: finalTideDir,
+            nextTideType: finalNextTideType,
+            // nextTideHeight: finalNextTideTime,
+            nextTideTime: finalNextTideTime,
+            // surfHeightBlackies: AAAAAAAA,
+            // surfHeightLowerJetty: AAAAAAAA,
+            // surfHeight36th: AAAAAAAA,
+            // surfHeight56th: AAAAAAAA,
+          }
+
+
+
+      },
     },
 
   Mutation: {
