@@ -60,7 +60,7 @@ const Header = () => {
 
     return (
 
-              <div className="HeaderClass mt-auto mb-0">
+      <div className="HeaderClass mt-auto mb-0">
 
             <div className="container">
               <div className="row px-1">
@@ -215,7 +215,7 @@ const Header = () => {
                     {/* SPACER BOX! */}
                 {/* </div> */}
 
-                <div className="col-2 d-flex align-items-center justify-content-center" onClick={(event) => handleWeatherWidgetClick(event)}>
+                <div className="col-2 d-flex align-items-center justify-content-center" type="button" data-toggle="modal" data-target="#weatherWidget">
                     <div className="row mt-2">
                       <div className="col headerTideIcon py-2 d-flex align-items-center justify-content-center">
                         <div className="text-center">
@@ -234,7 +234,7 @@ const Header = () => {
                     </div>
                 </div>
 
-                <div className="col-3 d-flex align-items-center" onClick={(event) => handleWeatherWidgetClick(event)}>
+                <div className="col-3 d-flex align-items-center" data-toggle="modal" type="button" data-target="#weatherWidget">
                   <div className="col px-3">
                     <div className="row d-flex align-items-center">
                       <div className="px-3 py-2 d-flex align-items-center justify-content-center">

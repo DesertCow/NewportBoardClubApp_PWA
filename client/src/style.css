@@ -494,3 +494,20 @@
 .endSpacer {
   margin-bottom: 97px;
 }
+
+/*? ============= Weather Widget Component ============= */
+
+.weatherWidgetBody {
+  /*margin-left: 100px;
+  */height: 400px;
+  background-color: #1cadb2;
+
+}
+
+.weatherWidgetMain {
+  /* border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px; */
+}
