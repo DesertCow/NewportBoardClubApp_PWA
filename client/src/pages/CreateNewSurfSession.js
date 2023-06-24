@@ -2,6 +2,7 @@
 
 import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
+import WeatherWidget from "../components/WeatherWidget";
 
 //* Date Picker Setup
 import { useState, useCallback } from 'react';
@@ -39,7 +40,8 @@ function CreateNewSession() {
         <Header />
       </header>
 
-      {/* <h1 className="homeTitle text-center mt-5"> Create New Surf Session</h1> */}
+      {/* Weather Widget Component */}
+      <WeatherWidget />
 
       <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
         <div className="d-flex p-2 mx-5">

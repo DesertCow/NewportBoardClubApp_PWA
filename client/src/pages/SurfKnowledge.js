@@ -2,6 +2,7 @@
 
 import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
+import WeatherWidget from "../components/WeatherWidget";
 
 import { useNavigate } from "react-router-dom";
 
@@ -47,7 +48,8 @@ function SurfKnowledge() {
         <Header />
       </header>
 
-      {/* <h1 className="homeTitle text-center mt-5"> Surf Knowledge Page!</h1> */}
+      {/* Weather Widget Component */}
+      <WeatherWidget />
 
       <div className="text-center homeMenu row d-flex align-items-center justify-content-center">
         <div className="row px-5 py-3">

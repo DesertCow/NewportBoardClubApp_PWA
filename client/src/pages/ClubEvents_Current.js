@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
+import WeatherWidget from "../components/WeatherWidget";
 
 import EventPageHeaderUpcoming from '../components/EventPageHeader_Upcoming';
 
@@ -28,6 +29,8 @@ function ClubEvents_Current() {
         <Header />
       </header>
 
+      {/* Weather Widget Component */}
+      <WeatherWidget />
       
       <div>
         <EventPageHeaderUpcoming />

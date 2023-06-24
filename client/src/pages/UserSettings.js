@@ -2,7 +2,7 @@
 
 import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
-
+import WeatherWidget from "../components/WeatherWidget";
 
 function UserSettings() {
 
@@ -12,6 +12,9 @@ function UserSettings() {
       <header className="">
         <Header />
       </header>
+
+      {/* Weather Widget Component */}
+      <WeatherWidget />
 
       <h1 className="editProfileText text-center mt-5"> Edit Profile</h1>
 

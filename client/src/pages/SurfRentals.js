@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/esm/Container';
 import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
 
-
+import WeatherWidget from "../components/WeatherWidget";
 
 function SurfRentals() {
 
@@ -14,6 +14,9 @@ function SurfRentals() {
       <header className="">
         <Header />
       </header>
+
+      {/* Weather Widget Component */}
+      <WeatherWidget />
 
       <h1 className="rentalTitle text-center mt-5"> Rental Pricing</h1>
 

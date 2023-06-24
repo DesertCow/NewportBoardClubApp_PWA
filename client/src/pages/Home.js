@@ -6,6 +6,8 @@ import { MaterialSymbol } from 'react-material-symbols';
 import { useQuery } from '@apollo/client';
 import { getWX_Q } from '../utils/queries';
 
+import { React } from 'react';
+
 // import menuPDF from '../img/Salt_Lick_Menu_DWood-PDF.pdf';
 // import MainFooter from '../components/Footer';
 

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
+import WeatherWidget from "../components/WeatherWidget";
 import EventPageHeaderHistory from '../components/EventPageHeader_History';
 
 function ClubEvents_Current() {
@@ -27,6 +28,9 @@ function ClubEvents_Current() {
       </header>
 
       <EventPageHeaderHistory />
+
+      {/* Weather Widget Component */}
+      <WeatherWidget />
 
       {/* <h1 className="homeTitle text-center flex-row"> CLUB EVENTS HISTORY!</h1> */}
 

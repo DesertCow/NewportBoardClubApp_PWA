@@ -48,13 +48,6 @@ const Header = () => {
 
 
   let tideDirIcon;
-  let previousTideMeasurement;
-
-  var liveWind = "null";
-  var liveWaterTemp = "null";
-  var liveAirTemp = "null";
-  var liveTideMSL = "null";
-  var liveTideDir = "null";
 
   if(loading) {
 
@@ -173,26 +166,15 @@ const Header = () => {
 
   if(!loading) {
 
-    liveWind = data.getWX.wind;
-    liveAirTemp = data.getWX.airTemp;
-    liveWaterTemp = data.getWX.waterTemp;
-    liveTideMSL = data.getWX.tideMSL;
-    
-    
-    //? Not Working!
-    liveTideDir = data.getWX.tideRise;
-
 
     //* Logic for Tide Direction Icon
+      if (data.getWX.tideRise) {
+          tideDirIcon = <MaterialSymbol icon="keyboard_double_arrow_up" size={60} fill grade={-25} color='black' />
+      } 
 
-
-    if (liveTideDir) {
-        tideDirIcon = <MaterialSymbol icon="keyboard_double_arrow_up" size={60} fill grade={-25} color='black' />
-    } 
-
-    if (!liveTideDir) {
-        tideDirIcon = <MaterialSymbol icon="keyboard_double_arrow_down" size={60} fill grade={-25} color='black' />
-    }
+      if (!data.getWX.tideRise) {
+          tideDirIcon = <MaterialSymbol icon="keyboard_double_arrow_down" size={60} fill grade={-25} color='black' />
+      }
     
   } 
 
@@ -225,7 +207,7 @@ const Header = () => {
                         </div>
                       </div>
                       <div className="col headerCurrentTide pt-3 d-flex align-items-center justify-content-center">
-                        {liveTideMSL} ft
+                        {data.getWX.tideMSL} ft
                       </div>
                       <div className="col headerTideArrow pt-0 d-flex align-items-center justify-content-center">
                         {/* <MaterialSymbol icon="arrow_upward" size={60} fill grade={-25} color='black' /> */}
@@ -242,7 +224,7 @@ const Header = () => {
                           <MaterialSymbol icon="air" size={30} fill grade={-25} color='black' />
                         </div>
                         <div className="px-3 headerWindSpeed">
-                          {liveWind} mph
+                          {data.getWX.wind} mph
                         </div> 
                       </div>
                       <div className="px-3 py-2 d-flex align-items-center justify-content-center">
@@ -250,7 +232,7 @@ const Header = () => {
                           <MaterialSymbol icon="partly_cloudy_day" size={30} fill grade={-25} color='black' />
                         </div>
                         <div className="px-3 headerTempText">
-                          {liveAirTemp} &deg;F
+                          {data.getWX.airTemp} &deg;F
                         </div> 
                       </div>
                       <div className="px-3 py-2 d-flex align-items-center justify-content-center">
@@ -258,7 +240,7 @@ const Header = () => {
                           <MaterialSymbol icon="waves" size={30} fill grade={-25} color='black' />
                         </div>
                         <div className="px-3 headerTempText">
-                          {liveWaterTemp} &deg;F
+                          {data.getWX.waterTemp} &deg;F
                         </div>                    
                       </div>
                     </div>
