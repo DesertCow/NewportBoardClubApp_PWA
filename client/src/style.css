@@ -1,8 +1,8 @@
 
 
-.masterFrameWidth {
+/* .masterFrameWidth { */
   /* width: 545px; */
-}
+/* } */
 
 /*? ============= Font Import ============= */
 
@@ -360,9 +360,9 @@
 
 /*? ============= User Settings Page ============= */
 
-.userSettings {
+/* .userSettings {
 
-}
+} */
 
 .avatarIcon {
   width: 200px;
@@ -504,9 +504,9 @@
 
 }
 
-.weatherWidgetMain {
+/* .weatherWidgetMain { */
   /* opacity: 90%; */
-}
+/* } */
 
 .weatherWidgetTempFont {
   font-family: "Catamaran-ExtraBold";
@@ -533,4 +533,90 @@
 .weatherWidgetTideText {
   font-family: "Catamaran-Regular";
   font-size: 16px;
+}
+
+/*? ============= Login Page ============= */
+
+.loginBox {
+  margin-top: 20%;
+  /* width: 80%; */
+  background-color: rgb(175, 175, 175);
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.loginBTN {
+  /* background-color: rgba(173, 113, 113, 0.465); */
+  margin-top: 50px !important;
+}
+
+.registerBTN {
+  margin-top: 100px !important;
+  /* margin-bottom: 30px !important; */
+}
+
+.welcometo {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 40px;
+}
+
+.homeTitle {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 40px;
+}
+
+.loginTextBox {
+    width: 100%;
+}
+
+.loginTextLabel {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 20px;
+}
+
+.passwordRecoveryLink {
+  color: #1519d2;
+  font-family: "Catamaran-ExtraBold";
+  font-size: 16px;
+}
+
+.startbtns {
+	padding: 12px 26px;
+	color: white;
+  /* width: 300px; */
+	font-weight: 600;
+	border: none;
+	margin: 12px;
+	width: 57%;
+	background-color: rgb(92, 155, 227);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+}
+
+.contactFooter {
+  opacity: 93%;
+  width: 90%;
+  background-color: rgb(230, 230, 230);
+  border-radius: 15px 15px 0 0;
+  -webkit-border-radius: 15px 15px 0 0;
+  -moz-border-radius: 15px 15px 0 0;
+  -ms-border-radius: 15px 15px 0 0;
+  -o-border-radius: 15px 15px 0 0;
+}
+
+.footerLogin{
+width: 100%;
+position: fixed;
+bottom: 0;
+}
+
+.companyName {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 17px;
 }
