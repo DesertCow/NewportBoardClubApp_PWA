@@ -10,6 +10,8 @@ import {
   ApolloProvider,
   // createHttpLink,
 } from '@apollo/client';
+
+
 // import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -35,6 +37,7 @@ import ClubEventsHistory from './pages/ClubEvents_History';
 import SurfKnowledge from './pages/SurfKnowledge';
 import SurfRentals from './pages/SurfRentals';
 import AboutClub from './pages/AboutClub';
+import Login from './pages/Login';
 
 
 
@@ -48,19 +51,14 @@ export default function App() {
 
   require('./style.css')
   require('./reset.css')
-  // require('./img/Salt_Lick_Menu_DWood-PDF.pdf')
-
-
-
 
   return (
 
-    // <h1 className="homeTitle text-center mt-5"> The Board Club App [From App.js]</h1>
-
-    // <ApolloProvider client={client}>
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/surf_log" element={<SurfLogHome />} />
         <Route path="/surf_log/create_new_session" element={<CreateNewSession />} />
         <Route path="/surf_log/view_previous_sessions" element={<ViewPreviousSessions />} />
@@ -73,6 +71,5 @@ export default function App() {
         <Route path="/about_club" element={<AboutClub />} />
       </Routes>
     </Router>
-    // </ApolloProvider>
   );
 }
