@@ -7,11 +7,17 @@ import WeatherWidget from "../components/WeatherWidget";
 //* Date Picker Setup
 import { useState, useCallback } from 'react';
 import { SelectDatepicker } from 'react-select-datepicker';
-import TimePicker from 'react-time-picker';
+// import TimePicker from 'react-time-picker';
+import { TimePicker } from 'react-ios-time-picker';
 
 function CreateNewSession() {
 
   
+  const [value, setTimeValue] = useState('10:00 AM');
+
+   const onTimeChange = (timeValue) => {
+      setTimeValue(timeValue);
+   }
   
 
   const todayDate = new Date()
@@ -63,7 +69,11 @@ function CreateNewSession() {
             Time:
         </div>
         <div className="timePicker">
-          <TimePicker onChange={onChange} value={timevalue} className=""/>
+          {/* <TimePicker onChange={onChange} value={timevalue} className=""/> */}
+          <div>
+            <TimePicker onChange={onTimeChange} value={value} use12Hours/>
+          </div>
+
         </div>
       </div>
       <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">

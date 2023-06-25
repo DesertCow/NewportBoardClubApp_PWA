@@ -39,10 +39,11 @@
 
 .homeBTNs {
   font-family: "Catamaran-ExtraBold";
-  height: 150px;
+  height: 100px;
   font-weight: 900;
   font-size: 25px;
-  background-color: #678e8fe2;
+  background-color: rgba(0, 0, 0, 0.902);
+  color: white;
   opacity: 80%;
   border-radius: 15px;
 
@@ -98,10 +99,11 @@
 
 .surfKnowledgeBTN {
   font-family: "Catamaran-ExtraBold";
-  height: 150px;
+  height: 100px;
   font-weight: 600;
   font-size: 25px;
-  background-color: #1cadb2e2;
+  background-color: rgba(0, 0, 0, 0.902);
+  color: white;
   opacity: 80%;
   border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -226,10 +228,11 @@
 
 .surfLogHomeBTNs {
   font-family: "Catamaran-ExtraBold";
-  height: 150px;
+  height: 100px;
   font-weight: 900;
   font-size: 25px;
-  background-color: #3bd87ae2;
+  background-color: rgba(0, 0, 0, 0.902);
+  color: white;
   opacity: 80%;
   border-radius: 15px;
 
@@ -389,16 +392,22 @@
 
 .profileSaveBtn {
   font-family: "Catamaran-ExtraBold";
-  font-size: 30px;
-  height: 100px;
-  width: 450px;
+  font-size: 20px;
+  /* height: 100px; */
+  width: 350px !important;
   font-weight: 900;
-  background-color: #1cadb29e;
+  background-color: rgba(0, 0, 0, 0.902);
+  color: white;
   border-radius: 30px;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   -ms-border-radius: 30px;
   -o-border-radius: 30px;
+}
+
+.dateOBText {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 20px;
 }
 
 /*? ============= Create New Surf Session ============= */
