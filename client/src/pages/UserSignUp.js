@@ -75,12 +75,12 @@ return (
             <div className="text-center registerdiv">
               <div className="">
                 <input
-                  className="startinputs"
+                  className="registerInputText"
                   type="text"
                   id="customerFirstName"
                   name="customerFirstName"
                   placeholder="First Name"
-                  onChange={(e) => inputUpdated(e)}
+                  // onChange={(e) => inputUpdated(e)}
                 />
               </div>
             </div>
@@ -88,12 +88,12 @@ return (
             <div className="text-center registerdiv mt-4">
               <div className="">
                 <input
-                  className="startinputs"
+                  className="registerInputText"
                   type="text"
                   id="customerLastName"
                   name="customerLastName"
                   placeholder="Last Name"
-                  onChange={(e) => inputUpdated(e)}
+                  // onChange={(e) => inputUpdated(e)}
                 />
               </div>
             </div>
@@ -101,12 +101,12 @@ return (
             <div className="text-center registerdiv mt-4">
               <div className="">
                 <input
-                  className="startinputs"
+                  className="registerInputText"
                   type="text"
                   id="customerEmail"
                   name="customerEmail"
                   placeholder="Email"
-                  onChange={(e) => inputUpdated(e)}
+                  // onChange={(e) => inputUpdated(e)}
                 />
               </div>
             </div>
@@ -114,12 +114,12 @@ return (
             <div className="text-center registerdiv mt-5">
               <div className="">
                 <input
-                  className="startinputs"
-                  type="text"
+                  className="registerInputText"
+                  type="password"
                   id="password"
                   name="password"
                   placeholder="Password"
-                  onChange={(e) => inputUpdated(e)}
+                  // onChange={(e) => inputUpdated(e)}
                 />
               </div>
             </div>
@@ -127,12 +127,12 @@ return (
             <div className="text-center registerdiv mt-4">
               <div className="">
                 <input
-                  className="startinputs"
-                  type="text"
+                  className="registerInputText"
+                  type="password"
                   id="confirmPassword"
                   name="confirmPassword"
                   placeholder="Confirm Password"
-                  onChange={(e) => inputUpdated(e)}
+                  // onChange={(e) => inputUpdated(e)}
                 />
               </div>
             </div>
@@ -140,12 +140,12 @@ return (
             <div className="text-center registerdiv mt-5">
               <div className="">
                 <input
-                  className="startinputs"
-                  type="text"
+                  className="registerInputText"
+                  type="password"
                   id="clubPassword"
                   name="clubPassword"
                   placeholder="Club Registration Password"
-                  onChange={(e) => inputUpdated(e)}
+                  // onChange={(e) => inputUpdated(e)}
                 />
               </div>
             </div>

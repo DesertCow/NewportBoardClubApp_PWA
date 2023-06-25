@@ -563,7 +563,7 @@
 }
 
 .registerBTN {
-  margin-top: 80px !important;
+  margin-top: 210px !important;
 }
 
 .welcometo {
@@ -577,7 +577,11 @@
 }
 
 .loginTextBox {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 22px;
     width: 100%;
+    background-color: white;
+    color: black;
 }
 
 .loginTextLabel {
@@ -662,6 +666,14 @@ bottom: 0;
 .tosText {
   font-family: "Catamaran-Regular";
 	font-size: 12px;
+}
+
+.registerInputText {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 18px;
+  width: 100%;
+  background-color: white;
+  color: black;
 }
 
 .registerBox {

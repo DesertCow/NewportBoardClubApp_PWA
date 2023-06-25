@@ -86,14 +86,14 @@ const Login = (props) => {
             <div className="text-center mt-3">
               <div className="inputdiv loginTextLabel">
                 <p className="inputlabel">Email:</p>
-                <div className="">
+                <div className="loginTextBox">
                   <input
                     className="startinputs loginTextBox"
                     type="text"
                     id="email"
                     name="email"
-                    placeholder=""
-                    onChange={(e) => handleChange(e)}
+                    placeholder="Email"
+                    // onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
@@ -106,8 +106,8 @@ const Login = (props) => {
                     type="password"
                     id="password"
                     name="password"
-                    placeholder=""
-                    onChange={(e) => handleChange(e)}
+                    placeholder="Password"
+                    // onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
@@ -134,7 +134,7 @@ const Login = (props) => {
             </a>
           </div>
           {/* <MainFooter /> */}
-          <div className="companyName d-flex justify-content-center align-items-center">🙉 Monkey See Monkey Do LLC. 🙊</div>
+          <div className="companyName d-flex justify-content-center align-items-center">🙊 Monkey See Monkey Do LLC. 🙉</div>
           <div className="d-flex flex-column">
             <a href="https://desertcow.github.io/Portfolio/">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000000" className="bi bi-person-badge-fill" viewBox="0 0 16 16">
