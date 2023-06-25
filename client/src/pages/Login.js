@@ -86,14 +86,14 @@ const Login = (props) => {
             <div className="text-center mt-3">
               <div className="inputdiv loginTextLabel">
                 <p className="inputlabel">Email:</p>
-                <div className="">
+                <div className="loginTextBox">
                   <input
                     className="startinputs loginTextBox"
                     type="text"
                     id="email"
                     name="email"
-                    placeholder=""
-                    onChange={(e) => handleChange(e)}
+                    placeholder="Email"
+                    // onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
@@ -106,8 +106,8 @@ const Login = (props) => {
                     type="password"
                     id="password"
                     name="password"
-                    placeholder=""
-                    onChange={(e) => handleChange(e)}
+                    placeholder="Password"
+                    // onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
