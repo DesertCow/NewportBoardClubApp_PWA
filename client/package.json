@@ -10,6 +10,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
+    "react-ios-time-picker": "^0.2.2",
     "react-material-symbols": "^4.1.1",
     "react-popper": "^2.3.0",
     "react-router-dom": "^6.12.1",
