@@ -118,15 +118,14 @@ const Login = (props) => {
           </form>
 
         </div >
-        <div className="btndiv text-center">
-          <button className="startbtns loginBTN" type="button" action="" onClick={(event) => handleSubmit(event)}>Log in</button>
-          {/* <h4 className="h2 m-0 p-0">or</h4> */}
-          <button className="startbtns registerBTN" type="button" onClick={(event) => newUserRegister(event)}>New Member Registration</button>
+        <div className="text-center">
+          <button className="loginbtns p-3 loginBTN" type="button" action="" onClick={(event) => handleSubmit(event)}>Log in</button>
+          <button className="loginbtns p-3 registerBTN" type="button" onClick={(event) => newUserRegister(event)}>New Member Registration</button>
         </div>
       </div >
 
-      <footer className="d-flex justify-content-center mt-auto footerLogin">
-        <div className="d-flex align-items-left mt-auto pt-2 px-2 pb-1 justify-content-around contactFooter">
+      <footer className="d-flex justify-content-center footerLogin">
+        <div className="d-flex align-items-left pt-2 px-2 pb-1 justify-content-around contactFooter">
           <div className="d-flex flex-column">
             <a href="https://github.com/DesertCow">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000000" className="bi bi-github" viewBox="0 0 16 16">

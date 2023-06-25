@@ -554,8 +554,7 @@
 }
 
 .registerBTN {
-  margin-top: 100px !important;
-  /* margin-bottom: 30px !important; */
+  margin-top: 80px !important;
 }
 
 .welcometo {
@@ -610,6 +609,20 @@
   -o-border-radius: 15px 15px 0 0;
 }
 
+.loginbtns {
+	color: white;
+  font-family: "Catamaran-ExtraBold";
+	font-weight: 600;
+	border: none;
+	width: 350px;
+	background-color: rgba(0, 0, 0, 0.902);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+}
+
 .footerLogin{
 width: 100%;
 position: fixed;
@@ -652,13 +665,12 @@ bottom: 0;
   -o-border-radius: 15px;
 }
 
-.startbtns {
-	padding: 12px 26px;
+.resgisterBTN {
 	color: white;
+  font-family: "Catamaran-ExtraBold";
 	font-weight: 600;
 	border: none;
-	/* margin: 12px; */
-	width: 250px;
+	width: 300px;
 	background-color: rgba(0, 0, 0, 0.902);
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
