@@ -29,7 +29,7 @@ const Header = () => {
 
   const handleLogoClick = async (event) => {
   event.preventDefault();
-  navigate("/");
+  navigate("/home");
   // console.log("BC Logo Clicked");
   };
 
