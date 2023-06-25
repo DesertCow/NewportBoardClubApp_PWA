@@ -554,8 +554,7 @@
 }
 
 .registerBTN {
-  margin-top: 100px !important;
-  /* margin-bottom: 30px !important; */
+  margin-top: 80px !important;
 }
 
 .welcometo {
@@ -610,6 +609,20 @@
   -o-border-radius: 15px 15px 0 0;
 }
 
+.loginbtns {
+	color: white;
+  font-family: "Catamaran-ExtraBold";
+	font-weight: 600;
+	border: none;
+	width: 350px;
+	background-color: rgba(0, 0, 0, 0.902);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+}
+
 .footerLogin{
 width: 100%;
 position: fixed;
@@ -619,4 +632,49 @@ bottom: 0;
 .companyName {
   font-family: "Catamaran-ExtraBold";
   font-size: 17px;
+}
+
+
+/*? ============= User Register Page ============= */
+
+.welcometo{
+  font-family: "Catamaran-ExtraBold";
+	font-size: 32px;
+	font-weight: 500;
+	/* padding-bottom: 8px; */
+	/* color: #545454; */
+}
+
+.registerdiv {
+  margin-top: 6%;
+  font-family: "Catamaran-ExtraBold";
+}
+
+.tosText {
+  font-family: "Catamaran-Regular";
+	font-size: 12px;
+}
+
+.registerBox {
+  width: 350px !important;
+  background-color: rgb(175, 175, 175);
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.resgisterBTN {
+	color: white;
+  font-family: "Catamaran-ExtraBold";
+	font-weight: 600;
+	border: none;
+	width: 300px;
+	background-color: rgba(0, 0, 0, 0.902);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
 }

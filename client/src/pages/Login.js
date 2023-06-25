@@ -11,7 +11,7 @@ const Login = (props) => {
     const navigate = useNavigate();
 
   //* ########################### Button Handle ###########################
-  const HandleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // console.log("Handle Submit!")
@@ -46,6 +46,20 @@ const Login = (props) => {
     //   email: '',
     //   password: '',
     // });
+
+  };
+
+  const newUserRegister = async (event) => {
+    event.preventDefault();
+
+    navigate("/userRegister");
+
+  };
+
+  const passwordReset = async (event) => {
+    event.preventDefault();
+
+    navigate("/passwordReset");
 
   };
 
@@ -98,21 +112,20 @@ const Login = (props) => {
                 </div>
               </div>
               <div>
-                <p className="passwordRecoveryLink mb-3 mt-4" onClick={(event) => passwordRecovery(event)}>Forgot Password?</p>
+                <p className="passwordRecoveryLink mb-3 mt-4" onClick={(event) => passwordReset(event)}>Forgot Password?</p>
               </div>
             </div>
           </form>
 
         </div >
-        <div className="btndiv text-center">
-          <button className="startbtns loginBTN" type="button" action="" onClick={(event) => HandleSubmit(event)}>Log in</button>
-          {/* <h4 className="h2 m-0 p-0">or</h4> */}
-          <button className="startbtns registerBTN" type="button" onClick={(event) => handleSignUp(event)}>New Member Registration</button>
+        <div className="text-center">
+          <button className="loginbtns p-3 loginBTN" type="button" action="" onClick={(event) => handleSubmit(event)}>Log in</button>
+          <button className="loginbtns p-3 registerBTN" type="button" onClick={(event) => newUserRegister(event)}>New Member Registration</button>
         </div>
       </div >
 
-      <footer className="d-flex justify-content-center mt-auto footerLogin">
-        <div className="d-flex align-items-left mt-auto pt-2 px-2 pb-1 justify-content-around contactFooter">
+      <footer className="d-flex justify-content-center footerLogin">
+        <div className="d-flex align-items-left pt-2 px-2 pb-1 justify-content-around contactFooter">
           <div className="d-flex flex-column">
             <a href="https://github.com/DesertCow">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000000" className="bi bi-github" viewBox="0 0 16 16">
