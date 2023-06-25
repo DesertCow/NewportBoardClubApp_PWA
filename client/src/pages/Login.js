@@ -11,7 +11,7 @@ const Login = (props) => {
     const navigate = useNavigate();
 
   //* ########################### Button Handle ###########################
-  const HandleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // console.log("Handle Submit!")
@@ -46,6 +46,20 @@ const Login = (props) => {
     //   email: '',
     //   password: '',
     // });
+
+  };
+
+  const newUserRegister = async (event) => {
+    event.preventDefault();
+
+    navigate("/userRegister");
+
+  };
+
+  const passwordReset = async (event) => {
+    event.preventDefault();
+
+    navigate("/passwordReset");
 
   };
 
@@ -98,16 +112,16 @@ const Login = (props) => {
                 </div>
               </div>
               <div>
-                <p className="passwordRecoveryLink mb-3 mt-4" onClick={(event) => passwordRecovery(event)}>Forgot Password?</p>
+                <p className="passwordRecoveryLink mb-3 mt-4" onClick={(event) => passwordReset(event)}>Forgot Password?</p>
               </div>
             </div>
           </form>
 
         </div >
         <div className="btndiv text-center">
-          <button className="startbtns loginBTN" type="button" action="" onClick={(event) => HandleSubmit(event)}>Log in</button>
+          <button className="startbtns loginBTN" type="button" action="" onClick={(event) => handleSubmit(event)}>Log in</button>
           {/* <h4 className="h2 m-0 p-0">or</h4> */}
-          <button className="startbtns registerBTN" type="button" onClick={(event) => handleSignUp(event)}>New Member Registration</button>
+          <button className="startbtns registerBTN" type="button" onClick={(event) => newUserRegister(event)}>New Member Registration</button>
         </div>
       </div >
 

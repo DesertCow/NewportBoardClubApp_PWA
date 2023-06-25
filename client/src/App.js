@@ -38,6 +38,8 @@ import SurfKnowledge from './pages/SurfKnowledge';
 import SurfRentals from './pages/SurfRentals';
 import AboutClub from './pages/AboutClub';
 import Login from './pages/Login';
+import UserSignUp from './pages/UserSignUp';
+import PasswordReset from './pages/PasswordReset';
 
 
 
@@ -56,9 +58,11 @@ export default function App() {
 
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Home" element={<Home />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/passwordReset" element={<PasswordReset />} />
+        <Route path="/userRegister" element={<UserSignUp />} />
         <Route path="/surf_log" element={<SurfLogHome />} />
         <Route path="/surf_log/create_new_session" element={<CreateNewSession />} />
         <Route path="/surf_log/view_previous_sessions" element={<ViewPreviousSessions />} />
