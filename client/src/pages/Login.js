@@ -134,7 +134,7 @@ const Login = (props) => {
             </a>
           </div>
           {/* <MainFooter /> */}
-          <div className="companyName d-flex justify-content-center align-items-center">🙉 Monkey See Monkey Do LLC. 🙊</div>
+          <div className="companyName d-flex justify-content-center align-items-center">🙊 Monkey See Monkey Do LLC. 🙉</div>
           <div className="d-flex flex-column">
             <a href="https://desertcow.github.io/Portfolio/">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000000" className="bi bi-person-badge-fill" viewBox="0 0 16 16">
