@@ -22,6 +22,12 @@ const path = require('path');
 
 const { expressMiddleware } = require("@apollo/server/express4");
 
+const mySQLport = process.env.mySQLport || 3001;
+const graphQLport = process.env.PORT || 4001;
+
+//* DB Connections
+const db = require('./db/mongoConnection');
+
 
 //* DB Schema / Seeds
 const { typeDefs, resolvers } = require('./db/schemas');
@@ -110,29 +116,29 @@ async function serverStart() {
   // server.applyMiddleware({ app });
 
   //* Start mongoDB Connection
-  // db.once('open', () => {
+  db.once('open', () => {
 
 
-    //* Start SQL Connection
+    // * Start SQL Connection
     // sequelize.sync({ force: false }).then(() => {
-    //   app.listen(mySQLport, () => {
-    //     console.log("\n~~~       Server Status       ~~~")
-    //     console.log('~~~ MongoDB Database [' + "\x1b[32mOnline\x1b[0m" + '] ~~~')
-    //     console.log('~~~ SQL Database     [' + "\x1b[32mOnline\x1b[0m" + '] ~~~')
-    //     // console.log('\x1b[30m~~~ SQL Connection Valid [' + mySQLport + '] ~~~\x1b[0m\n')
+      // app.listen(mySQLport, () => {
+      //   console.log("\n~~~       Server Status       ~~~")
+      //   console.log('~~~ MongoDB Database [' + "\x1b[32mOnline\x1b[0m" + '] ~~~')
+      //   console.log('~~~ SQL Database     [' + "\x1b[32mOnline\x1b[0m" + '] ~~~')
+        // console.log('\x1b[30m~~~ SQL Connection Valid [' + mySQLport + '] ~~~\x1b[0m\n')
 
-    //* Start GraphQL Server
-    //     app.listen(graphQLport, () => {
-    //       console.log(`~~~ GraphQL API      [` + "\x1b[32mOnline\x1b[0m" + `] ~~~ \n\n\x1b[33mAPI Live:\x1b[0m http://localhost:${graphQLport}${server.graphqlPath}\n\n`);
+    // * Start GraphQL Server
+        app.listen(graphQLport, () => {
+          console.log(`~~~ GraphQL API      [` + "\x1b[32mOnline\x1b[0m" + `] ~~~ \n\n\x1b[33mAPI Live:\x1b[0m http://localhost:${graphQLport}${server.graphqlPath}\n\n`);
 
-             //! Seed SWITCH
-    //       // seedServer();
+          //  ! Seed SWITCH
+          // seedServer();
 
-    //     })
-    //   });
+        })
+      // });
     // });
 
-  // })
+  })
 }
 
 

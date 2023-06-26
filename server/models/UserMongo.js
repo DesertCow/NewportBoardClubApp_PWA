@@ -14,7 +14,17 @@ const userSchema = new Schema({
     required: true,
     trim: true,
   },
-  customerName: {
+  clubPassword: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  memberFirstName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  memberLastName: {
     type: String,
     required: true,
     trim: true,
@@ -22,38 +32,38 @@ const userSchema = new Schema({
 });
 
 //* set up pre-save middleware to create password
-userSchema.pre('save', async function (next) {
-  console.log('New User Triggered Via Middleware during MongoDB Create');
-  // if (this.isNew || this.isModified('password')) {
-  if (this.isNew) {
-    const saltRounds = 10;
-    this.password = await bcrypt.hash(this.password, saltRounds);
-  }
+// userSchema.pre('save', async function (next) {
+//   console.log('New User Triggered Via Middleware during MongoDB Create');
+//   // if (this.isNew || this.isModified('password')) {
+//   if (this.isNew) {
+//     const saltRounds = 10;
+//     this.password = await bcrypt.hash(this.password, saltRounds);
+//   }
 
-  next();
-});
+//   next();
+// });
 
 // userSchema.methods.updatePassword('updateOne', { document: true, query: false }, async function (next) {
-userSchema.methods.generateHash = async function (password) {
+// userSchema.methods.generateHash = async function (password) {
 
-  const saltRounds = 10;
-  password = await bcrypt.hash(password, saltRounds);
+//   const saltRounds = 10;
+//   password = await bcrypt.hash(password, saltRounds);
 
-  return password
+//   return password
 
-};
+// };
 
 //* compare the incoming password with the hashed password
-userSchema.methods.isCorrectPassword = async function (password) {
+// userSchema.methods.isCorrectPassword = async function (password) {
 
-  // console.log("PASSWORD: " + password + "|| THIS PASSWORD:" + this.password)
-  if (password == this.password) {
-    console.log("Pre Hashed Password")
-    console.log(password + " == " + this.password)
-    return true
-  }
-  return await bcrypt.compare(password, this.password);
-};
+//   // console.log("PASSWORD: " + password + "|| THIS PASSWORD:" + this.password)
+//   if (password == this.password) {
+//     console.log("Pre Hashed Password")
+//     console.log(password + " == " + this.password)
+//     return true
+//   }
+//   return await bcrypt.compare(password, this.password);
+// };
 
 const User = model('User', userSchema);
 
