@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 const userSchema = new Schema({
   memberEmail: {
     type: String,
-    type: String,
     required: true,
     unique: true,
     match: [/.+@.+\..+/, '👻👻 Email Address is Invalid! 👻👻'],
@@ -54,16 +53,16 @@ userSchema.pre('save', async function (next) {
 // };
 
 //* compare the incoming password with the hashed password
-// userSchema.methods.isCorrectPassword = async function (password) {
+userSchema.methods.isCorrectPassword = async function (password) {
 
-//   // console.log("PASSWORD: " + password + "|| THIS PASSWORD:" + this.password)
-//   if (password == this.password) {
-//     console.log("Pre Hashed Password")
-//     console.log(password + " == " + this.password)
-//     return true
-//   }
-//   return await bcrypt.compare(password, this.password);
-// };
+  // console.log("PASSWORD: " + password + "|| THIS PASSWORD:" + this.password)
+  if (password == this.password) {
+    console.log("Pre Hashed Password")
+    console.log(password + " == " + this.password)
+    return true
+  }
+  return await bcrypt.compare(password, this.password);
+};
 
 const User = model('User', userSchema);
 

@@ -217,64 +217,71 @@ const resolvers = {
       // return { token, user };
       return { user };
     },
-    // login: async (parent, { email, password }) => {
+    login: async (parent, { memberEmail, password }) => {
 
-    //   console.log("\n\x1b[33mLogin Request\x1b[0m\n   Email: \x1b[33m" + email + "\x1b[0m\n   Password: \x1b[35m" + password + "\x1b[0m")
+      var loginValid = false;
 
-    //   //* Query Database for user based off provided "email"
-    //   const user = await UserMongo.findOne({ email });
+      console.log("\n\x1b[33mLogin Request\x1b[0m\n   Email: \x1b[33m" + memberEmail + "\x1b[0m\n   Password: \x1b[35m" + password + "\x1b[0m")
 
-    //   //* Validate User Exists
-    //   if (!user) {
-    //     throw new AuthenticationError('No profile with this email found!');
-    //   }
+      //* Query Database for user based off provided "email"
+      const user = await UserMongo.findOne({ memberEmail });
 
-    //   //* Validate Password via "isCorrectPassword" method
-    //   const correctPw = await user.isCorrectPassword(password);
+      //* Validate User Exists
+      if (!user) {
+        throw new AuthenticationError('No profile with this email found!');
+      }
 
-    //   // console.log("Correct Password = " + correctPw)
+      //* Validate Password via "isCorrectPassword" method
+      const correctPw = await user.isCorrectPassword(password);
 
-    //   //* Error for incorrect password
-    //   if (!correctPw) {
-    //     console.log("\x1b[35mLogin Failed\x1b[0m")
-    //     throw new AuthenticationError('Incorrect password!');
-    //   }
+      // console.log("Correct Password = " + correctPw)
 
-    //   console.log("\x1b[32m   Login Successful\x1b[0m\n")
+      //* Error for incorrect password
+      if (!correctPw) {
+        console.log("\x1b[35mLogin Failed\x1b[0m")
+        throw new AuthenticationError('Incorrect password!');
+      }
 
-    //   //* Logic to check for admin status
+      if(correctPw)
+      {
+        console.log("\x1b[32m   Login Successful\x1b[0m\n")
+        loginValid = true
+      }
+      //* Logic to check for admin status
 
-    //   // console.log("ADMIN ENV EMAIL")
-    //   // console.log(process.env.ADMIN_ACCOUNT)
+      // console.log("ADMIN ENV EMAIL")
+      // console.log(process.env.ADMIN_ACCOUNT)
 
-    //   let admin = false
+      let admin = false
 
-    //   if (process.env.ADMIN_ACCOUNT == email) {
-    //     console.log("\n========================================")
-    //     console.log("=\x1b[31m    WARNING ADMIN LOG IN DETECTED!\x1b[0m    =")
-    //     console.log("========================================")
-    //     admin = true
-    //   }
-    //   else {
-    //     admin = false
-    //   }
+      if (process.env.ADMIN_ACCOUNT == memberEmail) {
+        console.log("\n========================================")
+        console.log("=\x1b[31m    WARNING ADMIN LOG IN DETECTED!\x1b[0m    =")
+        console.log("========================================")
+        admin = true
+      }
+      else {
+        admin = false
+      }
 
 
-    //   //* Return Token to User
-    //   const token = signToken(user);
-    //   return { token, user, admin };
-    // },
-    // updateEmail: async (parent, { email, _id }) => {
+      //* Return Token to User
+      // const token = signToken(user);
+      // return { token, user, admin };
+      // const token = signToken(user);
+      return { user, admin };
+    },
+    updateEmail: async (parent, { email, _id }) => {
 
-    //   //TODO: Confirm new email does not already exists in DB
-    //   //TODO: Add Try/Catch logic to print failed update to console
-    //   console.log("\n\x1b[33mUpdate User Email (MongoDB)\x1b[0m\n\x1b[0m\n   Email: \x1b[35m" + email + "\n\x1b[0m   ID: \x1b[35m" + _id);
+      //TODO: Confirm new email does not already exists in DB
+      //TODO: Add Try/Catch logic to print failed update to console
+      console.log("\n\x1b[33mUpdate User Email (MongoDB)\x1b[0m\n\x1b[0m\n   Email: \x1b[35m" + email + "\n\x1b[0m   ID: \x1b[35m" + _id);
 
-    //   await UserMongo.updateOne({ _id: _id }, { $set: { email: email } })
+      await UserMongo.updateOne({ _id: _id }, { $set: { email: email } })
 
-    //   console.log("\x1b[32m   Email Update Successful\x1b[0m\n")
+      console.log("\x1b[32m   Email Update Successful\x1b[0m\n")
 
-    // },
+    },
     // updatePassword: async (parent, { password, _id }) => {
 
     //   console.log("\n\x1b[33mUpdate User Password (MongoDB)\x1b[0m\n\x1b[0m\n   Password: \x1b[35m" + password + "\n\x1b[0m   ID: \x1b[35m" + _id + "\x1b[0m");
