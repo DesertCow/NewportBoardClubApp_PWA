@@ -90,6 +90,7 @@ async function serverStart() {
   // await server.start()
   await server.start();
 
+  //* Start GraphQLServer
   app.use(
     '/',
     cors(),
@@ -102,8 +103,8 @@ async function serverStart() {
     }),
   );
 
-  await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
-  await console.log(`🚀 Server ready at http://localhost:4000/`);
+  // await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  // await console.log(`🚀 Server ready at http://localhost:4000/`);
 
   //* Apollo Middleware Insert
   // app.use('/graphql', cors(), json(), expressMiddleware(server));
@@ -122,14 +123,16 @@ async function serverStart() {
     // * Start SQL Connection
     // sequelize.sync({ force: false }).then(() => {
       // app.listen(mySQLport, () => {
-      //   console.log("\n~~~       Server Status       ~~~")
-      //   console.log('~~~ MongoDB Database [' + "\x1b[32mOnline\x1b[0m" + '] ~~~')
-      //   console.log('~~~ SQL Database     [' + "\x1b[32mOnline\x1b[0m" + '] ~~~')
+        console.log("\n~~~       Server Status       ~~~")
+        console.log('~~~ MongoDB Database [' + "\x1b[32mOnline\x1b[0m" + '] ~~~')
+        // console.log('~~~ SQL Database     [' + "\x1b[32mOnline\x1b[0m" + '] ~~~')
         // console.log('\x1b[30m~~~ SQL Connection Valid [' + mySQLport + '] ~~~\x1b[0m\n')
 
     // * Start GraphQL Server
         app.listen(graphQLport, () => {
-          console.log(`~~~ GraphQL API      [` + "\x1b[32mOnline\x1b[0m" + `] ~~~ \n\n\x1b[33mAPI Live:\x1b[0m http://localhost:${graphQLport}${server.graphqlPath}\n\n`);
+          console.log(`~~~ GraphQL API      [` + "\x1b[32mOnline\x1b[0m" + `] ~~~ \n\n\x1b[33m`);
+          // console.log(`API Live:\x1b[0m http://localhost:${graphQLport}${server.graphqlPath}\n\n`);
+          console.log(`API Live:\x1b[0m http://localhost:${graphQLport}`);
 
           //  ! Seed SWITCH
           // seedServer();

@@ -39,7 +39,8 @@ const typeDefs = `#graphql
     password: String
     loginValid: Boolean
     loginToken: String
-    customerName: String
+    memberFirstName: String
+    memberLastName: String
   }
 
   type WX {

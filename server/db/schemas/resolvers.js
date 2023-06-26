@@ -214,7 +214,8 @@ const resolvers = {
       console.log("\x1b[32mAccount Creation Successful\x1b[0m");
 
       //* Return Token to User
-      return { token, user };
+      // return { token, user };
+      return { user };
     },
     // login: async (parent, { email, password }) => {
 
