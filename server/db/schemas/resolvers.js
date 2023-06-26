@@ -196,12 +196,12 @@ const resolvers = {
     },
 
   Mutation: {
-    createUser: async (parent, { email, password, clubPassword, memberFirstName, memberLastName }) => {
+    createUser: async (parent, { memberEmail, password, clubPassword, memberFirstName, memberLastName }) => {
 
-      console.log("\n\x1b[33mCreate New User (MongoDB)\x1b[0m\n\x1b[0m\n   Password: \x1b[35m" + password + "\x1b[0m\n   Club Password: \x1b[35m" + clubPassword + "\x1b[0m\n   Email: " + email + "\x1b[0m\n   Name: " + memberFirstName + " " + memberLastName);
+      console.log("\n\x1b[33mCreate New User (MongoDB)\x1b[0m\n\x1b[0m\n   Password: \x1b[35m" + password + "\x1b[0m\n   Club Password: \x1b[35m" + clubPassword + "\x1b[0m\n   Email: " + memberEmail + "\x1b[0m\n   Name: " + memberFirstName + " " + memberLastName);
 
       //* Request Database create a new "User"
-      const user = await UserMongo.create({ email, password, clubPassword, memberFirstName, memberLastName });
+      const user = await UserMongo.create({ memberEmail, password, clubPassword, memberFirstName, memberLastName });
 
       //TODO: Enable way to print this when it fails...
       //console.log("\x1b[35mAccount Creation Failed: Email already associated with an account \x1b[0m");

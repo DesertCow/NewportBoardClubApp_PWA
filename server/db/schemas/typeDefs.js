@@ -14,9 +14,9 @@ const typeDefs = `#graphql
   }
 
   type Mutation {
-    createUser(email: String!, password: String!, clubPassword: String!, memberFirstName: String!, memberLastName: String!): Auth
-    login(email: String!, password: String!): Auth
-    updateEmail(_id: String!, email: String!): Auth
+    createUser(memberEmail: String!, password: String!, clubPassword: String!, memberFirstName: String!, memberLastName: String!): Auth
+    login(memberEmail: String!, password: String!): Auth
+    updateEmail(_id: String!, memberEmail: String!): Auth
     updatePassword(_id: String!, password: String!): Auth
     updateName(_id: String!, name: String!): Auth
   }
@@ -35,7 +35,7 @@ const typeDefs = `#graphql
 
   type User {
     _id: ID
-    email: String
+    memberEmail: String
     password: String
     loginValid: Boolean
     loginToken: String
