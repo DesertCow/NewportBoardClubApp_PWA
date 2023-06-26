@@ -3,7 +3,7 @@
 
 //* Models for SQL and MongoDB 
 // const { UserMongo, FoodItem, Category, Orders } = require('../../models');
-// const { User_Mongo } = require('../../models');
+const UserMongo = require('../../models/UserMongo');
 
 //* SQL Connection
 // const sequelize = require('../sqlConnection');
@@ -13,7 +13,7 @@ const bcrypt = require("bcrypt")
 // const jwt = require("jsonwebtoken")
 // const { signToken } = require('../../utils/auth');
 
-const { useState, useEffect } = require("react");
+// const { useState, useEffect } = require("react");
 const fetch = require("node-fetch");
 const { response } = require("express");
 
@@ -196,12 +196,12 @@ const resolvers = {
     },
 
   Mutation: {
-    createUser: async (parent, { email, password, customerName }) => {
+    createUser: async (parent, { memberEmail, password, clubPassword, memberFirstName, memberLastName }) => {
 
-      console.log("\n\x1b[33mCreate New User (MongoDB)\x1b[0m\n\x1b[0m\n   Password: \x1b[35m" + password + "\x1b[0m\n   Email: " + email + "\x1b[0m\n   Email: " + customerName);
+      console.log("\n\x1b[33mCreate New User (MongoDB)\x1b[0m\n\x1b[0m\n   Password: \x1b[35m" + password + "\x1b[0m\n   Club Password: \x1b[35m" + clubPassword + "\x1b[0m\n   Email: " + memberEmail + "\x1b[0m\n   Name: " + memberFirstName + " " + memberLastName);
 
       //* Request Database create a new "User"
-      const user = await UserMongo.create({ email, password, customerName });
+      const user = await UserMongo.create({ memberEmail, password, clubPassword, memberFirstName, memberLastName });
 
       //TODO: Enable way to print this when it fails...
       //console.log("\x1b[35mAccount Creation Failed: Email already associated with an account \x1b[0m");
@@ -209,19 +209,22 @@ const resolvers = {
 
       // console.log(user)
       //* Sign/Generate JWT Token
-      const token = signToken(user);
+      // const token = signToken(user);
 
       console.log("\x1b[32mAccount Creation Successful\x1b[0m");
 
       //* Return Token to User
-      return { token, user };
+      // return { token, user };
+      return { user };
     },
-    login: async (parent, { email, password }) => {
+    login: async (parent, { memberEmail, password }) => {
 
-      console.log("\n\x1b[33mLogin Request\x1b[0m\n   Email: \x1b[33m" + email + "\x1b[0m\n   Password: \x1b[35m" + password + "\x1b[0m")
+      var loginValid = false;
+
+      console.log("\n\x1b[33mLogin Request\x1b[0m\n   Email: \x1b[33m" + memberEmail + "\x1b[0m\n   Password: \x1b[35m" + password + "\x1b[0m")
 
       //* Query Database for user based off provided "email"
-      const user = await UserMongo.findOne({ email });
+      const user = await UserMongo.findOne({ memberEmail });
 
       //* Validate User Exists
       if (!user) {
@@ -236,11 +239,15 @@ const resolvers = {
       //* Error for incorrect password
       if (!correctPw) {
         console.log("\x1b[35mLogin Failed\x1b[0m")
+        loginValid = false;
         throw new AuthenticationError('Incorrect password!');
       }
 
-      console.log("\x1b[32m   Login Successful\x1b[0m\n")
-
+      if(correctPw)
+      {
+        console.log("\x1b[32m   Login Successful\x1b[0m\n");
+        loginValid = true;
+      }
       //* Logic to check for admin status
 
       // console.log("ADMIN ENV EMAIL")
@@ -248,7 +255,7 @@ const resolvers = {
 
       let admin = false
 
-      if (process.env.ADMIN_ACCOUNT == email) {
+      if (process.env.ADMIN_ACCOUNT == memberEmail) {
         console.log("\n========================================")
         console.log("=\x1b[31m    WARNING ADMIN LOG IN DETECTED!\x1b[0m    =")
         console.log("========================================")
@@ -260,8 +267,10 @@ const resolvers = {
 
 
       //* Return Token to User
-      const token = signToken(user);
-      return { token, user, admin };
+      // const token = signToken(user);
+      // return { token, user, admin };
+      // const token = signToken(user);
+      return { user, admin };
     },
     updateEmail: async (parent, { email, _id }) => {
 
@@ -274,29 +283,29 @@ const resolvers = {
       console.log("\x1b[32m   Email Update Successful\x1b[0m\n")
 
     },
-    updatePassword: async (parent, { password, _id }) => {
+    // updatePassword: async (parent, { password, _id }) => {
 
-      console.log("\n\x1b[33mUpdate User Password (MongoDB)\x1b[0m\n\x1b[0m\n   Password: \x1b[35m" + password + "\n\x1b[0m   ID: \x1b[35m" + _id + "\x1b[0m");
+    //   console.log("\n\x1b[33mUpdate User Password (MongoDB)\x1b[0m\n\x1b[0m\n   Password: \x1b[35m" + password + "\n\x1b[0m   ID: \x1b[35m" + _id + "\x1b[0m");
 
-      const user = await UserMongo.findOne({ _id });
-      const hashword = await user.generateHash(password);
+    //   const user = await UserMongo.findOne({ _id });
+    //   const hashword = await user.generateHash(password);
 
 
-      //TODO: Add Try/Catch logic to print failed update to console
-      await UserMongo.updateOne({ _id: _id }, { $set: { password: hashword } })
+    //   //TODO: Add Try/Catch logic to print failed update to console
+    //   await UserMongo.updateOne({ _id: _id }, { $set: { password: hashword } })
 
-      console.log("\x1b[32m   Password Update Successful\x1b[0m\n")
+    //   console.log("\x1b[32m   Password Update Successful\x1b[0m\n")
 
-    },
-    updateName: async (parent, { name, _id }) => {
+    // },
+    // updateName: async (parent, { name, _id }) => {
 
-      console.log("\n\x1b[33mUpdate User Name (MongoDB)\x1b[0m\n\x1b[0m\n   Name: \x1b[35m" + name + "\n\x1b[0m   ID: \x1b[35m" + _id);
+    //   console.log("\n\x1b[33mUpdate User Name (MongoDB)\x1b[0m\n\x1b[0m\n   Name: \x1b[35m" + name + "\n\x1b[0m   ID: \x1b[35m" + _id);
 
-      await UserMongo.updateOne({ _id: _id }, { $set: { customerName: name } })
+    //   await UserMongo.updateOne({ _id: _id }, { $set: { customerName: name } })
 
-      console.log("\x1b[32m   Name Update Successful\x1b[0m\n")
+    //   console.log("\x1b[32m   Name Update Successful\x1b[0m\n")
 
-    },
+    // },
 
   },
 

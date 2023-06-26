@@ -2,13 +2,27 @@
 
 import { useNavigate } from "react-router-dom";
 
+import { useMutation } from '@apollo/client';
+import { CREATE_USER } from '../utils/mutations';
+
+import React, { useEffect, useState } from "react";
 
 
 
-const UserSignUp = (props) => {
+// const UserSignUp = (props) => {
+function UserSignUp() {
 
+  const [values, setValues] = useState({ memberEmail: "", password: "", confirmPassword: "", memberFirstName: "", memberLastName: "", clubPassword: "" });
+
+  const [createUser, { error, data }] = useMutation(CREATE_USER);
 
   const navigate = useNavigate();
+
+
+    //* Update values when input Changed
+  const inputUpdated = (event) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  };
 
 
 //* ######################### Button Handle ###########################
@@ -25,21 +39,25 @@ const UserSignUp = (props) => {
 
     // if (validateSignUp()) {
     if (true) {
-      // const { email, password, customerName } = values;
+      const { memberEmail, password, memberFirstName, memberLastName, clubPassword } = values;
 
-      // console.log("User Data: " + email + "||" + username + "||" + password + "||" + passwordconfirm);
+      // console.log("User Data: " + memberEmail + "|" + password + "|" + confirmPassword + "|" + memberFirstName + "|" + memberLastName + "|" + clubPassword);
+      // console.log("User Data: " + memberFirstName + "|" + memberLastName + "|" + memberEmail + "|" + password + "|" + confirmPassword + "|" + clubPassword);
+      console.log("User Data: " + memberFirstName + "|" + memberLastName + "|" + memberEmail + "|" + password + "|" + clubPassword);
+      console.log("Values = " + JSON.stringify(values))
       // console.log("User Data: " + email + "||" + password);
 
       //* Create New User In Database
       try {
-        // const { data } = await createUser({
-        //   variables: { ...values },
-        // });
+        const { data } = await createUser({
+          variables: { ...values },
+        });
 
         // Auth.login(JSON.stringify(data.createUser));
 
-        navigate("/home")
+        // navigate("/home")
         // toast.success("Sign-Up Successful!", toastOptions);
+        console.log("Sign-Up Successful!");
 
       } catch (e) {
         // toast.error("Sign-Up Failed", toastOptions);
@@ -77,10 +95,10 @@ return (
                 <input
                   className="registerInputText"
                   type="text"
-                  id="customerFirstName"
-                  name="customerFirstName"
+                  id="memberFirstName"
+                  name="memberFirstName"
                   placeholder="First Name"
-                  // onChange={(e) => inputUpdated(e)}
+                  onChange={(e) => inputUpdated(e)}
                 />
               </div>
             </div>
@@ -90,10 +108,10 @@ return (
                 <input
                   className="registerInputText"
                   type="text"
-                  id="customerLastName"
-                  name="customerLastName"
+                  id="memberLastName"
+                  name="memberLastName"
                   placeholder="Last Name"
-                  // onChange={(e) => inputUpdated(e)}
+                  onChange={(e) => inputUpdated(e)}
                 />
               </div>
             </div>
@@ -103,10 +121,10 @@ return (
                 <input
                   className="registerInputText"
                   type="text"
-                  id="customerEmail"
-                  name="customerEmail"
+                  id="memberEmail"
+                  name="memberEmail"
                   placeholder="Email"
-                  // onChange={(e) => inputUpdated(e)}
+                  onChange={(e) => inputUpdated(e)}
                 />
               </div>
             </div>
@@ -119,7 +137,7 @@ return (
                   id="password"
                   name="password"
                   placeholder="Password"
-                  // onChange={(e) => inputUpdated(e)}
+                  onChange={(e) => inputUpdated(e)}
                 />
               </div>
             </div>
@@ -132,7 +150,7 @@ return (
                   id="confirmPassword"
                   name="confirmPassword"
                   placeholder="Confirm Password"
-                  // onChange={(e) => inputUpdated(e)}
+                  onChange={(e) => inputUpdated(e)}
                 />
               </div>
             </div>
@@ -141,11 +159,11 @@ return (
               <div className="">
                 <input
                   className="registerInputText"
-                  type="password"
+                  type="text"
                   id="clubPassword"
                   name="clubPassword"
                   placeholder="Club Registration Password"
-                  // onChange={(e) => inputUpdated(e)}
+                  onChange={(e) => inputUpdated(e)}
                 />
               </div>
             </div>

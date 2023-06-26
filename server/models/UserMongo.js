@@ -2,8 +2,7 @@ const { Schema, model } = require('mongoose')
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-  email: {
-    type: String,
+  memberEmail: {
     type: String,
     required: true,
     unique: true,
@@ -14,7 +13,17 @@ const userSchema = new Schema({
     required: true,
     trim: true,
   },
-  customerName: {
+  clubPassword: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  memberFirstName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  memberLastName: {
     type: String,
     required: true,
     trim: true,
@@ -34,14 +43,14 @@ userSchema.pre('save', async function (next) {
 });
 
 // userSchema.methods.updatePassword('updateOne', { document: true, query: false }, async function (next) {
-userSchema.methods.generateHash = async function (password) {
+// userSchema.methods.generateHash = async function (password) {
 
-  const saltRounds = 10;
-  password = await bcrypt.hash(password, saltRounds);
+//   const saltRounds = 10;
+//   password = await bcrypt.hash(password, saltRounds);
 
-  return password
+//   return password
 
-};
+// };
 
 //* compare the incoming password with the hashed password
 userSchema.methods.isCorrectPassword = async function (password) {

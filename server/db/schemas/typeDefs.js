@@ -8,15 +8,15 @@ const { gql } = require("@apollo/server");
 const typeDefs = `#graphql
 
   type Query {
-    login(email: String!, password: String!): Auth
+    login(memberEmail: String!, password: String!): Auth
     getWX: WX
     getWidgetWX: WidgetWX
   }
 
   type Mutation {
-    createUser(email: String!, password: String!, customerName: String!): Auth
-    login(email: String!, password: String!): Auth
-    updateEmail(_id: String!, email: String!): Auth
+    createUser(memberEmail: String!, password: String!, clubPassword: String!, memberFirstName: String!, memberLastName: String!): Auth
+    login(memberEmail: String!, password: String!): Auth
+    updateEmail(_id: String!, memberEmail: String!): Auth
     updatePassword(_id: String!, password: String!): Auth
     updateName(_id: String!, name: String!): Auth
   }
@@ -35,11 +35,12 @@ const typeDefs = `#graphql
 
   type User {
     _id: ID
-    email: String
+    memberEmail: String
     password: String
     loginValid: Boolean
     loginToken: String
-    customerName: String
+    memberFirstName: String
+    memberLastName: String
   }
 
   type WX {

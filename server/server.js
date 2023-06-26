@@ -22,6 +22,12 @@ const path = require('path');
 
 const { expressMiddleware } = require("@apollo/server/express4");
 
+const mySQLport = process.env.mySQLport || 3001;
+const graphQLport = process.env.PORT || 4001;
+
+//* DB Connections
+const db = require('./db/mongoConnection');
+
 
 //* DB Schema / Seeds
 const { typeDefs, resolvers } = require('./db/schemas');
@@ -84,6 +90,7 @@ async function serverStart() {
   // await server.start()
   await server.start();
 
+  //* Start GraphQLServer
   app.use(
     '/',
     cors(),
@@ -96,8 +103,8 @@ async function serverStart() {
     }),
   );
 
-  await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
-  await console.log(`🚀 Server ready at http://localhost:4000/`);
+  // await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  // await console.log(`🚀 Server ready at http://localhost:4000/`);
 
   //* Apollo Middleware Insert
   // app.use('/graphql', cors(), json(), expressMiddleware(server));
@@ -110,29 +117,31 @@ async function serverStart() {
   // server.applyMiddleware({ app });
 
   //* Start mongoDB Connection
-  // db.once('open', () => {
+  db.once('open', () => {
 
 
-    //* Start SQL Connection
+    // * Start SQL Connection
     // sequelize.sync({ force: false }).then(() => {
-    //   app.listen(mySQLport, () => {
-    //     console.log("\n~~~       Server Status       ~~~")
-    //     console.log('~~~ MongoDB Database [' + "\x1b[32mOnline\x1b[0m" + '] ~~~')
-    //     console.log('~~~ SQL Database     [' + "\x1b[32mOnline\x1b[0m" + '] ~~~')
-    //     // console.log('\x1b[30m~~~ SQL Connection Valid [' + mySQLport + '] ~~~\x1b[0m\n')
+      // app.listen(mySQLport, () => {
+        console.log("\n~~~       Server Status       ~~~")
+        console.log('~~~ MongoDB Database [' + "\x1b[32mOnline\x1b[0m" + '] ~~~')
+        // console.log('~~~ SQL Database     [' + "\x1b[32mOnline\x1b[0m" + '] ~~~')
+        // console.log('\x1b[30m~~~ SQL Connection Valid [' + mySQLport + '] ~~~\x1b[0m\n')
 
-    //* Start GraphQL Server
-    //     app.listen(graphQLport, () => {
-    //       console.log(`~~~ GraphQL API      [` + "\x1b[32mOnline\x1b[0m" + `] ~~~ \n\n\x1b[33mAPI Live:\x1b[0m http://localhost:${graphQLport}${server.graphqlPath}\n\n`);
+    // * Start GraphQL Server
+        app.listen(graphQLport, () => {
+          console.log(`~~~ GraphQL API      [` + "\x1b[32mOnline\x1b[0m" + `] ~~~ \n\n\x1b[33m`);
+          // console.log(`API Live:\x1b[0m http://localhost:${graphQLport}${server.graphqlPath}\n\n`);
+          console.log(`API Live:\x1b[0m http://localhost:${graphQLport}`);
 
-             //! Seed SWITCH
-    //       // seedServer();
+          //  ! Seed SWITCH
+          // seedServer();
 
-    //     })
-    //   });
+        })
+      // });
     // });
 
-  // })
+  })
 }
 
 
