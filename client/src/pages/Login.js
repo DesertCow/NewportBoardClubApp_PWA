@@ -2,7 +2,9 @@
 
 import { useNavigate } from "react-router-dom";
 
-
+import React, { useState } from "react";
+import { LOGIN_M } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
 
 
 const Login = (props) => {
@@ -10,42 +12,45 @@ const Login = (props) => {
 
     const navigate = useNavigate();
 
+    const [formState, setFormState] = useState({ memberEmail: '', password: '' });
+    const [login, { data }] = useMutation(LOGIN_M);
+
   //* ########################### Button Handle ###########################
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // console.log("Handle Submit!")
-    // console.log(formState);
+    console.log("Handle Submit!")
+    console.log(formState);
 
-    navigate("/Home")
+    // navigate("/Home")
 
-    // try {
-    //   const { data } = await login({
-    //     variables: { ...formState },
-    //   });
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
 
-    //   Auth.login(JSON.stringify(data.login));
+      // Auth.login(JSON.stringify(data.login));
 
-    //   console.log("Admin Status: " + data.login.admin)
+      console.log("Admin Status: " + data.login.admin)
 
-    //   navigate("/main_Menu")
-    //   toast.success("Login Successful!", toastOptions);
+      navigate("/Home")
+      // toast.success("Login Successful!", toastOptions);
 
-    //   if (data.login.admin) {
-    //     toast.warn("Admin Access!", toastOptions);
-    //     Auth.adminSet(true)
-    //   }
+      if (data.login.admin) {
+        // toast.warn("Admin Access!", toastOptions);
+        Auth.adminSet(true)
+      }
 
-    // } catch (e) {
-    //   toast.error("Login Failed!", toastOptions);
-    //   // console.error(e);
-    // }
+    } catch (e) {
+      // toast.error("Login Failed!", toastOptions);
+      // console.error(e);
+    }
 
     // clear form values
-    // setFormState({
-    //   email: '',
-    //   password: '',
-    // });
+    setFormState({
+      email: '',
+      password: '',
+    });
 
   };
 
@@ -60,6 +65,17 @@ const Login = (props) => {
     event.preventDefault();
 
     navigate("/passwordReset");
+
+  };
+
+  //* update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
 
   };
 
@@ -90,10 +106,10 @@ const Login = (props) => {
                   <input
                     className="startinputs loginTextBox"
                     type="text"
-                    id="email"
-                    name="email"
+                    id="memberEmail"
+                    name="memberEmail"
                     placeholder="Email"
-                    // onChange={(e) => handleChange(e)}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
@@ -107,7 +123,7 @@ const Login = (props) => {
                     id="password"
                     name="password"
                     placeholder="Password"
-                    // onChange={(e) => handleChange(e)}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>

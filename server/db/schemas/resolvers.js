@@ -239,13 +239,14 @@ const resolvers = {
       //* Error for incorrect password
       if (!correctPw) {
         console.log("\x1b[35mLogin Failed\x1b[0m")
+        loginValid = false;
         throw new AuthenticationError('Incorrect password!');
       }
 
       if(correctPw)
       {
-        console.log("\x1b[32m   Login Successful\x1b[0m\n")
-        loginValid = true
+        console.log("\x1b[32m   Login Successful\x1b[0m\n");
+        loginValid = true;
       }
       //* Logic to check for admin status
 
