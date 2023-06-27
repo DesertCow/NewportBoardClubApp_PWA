@@ -2,7 +2,7 @@
 //
 //
 
-import React from 'react';
+// import React from 'react';
 
 import {
   ApolloClient,
@@ -40,6 +40,7 @@ import AboutClub from './pages/AboutClub';
 import Login from './pages/Login';
 import UserSignUp from './pages/UserSignUp';
 import PasswordReset from './pages/PasswordReset';
+import CommunityForum from './pages/CommunityForum';
 
 
 
@@ -71,6 +72,7 @@ export default function App() {
         <Route path="/club_events/current_events" element={<ClubEventsCurrent />} />
         <Route path="/club_events/eventHistory" element={<ClubEventsHistory />} />
         <Route path="/surf_knowledge" element={<SurfKnowledge />} />
+        <Route path="/community_forum" element={<CommunityForum />} />
         <Route path="/surf_rentals" element={<SurfRentals />} />
         <Route path="/about_club" element={<AboutClub />} />
       </Routes>

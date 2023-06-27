@@ -226,9 +226,13 @@ const resolvers = {
       //* Query Database for user based off provided "email"
       const user = await UserMongo.findOne({ memberEmail });
 
+      // console.log("USER = " + user)
+
       //* Validate User Exists
-      if (!user) {
-        throw new AuthenticationError('No profile with this email found!');
+      if (user == null) {
+        // throw new AuthenticationError('No profile with this email found!');
+        console.log('   \x1b[35mEmail Not Found!\x1b[0m');
+        console.log("   \x1b[35mLogin Failed!\x1b[0m")
       }
 
       //* Validate Password via "isCorrectPassword" method
