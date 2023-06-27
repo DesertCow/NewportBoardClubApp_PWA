@@ -8,8 +8,6 @@ import { CREATE_USER } from '../utils/mutations';
 import React, { useEffect, useState } from "react";
 
 
-
-// const UserSignUp = (props) => {
 function UserSignUp() {
 
   const [values, setValues] = useState({ memberEmail: "", password: "", confirmPassword: "", memberFirstName: "", memberLastName: "", clubPassword: "" });
@@ -55,9 +53,10 @@ function UserSignUp() {
 
         // Auth.login(JSON.stringify(data.createUser));
 
-        // navigate("/home")
+        
         // toast.success("Sign-Up Successful!", toastOptions);
         console.log("Sign-Up Successful!");
+        navigate("/home")
 
       } catch (e) {
         // toast.error("Sign-Up Failed", toastOptions);
