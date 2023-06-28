@@ -29,3 +29,11 @@ export const LOGIN_M = gql`
     }
   }
 `;
+
+export const EMAIL_UPDATE = gql`
+  mutation Mutation($id: String!, $memberEmail: String!) {
+    updateEmail(_id: $id, memberEmail: $memberEmail) {
+      token
+    }
+  }
+`;

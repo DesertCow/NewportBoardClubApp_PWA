@@ -10,8 +10,8 @@ const UserMongo = require('../../models/UserMongo');
 
 //* Auth Tools
 const bcrypt = require("bcrypt")
-// const jwt = require("jsonwebtoken")
-// const { signToken } = require('../../utils/auth');
+const jwt = require("jsonwebtoken")
+const { signToken } = require('../../utils/auth');
 
 // const { useState, useEffect } = require("react");
 const fetch = require("node-fetch");
@@ -269,20 +269,19 @@ const resolvers = {
         admin = false
       }
 
-
+      // console.log("USER = " + user);
+      
       //* Return Token to User
-      // const token = signToken(user);
-      // return { token, user, admin };
-      // const token = signToken(user);
-      return { user, admin };
+      const token = signToken(user);
+      return { token, user, admin };
     },
-    updateEmail: async (parent, { email, _id }) => {
+    updateEmail: async (parent, { memberEmail, _id }) => {
 
       //TODO: Confirm new email does not already exists in DB
       //TODO: Add Try/Catch logic to print failed update to console
-      console.log("\n\x1b[33mUpdate User Email (MongoDB)\x1b[0m\n\x1b[0m\n   Email: \x1b[35m" + email + "\n\x1b[0m   ID: \x1b[35m" + _id);
+      console.log("\n\x1b[33mUpdate User Email (MongoDB)\x1b[0m\n\x1b[0m\n   Email: \x1b[35m" + memberEmail + "\n\x1b[0m   ID: \x1b[35m" + _id);
 
-      await UserMongo.updateOne({ _id: _id }, { $set: { email: email } })
+      await UserMongo.updateOne({ _id: _id }, { $set: { memberEmail: memberEmail } })
 
       console.log("\x1b[32m   Email Update Successful\x1b[0m\n")
 
