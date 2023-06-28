@@ -376,6 +376,19 @@
   -o-border-radius: 15px;
 }
 
+.userProfileUpdateBtn {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 18px;
+  width: 200px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.902);
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
 .editProfileText {
   font-family: "Catamaran-ExtraBold";
   /* height: 450px; */
