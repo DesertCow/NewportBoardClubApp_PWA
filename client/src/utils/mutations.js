@@ -37,3 +37,11 @@ export const EMAIL_UPDATE = gql`
     }
   }
 `;
+
+export const PASS_UPDATE = gql`
+  mutation UpdatePassword($id: String!, $password: String!) {
+    updatePassword(_id: $id, password: $password) {
+      token
+    }
+  }
+`;

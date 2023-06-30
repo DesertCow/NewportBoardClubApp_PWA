@@ -286,20 +286,20 @@ const resolvers = {
       console.log("\x1b[32m   Email Update Successful\x1b[0m\n")
 
     },
-    // updatePassword: async (parent, { password, _id }) => {
+    updatePassword: async (parent, { password, _id }) => {
 
-    //   console.log("\n\x1b[33mUpdate User Password (MongoDB)\x1b[0m\n\x1b[0m\n   Password: \x1b[35m" + password + "\n\x1b[0m   ID: \x1b[35m" + _id + "\x1b[0m");
+      console.log("\n\x1b[33mUpdate User Password (MongoDB)\x1b[0m\n\x1b[0m\n   Password: \x1b[35m" + password + "\n\x1b[0m   ID: \x1b[35m" + _id + "\x1b[0m");
 
-    //   const user = await UserMongo.findOne({ _id });
-    //   const hashword = await user.generateHash(password);
+      const user = await UserMongo.findOne({ _id });
+      const hashword = await user.generateHash(password);
 
 
-    //   //TODO: Add Try/Catch logic to print failed update to console
-    //   await UserMongo.updateOne({ _id: _id }, { $set: { password: hashword } })
+      //TODO: Add Try/Catch logic to print failed update to console
+      await UserMongo.updateOne({ _id: _id }, { $set: { password: hashword } })
 
-    //   console.log("\x1b[32m   Password Update Successful\x1b[0m\n")
+      console.log("\x1b[32m   Password Update Successful\x1b[0m\n")
 
-    // },
+    },
     // updateName: async (parent, { name, _id }) => {
 
     //   console.log("\n\x1b[33mUpdate User Name (MongoDB)\x1b[0m\n\x1b[0m\n   Name: \x1b[35m" + name + "\n\x1b[0m   ID: \x1b[35m" + _id);

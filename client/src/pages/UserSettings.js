@@ -8,7 +8,7 @@ import { useState, useCallback } from 'react';
 import { SelectDatepicker } from 'react-select-datepicker';
 
 // import { PASS_UPDATE, EMAIL_UPDATE, LOGIN_Q, NAME_UPDATE } from '../utils/mutations';
-import { EMAIL_UPDATE } from '../utils/mutations';
+import { EMAIL_UPDATE, PASS_UPDATE } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 
@@ -20,7 +20,7 @@ function UserSettings() {
   const [firstNameState, setFirstNameState] = useState({ memberFirstName: '', id: '' });
   const [lastNameState, setLastNameState] = useState({ memberLastName: '', id: '' });
 
-  // const [updatePass, { passData }] = useMutation(PASS_UPDATE);
+  const [updatePass, { passData }] = useMutation(PASS_UPDATE);
   const [updateEmail, { emailData }] = useMutation(EMAIL_UPDATE);
   // const [updateName, { nameData }] = useMutation(NAME_UPDATE);
   // const [loginTwo, { loginData }] = useMutation(LOGIN_Q);
@@ -66,12 +66,29 @@ function UserSettings() {
 
     setPasswordState({
       ...passwordState,
-      [name]: value,
+      password: value,
       id: login.user._id,
     });
 
-    console.log("Password State = ")
-    console.log(passwordState)
+    console.log("Password State = ");
+    console.log(passwordState);
+
+  }
+
+  //* update state based on form input changes
+  const handleConfirmPasswordChange = (event) => {
+    const { name, value } = event.target;
+
+    console.log("New Confirm Password = " + value)
+
+    setPasswordState({
+      ...passwordState,
+      confirm: value,
+      id: login.user._id,
+    });
+
+    console.log("Password State = ");
+    console.log(passwordState);
 
   }
 
@@ -99,6 +116,34 @@ function UserSettings() {
 
     // toast.success("Email Address Has Been Updated!", toastOptions);
     console.log("Email Address Has Been Updated!");
+
+  }
+
+  
+  const HandlePasswordSubmit = async (event) => {
+    event.preventDefault();
+
+    const { name, value } = event.target;
+
+    console.log("New Password Submitted!")
+    console.log("   Password: " + passwordState.password)
+    console.log("   Confirm : " + passwordState.confirm)
+
+    if( passwordState.password === passwordState.confirm){
+      const { passData } = await updatePass({
+        variables: { ...passwordState },
+      });
+
+      console.log(passData)
+      
+      // toast.success("Password Has Been Updated!", toastOptions);
+
+    }
+    else {
+
+      console.log("Password/Confirm Password DO NOT MATCH! Update Unsuccessful!");
+
+    }
 
   }
 
@@ -139,7 +184,7 @@ function UserSettings() {
           <label htmlFor="exampleInputPassword1">Password</label>
           <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e) => handlePasswordChange(e)}></input>
           <label htmlFor="exampleInputPassword1" className="mt-3">Password Confirm</label>
-          <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e) => handlePasswordChange(e)}></input>
+          <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e) => handleConfirmPasswordChange(e)}></input>
           <button type="button" className="userProfileUpdateBtn p-2 btn-success mt-3 mb-5 text-center" onClick={(event) => HandlePasswordSubmit(event)}>Update Password</button>
         </div>
        <div className="form-group mx-2 my-5">
