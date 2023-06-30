@@ -43,14 +43,14 @@ userSchema.pre('save', async function (next) {
 });
 
 // userSchema.methods.updatePassword('updateOne', { document: true, query: false }, async function (next) {
-// userSchema.methods.generateHash = async function (password) {
+userSchema.methods.generateHash = async function (password) {
 
-//   const saltRounds = 10;
-//   password = await bcrypt.hash(password, saltRounds);
+  const saltRounds = 10;
+  password = await bcrypt.hash(password, saltRounds);
 
-//   return password
-
-// };
+  return password
+  // 
+};
 
 //* compare the incoming password with the hashed password
 userSchema.methods.isCorrectPassword = async function (password) {
@@ -69,4 +69,4 @@ const User = model('User', userSchema);
 module.exports = User;
 
 
-//!========================= EOF =========================
+// !========================= EOF =========================

@@ -18,7 +18,7 @@ const typeDefs = `#graphql
     login(memberEmail: String!, password: String!): Auth
     updateEmail(_id: String!, memberEmail: String!): Auth
     updatePassword(_id: String!, password: String!): Auth
-    updateName(_id: String!, name: String!): Auth
+    updateName(_id: String!, memberFirstName: String!, memberLastName: String!): Auth
   }
 
   type UserCreated {

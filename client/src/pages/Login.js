@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { LOGIN_M } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
 
 
 const Login = (props) => {
@@ -29,11 +30,11 @@ const Login = (props) => {
         variables: { ...formState },
       });
 
-      // Auth.login(JSON.stringify(data.login));
+      Auth.login(JSON.stringify(data.login));
 
       console.log("Admin Status: " + data.login.admin)
 
-      navigate("/Home")
+      
       // toast.success("Login Successful!", toastOptions);
 
       if (data.login.admin) {
@@ -51,6 +52,8 @@ const Login = (props) => {
       memberEmail: '',
       password: '',
     });
+
+    // navigate("/Home")
 
   };
 
