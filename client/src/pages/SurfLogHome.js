@@ -62,7 +62,7 @@ function SurfLogHome() {
           </div>
         </div>
         
-        <h2 className="text-center mb-3 welcomeText">Surf Sessions Data:</h2>
+        <h2 className="text-center mb-3 welcomeText">Surf Sessions:</h2>
 
         <div className="d-flex justify-content-center align-items-center mt-4 mb-4">
           <div className="sessionDataBox">

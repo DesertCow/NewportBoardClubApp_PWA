@@ -61,7 +61,7 @@ function UserSettings() {
   const handlePasswordChange = (event) => {
     const { name, value } = event.target;
 
-    console.log("New Password = " + value)
+    // console.log("New Password = " + value)
 
     setPasswordState({
       ...passwordState,
@@ -69,8 +69,8 @@ function UserSettings() {
       id: login.user._id,
     });
 
-    console.log("Password State = ");
-    console.log(passwordState);
+    // console.log("Password State = ");
+    // console.log(passwordState);
 
   }
 
@@ -78,7 +78,7 @@ function UserSettings() {
   const handleConfirmPasswordChange = (event) => {
     const { name, value } = event.target;
 
-    console.log("New Confirm Password = " + value)
+    // console.log("New Confirm Password = " + value)
 
     setPasswordState({
       ...passwordState,
@@ -86,8 +86,8 @@ function UserSettings() {
       id: login.user._id,
     });
 
-    console.log("Password State = ");
-    console.log(passwordState);
+    // console.log("Password State = ");
+    // console.log(passwordState);
 
   }
 
@@ -95,7 +95,7 @@ function UserSettings() {
   const handleFirstNameChange = (event) => {
     const { name, value } = event.target;
 
-    console.log("New First Name = " + value)
+    // console.log("New First Name = " + value)
 
     setNameState({
       ...nameState,
@@ -103,8 +103,8 @@ function UserSettings() {
       id: login.user._id,
     });
 
-    console.log("Name State = ")
-    console.log(nameState)
+    // console.log("Name State = ")
+    // console.log(nameState)
 
   }
 
@@ -112,7 +112,7 @@ function UserSettings() {
   const handleLastNameChange = (event) => {
     const { name, value } = event.target;
 
-    console.log("New Last Name = " + value)
+    // console.log("New Last Name = " + value)
 
     setNameState({
       ...nameState,
@@ -120,8 +120,8 @@ function UserSettings() {
       id: login.user._id,
     });
 
-    console.log("Name State = ")
-    console.log(nameState)
+    // console.log("Name State = ")
+    // console.log(nameState)
 
   }
 
