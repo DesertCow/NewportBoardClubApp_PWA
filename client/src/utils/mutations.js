@@ -45,3 +45,14 @@ export const PASS_UPDATE = gql`
     }
   }
 `;
+
+export const NAME_UPDATE = gql`
+  mutation Mutation($id: String!, $memberFirstName: String!, $memberLastName: String!) {
+    updateName(_id: $id, memberFirstName: $memberFirstName, memberLastName: $memberLastName) {
+      user {
+        memberFirstName
+        memberLastName
+      }
+    }
+  }
+`;

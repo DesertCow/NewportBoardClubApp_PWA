@@ -8,7 +8,7 @@ import { useState, useCallback } from 'react';
 import { SelectDatepicker } from 'react-select-datepicker';
 
 // import { PASS_UPDATE, EMAIL_UPDATE, LOGIN_Q, NAME_UPDATE } from '../utils/mutations';
-import { EMAIL_UPDATE, PASS_UPDATE } from '../utils/mutations';
+import { EMAIL_UPDATE, PASS_UPDATE, NAME_UPDATE } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 
@@ -17,12 +17,12 @@ function UserSettings() {
 
   const [emailState, setEmailState] = useState({ memberEmail: '', id: '' });
   const [passwordState, setPasswordState] = useState({ password: '', confirm: '', id: '' });
-  const [firstNameState, setFirstNameState] = useState({ memberFirstName: '', id: '' });
-  const [lastNameState, setLastNameState] = useState({ memberLastName: '', id: '' });
+  const [nameState, setNameState] = useState({ memberFirstName: '', memberLastName: '', id: '' });
+  // const [lastNameState, setLastNameState] = useState({ memberLastName: '', id: '' });
 
   const [updatePass, { passData }] = useMutation(PASS_UPDATE);
   const [updateEmail, { emailData }] = useMutation(EMAIL_UPDATE);
-  // const [updateName, { nameData }] = useMutation(NAME_UPDATE);
+  const [updateName, { nameData }] = useMutation(NAME_UPDATE);
   // const [loginTwo, { loginData }] = useMutation(LOGIN_Q);
 
 
@@ -92,6 +92,40 @@ function UserSettings() {
 
   }
 
+  //* update state based on form input changes
+  const handleFirstNameChange = (event) => {
+    const { name, value } = event.target;
+
+    console.log("New First Name = " + value)
+
+    setNameState({
+      ...nameState,
+      memberFirstName: value,
+      id: login.user._id,
+    });
+
+    console.log("Name State = ")
+    console.log(nameState)
+
+  }
+
+  //* update state based on form input changes
+  const handleLastNameChange = (event) => {
+    const { name, value } = event.target;
+
+    console.log("New Last Name = " + value)
+
+    setNameState({
+      ...nameState,
+      memberLastName: value,
+      id: login.user._id,
+    });
+
+    console.log("Name State = ")
+    console.log(nameState)
+
+  }
+
   //* ########################### Button Handle ###########################
   const HandleEmailSubmit = async (event) => {
     event.preventDefault();
@@ -147,6 +181,25 @@ function UserSettings() {
 
   }
 
+  const HandleNameSubmit = async (event) => {
+    event.preventDefault();
+
+    const { name, value } = event.target;
+
+    console.log("New Name Submitted!")
+    console.log("   First Name: " + nameState.memberFirstName)
+    console.log("   Last Name: " + nameState.memberLastName)
+
+    const { nameData } = await updateName({
+      variables: { ...nameState },
+    });
+
+    console.log(nameData)
+
+    // toast.success("Name Has Been Updated!", toastOptions);
+
+  }
+
   return (
 
     <div className="d-flex flex-column min-vh-100">
@@ -171,8 +224,8 @@ function UserSettings() {
 
         <div className="form-group mx-2 my-5 text-center">
           <label htmlFor="exampleInputEmail1">Member Name</label>
-          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name"></input>
-          <input type="email" className="form-control mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last Name"></input>
+          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name" onChange={(e) => handleFirstNameChange(e)}></input>
+          <input type="email" className="form-control mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last Name" onChange={(e) => handleLastNameChange(e)}></input>
           <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleNameSubmit(event)}>Update Name</button>
         </div>
         <div className="form-group mx-2 my-5 text-center">

@@ -300,15 +300,22 @@ const resolvers = {
       console.log("\x1b[32m   Password Update Successful\x1b[0m\n")
 
     },
-    // updateName: async (parent, { name, _id }) => {
+    updateName: async (parent, { memberFirstName, memberLastName, _id }) => {
 
-    //   console.log("\n\x1b[33mUpdate User Name (MongoDB)\x1b[0m\n\x1b[0m\n   Name: \x1b[35m" + name + "\n\x1b[0m   ID: \x1b[35m" + _id);
+      console.log("\n\x1b[33mUpdate User Name (MongoDB)\x1b[0m\n\x1b[0m\n  Name: \x1b[35m" + memberFirstName + " " + memberLastName + "\n\x1b[0m   ID: \x1b[35m" + _id);
 
-    //   await UserMongo.updateOne({ _id: _id }, { $set: { customerName: name } })
+      await UserMongo.updateOne({ _id: _id }, { $set: { memberFirstName: memberFirstName, memberLastName:memberLastName } })
 
-    //   console.log("\x1b[32m   Name Update Successful\x1b[0m\n")
+      console.log("\x1b[32m   Name Update Successful\x1b[0m\n")
 
-    // },
+      const user = await UserMongo.findOne({ _id });
+
+      // //* Return Token to User
+      // const token = signToken(user);
+      // return { token, user, admin };
+      return {  user };
+
+    },
 
   },
 
