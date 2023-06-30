@@ -6,6 +6,8 @@ import WeatherWidget from "../components/WeatherWidget";
 
 import { useNavigate } from "react-router-dom";
 
+import Auth from '../utils/auth';
+
 
 
 function SurfLogHome() {
@@ -32,6 +34,11 @@ function SurfLogHome() {
   navigate("/surf_log/view_previous_sessions");
   };
 
+  let jwtToken = Auth.getToken()
+  jwtToken = JSON.parse(jwtToken)
+
+  // console.log(jwtToken)
+
   return (
 
     <div className="d-flex flex-column min-vh-100">
@@ -44,14 +51,19 @@ function SurfLogHome() {
 
       <div className="userDataBG">
         <div className="justify-content-center mt-5">
-          <div className="text-center">
+
+          <h2 className="text-center mt-3 mb-5 welcomeName">{jwtToken.user.memberFirstName} {jwtToken.user.memberLastName}</h2>
+          
+
+          <div className="text-center mb-5">
             <img src={require("../img/Avatar.jpg")}
               className="userPhoto"
               alt="Outside Shot of Board Club" />
           </div>
         </div>
-        <h2 className="text-center mt-5 welcomeText">Welcome to {usersName}'s Surf Log</h2>
         
+        <h2 className="text-center mb-3 welcomeText">Surf Sessions Data:</h2>
+
         <div className="d-flex justify-content-center align-items-center mt-4 mb-4">
           <div className="sessionDataBox">
             <p className="text-center sessionDetails mt-3"><b>Session Count:</b> {userSessionCount}</p>

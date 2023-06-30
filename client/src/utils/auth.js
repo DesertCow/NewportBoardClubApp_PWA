@@ -16,7 +16,7 @@ class AuthService {
     const decoded = decode(token);
     // If the expiration time is less than the current time (in seconds), the token is expired and we return `true`
     if (decoded.exp < Date.now() / 1000) {
-      localStorage.removeItem('id_token');
+      localStorage.removeItem('boardClub_JWT_Token');
       return true;
     }
     // If token hasn't passed its expiration time, return `false`
@@ -24,17 +24,17 @@ class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem('id_token');
+    return localStorage.getItem('boardClub_JWT_Token');
   }
 
   login(idToken) {
     console.log("Login Called: " + idToken)
-    localStorage.setItem('id_token', idToken);
+    localStorage.setItem('boardClub_JWT_Token', idToken);
     // window.location.assign('/main_Menu');
   }
 
   logout() {
-    localStorage.removeItem('id_token');
+    localStorage.removeItem('boardClub_JWT_Token');
     // localStorage.removeItem('chuckwagon_flag');
     // window.location.reload();
     // return

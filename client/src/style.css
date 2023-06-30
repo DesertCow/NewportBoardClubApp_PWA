@@ -246,7 +246,12 @@
 
 .welcomeText {
   font-family: "Catamaran-ExtraBold";
-  font-size: 30px;
+  font-size: 35px;
+}
+
+.welcomeName {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 55px;
 }
 
 .userPhoto {
