@@ -18,7 +18,6 @@ function UserSettings() {
   const [emailState, setEmailState] = useState({ memberEmail: '', id: '' });
   const [passwordState, setPasswordState] = useState({ password: '', confirm: '', id: '' });
   const [nameState, setNameState] = useState({ memberFirstName: '', memberLastName: '', id: '' });
-  // const [lastNameState, setLastNameState] = useState({ memberLastName: '', id: '' });
 
   const [updatePass, { passData }] = useMutation(PASS_UPDATE);
   const [updateEmail, { emailData }] = useMutation(EMAIL_UPDATE);
@@ -209,10 +208,11 @@ function UserSettings() {
 
       {/* Weather Widget Component */}
       <WeatherWidget />
+      
+      <h1 className="editProfileText text-center mt-5">{login.user.memberFirstName} {login.user.memberLastName}</h1>
+      <h3 className="editProfileText text-center"> Welcome to your Board Club Profile!</h3>
 
-      <h1 className="editProfileText text-center mt-5"> User Profile</h1>
-
-      <div className="my-5">
+      <div className="my-3">
         <div className="text-center">
           <img src={require("../img/Avatar.jpg")}
             className="avatarIcon"
