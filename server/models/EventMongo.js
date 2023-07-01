@@ -35,6 +35,11 @@ const eventSchema = new Schema({
     required: true,
     trim: true,
   },
+  eventCurrent: {
+    type: Boolean,
+    required: true,
+    trim: true,
+  },
 });
 
 // eventSchema.pre('save', async function (next) {

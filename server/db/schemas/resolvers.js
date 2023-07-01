@@ -194,6 +194,53 @@ const resolvers = {
 
 
       },
+      getCurrentEvents: async() => {
+
+        var currentEventList = [];
+        
+        const currentEvents = await EventMongo.find({ eventCurrent: true });
+
+        console.log(" ~~ Current Event Count = \x1b[31m" + currentEvents.length + "  \x1b[0m~~")
+
+        for (i = 0; i < currentEvents.length; i++) {
+
+          currentEventList[i] = currentEvents[i]._id + "|" + currentEvents[i].eventName + "|" + currentEvents[i].eventSlogan + "|" + currentEvents[i].eventDate + "|" + currentEvents[i].eventLength + "|" + currentEvents[i].eventDescription + "|" + currentEvents[i].eventPhotoURL + "|" + currentEvents[i].eventCurrent
+
+      }
+
+        //* Return List Of Current Events
+        return currentEventList
+      },
+
+      getPreviousEvents: async() => {
+
+        var previousEventList = [];
+        
+        const previousEvents = await EventMongo.find({ eventCurrent: false });
+
+        console.log(" ~~ Current Event Count = \x1b[31m" + previousEvents.length + "  \x1b[0m~~")
+
+        for (i = 0; i < previousEvents.length; i++) {
+
+          previousEventList[i] = previousEvents[i]._id + "|" + previousEvents[i].eventName + "|" + previousEvents[i].eventSlogan + "|" + previousEvents[i].eventDate + "|" + previousEvents[i].eventLength + "|" + previousEvents[i].eventDescription + "|" + previousEvents[i].eventPhotoURL + "|" + previousEvents[i].eventCurrent
+
+      }
+
+        //* Return List Of Current Events
+        return previousEventList
+      },
+
+      getEvent: async (parent, { eventName }) => {
+
+        var requestedEventList
+
+        const requestedEvent = await EventMongo.findOne({eventName: eventName})
+
+        requestedEventList = requestedEvent._id + "|" + requestedEvent.eventName + "|" + requestedEvent.eventSlogan + "|" + requestedEvent.eventDate + "|" + requestedEvent.eventLength + "|" + requestedEvent.eventDescription + "|" + requestedEvent.eventPhotoURL + "|" + requestedEvent.eventCurrent
+
+        return JSON.stringify(requestedEventList)
+
+      }
     },
 
   Mutation: {
@@ -317,12 +364,12 @@ const resolvers = {
       return { user };
 
     },
-    createEvent: async (parent, { eventName, eventSlogan, eventDate, eventLength, eventDescription, eventPhotoURL }) => {
+    createEvent: async (parent, { eventName, eventSlogan, eventDate, eventLength, eventDescription, eventPhotoURL, eventCurrent }) => {
 
       console.log("\n\x1b[33mCreate New Event (MongoDB)\x1b[0m\n\x1b[0m\n   Event Title: \x1b[35m" + eventName + "\x1b[0m\n   Event Date: \x1b[35m" + eventDate + "\x1b[0m\n   Event Length: " + eventLength + "\x1b[0m\n   Event Photo URL: " + eventPhotoURL);
 
       //* Request Database create a new "Event"
-      const event = await EventMongo.create({ eventName, eventSlogan, eventDate, eventLength, eventDescription, eventPhotoURL });
+      const event = await EventMongo.create({ eventName, eventSlogan, eventDate, eventLength, eventDescription, eventPhotoURL, eventCurrent });
 
       //TODO: Enable way to print this when it fails...
       //console.log("\x1b[35mAccount Creation Failed: Email already associated with an account \x1b[0m");
