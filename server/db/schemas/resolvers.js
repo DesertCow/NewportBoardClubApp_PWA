@@ -3,8 +3,8 @@
 
 //* Models for SQL and MongoDB 
 // const { UserMongo, FoodItem, Category, Orders } = require('../../models');
-const {UserMongo, EventMongo} = require('../../models/UserMongo');
-// const  {EventMongo} = require('../../models/UserMongo');
+const UserMongo = require('../../models/UserMongo');
+const EventMongo = require('../../models/EventMongo');
 
 //* SQL Connection
 // const sequelize = require('../sqlConnection');
@@ -314,7 +314,7 @@ const resolvers = {
       // //* Return Token to User
       // const token = signToken(user);
       // return { token, user, admin };
-      return {  user };
+      return { user };
 
     },
     createEvent: async (parent, { eventName, eventSlogan, eventDate, eventLength, eventDescription, eventPhotoURL }) => {
@@ -323,7 +323,6 @@ const resolvers = {
 
       //* Request Database create a new "Event"
       const event = await EventMongo.create({ eventName, eventSlogan, eventDate, eventLength, eventDescription, eventPhotoURL });
-      // const user = await UserMongo.create({ memberEmail, password, clubPassword, memberFirstName, memberLastName });
 
       //TODO: Enable way to print this when it fails...
       //console.log("\x1b[35mAccount Creation Failed: Email already associated with an account \x1b[0m");
@@ -334,10 +333,11 @@ const resolvers = {
       // const token = signToken(user);
 
       console.log("\x1b[32mEvent Creation Successful\x1b[0m");
+      console.log(event)
 
       //* Return Token to User
       // return { token, user };
-      // return { event };
+      return { event };
     },
 
   },

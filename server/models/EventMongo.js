@@ -50,9 +50,9 @@ const eventSchema = new Schema({
 
 
 // const Event = model('Event', eventSchema, "events");
-const Events = model('Event', eventSchema);
+const Event = model('Event', eventSchema, "events");
 
-module.exports = Events;
+module.exports = Event;
 
 
 // !========================= EOF =========================
