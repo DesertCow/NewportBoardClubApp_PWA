@@ -32,7 +32,7 @@ const userSchema = new Schema({
 
 //* set up pre-save middleware to create password
 userSchema.pre('save', async function (next) {
-  console.log('New User Triggered Via Middleware during MongoDB Create');
+  // console.log('New User Triggered Via Middleware during MongoDB Create');
   // if (this.isNew || this.isModified('password')) {
   if (this.isNew) {
     const saltRounds = 10;
