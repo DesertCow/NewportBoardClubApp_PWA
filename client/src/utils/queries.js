@@ -32,3 +32,9 @@ export const getWidgetWX_Q = gql`
       }
     }
 `;
+
+export const getCurrentEvents_Q = gql`
+query GetCurrentEvents {
+  getCurrentEvents
+}
+`;
