@@ -100,7 +100,7 @@ function ClubEvents_Current() {
           {/* <div dangerouslySetInnerHTML={{__html: finalCurrentEventHTML[0]}} /> */}
           <div>
             {/* {parse(finalCurrentEventHTML[1])} */}
-            {parse(`<div className="text-center"><img src={require("../img/Spencer+Pirdy.jpeg")} className="eventPhoto mb-3" onClick={(event) => handleClubEvents(event)} alt="Outside Shot of Board Club" /></div> C`)}
+            {/* {parse(`<div className="text-center"><img src={require("../img/Spencer+Pirdy.jpeg")} className="eventPhoto mb-3" onClick={(event) => handleClubEvents(event)} alt="Outside Shot of Board Club" /></div>`)} */}
           </div>
           {/* {finalCurrentEventHTML[1]} */}
 
