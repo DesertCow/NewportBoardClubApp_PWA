@@ -10,8 +10,6 @@ import EventPageHeaderUpcoming from '../components/EventPageHeader_Upcoming';
 import { useQuery } from '@apollo/client';
 import { getCurrentEvents_Q } from '../utils/queries';
 
-const parse = require('html-react-parser');
-
 function ClubEvents_Current() {
 
 
@@ -34,9 +32,9 @@ function ClubEvents_Current() {
 
   function parsePhotoLink(item){
 
-    console.log("!!!!!!!!!!!!!!!!!!!!!")
+    // console.log("!!!!!!!!!!!!!!!!!!!!!")
     let eventArray = item.split("|")
-    console.log(eventArray[6])
+    // console.log(eventArray[6])
     // console.log(eventArray[1])
 
     finalCurrentEventHTML.push(`<div className="text-center"><img src={require("${eventArray[6]}")} className="eventPhoto mb-3" onClick={(event) => handleClubEvents(event)} alt="Outside Shot of Board Club" /></div>`)
@@ -45,27 +43,27 @@ function ClubEvents_Current() {
 
   if(!loading) {
     console.log("Current Event Count: " + data.getCurrentEvents.length)
-    console.log(data.getCurrentEvents[0])
+    // console.log(data.getCurrentEvents[0])
 
     let eventArray = data.getCurrentEvents[0].split("|")
 
 
-    console.log(eventArray[6])
-    console.log(data.getCurrentEvents[1])
+    // console.log(eventArray[6])
+    // console.log(data.getCurrentEvents[1])
 
     //* Lopp over each current event
     data.getCurrentEvents.forEach(parsePhotoLink)
 
-    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-    console.log(finalCurrentEventHTML[0])
+    // console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+    // console.log(finalCurrentEventHTML[0])
   }
 
   // let test = `"`+"../img/SummerArtFair.jpg"+`"`
-  var test = "../img/SummerArtFair.jpg"
+  // var test = "../img/SummerArtFair.jpg"
 
-  console.log("!!!!#@#$# TESTS")
+  // console.log("!!!!#@#$# TESTS")
   // console.log(`"`+test+`"`)
-  console.log(test)
+  // console.log(test)
 
   return (
 
