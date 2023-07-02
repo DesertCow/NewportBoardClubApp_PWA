@@ -48,8 +48,17 @@ const mongodb = require('../mongoConnection');
   eventSlogan: "Surf Coaching",  
   eventDate: "5-25-23",
   eventDescription: "This is for anyone looking to improve their surfing. Spencer helps surfers at all levels improve technique, increase wave count, improve paddling efficiency, overall fitness, and comfortability in the lineup.",
-  eventPhotoURL: "www.google.com",
+  eventPhotoURL: "../img/Spencer+Pirdy.jpeg",
   eventLength: "2",
+  eventCurrent: true
+  },
+  {  
+  eventName: "Summer Kickoff Art Fair",
+  eventSlogan: "Support Your Local Artisans",  
+  eventDate: "6-24-23",
+  eventDescription: "It's slowly starting to feel like Summer and everyone will be looking for fun things to do so we're hosting another Art Fair!  Come check out the different artwork, photography, jewelry, succulents and other cool stuff from your locals artisans.",
+  eventPhotoURL: "../img/SummerArtFair.jpg",
+  eventLength: "4",
   eventCurrent: true
   },
 

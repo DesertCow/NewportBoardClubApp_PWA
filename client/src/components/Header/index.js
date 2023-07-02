@@ -36,7 +36,7 @@ const Header = () => {
   const handleWeatherWidgetClick = async (event) => {
   event.preventDefault();
   // navigate("/");
-  console.log("Display Weather Widget Overlay!");
+  // console.log("Display Weather Widget Overlay!");
   };
 
 

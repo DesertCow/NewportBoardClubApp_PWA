@@ -5,6 +5,7 @@ import NavFooter from '../components/NavFooter';
 import WeatherWidget from "../components/WeatherWidget";
 import EventPageHeaderHistory from '../components/EventPageHeader_History';
 
+
 function ClubEvents_Current() {
 
 
