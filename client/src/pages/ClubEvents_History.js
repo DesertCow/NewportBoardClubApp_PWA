@@ -36,11 +36,29 @@ function ClubEvents_Current() {
       {/* <h1 className="homeTitle text-center flex-row"> CLUB EVENTS HISTORY!</h1> */}
 
       <div className="mb-5 pb-3">
-         <div className="px-2 py-3">
-          <div className="historyEventsBtns mb-2 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #1</div>
+        <div className="px-2 py-3">
+          <div className="text-center">
+            <img src={require("../img/Events/Stab_In_The_Dark.jpg")}
+            className="eventPhoto2 mb-3"
+            onClick={(event) => handleClubEvents(event)}
+            alt="Event Photo" />
+          </div>
+          <div className="text-center">
+            <img src={require("../img/Events/Solid_Surf_Demo_Day.jpg")}
+            className="eventPhoto2 mb-3"
+            onClick={(event) => handleClubEvents(event)}
+            alt="Event Photo" />
+          </div>
+          <div className="text-center">
+            <img src={require("../img/Events/Hallowen.jpg")}
+            className="eventPhoto2 mb-3"
+            onClick={(event) => handleClubEvents(event)}
+            alt="Event Photo" />
+          </div>
+          {/* <div className="historyEventsBtns mb-2 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #1</div>
           <div className="historyEventsBtns my-4 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #2</div>
           <div className="historyEventsBtns my-4 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #3</div>
-          <div className="historyEventsBtns my-4 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #4</div>
+          <div className="historyEventsBtns my-4 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Historic Club Event #4</div> */}
         </div>
       </div>
 
