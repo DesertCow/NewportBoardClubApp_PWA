@@ -42,7 +42,7 @@ function ClubEvents_Current() {
   }
 
   if(!loading) {
-    console.log("Current Event Count: " + data.getCurrentEvents.length)
+    // console.log("Current Event Count: " + data.getCurrentEvents.length)
     // console.log(data.getCurrentEvents[0])
 
     let eventArray = data.getCurrentEvents[0].split("|")
