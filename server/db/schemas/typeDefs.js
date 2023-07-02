@@ -11,6 +11,9 @@ const typeDefs = `#graphql
     login(memberEmail: String!, password: String!): Auth
     getWX: WX
     getWidgetWX: WidgetWX
+    getCurrentEvents: [String]
+    getPreviousEvents: [String]
+    getEvent(eventName: String): String
   }
 
   type Mutation {
@@ -19,6 +22,7 @@ const typeDefs = `#graphql
     updateEmail(_id: String!, memberEmail: String!): Auth
     updatePassword(_id: String!, password: String!): Auth
     updateName(_id: String!, memberFirstName: String!, memberLastName: String!): Auth
+    createEvent( eventName: String!, eventSlogan: String!, eventDate: String!, eventLength: String, eventDescription: String!, eventPhotoURL: String!, eventCurrent: Boolean!): Event
   }
 
   type UserCreated {
@@ -31,6 +35,16 @@ const typeDefs = `#graphql
     token: ID!
     user: User
     admin: Boolean
+  }
+
+  type Event {
+    eventName: String
+    eventSlogan: String
+    eventDate: String
+    eventLength: String
+    eventDescription: String
+    eventPhotoURL: String
+    eventCurrent: Boolean
   }
 
   type User {

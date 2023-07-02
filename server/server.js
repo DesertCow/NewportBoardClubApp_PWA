@@ -1,8 +1,8 @@
 // #####################################################################
 // 
-// Authorization server to support the food truck application
+// 
 //
-// Clayton Skaggs Oct 2022
+// Clayton Skaggs July 2023
 // 
 // ---------------------------------------------------------------------
 
@@ -31,7 +31,7 @@ const db = require('./db/mongoConnection');
 
 //* DB Schema / Seeds
 const { typeDefs, resolvers } = require('./db/schemas');
-// const seedAll = require('./db/seeds/index');
+const seedAll = require('./db/seeds/index');
 
 
 //* Create Base "App"
@@ -56,16 +56,16 @@ const server = new ApolloServer({
 
 
 //* Seed Function
-// async function seedServer() {
+async function seedServer() {
 
-//   try {
-//     await seedAll();
-//     console.log('\n\x1b[42m----- SEEDING COMPLETE/VALID -----\x1b[0m\n');
-//   } catch (error) {
-//     console.log('\n\x1b[41m----- SEEDING FAILED! -----\x1b[0m\n');
-//     console.log(error);
-//   }
-// }
+  try {
+    await seedAll();
+    console.log('\n\x1b[42m----- SEEDING COMPLETE/VALID -----\x1b[0m\n');
+  } catch (error) {
+    console.log('\n\x1b[41m----- SEEDING FAILED! -----\x1b[0m\n');
+    console.log(error);
+  }
+}
 
 
 //* Production Check
