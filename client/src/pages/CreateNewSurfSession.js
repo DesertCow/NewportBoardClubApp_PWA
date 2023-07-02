@@ -97,6 +97,12 @@ function CreateNewSession() {
         </div>
       </div>
       <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
+        Location:&nbsp;&nbsp;
+        <div>
+          <input type="text" name="Location" className="locationInputBox d-flex justify-content-center align-items-center p-1" />
+        </div>
+      </div>
+      <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
         <div className="m-4 dateFont">
             Wave Height: 
         </div>
@@ -119,7 +125,7 @@ function CreateNewSession() {
         </div>
       </div>
       <div className="d-flex flex-row justify-content-around align-items-center smallBoxRow">
-        <div className="m-4 dateFont">
+        <div className="mx-0 dateFont">
             Tide: 
         </div>
         <div className="">
@@ -141,7 +147,7 @@ function CreateNewSession() {
             </div>
           </div>
         </div>
-        <div className="m-4 dateFont">
+        <div className="mx-0 dateFont">
           Direction: 
         </div>
         <div className="">
@@ -227,7 +233,7 @@ function CreateNewSession() {
           <div className="m-4 dateFont">
               Model: 
           </div>
-          <input name="myInput" className="modelInputBox"/>
+          <input name="myInput" className="modelInputBox p-1"/>
         </div>
         <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
           <div className="m-4 dateFont">
@@ -287,8 +293,6 @@ function CreateNewSession() {
                 <a className="dropdown-item" href="#">Thruster</a>
                 <a className="dropdown-item" href="#">2+1</a>
                 <a className="dropdown-item" href="#">Quad</a>
-                <a className="dropdown-item" href="#">Quad + 1</a>
-                <a className="dropdown-item" href="#">Backwards</a>
               </div>
             </div>
           </div>
