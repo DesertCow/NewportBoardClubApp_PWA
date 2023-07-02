@@ -1,20 +1,21 @@
-const seedCategories = require('./category-seeds');
-const seedMenu = require('./food-item-seeds');
+// const seedCategories = require('./category-seeds');
+// const seedMenu = require('./food-item-seeds');
+const eventSeed = require('./events-seeds');
 
 
-const sequelize = require('../sqlConnection');
+// const sequelize = require('../sqlConnection');
 
 const seedAll = async () => {
-  await sequelize.sync({ force: true });
-  console.log('\n\x1b[43m ~~~ DATABASE SYNCED ~~~ \x1b[0m\n');
+//   // await sequelize.sync({ force: true });
+//   // console.log('\n\x1b[43m ~~~ DATABASE SYNCED ~~~ \x1b[0m\n');
 
-  await seedCategories();
-  console.log('\n\x1b[43m ~~~ CATEGORIES SEEDED ~~~ \x1b[0m\n');
+//   await eventSeed();
+//   console.log('\n\x1b[43m ~~~ EVENTS SEEDED ~~~ \x1b[0m\n');
 
-  await seedMenu();
-  console.log('\n\x1b[43m ~~~ MENU ITEMS SEEDED~~~ \x1b[0m\n');
+//   // await seedMenu();
+//   // console.log('\n\x1b[43m ~~~ MENU ITEMS SEEDED~~~ \x1b[0m\n');
 
-  return true;
+//   return true;
 };
 
 //* Enable NPM seeding to call and force seed via ARGV
