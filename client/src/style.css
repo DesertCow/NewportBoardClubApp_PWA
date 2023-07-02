@@ -374,6 +374,26 @@
   -o-border-radius: 20px;
 }
 
+.eventPhoto2 {
+  width: 420px;
+  height: 250px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.eventPhoto3 {
+  width: 420px;
+  height: 250px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
 
 
 /*? ============= User Settings Page ============= */

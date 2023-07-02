@@ -42,7 +42,7 @@ function ClubEvents_Current() {
   }
 
   if(!loading) {
-    console.log("Current Event Count: " + data.getCurrentEvents.length)
+    // console.log("Current Event Count: " + data.getCurrentEvents.length)
     // console.log(data.getCurrentEvents[0])
 
     let eventArray = data.getCurrentEvents[0].split("|")
@@ -84,16 +84,16 @@ function ClubEvents_Current() {
       <div className="mb-5 pb-3">
         <div className="py-3">
           <div className="text-center">
-            <img src={require("../img/SummerArtFair.jpg")}
+            <img src={require("../img/Events/SummerArtFair.jpg")}
             className="eventPhoto mb-3"
             onClick={(event) => handleClubEvents(event)}
-            alt="Outside Shot of Board Club" />
+            alt="Event Photo" />
           </div>
           <div className="text-center">
-            <img src={require("../img/Spencer+Pirdy.jpeg")}
-            className="eventPhoto mb-3"
+            <img src={require("../img/Events/Spencer+Pirdy.jpeg")}
+            className="eventPhoto2 mb-3"
             onClick={(event) => handleClubEvents(event)}
-            alt="Outside Shot of Board Club" />
+            alt="Event Photo" />
           </div>
           {/* <div dangerouslySetInnerHTML={{__html: finalCurrentEventHTML[0]}} /> */}
           <div>
