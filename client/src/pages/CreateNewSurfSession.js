@@ -10,9 +10,12 @@ import { SelectDatepicker } from 'react-select-datepicker';
 // import TimePicker from 'react-time-picker';
 import { TimePicker } from 'react-ios-time-picker';
 
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+
 function CreateNewSession() {
 
-  
+  // TODO: Set to Current local time
   const [value, setTimeValue] = useState('10:00 AM');
 
    const onTimeChange = (timeValue) => {
@@ -54,13 +57,14 @@ function CreateNewSession() {
           <div className="flex-col m-2 dateFont justify-content-center align-items-center">
             Date:
           </div>
-          <div className="datePicker flex-col text-center">
+          <DatePicker />
+          {/* <div className="datePicker flex-col text-center">
             <SelectDatepicker
               selectedDate={datevalue}
               onDateChange={onDateChange}
               className=""
             />
-          </div>
+          </div> */}
       
         </div>
       </div>
