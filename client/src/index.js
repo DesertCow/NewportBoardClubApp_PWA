@@ -8,6 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
 // GraphQL Server URL
 const client = new ApolloClient({
   uri: 'http://192.168.25.22:4001',
@@ -34,7 +37,9 @@ const root = createRoot(rootElement);
 root.render(
   <div className="masterFrameWidth">
     <ApolloProvider client={client}>
-      <App />
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <App />
+      </LocalizationProvider>
     </ApolloProvider>
   </div>
 );

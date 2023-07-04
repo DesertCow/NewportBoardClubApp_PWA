@@ -14,6 +14,7 @@ const typeDefs = `#graphql
     getCurrentEvents: [String]
     getPreviousEvents: [String]
     getEvent(eventName: String): String
+    getAllUsersSurfSession(userID: String!): [SurfSession]
   }
 
   type Mutation {
@@ -23,6 +24,7 @@ const typeDefs = `#graphql
     updatePassword(_id: String!, password: String!): Auth
     updateName(_id: String!, memberFirstName: String!, memberLastName: String!): Auth
     createEvent( eventName: String!, eventSlogan: String!, eventDate: String!, eventLength: String, eventDescription: String!, eventPhotoURL: String!, eventCurrent: Boolean!): Event
+    createSurfSession( userID: String!, sessionDate: String!, sessionTime: String!, sessionLocation: String, skyConditions: String!, waveSize: String!, tideLevel: Float, tideDirection: String, sessionLength: String!, surfboardShaper: String, surfboardModel: String, surfboardLengthFT: Int, surfboardLengthIN: Int, surfboardVolume: Int, surfboardFinConfig: String, sessionNotes: String, sessionRating: Int): SurfSession
   }
 
   type UserCreated {
@@ -58,27 +60,47 @@ const typeDefs = `#graphql
   }
 
   type WX {
-        wind: Int
-        airTemp: Int
-        waterTemp: Float
-        tideMSL: Float
-        tideRise: Boolean
+    wind: Int
+    airTemp: Int
+    waterTemp: Float
+    tideMSL: Float
+    tideRise: Boolean
   }
 
   type WidgetWX {
-        wind: Int
-        windType: String
-        airTemp: Int
-        waterTemp: Float
-        tideMSL: Float
-        tideRise: Boolean
-        nextTideType: String
-        nextTideHeight: Float
-        nextTideTime: String
-        surfHeightBlackies: String
-        surfHeight36th: String
-        surfHeight56th: String
-        surfHeightRiver: String
+    wind: Int
+    windType: String
+    airTemp: Int
+    waterTemp: Float
+    tideMSL: Float
+    tideRise: Boolean
+    nextTideType: String
+    nextTideHeight: Float
+    nextTideTime: String
+    surfHeightBlackies: String
+    surfHeight36th: String
+    surfHeight56th: String
+    surfHeightRiver: String
+  }
+
+  type SurfSession {
+    userID: String
+    sessionDate: String
+    sessionTime: String
+    sessionLocation: String
+    skyConditions: String
+    waveSize: String
+    tideLevel: Float
+    tideDirection: String
+    sessionLength: String
+    surfboardShaper: String
+    surfboardModel: String
+    surfboardLengthFT: Int
+    surfboardLengthIN: Int
+    surfboardVolume: Int
+    surfboardFinConfig: String
+    sessionNotes: String
+    sessionRating: Int
   }
 
 `;

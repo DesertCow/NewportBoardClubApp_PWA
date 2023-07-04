@@ -5,6 +5,7 @@
 // const { UserMongo, FoodItem, Category, Orders } = require('../../models');
 const UserMongo = require('../../models/UserMongo');
 const EventMongo = require('../../models/EventMongo');
+const SurfSessionMongo = require('../../models/SurfSession');
 
 //* SQL Connection
 // const sequelize = require('../sqlConnection');
@@ -240,6 +241,14 @@ const resolvers = {
 
         return JSON.stringify(requestedEventList)
 
+      },
+      getAllUsersSurfSession: async (parent, { userID }) => {
+        
+        // console.log("UserID: " + userID)
+        
+        const allUserSurfSessions = await SurfSessionMongo.find({userID: userID})
+
+        return allUserSurfSessions
       }
     },
 
@@ -386,7 +395,12 @@ const resolvers = {
       // return { token, user };
       return { event };
     },
+    createSurfSession: async (parent, { userID, sessionDate, sessionTime, sessionLocation, skyConditions, waveSize, tideLevel, tideDirection, sessionLength, surfboardShaper, surfboardModel, surfboardLengthFT, surfboardLengthIN, surfboardVolume, surfboardFinConfig, sessionNotes, sessionRating  }) => {
 
+      const surfSession = await SurfSessionMongo.create({ userID, sessionDate, sessionTime, sessionLocation, skyConditions, waveSize, tideLevel, tideDirection, sessionLength, surfboardShaper, surfboardModel, surfboardLengthFT, surfboardLengthIN, surfboardVolume, surfboardFinConfig, sessionNotes, sessionRating });
+
+      return { surfSession };
+    }
   },
 
 };

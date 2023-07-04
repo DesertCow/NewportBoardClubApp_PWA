@@ -6,13 +6,14 @@ import WeatherWidget from "../components/WeatherWidget";
 
 //* Date Picker Setup
 import { useState, useCallback } from 'react';
-import { SelectDatepicker } from 'react-select-datepicker';
-// import TimePicker from 'react-time-picker';
-import { TimePicker } from 'react-ios-time-picker';
+// import { TimePicker } from 'react-ios-time-picker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 
 function CreateNewSession() {
 
-  
+  // TODO: Set to Current local time
   const [value, setTimeValue] = useState('10:00 AM');
 
    const onTimeChange = (timeValue) => {
@@ -54,24 +55,20 @@ function CreateNewSession() {
           <div className="flex-col m-2 dateFont justify-content-center align-items-center">
             Date:
           </div>
-          <div className="datePicker flex-col text-center">
-            <SelectDatepicker
-              selectedDate={datevalue}
-              onDateChange={onDateChange}
-              className=""
-            />
+          <div>
+             <DatePicker />
           </div>
-      
         </div>
       </div>
       <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
-        <div className="m-4 dateFont">
+        <div className="p-2 dateFont">
             Time:
         </div>
         <div className="timePicker">
           {/* <TimePicker onChange={onChange} value={timevalue} className=""/> */}
           <div>
-            <TimePicker onChange={onTimeChange} value={value} use12Hours/>
+            {/* <TimePicker onChange={onTimeChange} value={value} use12Hours/> */}
+            <TimePicker/>
           </div>
 
         </div>
@@ -97,6 +94,12 @@ function CreateNewSession() {
         </div>
       </div>
       <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
+        Location:&nbsp;&nbsp;
+        <div>
+          <input type="text" name="Location" className="locationInputBox d-flex justify-content-center align-items-center p-1" />
+        </div>
+      </div>
+      <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
         <div className="m-4 dateFont">
             Wave Height: 
         </div>
@@ -119,7 +122,7 @@ function CreateNewSession() {
         </div>
       </div>
       <div className="d-flex flex-row justify-content-around align-items-center smallBoxRow">
-        <div className="m-4 dateFont">
+        <div className="mx-0 dateFont">
             Tide: 
         </div>
         <div className="">
@@ -141,7 +144,7 @@ function CreateNewSession() {
             </div>
           </div>
         </div>
-        <div className="m-4 dateFont">
+        <div className="mx-0 dateFont">
           Direction: 
         </div>
         <div className="">
@@ -227,7 +230,7 @@ function CreateNewSession() {
           <div className="m-4 dateFont">
               Model: 
           </div>
-          <input name="myInput" className="modelInputBox"/>
+          <input name="myInput" className="modelInputBox p-1"/>
         </div>
         <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
           <div className="m-4 dateFont">
@@ -287,8 +290,6 @@ function CreateNewSession() {
                 <a className="dropdown-item" href="#">Thruster</a>
                 <a className="dropdown-item" href="#">2+1</a>
                 <a className="dropdown-item" href="#">Quad</a>
-                <a className="dropdown-item" href="#">Quad + 1</a>
-                <a className="dropdown-item" href="#">Backwards</a>
               </div>
             </div>
           </div>
@@ -325,11 +326,7 @@ function CreateNewSession() {
         <button type="button" className="btn btn-lg btn-block btn-success mx-3">Save</button>
         <button type="button" className="btn btn-lg btn-block btn-danger mx-3">Cancel</button>
       </div>
-      {/* <div className="d-flex flex-row-reverse ">
-        <div className="p-2">Flex item 1</div>
-        <div className="p-2">Flex item 2</div>
-        <div className="p-2">Flex item 3</div>
-      </div> */}
+
       <footer className="mt-auto mb-0">
         <NavFooter />
       </footer>

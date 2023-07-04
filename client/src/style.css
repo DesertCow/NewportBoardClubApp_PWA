@@ -544,8 +544,19 @@
 .modelInputBox {
   width: 300px;
   font-family: "Catamaran-Regular";
-  font-size: 18px;
+  font-size: 20px;
   /* height: 30px; */
+  border-style: solid;
+  border-color: #303030b5;
+}
+
+.locationInputBox {
+  width: 250px;
+  font-family: "Catamaran-Regular";
+  font-size: 20px;
+  /* height: 30px; */
+  border-color: #303030b5;
+  border-style: solid;
 }
 
 .endSpacer {
