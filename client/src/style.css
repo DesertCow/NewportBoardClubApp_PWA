@@ -568,6 +568,11 @@
   margin-bottom: 97px;
 }
 
+.surfSessionDropDowns {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 20px;
+}
+
 /*? ============= Weather Widget Component ============= */
 
 .weatherWidgetBody {

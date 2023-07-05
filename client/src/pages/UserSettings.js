@@ -5,7 +5,7 @@ import NavFooter from '../components/NavFooter';
 import WeatherWidget from "../components/WeatherWidget";
 
 import { useState, useCallback } from 'react';
-import { SelectDatepicker } from 'react-select-datepicker';
+// import { SelectDatepicker } from 'react-select-datepicker';
 
 // import { PASS_UPDATE, EMAIL_UPDATE, LOGIN_Q, NAME_UPDATE } from '../utils/mutations';
 import { EMAIL_UPDATE, PASS_UPDATE, NAME_UPDATE } from '../utils/mutations';
@@ -39,7 +39,7 @@ function UserSettings() {
   // console.log("Login! = " + JSON.stringify(login))
 
 
-    //* update state based on form input changes
+  //* update state based on form input changes
   const handleEmailChange = (event) => {
     const { name, value } = event.target;
 
