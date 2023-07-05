@@ -84,6 +84,7 @@ const typeDefs = `#graphql
   }
 
   type SurfSession {
+    _id: ID
     userID: String
     sessionDate: String
     sessionTime: String
