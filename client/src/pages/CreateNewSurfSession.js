@@ -54,28 +54,10 @@ function CreateNewSession() {
   }, []);
 
 
-  //* ########################### Form Update Handle ###########################
+  //* ########################### Form Submit Handle ###########################
   
 
-  //* Update surfSessionState when Weather Conditions are Updated
-  // const handleSkyConditionsChange = (event) => {
-  //   const { name, value } = event.target;
-
-  //   // console.log("New Email = " + value)
-  //   // console.log("Name = " + name)
-
-  //   setSurfSessionState({
-  //     ...surfSessionState,
-  //     userID: login.user._id,
-  //     skyConditions: value,
-  //   });
-
-  //   // console.log("Email State = ")
-  //   // console.log(emailState)
-
-  // }
-
-  //* Update Surf Session Form when it's submitted
+  //* Submit surf session data to Database
   const handleSurfSessionSubmit = async (event) => {
     
     event.preventDefault();
@@ -95,8 +77,10 @@ function CreateNewSession() {
     // console.log("surfSessionForm = " + surfSessionForm)
     // console.log("surfSession = " + surfSession.name)
  
-    console.log("skyConditions = " +surfSessionForm.get("skyConditions"));
-    console.log("surfLocation = " +surfSessionForm.get("surfLocation"));
+    console.log("Session Date = " + surfSessionForm.get("sessionDate"));
+    console.log("Session Time = " + surfSessionForm.get("sessionTime"));
+    console.log("Session Length = " + surfSessionForm.get("sessionLengthHours") + ":" + surfSessionForm.get("sessionLengthMinutes"));
+    console.log("Surfboard Volume = " + surfSessionForm.get("surfboardVolume") + "." + surfSessionForm.get("surfboardVolumeDecimal"));
 
 
     
@@ -105,34 +89,26 @@ function CreateNewSession() {
       variables: { 
         userId: login.user._id,
         sessionDate: "6-25-2023",
-        skyConditions: surfSessionForm.get("skyConditions"),
         sessionTime: "10:00am",
-        waveSize: "2-3 ft",
-        sessionLength: "1:30",
         sessionLocation: surfSessionForm.get("surfLocation"),
+        skyConditions: surfSessionForm.get("skyConditions"),
+        waveSize: surfSessionForm.get("waveSize"),
+        // tideLevel: surfSessionForm.get("tideLevel"),
+        tideLevel: 3.4,
+        tideDirection: surfSessionForm.get("tideDirection"),
+        sessionLength: surfSessionForm.get("sessionLengthHours") + ":" + surfSessionForm.get("sessionLengthMinutes"),
+        surfboardShaper: surfSessionForm.get("surfboardShaper"),
+        surfboardModel: surfSessionForm.get("surfboardModel"),
+        surfboardLengthFt: parseInt(surfSessionForm.get("surfboardLengthFeet")),
+        surfboardLengthIn: parseInt(surfSessionForm.get("surfboardLengthInches")),
+        surfboardVolume: parseFloat(surfSessionForm.get("surfboardVolume") + "." + surfSessionForm.get("surfboardVolumeDecimal")),
+        surfboardFinConfig: surfSessionForm.get("surfboardFinConfig"),
+        sessionNotes: surfSessionForm.get("sessionNotes"),
+        sessionRating: parseInt(surfSessionForm.get("sessionRating")),
       },
     });
 
     console.log("Surf Session Data: " + surfSessionData)
-
-    // console.log(new URLSearchParams(surfSessionForm));
-
-  // for (const [key, value] of surfSessionForm) {
-  //   // output.textContent += `${key}: ${value}\n`;
-  //   console.log(`${key}: ${value}\n`);
-  // }
-
-    // console.log("New Email = " + value)
-    // console.log("Name = " + name)
-
-    // setSurfSessionState({
-    //   ...surfSessionState,
-    //   userID: login.user._id,
-    //   skyConditions: value,
-    // });
-
-    // console.log("Email State = ")
-    // console.log(emailState)
 
   }
 
@@ -152,7 +128,7 @@ function CreateNewSession() {
             <div className="flex-col m-2 dateFont justify-content-center align-items-center">
               Date:
             </div>
-            <div name="Date">
+            <div name="Date" name="sessionDate">
               <DatePicker />
             </div>
           </div>
@@ -161,13 +137,19 @@ function CreateNewSession() {
           <div className="p-2 dateFont">
               Time:
           </div>
-          <div className="timePicker">
+          <div className="timePicker" name="sessionTime">
             {/* <TimePicker onChange={onChange} value={timevalue} className=""/> */}
             <div>
               {/* <TimePicker onChange={onTimeChange} value={value} use12Hours/> */}
               <TimePicker/>
             </div>
 
+          </div>
+        </div>
+        <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
+          Location:&nbsp;&nbsp;
+          <div>
+            <input type="text" name="surfLocation" className="locationInputBox d-flex justify-content-center align-items-center p-1" />
           </div>
         </div>
         <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
@@ -182,12 +164,6 @@ function CreateNewSession() {
             <option value="Rainy">Rainy</option>
             <option value="Thunderstorms">Thunderstorms</option>
           </select>
-        </div>
-        <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
-          Location:&nbsp;&nbsp;
-          <div>
-            <input type="text" name="surfLocation" className="locationInputBox d-flex justify-content-center align-items-center p-1" />
-          </div>
         </div>
         <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
           <div className="m-4 dateFont">
@@ -205,128 +181,82 @@ function CreateNewSession() {
             <option value="8-9">8-9 ft</option>
             <option value="10+">10+ ft</option>
           </select>
-          {/* <div className="">
-            <div className="dropdown">
-              <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Wave Height
-              </button>
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#">0-1 ft</a>
-                <a className="dropdown-item" href="#">1-2 ft</a>
-                <a className="dropdown-item" href="#">2-3 ft</a>
-                <a className="dropdown-item" href="#">3-4 ft</a>
-                <a className="dropdown-item" href="#">5-6 ft</a>
-                <a className="dropdown-item" href="#">7-8 ft</a>
-                <a className="dropdown-item" href="#">8-9 ft</a>
-                <a className="dropdown-item" href="#">10+ ft</a>
-              </div>
-            </div>
-          </div> */}
         </div>
         <div className="d-flex flex-row justify-content-around align-items-center smallBoxRow">
           <div className="mx-0 dateFont">
               Tide: 
           </div>
           <div className="">
-            <div className="dropdown">
-              <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Tide Level
-              </button>
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#">-3 to -2 ft</a>
-                <a className="dropdown-item" href="#">-2 to -1 ft</a>
-                <a className="dropdown-item" href="#">-1 to 0 ft</a>
-                <a className="dropdown-item" href="#">0 to 1 ft</a>
-                <a className="dropdown-item" href="#">1 to 2 ft</a>
-                <a className="dropdown-item" href="#">2 to 3 ft</a>
-                <a className="dropdown-item" href="#">3 to 4 ft</a>
-                <a className="dropdown-item" href="#">4 to 5 ft</a>
-                <a className="dropdown-item" href="#">5 to 6 ft</a>
-                <a className="dropdown-item" href="#">6+ ft</a>
-              </div>
-            </div>
+            <select name="tideLevel" defaultValue="0-1 ft" className="surfSessionDropDowns">
+              <option value="-3--2">-3 to -2 ft</option>
+              <option value="-2--1">-2 to -1 ft</option>
+              <option value="-1-0">-1 to 0 f</option>
+              <option value="0-1">0 to 1 ft</option>
+              <option value="1-2">1 to 2 ft</option>
+              <option value="2-3">2 to 3 ft</option>
+              <option value="3-4">3 to 4 ft</option>
+              <option value="4-5">4 to 5 ft</option>
+              <option value="5-6">5 to 6 ft</option>
+              <option value="6+">6+ ft</option>
+            </select>
           </div>
           <div className="mx-0 dateFont">
             Direction: 
           </div>
-          <div className="">
-            <div className="dropdown">
-              <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Rising
-              </button>
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#">Rising</a>
-                <a className="dropdown-item" href="#">Falling</a>
-              </div>
-            </div>
-          </div>
+            <select name="tideDirection" defaultValue="Rising" className="surfSessionDropDowns">
+              <option value="Rising">Rising</option>
+              <option value="Falling">Falling</option>
+            </select>
         </div>
         <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
-          <div className="m-4 dateFont">
-              Session Length:
+          <div className="m-1 sessionLengthLabel">
+              Session Length (H:MM)
           </div>
-          <div className="">
-            <div className="dropdown">
-              <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Hours
-              </button>
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#">0</a>
-                <a className="dropdown-item" href="#">1</a>
-                <a className="dropdown-item" href="#">2</a>
-                <a className="dropdown-item" href="#">3</a>
-                <a className="dropdown-item" href="#">5</a>
-              </div>
-            </div>
-          </div>
-            <div className="dropdown mx-3">
-              <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Minutes
-              </button>
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#">0</a>
-                <a className="dropdown-item" href="#">5</a>
-                <a className="dropdown-item" href="#">10</a>
-                <a className="dropdown-item" href="#">15</a>
-                <a className="dropdown-item" href="#">20</a>
-                <a className="dropdown-item" href="#">25</a>
-                <a className="dropdown-item" href="#">30</a>
-                <a className="dropdown-item" href="#">35</a>
-                <a className="dropdown-item" href="#">40</a>
-                <a className="dropdown-item" href="#">45</a>
-                <a className="dropdown-item" href="#">50</a>
-                <a className="dropdown-item" href="#">55</a>
-              </div>
-            </div>
+            <select name="sessionLengthHours" defaultValue="0" className="surfSessionDropDowns ml-4">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <label>:</label>
+            <select name="sessionLengthMinutes" defaultValue="0" className="surfSessionDropDowns">
+              <option value="0">0</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+              <option value="35">35</option>
+              <option value="40">40</option>
+              <option value="45">45</option>
+              <option value="50">50</option>
+              <option value="55">55</option>
+            </select>
         </div>
         <div className="surfboardMainBox">
           <div className="d-flex flex-row justify-content-left align-items-center surfboardSection">
             <div className="m-4 dateFont">
               Shaper:
             </div>
-            <div className="">
-              <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Shaper
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item" href="#">Estrada Surfboard Design</a>
-                  <a className="dropdown-item" href="#">Baltierra Surfboards</a>
-                  <a className="dropdown-item" href="#">Solid Surf</a>
-                  <a className="dropdown-item" href="#">Almond Surfboards</a>
-                  <a className="dropdown-item" href="#">DHD Surfboards</a>
-                  <a className="dropdown-item" href="#">Tanner Surfboards</a>
-                  <a className="dropdown-item" href="#">Guy Takayama</a>
-                  <a className="dropdown-item" href="#">Robert August</a>
-                  <a className="dropdown-item" href="#">Dano Surfboards</a>
-                  <a className="dropdown-item" href="#">Album Surf</a>
-                  <a className="dropdown-item" href="#">Brink Surf</a>
-                  <a className="dropdown-item" href="#">Lost Surboards</a>
-                  <a className="dropdown-item" href="#">Surf Prescriptions</a>
-                  <a className="dropdown-item" href="#">Thread Surfboards</a>
-                </div>
-              </div>
-            </div>
+            <select name="surfboardShaper" className="surfSessionDropDowns">
+              <option value="Estrada Surfboard Design">Estrada Surfboard Design</option>
+              <option value="Baltierra Surfboards">Baltierra Surfboards</option>
+              <option value="Solid Surf">Solid Surf</option>
+              <option value="Almond Surfboards">Almond Surfboards</option>
+              <option value="DHD Surfboards">DHD Surfboards</option>
+              <option value="Tanner Surfboards">Tanner Surfboards</option>
+              <option value="Guy Takayama">Guy Takayama</option>
+              <option value="Robert August">Robert August</option>
+              <option value="Dano Surfboards">Dano Surfboards</option>
+              <option value="Album Surf">Album Surf</option>
+              <option value="Brink Surf">Brink Surf</option>
+              <option value="Lost Surboards">Lost Surboards</option>
+              <option value="Surf Prescriptions">Surf Prescriptions</option>
+              <option value="Thread Surfboards">Thread Surfboards</option>
+            </select>
           </div>
           <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
             <div className="m-4 dateFont">
@@ -338,63 +268,95 @@ function CreateNewSession() {
             <div className="m-4 dateFont">
                 Length:
             </div>
-            <div className="">
-              <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Feet
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item" href="#">4</a>
-                  <a className="dropdown-item" href="#">5</a>
-                  <a className="dropdown-item" href="#">6</a>
-                  <a className="dropdown-item" href="#">7</a>
-                  <a className="dropdown-item" href="#">8</a>
-                  <a className="dropdown-item" href="#">9</a>
-                  <a className="dropdown-item" href="#">10</a>
-                  <a className="dropdown-item" href="#">11</a>
-                  <a className="dropdown-item" href="#">12</a>
-                </div>
-              </div>
+              <select name="surfboardLengthFeet" className="surfSessionDropDowns">
+                <option >4</option>
+                <option >5</option>
+                <option >6</option>
+                <option >7</option>
+                <option >8</option>
+                <option >9</option>
+                <option >10</option>
+                <option >11</option>
+              </select>
+              <label className="ml-3"> FT</label>
+            <div className=" ml-4">
+              <select name="surfboardLengthInches" className="surfSessionDropDowns">
+                <option >0</option>
+                <option >1</option>
+                <option >2</option>
+                <option >3</option>
+                <option >4</option>
+                <option >5</option>
+                <option >6</option>
+                <option >7</option>
+                <option >8</option>
+                <option >9</option>
+                <option >10</option>
+                <option >11</option>
+              </select>
+              <label className="ml-2"> IN</label>
             </div>
-            <div className=" mx-3 ">
-              <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Inches
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item" href="#">1</a>
-                  <a className="dropdown-item" href="#">2</a>
-                  <a className="dropdown-item" href="#">3</a>
-                  <a className="dropdown-item" href="#">4</a>
-                  <a className="dropdown-item" href="#">5</a>
-                  <a className="dropdown-item" href="#">6</a>
-                  <a className="dropdown-item" href="#">7</a>
-                  <a className="dropdown-item" href="#">8</a>
-                  <a className="dropdown-item" href="#">9</a>
-                  <a className="dropdown-item" href="#">10</a>
-                  <a className="dropdown-item" href="#">11</a>
-                </div>
-              </div>
+          </div>
+          <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
+            <div className="m-4 dateFont">
+                Volume:
+            </div>
+              <select name="surfboardVolume" className="surfSessionDropDowns">
+                <option >20</option>
+                <option >21</option>
+                <option >22</option>
+                <option >23</option>
+                <option >24</option>
+                <option >25</option>
+                <option >26</option>
+                <option >27</option>
+                <option >28</option>
+                <option >29</option>
+                <option >30</option>
+                <option >31</option>
+                <option >32</option>
+                <option >33</option>
+                <option >34</option>
+                <option >35</option>
+                <option >36</option>
+                <option >37</option>
+                <option >38</option>
+                <option >39</option>
+                <option >40</option>
+                <option >41</option>
+                <option >42</option>
+                <option >43</option>
+                <option >44</option>
+                <option >45</option>
+              </select>
+              <label className="ml-3">.</label>
+            <div className=" ml-2">
+              <select name="surfboardVolumeDecimal" className="surfSessionDropDowns">
+                <option >0</option>
+                <option >1</option>
+                <option >2</option>
+                <option >3</option>
+                <option >4</option>
+                <option >5</option>
+                <option >6</option>
+                <option >7</option>
+                <option >8</option>
+                <option >9</option>
+              </select>
+              <label className="ml-4"> L</label>
             </div>
           </div>
           <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionEnd">
             <div className="m-4 dateFont">
                 Fin Setup:
             </div>
-            <div className="">
-              <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Fin Setup
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item" href="#">Single</a>
-                  <a className="dropdown-item" href="#">Twin</a>
-                  <a className="dropdown-item" href="#">Thruster</a>
-                  <a className="dropdown-item" href="#">2+1</a>
-                  <a className="dropdown-item" href="#">Quad</a>
-                </div>
-              </div>
-            </div>
+              <select name="surfboardFinConfig" className="surfSessionDropDowns">
+                <option >Single</option>
+                <option >Twin</option>
+                <option >Thruster</option>
+                <option >2+1</option>
+                <option >Quad</option>
+              </select>
           </div> 
         </div>
         <div>
@@ -408,25 +370,18 @@ function CreateNewSession() {
           <div className="m-4 dateFont">
               Session Rating: 
           </div>
-          <div className="">
-            <div className="dropdown">
-              <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Rating
-              </button>
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#">0</a>
-                <a className="dropdown-item" href="#">1</a>
-                <a className="dropdown-item" href="#">2</a>
-                <a className="dropdown-item" href="#">3</a>
-                <a className="dropdown-item" href="#">4</a>
-                <a className="dropdown-item" href="#">5</a>
-              </div>
-            </div>
-          </div>
+            <select name="sessionRating" className="surfSessionDropDowns">
+              <option >0</option>
+              <option >1</option>
+              <option >2</option>
+              <option >3</option>
+              <option >4</option>
+              <option >5</option>
+            </select>
         </div>
         <div className="d-flex flex-row justify-content-between align-items-center smallBoxRow endSpacer">
           <button type="button" type="submit" className="btn btn-lg btn-block btn-success mx-3">Save</button>
-          <button type="button" className="btn btn-lg btn-block btn-danger mx-3">Cancel</button>
+          <button type="button" type="reset" className="btn btn-lg btn-block btn-danger mx-3">Reset</button>
         </div>
       </form>
       <footer className="mt-auto mb-0">

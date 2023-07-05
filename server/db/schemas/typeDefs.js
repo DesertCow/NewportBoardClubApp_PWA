@@ -24,7 +24,7 @@ const typeDefs = `#graphql
     updatePassword(_id: String!, password: String!): Auth
     updateName(_id: String!, memberFirstName: String!, memberLastName: String!): Auth
     createEvent( eventName: String!, eventSlogan: String!, eventDate: String!, eventLength: String, eventDescription: String!, eventPhotoURL: String!, eventCurrent: Boolean!): Event
-    createSurfSession( userID: String!, sessionDate: String!, sessionTime: String!, sessionLocation: String, skyConditions: String!, waveSize: String!, tideLevel: Float, tideDirection: String, sessionLength: String!, surfboardShaper: String, surfboardModel: String, surfboardLengthFT: Int, surfboardLengthIN: Int, surfboardVolume: Int, surfboardFinConfig: String, sessionNotes: String, sessionRating: Int): SurfSession
+    createSurfSession( userID: String!, sessionDate: String!, sessionTime: String!, sessionLocation: String, skyConditions: String!, waveSize: String!, tideLevel: Float, tideDirection: String, sessionLength: String!, surfboardShaper: String, surfboardModel: String, surfboardLengthFT: Int, surfboardLengthIN: Int, surfboardVolume: Float, surfboardFinConfig: String, sessionNotes: String, sessionRating: Int): SurfSession
   }
 
   type UserCreated {
@@ -98,7 +98,7 @@ const typeDefs = `#graphql
     surfboardModel: String
     surfboardLengthFT: Int
     surfboardLengthIN: Int
-    surfboardVolume: Int
+    surfboardVolume: Float
     surfboardFinConfig: String
     sessionNotes: String
     sessionRating: Int

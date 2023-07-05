@@ -546,6 +546,11 @@
   font-size: 25px;
 }
 
+.sessionLengthLabel {
+  font-size: 20px;
+  font-family: "Catamaran-ExtraBold";
+}
+
 .modelInputBox {
   width: 300px;
   font-family: "Catamaran-Regular";
