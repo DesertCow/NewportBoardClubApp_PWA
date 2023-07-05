@@ -37,7 +37,7 @@ function CreateNewSession() {
 
   const todayDate = new Date()
   // console.log("Time = " + todayDate.getHours() + ":" + todayDate.getMinutes())
-  const [datevalue, setValue] = useState(todayDate);
+  const [datevalue, setDateValue] = useState(todayDate);
   const [timevalue, onChange] = useState(todayDate.getHours() + ":" + todayDate.getMinutes());
 
   // console.log("Full Date: " + todayDate)
@@ -61,7 +61,6 @@ function CreateNewSession() {
   const handleSurfSessionSubmit = async (event) => {
     
     event.preventDefault();
-    // const { name, value } = event.target;
 
     const surfSession = event.target;
     const surfSessionForm = new FormData(surfSession);
@@ -76,16 +75,23 @@ function CreateNewSession() {
 
     // console.log("surfSessionForm = " + surfSessionForm)
     // console.log("surfSession = " + surfSession.name)
- 
-    console.log("Session Date = " + surfSessionForm.get("sessionDate"));
-    console.log("Session Time = " + surfSessionForm.get("sessionTime"));
+    var surfSessionDate = new Date( datevalue * 1000);
+    var surfSessionDateFinal = surfSessionDate.toDateString();
+    // console.log("Session Date = " + surfSessionForm.get("sessionDate"));
+
+    
+    console.log("Session Date = " + surfSessionDateFinal);
     console.log("Session Length = " + surfSessionForm.get("sessionLengthHours") + ":" + surfSessionForm.get("sessionLengthMinutes"));
     console.log("Surfboard Volume = " + surfSessionForm.get("surfboardVolume") + "." + surfSessionForm.get("surfboardVolumeDecimal"));
+    console.log("Tide Level = " + surfSessionForm.get("tideLevel") + "." + surfSessionForm.get("tideLevelDecimal"));
 
 
     
     const { surfSessionData } = await createSurfSession({
       // variables: { ...surfSessionState },
+
+      
+
       variables: { 
         userId: login.user._id,
         sessionDate: "6-25-2023",
@@ -93,8 +99,7 @@ function CreateNewSession() {
         sessionLocation: surfSessionForm.get("surfLocation"),
         skyConditions: surfSessionForm.get("skyConditions"),
         waveSize: surfSessionForm.get("waveSize"),
-        // tideLevel: surfSessionForm.get("tideLevel"),
-        tideLevel: 3.4,
+        tideLevel: parseFloat(surfSessionForm.get("tideLevel") + "." + surfSessionForm.get("tideLevelDecimal")),
         tideDirection: surfSessionForm.get("tideDirection"),
         sessionLength: surfSessionForm.get("sessionLengthHours") + ":" + surfSessionForm.get("sessionLengthMinutes"),
         surfboardShaper: surfSessionForm.get("surfboardShaper"),
@@ -107,8 +112,6 @@ function CreateNewSession() {
         sessionRating: parseInt(surfSessionForm.get("sessionRating")),
       },
     });
-
-    console.log("Surf Session Data: " + surfSessionData)
 
   }
 
@@ -128,8 +131,8 @@ function CreateNewSession() {
             <div className="flex-col m-2 dateFont justify-content-center align-items-center">
               Date:
             </div>
-            <div name="Date" name="sessionDate">
-              <DatePicker />
+            <div name="sessionDate">
+              <DatePicker value={value} onChange={(newValue) => setDateValue(newValue)}/>
             </div>
           </div>
         </div>
@@ -137,11 +140,11 @@ function CreateNewSession() {
           <div className="p-2 dateFont">
               Time:
           </div>
-          <div className="timePicker" name="sessionTime">
+          <div className="timePicker">
             {/* <TimePicker onChange={onChange} value={timevalue} className=""/> */}
             <div>
               {/* <TimePicker onChange={onTimeChange} value={value} use12Hours/> */}
-              <TimePicker/>
+              <TimePicker name="sessionTime"/>
             </div>
 
           </div>
@@ -187,17 +190,30 @@ function CreateNewSession() {
               Tide: 
           </div>
           <div className="">
-            <select name="tideLevel" defaultValue="0-1 ft" className="surfSessionDropDowns">
-              <option value="-3--2">-3 to -2 ft</option>
-              <option value="-2--1">-2 to -1 ft</option>
-              <option value="-1-0">-1 to 0 f</option>
-              <option value="0-1">0 to 1 ft</option>
-              <option value="1-2">1 to 2 ft</option>
-              <option value="2-3">2 to 3 ft</option>
-              <option value="3-4">3 to 4 ft</option>
-              <option value="4-5">4 to 5 ft</option>
-              <option value="5-6">5 to 6 ft</option>
-              <option value="6+">6+ ft</option>
+            <select name="tideLevel" defaultValue="0" className="surfSessionDropDowns ml-4">
+              <option>-3</option>
+              <option>-2</option>
+              <option>-1</option>
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+            </select>
+            <label>.</label>
+            <select name="tideLevelDecimal" defaultValue="0" className="surfSessionDropDowns">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
             </select>
           </div>
           <div className="mx-0 dateFont">
