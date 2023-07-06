@@ -9,24 +9,33 @@ import WeatherWidget from "../components/WeatherWidget";
 import { getSurfSession_Q } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 
+import { useNavigate } from "react-router-dom";
 
 
 function ViewSurfSession() {
 
-let surfSessionID = window.location.href.split(`/surf_log/surfSession/`)
-surfSessionID = surfSessionID[1]
+  const navigate = useNavigate();
 
-//* Get requested surf session from Database
+  let surfSessionID = window.location.href.split(`/surf_log/surfSession/`)
+  surfSessionID = surfSessionID[1]
+
+  //* Get requested surf session from Database
   var { loading, data } = useQuery(getSurfSession_Q, {
     variables: { sessionId: surfSessionID },
   });
 
-  
+  const handlePreviousSessions = async (event) => {
+    event.preventDefault();
+    navigate("/surf_log/view_previous_sessions");
+  };
 
 
   if(!loading) {
+    
+    var surfSessionData = data.getSurfSession
 
-    console.log(data)
+    console.log(surfSessionData)
+    // console.log(surfSessionData.sessionDate)
 
     return (
 
@@ -40,9 +49,52 @@ surfSessionID = surfSessionID[1]
 
         <div className="d-flex flex-column justify-content-center align-items-center">
          
-         <h1 className="previousSurfSessionTitle text-center mt-3">Surf Session</h1>
-         <h3 className="text-center mt-3">{surfSessionID}</h3>
-        
+         <h1 className="viewSurfSessionTitle text-center mt-3">Surf Session</h1>
+         {/* <h3 className="text-center mt-3">{surfSessionID}</h3> */}
+
+          <div className="d-flex flex-row justify-content-center align-items-center viewSurfSessionDateBox">
+            <div className="d-flex p-2 mx-5">
+              <div className="flex-col m-2 dateFont justify-content-center align-items-center text-center">
+                <h1>{surfSessionData.sessionLocation}</h1>
+                <div> {surfSessionData.sessionDate} ({surfSessionData.sessionTime})</div>
+                <div>Session Length: {surfSessionData.sessionLength}</div>
+              </div>
+            </div>
+          </div>
+          <div className="d-flex flex-row justify-content-center align-items-center viewSurfSessionConditions">
+            <div className="d-flex p-2 mx-5">
+              <div className="flex-col m-2 justify-content-start align-items-center">
+                <div>Waves: {surfSessionData.waveSize} ft</div>
+                <h1>Sky Conditions: {surfSessionData.skyConditions}</h1>
+                <div>Tide: {surfSessionData.tideLevel} ft ({surfSessionData.tideDirection})</div>
+              </div>
+            </div>
+          </div>
+          <div className="d-flex flex-row justify-content-center align-items-center viewSurfSessionSurfboard">
+            <div className="d-flex p-2 mx-1">
+              <div className="flex-col m-2 my-2 justify-content-start align-items-center">
+                <div> Model: {surfSessionData.surfboardModel}</div>
+                <div> Shaper: {surfSessionData.surfboardShaper}</div>
+                <div> Length: {surfSessionData.surfboardLengthFT}`{surfSessionData.surfboardLengthIN} ft</div>
+                <div> Volume: {surfSessionData.surfboardVolume} L</div>
+                <div> Fin Setup: {surfSessionData.surfboardFinConfig}</div>
+              </div>
+            </div>
+          </div>
+          <div className="d-flex flex-row justify-content-center align-items-center viewSurfSessionNotes">
+            <div className="d-flex p-2 mx-0">
+              <div className="flex-col m-2 justify-content-start align-items-center text-center">
+                <h1 className="">Session Notes:</h1>
+                <p>{surfSessionData.sessionNotes}</p>
+                <h1>Session Rating: {surfSessionData.sessionRating}/5</h1>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+         <div className="row px-5 py-3 viewSurfSessionSpacer">
+          <div className="viewSurfSessionListBTN p-2 d-flex align-items-center justify-content-center" onClick={(event) => handlePreviousSessions(event)}>Sessions List</div>
         </div>
 
         <footer className="mt-auto mb-0">

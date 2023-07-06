@@ -804,3 +804,67 @@ bottom: 0;
 .surfSessionCol {
   width: 96%;
 }
+
+/*? ============= View Surf Session ============= */
+
+.viewSurfSessionTitle {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 40px;
+}
+
+.viewSurfSessionDateBox {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 30px;
+  /* height: 150px; */
+  width: 96%;
+  border: #c3c3c3b5;
+  border-width: 5px;
+  border-style: solid;
+}
+
+.viewSurfSessionConditions {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 30px;
+  /* height: 150px; */
+  width: 96%;
+  border: #c3c3c3b5;
+  border-width: 5px;
+  border-style: solid;
+}
+
+.viewSurfSessionSurfboard {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 20px;
+  /* height: 150px; */
+  width: 96%;
+  border: #c3c3c3b5;
+  border-width: 5px;
+  border-style: solid;
+}
+
+.viewSurfSessionNotes {
+  font-family: "Catamaran-Regular";
+  font-size: 20px;
+  /* height: 150px; */
+  width: 96%;
+  border: #c3c3c3b5;
+  border-width: 5px;
+  border-style: solid;
+}
+
+.viewSurfSessionSpacer {
+  margin-bottom: 90px;
+}
+
+.viewSurfSessionListBTN {
+  font-family: "Catamaran-ExtraBold";
+  height: 50px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: rgba(0, 0, 0, 0.902);
+  color: white;
+  opacity: 80%;
+  border-radius: 15px;
+  margin-left: 10px;
+
+}
