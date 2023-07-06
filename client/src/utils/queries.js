@@ -49,3 +49,28 @@ export const getSurfSessionList_Q = gql`
     }
   }
 `;
+
+export const getSurfSession_Q = gql`
+  query GetSurfSession($sessionId: String!) {
+    getSurfSession(sessionID: $sessionId) {
+      _id
+      userID
+      sessionDate
+      sessionTime
+      sessionLocation
+      skyConditions
+      waveSize
+      tideLevel
+      tideDirection
+      sessionLength
+      surfboardShaper
+      surfboardModel
+      surfboardLengthFT
+      surfboardLengthIN
+      surfboardVolume
+      surfboardFinConfig
+      sessionNotes
+      sessionRating
+    }
+  }
+`;

@@ -31,7 +31,7 @@ function ViewPreviousSessions() {
 
     // console.log("Session ID: " + reqSessionID)
 
-    navigate("/surfSession/" + reqSessionID);
+    navigate("/surf_log/surfSession/" + reqSessionID);
 
   };
 
@@ -77,7 +77,7 @@ function ViewPreviousSessions() {
          
          <h1 className="previousSurfSessionTitle text-center mt-3">Surf Sessions</h1>
         
-          <ul className="text-center">
+          <ul className="text-center viewSurfSessionSpacer">
             {sessionListHTML}
           </ul>
         </div>

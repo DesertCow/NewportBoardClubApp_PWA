@@ -80,7 +80,7 @@ function SurfLogHome() {
           <div className="surfLogHomeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleCreateNewSession(event)}>Create New Session</div>
         </div>
         <div className="row px-5 py-3 surfLogSpacer">
-          <div className="surfLogHomeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handlePreviousSessions(event)}>Previous Sessions</div>
+          <div className="surfLogHomeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handlePreviousSessions(event)}>List Of Sessions</div>
         </div>
       </div>
 

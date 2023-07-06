@@ -249,7 +249,17 @@ const resolvers = {
         const allUserSurfSessions = await SurfSessionMongo.find({userID: userID})
 
         return allUserSurfSessions
+      },
+      getSurfSession: async (parent, { sessionID }) => {
+
+        console.log("Requested Session ID: " + sessionID);
+
+        const requestedSession = await SurfSessionMongo.findOne({_id: sessionID});
+
+        return requestedSession;
+
       }
+ 
     },
 
   Mutation: {
