@@ -56,3 +56,11 @@ export const NAME_UPDATE = gql`
     }
   }
 `;
+
+export const CREATE_SURF_SESSION = gql`
+  mutation CreateSurfSession($userId: String!, $sessionDate: String!, $sessionTime: String!, $skyConditions: String!, $waveSize: String!, $sessionLength: String!, $sessionLocation: String, $tideLevel: Float, $tideDirection: String, $surfboardShaper: String, $surfboardModel: String, $surfboardLengthFt: Int, $surfboardLengthIn: Int, $surfboardVolume: Float, $surfboardFinConfig: String, $sessionNotes: String, $sessionRating: Int) {
+    createSurfSession(userID: $userId, sessionDate: $sessionDate, sessionTime: $sessionTime, skyConditions: $skyConditions, waveSize: $waveSize, sessionLength: $sessionLength, sessionLocation: $sessionLocation, tideLevel: $tideLevel, tideDirection: $tideDirection, surfboardShaper: $surfboardShaper, surfboardModel: $surfboardModel, surfboardLengthFT: $surfboardLengthFt, surfboardLengthIN: $surfboardLengthIn, surfboardVolume: $surfboardVolume, surfboardFinConfig: $surfboardFinConfig, sessionNotes: $sessionNotes, sessionRating: $sessionRating) {
+      _id
+    }
+  }
+`;

@@ -75,7 +75,7 @@ function SurfLogHome() {
         </div>
       </div>
 
-      <div className="text-center homeMenu row d-flex align-items-center justify-content-center mt-3">
+      <div className="text-center surfLogBTNSection row d-flex align-items-center justify-content-center mt-3">
         <div className="row px-5 py-3">
           <div className="surfLogHomeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleCreateNewSession(event)}>Create New Session</div>
         </div>

@@ -38,3 +38,14 @@ query GetCurrentEvents {
   getCurrentEvents
 }
 `;
+
+export const getSurfSessionList_Q = gql`
+  query Query($userId: String!) {
+    getAllUsersSurfSession(userID: $userId) {
+      _id
+      sessionDate
+      sessionTime
+      sessionLocation
+    }
+  }
+`;

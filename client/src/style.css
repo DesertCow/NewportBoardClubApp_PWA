@@ -235,7 +235,12 @@
   color: white;
   opacity: 80%;
   border-radius: 15px;
+  margin-left: 10px;
 
+}
+
+.surfLogBTNSection {
+  width: 100%;
 }
 
 .sessionDetails {
@@ -271,7 +276,7 @@
 
 .sessionDataBox {
 
-  width: 450px;
+  width: 90%;
   outline-style: solid;
   outline-width: 8px;
   outline-color: rgb(0, 0, 0);
@@ -284,7 +289,7 @@
 
 .userDataBG {
   background-image: url("./img/Newport-Beach-Surf.jpg");
-  /* width: 450px; */
+  width: 100%;
 }
 
 
@@ -541,6 +546,11 @@
   font-size: 25px;
 }
 
+.sessionLengthLabel {
+  font-size: 20px;
+  font-family: "Catamaran-ExtraBold";
+}
+
 .modelInputBox {
   width: 300px;
   font-family: "Catamaran-Regular";
@@ -561,6 +571,11 @@
 
 .endSpacer {
   margin-bottom: 97px;
+}
+
+.surfSessionDropDowns {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 20px;
 }
 
 /*? ============= Weather Widget Component ============= */
@@ -758,4 +773,34 @@ bottom: 0;
 	-moz-border-radius: 5px;
 	-ms-border-radius: 5px;
 	-o-border-radius: 5px;
+}
+
+
+/*? ============= Previous Surf Session ============= */
+
+.previousSurfSessionBTN {
+
+  font-family: "Catamaran-ExtraBold";
+  font-size: 20px;
+  color: white;
+  width: 400px;
+  background-color: rgba(0, 0, 0, 0.902);
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  opacity: 94%;
+
+}
+
+.previousSurfSessionTitle {
+  font-size: 40px;
+  font-family: "Catamaran-ExtraBold";
+  margin-left: 7%;
+
+}
+
+.surfSessionCol {
+  width: 96%;
 }
