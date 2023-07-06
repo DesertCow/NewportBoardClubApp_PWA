@@ -24,34 +24,38 @@ function CreateNewSession() {
   let login = Auth.getToken()
   login = JSON.parse(login)
 
-    const [createSurfSession, { surfSessionData }] = useMutation(CREATE_SURF_SESSION);
+  const todayDate = new Date()
+
+
+  const [createSurfSession, { surfSessionData }] = useMutation(CREATE_SURF_SESSION);
 
 
   // TODO: Set to Current local time
-  const [value, setTimeValue] = useState('10:00 AM');
+  // const [value, setTimeValue] = useState('10:00 AM');
+  const [value, setTimeValue] = useState(todayDate.getHours() + ":" + todayDate.getMinutes());
 
-   const onTimeChange = (timeValue) => {
-      setTimeValue(timeValue);
-   }
+  //  const onTimeChange = (timeValue) => {
+  //     setTimeValue(timeValue);
+  //  }
   
-
-  const todayDate = new Date()
+  // console.log("Value: " + value)
+  
   // console.log("Time = " + todayDate.getHours() + ":" + todayDate.getMinutes())
   const [datevalue, setDateValue] = useState(todayDate);
-  const [timevalue, onChange] = useState(todayDate.getHours() + ":" + todayDate.getMinutes());
+  // const [timevalue, onChange] = useState(todayDate.getHours() + ":" + todayDate.getMinutes());
 
   // console.log("Full Date: " + todayDate)
 
   // const dateDay = todayDate.getDay()
-  const dateMonth = todayDate.getMonth() + 1;
+  // const dateMonth = todayDate.getMonth() + 1;
   // const dateYear = todayDate.getFullYear()
 
   // console.log("DATE = " + Date.now.getFullYear());
   // console.log("DATE = " + dateMonth + "-" + todayDate.getDay() + "-" + todayDate.getFullYear());
 
-  const onDateChange = useCallback((date: Date) => {
-    setValue(date);
-  }, []);
+  // const onDateChange = useCallback((date: Date) => {
+  //   setValue(date);
+  // }, []);
 
 
   //* ########################### Form Submit Handle ###########################
@@ -75,27 +79,31 @@ function CreateNewSession() {
 
     // console.log("surfSessionForm = " + surfSessionForm)
     // console.log("surfSession = " + surfSession.name)
-    var surfSessionDate = new Date( datevalue * 1000);
-    var surfSessionDateFinal = surfSessionDate.toDateString();
-    // console.log("Session Date = " + surfSessionForm.get("sessionDate"));
+    // console.log("Raw Date: " + datevalue)
 
-    
-    console.log("Session Date = " + surfSessionDateFinal);
-    console.log("Session Length = " + surfSessionForm.get("sessionLengthHours") + ":" + surfSessionForm.get("sessionLengthMinutes"));
-    console.log("Surfboard Volume = " + surfSessionForm.get("surfboardVolume") + "." + surfSessionForm.get("surfboardVolumeDecimal"));
-    console.log("Tide Level = " + surfSessionForm.get("tideLevel") + "." + surfSessionForm.get("tideLevelDecimal"));
+    //* Convert Date output from DatePicker to MM-DD-YYYY
+    var surfSessionDate = new Date( datevalue );
+    var surfSessionDateFinal = surfSessionDate.getMonth() + "-" + surfSessionDate.getDate() + "-" + surfSessionDate.getFullYear();
 
+    //* Convert Time output from TimePicker
+    var surfSessionTime = new Date( value );
 
+    //* Convert Military Time to AM/PM Time
+    if(surfSessionTime.getHours() < 13)
+    {
+      var surfSessionTimeFinal = surfSessionTime.getHours() + ":" + surfSessionTime.getMinutes() + " AM";
+    }
+    else {
+      var surfSessionTimeFinal = surfSessionTime.getHours()-12 + ":" + surfSessionTime.getMinutes() + " PM";
+    }
     
     const { surfSessionData } = await createSurfSession({
-      // variables: { ...surfSessionState },
 
       
-
       variables: { 
         userId: login.user._id,
-        sessionDate: "6-25-2023",
-        sessionTime: "10:00am",
+        sessionDate: surfSessionDateFinal,
+        sessionTime: surfSessionTimeFinal,
         sessionLocation: surfSessionForm.get("surfLocation"),
         skyConditions: surfSessionForm.get("skyConditions"),
         waveSize: surfSessionForm.get("waveSize"),
@@ -123,8 +131,8 @@ function CreateNewSession() {
         <Header />
       </header>
 
-      {/* Weather Widget Component */}
       <WeatherWidget />
+
       <form method="post" onSubmit={handleSurfSessionSubmit}>
         <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
           <div className="d-flex p-2 mx-5">
@@ -141,10 +149,8 @@ function CreateNewSession() {
               Time:
           </div>
           <div className="timePicker">
-            {/* <TimePicker onChange={onChange} value={timevalue} className=""/> */}
             <div>
-              {/* <TimePicker onChange={onTimeChange} value={value} use12Hours/> */}
-              <TimePicker name="sessionTime"/>
+              <TimePicker value={value} onChange={(newValue) => setTimeValue(newValue)} use12Hours/>
             </div>
 
           </div>
