@@ -31,7 +31,7 @@ function ViewPreviousSessions() {
 
     // console.log("Session ID: " + reqSessionID)
 
-    navigate("/surfSession/" + reqSessionID);
+    navigate("/surf_log/surfSession/" + reqSessionID);
 
   };
 
