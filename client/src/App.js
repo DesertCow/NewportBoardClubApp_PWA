@@ -36,6 +36,7 @@ import UserSettings from './pages/UserSettings';
 // import ClubEvents from './pages/ClubEvents';
 import ClubEventsCurrent from './pages/ClubEvents_Current';
 import ClubEventsHistory from './pages/ClubEvents_History';
+import ViewEventDetails from './pages/EventDetails'
 
 import SurfKnowledge from './pages/SurfKnowledge';
 import SurfRentals from './pages/SurfRentals';
@@ -72,6 +73,7 @@ export default function App() {
         {/* <Route path="/club_events" element={<ClubEvents />} /> */}
         <Route path="/club_events/current_events" element={<ClubEventsCurrent />} />
         <Route path="/club_events/eventHistory" element={<ClubEventsHistory />} />
+        <Route path="/club_events/event/:eventID" element={<ViewEventDetails />} />
         <Route path="/surf_knowledge" element={<SurfKnowledge />} />
         <Route path="/community_forum" element={<CommunityForum />} />
         <Route path="/surf_rentals" element={<SurfRentals />} />

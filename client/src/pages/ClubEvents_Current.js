@@ -26,7 +26,7 @@ function ClubEvents_Current() {
 
   const displayEventDetails = async (event, reqEventID) => {
 
-    console.log("Upcoming Event (" + reqEventID + ") Clicked!");
+    // console.log("Upcoming Event (" + reqEventID + ") Clicked!");
 
     event.preventDefault();
     navigate("/club_events/event/" + reqEventID);
@@ -41,34 +41,14 @@ function ClubEvents_Current() {
   }
 
   if(!loading) {
-    // console.log("Current Event Count: " + data.getCurrentEvents.length)
-    // console.log(data.getCurrentEvents[0])
 
-    // console.log(data.getCurrentEvents);
 
     let currentEventList = data.getCurrentEvents;
-
-    console.log(currentEventList)
-
-    // let eventArray = data.getCurrentEvents[0].split("|")
-
-
-    // console.log(eventArray[6])
-    // console.log(data.getCurrentEvents[1])
 
     //* Lopp over each current event
     currentEventList.forEach(buildEventBTN)
 
-    // console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-    // console.log(finalCurrentEventHTML[0])
   }
-
-  // let test = `"`+"../img/SummerArtFair.jpg"+`"`
-  // var test = "../img/SummerArtFair.jpg"
-
-  // console.log("!!!!#@#$# TESTS")
-  // console.log(`"`+test+`"`)
-  // console.log(test)
 
   return (
 
