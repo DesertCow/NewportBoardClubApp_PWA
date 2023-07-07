@@ -784,7 +784,8 @@ bottom: 0;
   font-size: 20px;
   color: white;
   width: 400px;
-  background-color: rgba(0, 0, 0, 0.902);
+  /* height: 50px; */
+  background-color: rgba(46, 46, 46, 0.902);
   border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
@@ -865,6 +866,21 @@ bottom: 0;
   color: white;
   opacity: 80%;
   border-radius: 15px;
-  margin-left: 10px;
+  /* margin-left: 10px; */
+
+}
+
+
+.viewSurfSessionDeleteBTN {
+  font-family: "Catamaran-ExtraBold";
+  height: 50px;
+  width: 250px !important;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: rgba(180, 9, 9, 0.902);
+  color: white;
+  opacity: 80%;
+  border-radius: 15px;
+  /* margin-left: 10px; */
 
 }

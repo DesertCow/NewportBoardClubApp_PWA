@@ -7,7 +7,8 @@ import NavFooter from '../components/NavFooter';
 import WeatherWidget from "../components/WeatherWidget";
 
 import { getSurfSession_Q } from '../utils/queries';
-import { useQuery } from '@apollo/client';
+import { DELETE_SURF_SESSION } from '../utils/mutations';
+import { useQuery, useMutation } from '@apollo/client';
 
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 function ViewSurfSession() {
 
   const navigate = useNavigate();
+  const [deleteSurfSession, { deleteSurfSessionID }] = useMutation(DELETE_SURF_SESSION);
 
   let surfSessionID = window.location.href.split(`/surf_log/surfSession/`)
   surfSessionID = surfSessionID[1]
@@ -25,8 +27,27 @@ function ViewSurfSession() {
   });
 
   const handlePreviousSessions = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     navigate("/surf_log/view_previous_sessions");
+  };
+
+  const handleDeleteSession = async (event) => {
+    // event.preventDefault();
+
+    console.log("Delete Session: " + surfSessionID)
+
+    
+
+    const { surfSessionData } = await deleteSurfSession({
+
+      variables: { 
+        sessionId: surfSessionID
+      },
+   });
+
+    
+    navigate("/surf_log/view_previous_sessions");
+    location.reload()
   };
 
 
@@ -34,7 +55,7 @@ function ViewSurfSession() {
     
     var surfSessionData = data.getSurfSession
 
-    console.log(surfSessionData)
+    // console.log(surfSessionData)
     // console.log(surfSessionData.sessionDate)
 
     return (
@@ -93,8 +114,9 @@ function ViewSurfSession() {
 
         </div>
 
-         <div className="row px-5 py-3 viewSurfSessionSpacer">
-          <div className="viewSurfSessionListBTN p-2 d-flex align-items-center justify-content-center" onClick={(event) => handlePreviousSessions(event)}>Sessions List</div>
+         <div className="row px-5 py-3 viewSurfSessionSpacer align-items-center justify-content-center">
+          <div className="viewSurfSessionListBTN mt-3 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handlePreviousSessions(event)}>Sessions List</div>
+          <div className="viewSurfSessionDeleteBTN mt-5 p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleDeleteSession(event)}>Delete Session</div>
         </div>
 
         <footer className="mt-auto mb-0">

@@ -409,7 +409,18 @@ const resolvers = {
 
       const surfSession = await SurfSessionMongo.create({ userID, sessionDate, sessionTime, sessionLocation, skyConditions, waveSize, tideLevel, tideDirection, sessionLength, surfboardShaper, surfboardModel, surfboardLengthFT, surfboardLengthIN, surfboardVolume, surfboardFinConfig, sessionNotes, sessionRating });
 
+      console.log("\x1b[32m CREATE: [" + surfSession.sessionID + "] Surf Session\x1b[0m\n")
+
       return { surfSession };
+    },
+    deleteSurfSession: async (parent, { sessionID }) => {
+
+      const sessionDelete = await SurfSessionMongo.deleteOne({_id: sessionID});
+
+      console.log("\x1b[31m DELETE: [" + sessionID + "] Surf Session\x1b[0m\n")
+
+      return sessionID + " Surf Session Was Deleted Successfully!";
+      // return sessionDelete
     }
   },
 

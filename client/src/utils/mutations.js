@@ -64,3 +64,9 @@ export const CREATE_SURF_SESSION = gql`
     }
   }
 `;
+
+export const DELETE_SURF_SESSION = gql`
+mutation Mutation($sessionId: String!) {
+  deleteSurfSession(sessionID: $sessionId)
+}
+`;
