@@ -10,34 +10,33 @@ import EventPageHeaderUpcoming from '../components/EventPageHeader_Upcoming';
 import { useQuery } from '@apollo/client';
 import { getCurrentEvents_Q } from '../utils/queries';
 
+
+
+
 function ClubEvents_Current() {
-
-
-  //Event Handlers
 
   const navigate = useNavigate();
 
-  const handleClubEvents = async (event) => {
-
-    console.log("Upcoming Event Clicked!");
-
-    event.preventDefault();
-    navigate("/club_events/current_events");
-  };
-
+  var finalCurrentEventHTML = []
+  
   //* Get Latest Weather Data from App Server
   var { loading, data } = useQuery(getCurrentEvents_Q)
+  
+  //* =========== Event Handlers ===========
 
-  var finalCurrentEventHTML = []
+  const displayEventDetails = async (event, reqEventID) => {
 
-  function parsePhotoLink(item){
+    console.log("Upcoming Event (" + reqEventID + ") Clicked!");
 
-    // console.log("!!!!!!!!!!!!!!!!!!!!!")
-    let eventArray = item.split("|")
-    // console.log(eventArray[6])
-    // console.log(eventArray[1])
+    event.preventDefault();
+    navigate("/club_events/event/" + reqEventID);
+  };
 
-    finalCurrentEventHTML.push(`<div className="text-center"><img src={require("${eventArray[6]}")} className="eventPhoto mb-3" onClick={(event) => handleClubEvents(event)} alt="Outside Shot of Board Club" /></div>`)
+  function buildEventBTN(eventData){
+
+    // console.log("Event Name (" + eventData._id + "): " + eventData.eventName)
+
+    finalCurrentEventHTML.push(<li key={eventData._id} onClick={(event) => displayEventDetails(event, eventData._id)} className="previousSurfSessionBTN m-4 p-3">{eventData.eventName} @ {eventData.eventDate}</li>)
 
   }
 
@@ -45,14 +44,20 @@ function ClubEvents_Current() {
     // console.log("Current Event Count: " + data.getCurrentEvents.length)
     // console.log(data.getCurrentEvents[0])
 
-    let eventArray = data.getCurrentEvents[0].split("|")
+    // console.log(data.getCurrentEvents);
+
+    let currentEventList = data.getCurrentEvents;
+
+    console.log(currentEventList)
+
+    // let eventArray = data.getCurrentEvents[0].split("|")
 
 
     // console.log(eventArray[6])
     // console.log(data.getCurrentEvents[1])
 
     //* Lopp over each current event
-    data.getCurrentEvents.forEach(parsePhotoLink)
+    currentEventList.forEach(buildEventBTN)
 
     // console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
     // console.log(finalCurrentEventHTML[0])
@@ -83,7 +88,7 @@ function ClubEvents_Current() {
 
       <div className="mb-5 pb-3">
         <div className="py-3">
-          <div className="text-center">
+          {/* <div className="text-center">
             <img src={require("../img/Events/SummerArtFair.jpg")}
             className="eventPhoto mb-3"
             onClick={(event) => handleClubEvents(event)}
@@ -94,7 +99,8 @@ function ClubEvents_Current() {
             className="eventPhoto2 mb-3"
             onClick={(event) => handleClubEvents(event)}
             alt="Event Photo" />
-          </div>
+          </div> */}
+          {finalCurrentEventHTML}
           {/* <div dangerouslySetInnerHTML={{__html: finalCurrentEventHTML[0]}} /> */}
           <div>
             {/* {parse(finalCurrentEventHTML[1])} */}

@@ -11,9 +11,9 @@ const typeDefs = `#graphql
     login(memberEmail: String!, password: String!): Auth
     getWX: WX
     getWidgetWX: WidgetWX
-    getCurrentEvents: [String]
+    getCurrentEvents: [Event]
     getPreviousEvents: [String]
-    getEvent(eventName: String): String
+    getEvent(eventID: String): String
     getAllUsersSurfSession(userID: String!): [SurfSession]
     getSurfSession(sessionID: String!): SurfSession
   }
@@ -42,6 +42,7 @@ const typeDefs = `#graphql
   }
 
   type Event {
+    _id: ID
     eventName: String
     eventSlogan: String
     eventDate: String
