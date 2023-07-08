@@ -205,7 +205,7 @@ const resolvers = {
 
         //* Return List Of Current Events
         // console.log(currentEvents)
-        
+
         return currentEvents
       },
 
@@ -236,7 +236,7 @@ const resolvers = {
         console.log("\x1b[33mEvent Requested (" + eventID + ")\x1b[0m")
         // console.log(requestedEvent);
 
-        return JSON.stringify(requestedEvent)
+        return requestedEvent
 
       },
       getAllUsersSurfSession: async (parent, { userID }) => {

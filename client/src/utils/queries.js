@@ -83,3 +83,18 @@ export const getSurfSession_Q = gql`
     }
   }
 `;
+
+export const getEvent_Q = gql`
+  query GetEvent($eventId: String) {
+    getEvent(eventID: $eventId) {
+      _id
+      eventName
+      eventSlogan
+      eventDate
+      eventLength
+      eventDescription
+      eventPhotoURL
+      eventCurrent
+    }
+  }
+`;

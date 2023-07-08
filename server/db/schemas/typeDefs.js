@@ -13,7 +13,7 @@ const typeDefs = `#graphql
     getWidgetWX: WidgetWX
     getCurrentEvents: [Event]
     getPreviousEvents: [String]
-    getEvent(eventID: String): String
+    getEvent(eventID: String): Event
     getAllUsersSurfSession(userID: String!): [SurfSession]
     getSurfSession(sessionID: String!): SurfSession
   }
