@@ -7,11 +7,9 @@ mutation CreateUser($memberEmail: String!, $password: String!, $clubPassword: St
   createUser(memberEmail: $memberEmail, password: $password, clubPassword: $clubPassword, memberFirstName: $memberFirstName, memberLastName: $memberLastName) {
     user {
       memberEmail
-      password
-      loginToken
-      loginValid
       memberFirstName
       memberLastName
+      _id
     }
   }
 }

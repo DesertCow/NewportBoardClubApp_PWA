@@ -28,7 +28,7 @@ class AuthService {
   }
 
   login(idToken) {
-    console.log("Login Called: " + idToken)
+    // console.log("Login Called: " + idToken)
     localStorage.setItem('boardClub_JWT_Token', idToken);
     // window.location.assign('/main_Menu');
   }
