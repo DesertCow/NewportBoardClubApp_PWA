@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 
 import Header from '../components/Header';
@@ -9,10 +8,6 @@ import EventPageHeaderUpcoming from '../components/EventPageHeader_Upcoming';
 
 import { useQuery } from '@apollo/client';
 import { getCurrentEvents_Q } from '../utils/queries';
-
-// import
-
-
 
 
 function ClubEvents_Current() {
@@ -27,22 +22,18 @@ function ClubEvents_Current() {
   //* =========== Event Handlers ===========
 
   const displayEventDetails = async (event, reqEventID) => {
-
-    // console.log("Upcoming Event (" + reqEventID + ") Clicked!");
-
     event.preventDefault();
+
     navigate("/club_events/event/" + reqEventID);
   };
 
   function buildEventBTN(eventData){
 
-    // console.log("Event Name (" + eventData._id + "): " + eventData.eventName)
-    // console.log(eventData.eventPhotoURL)
-
-    // finalCurrentEventHTML.push(<li key={eventData._id} onClick={(event) => displayEventDetails(event, eventData._id)} className="previousSurfSessionBTN m-4 p-3">{eventData.eventName} @ {eventData.eventDate}</li>)
+    //* Generate IMG and Button for each event
     finalCurrentEventHTML.push(<img src={eventData.eventPhotoURL} key={eventData._id} onClick={(event) => displayEventDetails(event, eventData._id)} className="eventIconPhoto mb-3" alt="Event Photo" />)
 
   }
+
 
   if(!loading) {
 
@@ -66,24 +57,8 @@ function ClubEvents_Current() {
           <EventPageHeaderUpcoming />
         </div>
 
-        <div className="mb-5 pb-3">
-          <div className="py-3">
-            {/* <div className="text-center">
-              <img src={require("../img/Events/SummerArtFair.jpg")}
-              className="eventPhoto mb-3"
-              onClick={(event) => handleClubEvents(event)}
-              alt="Event Photo" />
-            </div>
-            <div className="text-center">
-              <img src={require("../img/Events/Spencer+Pirdy.jpeg")}
-              className="eventPhoto2 mb-3"
-              onClick={(event) => handleClubEvents(event)}
-              alt="Event Photo" />
-            </div> */}
-            <div className="text-center">
-            {finalCurrentEventHTML} 
-            </div>
-          </div>
+        <div className="text-center mt-3 eventListMain">
+          {finalCurrentEventHTML} 
         </div>
 
         <footer className="mt-auto mb-0">
