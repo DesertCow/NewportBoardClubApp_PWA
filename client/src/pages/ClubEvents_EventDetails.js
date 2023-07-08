@@ -23,8 +23,8 @@ function EventDetails() {
   {
 
     let eventData = data.getEvent
-    
-    // console.log(eventData)
+
+    console.log(data.getEvent.eventPhotoURL)
 
     return (
 
@@ -41,7 +41,7 @@ function EventDetails() {
             {/* <h1 className="text-center mt-3">Surf Event ({eventID})</h1> */}
 
             <div className="mt-4 ml-3 d-flex justify-content-center align-items-center">
-              <img src={require("../img/Events/SummerArtFair.jpg")}
+              <img src={data.getEvent.eventPhotoURL}
                 className="eventDetailsPhoto mb-3"
                 onClick={(event) => handleClubEvents(event)}
                 alt="Event Photo" 

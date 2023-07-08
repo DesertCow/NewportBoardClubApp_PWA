@@ -36,7 +36,7 @@ import UserSettings from './pages/UserSettings';
 // import ClubEvents from './pages/ClubEvents';
 import ClubEventsCurrent from './pages/ClubEvents_Current';
 import ClubEventsHistory from './pages/ClubEvents_History';
-import ViewEventDetails from './pages/EventDetails'
+import ViewEventDetails from './pages/ClubEvents_EventDetails'
 
 import SurfKnowledge from './pages/SurfKnowledge';
 import SurfRentals from './pages/SurfRentals';
