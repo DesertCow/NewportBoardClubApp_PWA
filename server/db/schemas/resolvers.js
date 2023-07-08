@@ -4,7 +4,6 @@
 //* Models for SQL and MongoDB 
 // const { UserMongo, FoodItem, Category, Orders } = require('../../models');
 const UserMongo = require('../../models/UserMongo');
-const EventMongo = require('../../models/EventMongo');
 const SurfSessionMongo = require('../../models/SurfSession');
 
 //* SQL Connection
@@ -20,6 +19,12 @@ const fetch = require("node-fetch");
 const { response } = require("express");
 
 const { S3 } = require("aws-sdk");
+const { AWS } = require('aws-sdk');
+
+// Set the Region 
+// AWS.config.update({region: 'us-west-1'});
+
+
 
 let previousTide = "null";
 let tideRising = "false";
@@ -32,6 +37,8 @@ let realTimeData = "https://api.weather.com/v2/pws/observations/current?stationI
 const resolvers = {
 
   Upload: require("graphql-upload-minimal").GraphQLUpload,
+
+  
 
   Query: {
     
@@ -419,21 +426,28 @@ const resolvers = {
     },
     singleUpload: async (parent, { file }) => {
 
-      const { foo, bar }  = await file.then(result => result.data);
-
-      console.log(result.data);
-      console.log(bar);
+      
 
       console.log(file)
-      console.log("FILE UPLOAD!" + file)
+      // console.log("FILE UPLOAD!" + file)
+      // AWS.config.update({region: 'us-west-1'});
+
       const s3 = new S3({ apiVersion: "2006-03-01", params: { Bucket: "theboardclubprofilepictures" } });
 
       // const { createReadStream, filename /*, fieldName, mimetype, encoding */ } = await file.fileName;
       // const Key = `${ctx.user.id}/${doc.docType}-${filename}`;
-      const Key = `${"454543534543"}/${".jpg"}-${file.filename}`;
+      // const Key = `${"454543534543"}/${".jpg"}-${file.filename}`;
 
-      await s3.upload({ Key, Body: createReadStream() }).promise();
+      // await s3.upload({ Key, Body: createReadStream() }).promise();
+      // await s3.upload({ Key, Body: createReadStream() }).promise();
 
+      s3.listBuckets(function(err, data) {
+        if (err) {
+          console.log("Error", err);
+        } else {
+          console.log("Success", data.Buckets);
+        }
+      });
       
 
       return file;
