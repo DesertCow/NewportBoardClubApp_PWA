@@ -197,20 +197,16 @@ const resolvers = {
       },
       getCurrentEvents: async() => {
 
-        var currentEventList = [];
+        // var currentEventList = [];
         
         const currentEvents = await EventMongo.find({ eventCurrent: true });
 
         console.log(" ~~ Current Event Count = \x1b[31m" + currentEvents.length + "  \x1b[0m~~")
 
-        for (i = 0; i < currentEvents.length; i++) {
-
-          currentEventList[i] = currentEvents[i]._id + "|" + currentEvents[i].eventName + "|" + currentEvents[i].eventSlogan + "|" + currentEvents[i].eventDate + "|" + currentEvents[i].eventLength + "|" + currentEvents[i].eventDescription + "|" + currentEvents[i].eventPhotoURL + "|" + currentEvents[i].eventCurrent
-
-      }
-
         //* Return List Of Current Events
-        return currentEventList
+        // console.log(currentEvents)
+
+        return currentEvents
       },
 
       getPreviousEvents: async() => {
@@ -220,26 +216,21 @@ const resolvers = {
         const previousEvents = await EventMongo.find({ eventCurrent: false });
 
         console.log(" ~~ Current Event Count = \x1b[31m" + previousEvents.length + "  \x1b[0m~~")
-
-        for (i = 0; i < previousEvents.length; i++) {
-
-          previousEventList[i] = previousEvents[i]._id + "|" + previousEvents[i].eventName + "|" + previousEvents[i].eventSlogan + "|" + previousEvents[i].eventDate + "|" + previousEvents[i].eventLength + "|" + previousEvents[i].eventDescription + "|" + previousEvents[i].eventPhotoURL + "|" + previousEvents[i].eventCurrent
-
-      }
-
-        //* Return List Of Current Events
-        return previousEventList
+        
+        //* Return List Of History Events
+        return previousEvents
       },
 
-      getEvent: async (parent, { eventName }) => {
+      getEvent: async (parent, { eventID }) => {
 
-        var requestedEventList
+        // var requestedEventList
 
-        const requestedEvent = await EventMongo.findOne({eventName: eventName})
+        const requestedEvent = await EventMongo.findOne({_id: eventID})
 
-        requestedEventList = requestedEvent._id + "|" + requestedEvent.eventName + "|" + requestedEvent.eventSlogan + "|" + requestedEvent.eventDate + "|" + requestedEvent.eventLength + "|" + requestedEvent.eventDescription + "|" + requestedEvent.eventPhotoURL + "|" + requestedEvent.eventCurrent
+        console.log("\x1b[33mEvent Requested (" + eventID + ")\x1b[0m")
+        // console.log(requestedEvent);
 
-        return JSON.stringify(requestedEventList)
+        return requestedEvent
 
       },
       getAllUsersSurfSession: async (parent, { userID }) => {

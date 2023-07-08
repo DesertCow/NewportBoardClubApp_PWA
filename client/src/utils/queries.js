@@ -34,9 +34,33 @@ export const getWidgetWX_Q = gql`
 `;
 
 export const getCurrentEvents_Q = gql`
-query GetCurrentEvents {
-  getCurrentEvents
-}
+  query Query {
+    getCurrentEvents {
+      _id
+      eventName
+      eventSlogan
+      eventDate
+      eventLength
+      eventDescription
+      eventPhotoURL
+      eventCurrent
+    }
+  }
+`;
+
+export const getHistoryEvents_Q = gql`
+  query Query {
+    getPreviousEvents {
+      _id
+      eventName
+      eventSlogan
+      eventDate
+      eventLength
+      eventDescription
+      eventPhotoURL
+      eventCurrent
+    }
+  }
 `;
 
 export const getSurfSessionList_Q = gql`
@@ -71,6 +95,21 @@ export const getSurfSession_Q = gql`
       surfboardFinConfig
       sessionNotes
       sessionRating
+    }
+  }
+`;
+
+export const getEvent_Q = gql`
+  query GetEvent($eventId: String) {
+    getEvent(eventID: $eventId) {
+      _id
+      eventName
+      eventSlogan
+      eventDate
+      eventLength
+      eventDescription
+      eventPhotoURL
+      eventCurrent
     }
   }
 `;

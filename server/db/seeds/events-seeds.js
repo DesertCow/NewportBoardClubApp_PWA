@@ -65,11 +65,11 @@ const mongodb = require('../mongoConnection');
  ];
 
  const seedEventDB = async () => {
-  await EventMongo.deleteMany({});
-  await EventMongo.insertMany(EventsSeed);
+  // await EventMongo.deleteMany({});
+  // await EventMongo.insertMany(EventsSeed);
  };
 
  seedEventDB().then(() =>{
-  console.log('\n\x1b[43m ~~~ EVENTS SEEDED ~~~ \x1b[0m\n');
+  // console.log('\n\x1b[43m ~~~ EVENTS SEEDED ~~~ \x1b[0m\n');
   // mongoose.connection.close();
  })
