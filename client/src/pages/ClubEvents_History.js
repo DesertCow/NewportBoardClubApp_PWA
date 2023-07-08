@@ -36,7 +36,7 @@ function ClubEvents_Current() {
     // console.log(eventData.eventPhotoURL)
 
     // finalHistoryEventHTML.push(<li key={eventData._id} onClick={(event) => displayEventDetails(event, eventData._id)} className="previousSurfSessionBTN m-4 p-3">{eventData.eventName} @ {eventData.eventDate}</li>)
-    finalHistoryEventHTML.push(<img src={require("../img/Events/SummerArtFair.jpg")} key={eventData._id} onClick={(event) => displayEventDetails(event, eventData._id)} className="eventIconPhoto mb-3" alt="Event Photo" />)
+    finalHistoryEventHTML.push(<img src={eventData.eventPhotoURL} key={eventData._id} onClick={(event) => displayEventDetails(event, eventData._id)} className="eventIconPhoto mb-3" alt="Event Photo" />)
 
   }
 
