@@ -7,6 +7,8 @@ import { CREATE_USER } from '../utils/mutations';
 
 import React, { useEffect, useState } from "react";
 
+import Auth from '../utils/auth';
+
 
 function UserSignUp() {
 
@@ -39,23 +41,17 @@ function UserSignUp() {
     if (true) {
       const { memberEmail, password, memberFirstName, memberLastName, clubPassword } = values;
 
-      // console.log("User Data: " + memberEmail + "|" + password + "|" + confirmPassword + "|" + memberFirstName + "|" + memberLastName + "|" + clubPassword);
-      // console.log("User Data: " + memberFirstName + "|" + memberLastName + "|" + memberEmail + "|" + password + "|" + confirmPassword + "|" + clubPassword);
-      console.log("User Data: " + memberFirstName + "|" + memberLastName + "|" + memberEmail + "|" + password + "|" + clubPassword);
-      console.log("Values = " + JSON.stringify(values))
-      // console.log("User Data: " + email + "||" + password);
-
       //* Create New User In Database
       try {
         const { data } = await createUser({
           variables: { ...values },
         });
 
-        // Auth.login(JSON.stringify(data.createUser));
+        Auth.login(JSON.stringify(data.createUser));
 
         
         // toast.success("Sign-Up Successful!", toastOptions);
-        console.log("Sign-Up Successful!");
+        // console.log("Sign-Up Successful!");
         navigate("/home")
 
       } catch (e) {
@@ -69,10 +65,6 @@ function UserSignUp() {
 return (
 
     <div className="d-flex flex-column min-vh-100">
-
-      {/* <h1 className="homeTitle text-center pt-4"> Salt Lick BBQ</h1> */}
-      {/* <h1 className="text-center pt-4"> Register Page</h1> */}
-
       <div className="flex-column d-flex align-items-center justify-content-center">
 
         <div className="my-4 text-center ">

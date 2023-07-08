@@ -1,18 +1,9 @@
-
+//* Event Seeding File
+//*
 
 const mongoose = require('mongoose');
-
 const EventMongo = require('../../models/EventMongo');
 
-//* DB Connection
-const mongodb = require('../mongoConnection');
-
-// mongoose.connect(mongodb)
-
- mongodb.once('open', () => {
-
-
- })
 
  const EventsSeed = [
 
@@ -35,41 +26,41 @@ const mongodb = require('../mongoConnection');
     eventCurrent: false
   },
   {  
-  eventName: "Ben Did Go 8.0",
-  eventSlogan: "Information Meeting",  
-  eventDate: "5-25-23",
-  eventDescription: "Required meeting for all those who want to participate in the BEN DID GO 8.0 prone paddleboard event. ",
-  eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/BenDidGo8p0.jpg",
-  eventLength: "2",
-  eventCurrent: false
+    eventName: "Ben Did Go 8.0",
+    eventSlogan: "Information Meeting",  
+    eventDate: "5-25-23",
+    eventDescription: "Required meeting for all those who want to participate in the BEN DID GO 8.0 prone paddleboard event. ",
+    eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/BenDidGo8p0.jpg",
+    eventLength: "2",
+    eventCurrent: false
   },
   {  
-  eventName: "Surf Coaching with Spencer Pirdy",
-  eventSlogan: "Surf Coaching",  
-  eventDate: "5-25-23",
-  eventDescription: "This is for anyone looking to improve their surfing. Spencer helps surfers at all levels improve technique, increase wave count, improve paddling efficiency, overall fitness, and comfortability in the lineup.",
-  eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/Spencer%2BPirdy.jpeg",
-  eventLength: "2",
-  eventCurrent: true
+    eventName: "Surf Coaching with Spencer Pirdy",
+    eventSlogan: "Surf Coaching",  
+    eventDate: "5-25-23",
+    eventDescription: "This is for anyone looking to improve their surfing. Spencer helps surfers at all levels improve technique, increase wave count, improve paddling efficiency, overall fitness, and comfortability in the lineup.",
+    eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/Spencer%2BPirdy.jpeg",
+    eventLength: "2",
+    eventCurrent: true
   },
   {  
-  eventName: "Summer Kickoff Art Fair",
-  eventSlogan: "Support Your Local Artisans",  
-  eventDate: "6-24-23",
-  eventDescription: "It's slowly starting to feel like Summer and everyone will be looking for fun things to do so we're hosting another Art Fair!  Come check out the different artwork, photography, jewelry, succulents and other cool stuff from your locals artisans.",
-  eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/SummerArtFair.jpg",
-  eventLength: "4",
-  eventCurrent: true
+    eventName: "Summer Kickoff Art Fair",
+    eventSlogan: "Support Your Local Artisans",  
+    eventDate: "6-24-23",
+    eventDescription: "It's slowly starting to feel like Summer and everyone will be looking for fun things to do so we're hosting another Art Fair!  Come check out the different artwork, photography, jewelry, succulents and other cool stuff from your locals artisans.",
+    eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/SummerArtFair.jpg",
+    eventLength: "4",
+    eventCurrent: true
   },
 
  ];
 
  const seedEventDB = async () => {
-  // await EventMongo.deleteMany({});
-  // await EventMongo.insertMany(EventsSeed);
+  // console.log("seedEventDB Function Start!")
+  await EventMongo.deleteMany({});
+  await EventMongo.insertMany(EventsSeed);
  };
 
- seedEventDB().then(() =>{
-  // console.log('\n\x1b[43m ~~~ EVENTS SEEDED ~~~ \x1b[0m\n');
-  // mongoose.connection.close();
- })
+ module.exports = seedEventDB;
+
+ //!========================= EOF =========================

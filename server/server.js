@@ -31,7 +31,7 @@ const db = require('./db/mongoConnection');
 
 //* DB Schema / Seeds
 const { typeDefs, resolvers } = require('./db/schemas');
-const seedAll = require('./db/seeds/index');
+// const seedAll = require('./db/seeds/index');
 
 
 //* Create Base "App"

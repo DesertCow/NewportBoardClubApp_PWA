@@ -20,10 +20,10 @@ const Login = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("Handle Submit!")
-    console.log(formState);
+    // console.log("Handle Submit!")
+    // console.log(formState);
 
-    // navigate("/Home")
+    
 
     try {
       const { data } = await login({
@@ -32,7 +32,7 @@ const Login = (props) => {
 
       Auth.login(JSON.stringify(data.login));
 
-      console.log("Admin Status: " + data.login.admin)
+      // console.log("Admin Status: " + data.login.admin)
 
       
       // toast.success("Login Successful!", toastOptions);
@@ -41,6 +41,7 @@ const Login = (props) => {
         // toast.warn("Admin Access!", toastOptions);
         Auth.adminSet(true)
       }
+      // navigate("/Home")
 
     } catch (e) {
       // toast.error("Login Failed!", toastOptions);
@@ -53,7 +54,7 @@ const Login = (props) => {
       password: '',
     });
 
-    // navigate("/Home")
+    navigate("/home")
 
   };
 
