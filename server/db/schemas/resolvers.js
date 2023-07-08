@@ -19,6 +19,8 @@ const { signToken } = require('../../utils/auth');
 const fetch = require("node-fetch");
 const { response } = require("express");
 
+const { S3 } = require("aws-sdk");
+
 let previousTide = "null";
 let tideRising = "false";
 
@@ -28,6 +30,8 @@ let surflineBatchURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnab
 let realTimeData = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
 
 const resolvers = {
+
+  Upload: require("graphql-upload-minimal").GraphQLUpload,
 
   Query: {
     
@@ -412,6 +416,28 @@ const resolvers = {
 
       return sessionID + " Surf Session Was Deleted Successfully!";
       // return sessionDelete
+    },
+    singleUpload: async (parent, { file }) => {
+
+      const { foo, bar }  = await file.then(result => result.data);
+
+      console.log(result.data);
+      console.log(bar);
+
+      console.log(file)
+      console.log("FILE UPLOAD!" + file)
+      const s3 = new S3({ apiVersion: "2006-03-01", params: { Bucket: "theboardclubprofilepictures" } });
+
+      // const { createReadStream, filename /*, fieldName, mimetype, encoding */ } = await file.fileName;
+      // const Key = `${ctx.user.id}/${doc.docType}-${filename}`;
+      const Key = `${"454543534543"}/${".jpg"}-${file.filename}`;
+
+      await s3.upload({ Key, Body: createReadStream() }).promise();
+
+      
+
+      return file;
+
     }
   },
 

@@ -3,9 +3,12 @@
 //* GraphQL Schema Definition
 const { gql } = require("@apollo/server");
 
-//getSubMenu(menuID: Int): [String]
+const { graphqlUploadExpress } = require("graphql-upload-minimal");
+
 
 const typeDefs = `#graphql
+
+  scalar Upload
 
   type Query {
     login(memberEmail: String!, password: String!): Auth
@@ -27,6 +30,7 @@ const typeDefs = `#graphql
     createEvent( eventName: String!, eventSlogan: String!, eventDate: String!, eventLength: String, eventDescription: String!, eventPhotoURL: String!, eventCurrent: Boolean!): Event
     createSurfSession( userID: String!, sessionDate: String!, sessionTime: String!, sessionLocation: String, skyConditions: String!, waveSize: String!, tideLevel: Float, tideDirection: String, sessionLength: String!, surfboardShaper: String, surfboardModel: String, surfboardLengthFT: Int, surfboardLengthIN: Int, surfboardVolume: Float, surfboardFinConfig: String, sessionNotes: String, sessionRating: Int): SurfSession
     deleteSurfSession(sessionID: String!): String
+    singleUpload(file: Upload!): UploadedFileResponse!
   }
 
   type UserCreated {
@@ -105,6 +109,12 @@ const typeDefs = `#graphql
     surfboardFinConfig: String
     sessionNotes: String
     sessionRating: Int
+  }
+
+  type UploadedFileResponse {
+    filename: String!
+    mimetype: String!
+    encoding: String!
   }
 
 `;

@@ -22,6 +22,8 @@ const path = require('path');
 
 const { expressMiddleware } = require("@apollo/server/express4");
 
+const { graphqlUploadExpress } = require("graphql-upload-minimal");
+
 const mySQLport = process.env.mySQLport || 3001;
 const graphQLport = process.env.PORT || 4001;
 
@@ -42,6 +44,7 @@ const httpServer = http.createServer(app);
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  uploads: false,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 
@@ -96,6 +99,7 @@ async function serverStart() {
     cors(),
     // 50mb is the limit that `startStandaloneServer` uses, but you may configure this to suit your needs
     bodyParser.json({ limit: '50mb' }),
+    graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
     // expressMiddleware accepts the same arguments:
     // an Apollo Server instance and optional configuration options
     expressMiddleware(server, {
