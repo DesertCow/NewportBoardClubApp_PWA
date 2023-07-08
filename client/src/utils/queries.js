@@ -48,6 +48,21 @@ export const getCurrentEvents_Q = gql`
   }
 `;
 
+export const getHistoryEvents_Q = gql`
+  query Query {
+    getPreviousEvents {
+      _id
+      eventName
+      eventSlogan
+      eventDate
+      eventLength
+      eventDescription
+      eventPhotoURL
+      eventCurrent
+    }
+  }
+`;
+
 export const getSurfSessionList_Q = gql`
   query Query($userId: String!) {
     getAllUsersSurfSession(userID: $userId) {

@@ -23,7 +23,8 @@ function EventDetails() {
   {
 
     let eventData = data.getEvent
-    console.log(eventData)
+    
+    // console.log(eventData)
 
     return (
 

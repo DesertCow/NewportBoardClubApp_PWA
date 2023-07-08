@@ -21,7 +21,7 @@ function ClubEvents_Current() {
 
   var finalCurrentEventHTML = []
   
-  //* Get Latest Weather Data from App Server
+  //* Get Event Data from App Server
   var { loading, data } = useQuery(getCurrentEvents_Q)
   
   //* =========== Event Handlers ===========
@@ -37,7 +37,7 @@ function ClubEvents_Current() {
   function buildEventBTN(eventData){
 
     // console.log("Event Name (" + eventData._id + "): " + eventData.eventName)
-    console.log(eventData.eventPhotoURL)
+    // console.log(eventData.eventPhotoURL)
 
     // finalCurrentEventHTML.push(<li key={eventData._id} onClick={(event) => displayEventDetails(event, eventData._id)} className="previousSurfSessionBTN m-4 p-3">{eventData.eventName} @ {eventData.eventDate}</li>)
     finalCurrentEventHTML.push(<img src={require("../img/Events/SummerArtFair.jpg")} key={eventData._id} onClick={(event) => displayEventDetails(event, eventData._id)} className="eventIconPhoto mb-3" alt="Event Photo" />)
@@ -52,48 +52,50 @@ function ClubEvents_Current() {
     //* Lopp over each current event
     currentEventList.forEach(buildEventBTN)
 
-  }
+    return (
 
-  return (
+      <div className="d-flex flex-column min-vh-100">
+        <header className="">
+          <Header />
+        </header>
 
-    <div className="d-flex flex-column min-vh-100">
-      <header className="">
-        <Header />
-      </header>
+        {/* Weather Widget Component */}
+        <WeatherWidget />
+        
+        <div>
+          <EventPageHeaderUpcoming />
+        </div>
 
-      {/* Weather Widget Component */}
-      <WeatherWidget />
-      
-      <div>
-        <EventPageHeaderUpcoming />
-      </div>
-
-      <div className="mb-5 pb-3">
-        <div className="py-3">
-          {/* <div className="text-center">
-            <img src={require("../img/Events/SummerArtFair.jpg")}
-            className="eventPhoto mb-3"
-            onClick={(event) => handleClubEvents(event)}
-            alt="Event Photo" />
-          </div>
-          <div className="text-center">
-            <img src={require("../img/Events/Spencer+Pirdy.jpeg")}
-            className="eventPhoto2 mb-3"
-            onClick={(event) => handleClubEvents(event)}
-            alt="Event Photo" />
-          </div> */}
-          <div className="text-center">
-           {finalCurrentEventHTML} 
+        <div className="mb-5 pb-3">
+          <div className="py-3">
+            {/* <div className="text-center">
+              <img src={require("../img/Events/SummerArtFair.jpg")}
+              className="eventPhoto mb-3"
+              onClick={(event) => handleClubEvents(event)}
+              alt="Event Photo" />
+            </div>
+            <div className="text-center">
+              <img src={require("../img/Events/Spencer+Pirdy.jpeg")}
+              className="eventPhoto2 mb-3"
+              onClick={(event) => handleClubEvents(event)}
+              alt="Event Photo" />
+            </div> */}
+            <div className="text-center">
+            {finalCurrentEventHTML} 
+            </div>
           </div>
         </div>
+
+        <footer className="mt-auto mb-0">
+          <NavFooter />
+        </footer>
       </div>
 
-      <footer className="mt-auto mb-0">
-        <NavFooter />
-      </footer>
-    </div>
+    )
 
-  )
+  }
+
+ 
 
 }
 

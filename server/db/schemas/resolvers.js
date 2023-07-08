@@ -216,15 +216,9 @@ const resolvers = {
         const previousEvents = await EventMongo.find({ eventCurrent: false });
 
         console.log(" ~~ Current Event Count = \x1b[31m" + previousEvents.length + "  \x1b[0m~~")
-
-        for (i = 0; i < previousEvents.length; i++) {
-
-          previousEventList[i] = previousEvents[i]._id + "|" + previousEvents[i].eventName + "|" + previousEvents[i].eventSlogan + "|" + previousEvents[i].eventDate + "|" + previousEvents[i].eventLength + "|" + previousEvents[i].eventDescription + "|" + previousEvents[i].eventPhotoURL + "|" + previousEvents[i].eventCurrent
-
-      }
-
-        //* Return List Of Current Events
-        return previousEventList
+        
+        //* Return List Of History Events
+        return previousEvents
       },
 
       getEvent: async (parent, { eventID }) => {
