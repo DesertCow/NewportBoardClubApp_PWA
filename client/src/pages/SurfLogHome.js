@@ -15,8 +15,9 @@ import { useQuery } from '@apollo/client';
 function SurfLogHome() {
 
   //* Grab Current User ID from JWT Token
-  let jwtToken = Auth.getToken()
-  jwtToken = JSON.parse(jwtToken)
+  let jwtToken = Auth.getProfile()
+  // jwtToken = JSON.parse(jwtToken)
+  console.log(jwtToken)
 
   //* Get List of surf sessions for user from Database
   var { loading, data } = useQuery(getSurfSessionList_Q, {

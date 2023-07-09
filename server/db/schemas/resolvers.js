@@ -265,7 +265,7 @@ const resolvers = {
       //console.log("\x1b[35mAccount Creation Failed: Email already associated with an account \x1b[0m");
 
 
-      // console.log(user)
+      console.log(user)
       //* Sign/Generate JWT Token
       const token = signToken(user);
 
