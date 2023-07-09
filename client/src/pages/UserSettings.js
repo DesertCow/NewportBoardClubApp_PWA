@@ -33,9 +33,9 @@ function UserSettings() {
     setValue(date);
   }, []);
 
-  
-  let login = Auth.getToken()
-  login = JSON.parse(login)
+
+  //* Grab and Decode JWT Token
+  let jwtToken = Auth.getProfile()
   // console.log("Login! = " + JSON.stringify(login))
 
 
@@ -49,7 +49,7 @@ function UserSettings() {
     setEmailState({
       ...emailState,
       memberEmail: value,
-      id: login.user._id,
+      id: jwtToken.data._id,
     });
 
     // console.log("Email State = ")
@@ -66,7 +66,7 @@ function UserSettings() {
     setPasswordState({
       ...passwordState,
       password: value,
-      id: login.user._id,
+      id: jwtToken.data._id,
     });
 
     // console.log("Password State = ");
@@ -83,7 +83,7 @@ function UserSettings() {
     setPasswordState({
       ...passwordState,
       confirm: value,
-      id: login.user._id,
+      id: jwtToken.data._id,
     });
 
     // console.log("Password State = ");
@@ -100,7 +100,7 @@ function UserSettings() {
     setNameState({
       ...nameState,
       memberFirstName: value,
-      id: login.user._id,
+      id: jwtToken.data._id,
     });
 
     // console.log("Name State = ")
@@ -117,7 +117,7 @@ function UserSettings() {
     setNameState({
       ...nameState,
       memberLastName: value,
-      id: login.user._id,
+      id: jwtToken.data._id,
     });
 
     // console.log("Name State = ")
@@ -209,7 +209,7 @@ function UserSettings() {
       {/* Weather Widget Component */}
       <WeatherWidget />
       
-      <h1 className="editProfileText text-center mt-5">{login.user.memberFirstName} {login.user.memberLastName}</h1>
+      <h1 className="editProfileText text-center mt-5">{jwtToken.data.memberFirstName} {jwtToken.data.memberLastName}</h1>
       <h3 className="editProfileText text-center"> Welcome to your Board Club Profile!</h3>
 
       <div className="my-3">
@@ -224,13 +224,13 @@ function UserSettings() {
 
         <div className="form-group mx-2 my-5 text-center">
           <label htmlFor="exampleInputEmail1">Member Name</label>
-          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name" onChange={(e) => handleFirstNameChange(e)}></input>
-          <input type="email" className="form-control mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last Name" onChange={(e) => handleLastNameChange(e)}></input>
+          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={jwtToken.data.memberFirstName} onChange={(e) => handleFirstNameChange(e)}></input>
+          <input type="email" className="form-control mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={jwtToken.data.memberLastName} onChange={(e) => handleLastNameChange(e)}></input>
           <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleNameSubmit(event)}>Update Name</button>
         </div>
         <div className="form-group mx-2 my-5 text-center">
           <label htmlFor="exampleInputEmail1">Email address</label>
-          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="slippydahtoad@gmail.com" onChange={(e) => handleEmailChange(e)}></input>
+          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={jwtToken.data.memberEmail} onChange={(e) => handleEmailChange(e)}></input>
           <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleEmailSubmit(event)}>Update Email</button>
         </div>
         <div className="form-group mx-2 my-5 text-center">
@@ -238,7 +238,7 @@ function UserSettings() {
           <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e) => handlePasswordChange(e)}></input>
           <label htmlFor="exampleInputPassword1" className="mt-3">Password Confirm</label>
           <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e) => handleConfirmPasswordChange(e)}></input>
-          <button type="button" className="userProfileUpdateBtn p-2 btn-success mt-3 mb-5 text-center" onClick={(event) => HandlePasswordSubmit(event)}>Update Password</button>
+          <button type="button" className="userProfileUpdateBtn p-2 mt-3 mb-5 text-center" onClick={(event) => HandlePasswordSubmit(event)}>Update Password</button>
         </div>
        <div className="form-group mx-2 my-5">
 

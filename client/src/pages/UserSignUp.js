@@ -180,7 +180,7 @@ return (
 
           <div className="text-center d-flex flex-column align-items-center justify-content-center">
             <button
-              className="resgisterBTN mt-4 mb-4 p-3 d-flex flex-column align-items-center justify-content-center"
+              className="registerBTN registerPageregisterBTN mt-4 mb-4 p-3 d-flex flex-column align-items-center justify-content-center"
               type="button"
               onClick={(event) => HandleSignUp(event)}>Sign Up
             </button>
@@ -188,7 +188,7 @@ return (
           </div>
 
         </div>
-          <button className="resgisterBTN mb-4 p-3 d-flex flex-column align-items-center justify-content-center" type="button" onClick={(event) => returnHome(event)}>Back To Login</button>
+          <button className="registerBTN backToLoginBTN mb-4 p-3 d-flex flex-column align-items-center justify-content-center" type="button" onClick={(event) => returnHome(event)}>Back To Login</button>
       </div>
 
     </div >

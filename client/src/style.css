@@ -49,6 +49,11 @@
 
 }
 
+.homeBTNs:hover {
+  background-color: #c3c3c3b5;
+  color: black;
+}
+
 /*? ============= Header Component ============= */
 
 .NavBarClass {
@@ -110,6 +115,11 @@
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+}
+
+.surfKnowledgeBTN:hover {
+  background-color: #c3c3c3b5;
+  color: black;
 }
 
 /*? ============= Rental Page ============= */
@@ -239,6 +249,11 @@
 
 }
 
+.surfLogHomeBTNs:hover {
+  background-color: #c3c3c3b5;
+  color: black;
+}
+
 .surfLogBTNSection {
   width: 100%;
 }
@@ -317,15 +332,25 @@
 
 }
 
+.eventPageBtns_Upcoming:hover {
+  background-color: #3b94d8;
+  color: black;
+}
+
 .eventPageBtns_History {
   font-family: "Catamaran-ExtraBold";
   height: 70px;
   font-weight: 900;
   font-size: 20px;
-  background-color: #3bd87a;
+  background-color: #3bd87aad;
   opacity: 80%;
   border-radius: 15px;
 
+}
+
+.eventPageBtns_History:hover {
+  background-color: #3bd87a;
+  color: black;
 }
 
 .eventsTabBox {
@@ -433,6 +458,11 @@
   -o-border-radius: 15px;
 }
 
+.userProfileUpdateBtn:hover {
+  background-color: #c3c3c3b5;
+  color: black;
+}
+
 .editProfileText {
   font-family: "Catamaran-ExtraBold";
   /* height: 450px; */
@@ -445,21 +475,6 @@
 
 .editSpacer {
   width: 100px;
-}
-
-.profileSaveBtn {
-  font-family: "Catamaran-ExtraBold";
-  font-size: 20px;
-  /* height: 100px; */
-  width: 350px !important;
-  font-weight: 900;
-  background-color: rgba(0, 0, 0, 0.902);
-  color: white;
-  border-radius: 30px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
 }
 
 .dateOBText {
@@ -715,6 +730,12 @@
 	-o-border-radius: 5px;
 }
 
+.loginbtns:hover {
+  background-color: #c3c3c3b5;
+  color: black;
+}
+
+
 .footerLogin{
 width: 100%;
 position: fixed;
@@ -765,7 +786,7 @@ bottom: 0;
   -o-border-radius: 15px;
 }
 
-.resgisterBTN {
+.registerBTN {
 	color: white;
   font-family: "Catamaran-ExtraBold";
 	font-weight: 600;
@@ -777,6 +798,16 @@ bottom: 0;
 	-moz-border-radius: 5px;
 	-ms-border-radius: 5px;
 	-o-border-radius: 5px;
+}
+
+.registerPageregisterBTN:hover {
+  background-color: #25f44fb5;
+  color: black;
+}
+
+.backToLoginBTN:hover {
+  background-color: #c3c3c3b5;
+  color: black;
 }
 
 
@@ -798,6 +829,12 @@ bottom: 0;
   opacity: 94%;
 
 }
+
+.previousSurfSessionBTN:hover {
+  background-color: #c3c3c3b5;
+  color: black;
+}
+
 
 .previousSurfSessionTitle {
   font-size: 40px;
@@ -874,6 +911,15 @@ bottom: 0;
 
 }
 
+.viewSurfSessionListBTN:hover {
+  background-color: #c3c3c3b5;
+  color: black;
+}
+
+.viewSurfSessionDeleteBTN:hover {
+  background-color: #ff0000;
+  color: black;
+}
 
 .viewSurfSessionDeleteBTN {
   font-family: "Catamaran-ExtraBold";
@@ -881,7 +927,7 @@ bottom: 0;
   width: 250px !important;
   font-weight: 900;
   font-size: 25px;
-  background-color: rgba(180, 9, 9, 0.902);
+  background-color: #ef3232;
   color: white;
   opacity: 80%;
   border-radius: 15px;
