@@ -267,13 +267,12 @@ const resolvers = {
 
       // console.log(user)
       //* Sign/Generate JWT Token
-      // const token = signToken(user);
+      const token = signToken(user);
 
       console.log("\x1b[32mAccount Creation Successful\x1b[0m");
 
       //* Return Token to User
-      // return { token, user };
-      return { user };
+      return { token, user };
     },
     login: async (parent, { memberEmail, password }) => {
 
@@ -343,6 +342,13 @@ const resolvers = {
 
       console.log("\x1b[32m   Email Update Successful\x1b[0m\n")
 
+      const user = await UserMongo.findOne({ _id });
+
+      // return userPostUpdate
+      //* Return Token to User
+      const token = signToken(user);
+      return { token, user };
+
     },
     updatePassword: async (parent, { password, _id }) => {
 
@@ -357,6 +363,10 @@ const resolvers = {
 
       console.log("\x1b[32m   Password Update Successful\x1b[0m\n")
 
+      const token = signToken(user);
+      return { token, user };
+      return user;
+
     },
     updateName: async (parent, { memberFirstName, memberLastName, _id }) => {
 
@@ -369,9 +379,9 @@ const resolvers = {
       const user = await UserMongo.findOne({ _id });
 
       // //* Return Token to User
-      // const token = signToken(user);
-      // return { token, user, admin };
-      return { user };
+      const token = signToken(user);
+      return { token, user };
+      return user;
 
     },
     createEvent: async (parent, { eventName, eventSlogan, eventDate, eventLength, eventDescription, eventPhotoURL, eventCurrent }) => {
@@ -381,28 +391,22 @@ const resolvers = {
       //* Request Database create a new "Event"
       const event = await EventMongo.create({ eventName, eventSlogan, eventDate, eventLength, eventDescription, eventPhotoURL, eventCurrent });
 
-      //TODO: Enable way to print this when it fails...
-      //console.log("\x1b[35mAccount Creation Failed: Email already associated with an account \x1b[0m");
-
-
-      // console.log(user)
-      //* Sign/Generate JWT Token
-      // const token = signToken(user);
-
       console.log("\x1b[32mEvent Creation Successful\x1b[0m");
-      console.log(event)
+      // console.log(event)
 
       //* Return Token to User
       // return { token, user };
-      return { event };
+      return event;
     },
     createSurfSession: async (parent, { userID, sessionDate, sessionTime, sessionLocation, skyConditions, waveSize, tideLevel, tideDirection, sessionLength, surfboardShaper, surfboardModel, surfboardLengthFT, surfboardLengthIN, surfboardVolume, surfboardFinConfig, sessionNotes, sessionRating  }) => {
 
       const surfSession = await SurfSessionMongo.create({ userID, sessionDate, sessionTime, sessionLocation, skyConditions, waveSize, tideLevel, tideDirection, sessionLength, surfboardShaper, surfboardModel, surfboardLengthFT, surfboardLengthIN, surfboardVolume, surfboardFinConfig, sessionNotes, sessionRating });
 
-      console.log("\x1b[32m CREATE: [" + surfSession.sessionID + "] Surf Session\x1b[0m\n")
+      // console.log(surfSession)
 
-      return { surfSession };
+      console.log("\x1b[32m CREATE: [" + surfSession._id + "] Surf Session\x1b[0m\n")
+
+      return surfSession;
     },
     deleteSurfSession: async (parent, { sessionID }) => {
 
