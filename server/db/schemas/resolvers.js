@@ -331,7 +331,8 @@ const resolvers = {
       
       //* Return Token to User
       const token = signToken(user);
-      return { token, user, admin };
+      // return { token, user, admin };
+      return { token, admin };
     },
     updateEmail: async (parent, { memberEmail, _id }) => {
 

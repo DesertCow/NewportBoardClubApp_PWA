@@ -14,25 +14,21 @@ import { useQuery } from '@apollo/client';
 
 function SurfLogHome() {
 
-  //* Grab Current User ID from JWT Token
-  let jwtToken = Auth.getToken()
-  jwtToken = JSON.parse(jwtToken)
+  const navigate = useNavigate();
+
+  //* Grab/Decode Current User ID from JWT Token
+  let jwtToken = Auth.getProfile()
 
   //* Get List of surf sessions for user from Database
   var { loading, data } = useQuery(getSurfSessionList_Q, {
-    variables: { userId: jwtToken.user._id },
+    variables: { userId: jwtToken.data._id },
   });
 
-  // User Data from DB
-  const usersName = "Slippy";
-  const userSessionCount = "69";
+  //TODO: Temp Hard Code till features working...
   const userFavBoard = "6'0 DHD Phoenix";
   const userFavSpot = "36th ST";
   const userLongestSession = "1:36";
   const userLastSessionDate = "6/12/2023";
-
-
-  const navigate = useNavigate();
 
   const handleCreateNewSession = async (event) => {
   event.preventDefault();
@@ -44,12 +40,8 @@ function SurfLogHome() {
   navigate("/surf_log/view_previous_sessions");
   };
 
-  // console.log(jwtToken)
-
   if(!loading)
   {
-
-    // console.log(data.getAllUsersSurfSession.length)
 
     return (
 
@@ -64,7 +56,7 @@ function SurfLogHome() {
         <div className="userDataBG">
           <div className="justify-content-center mt-5">
 
-            <h2 className="text-center mt-3 mb-5 welcomeName">{jwtToken.user.memberFirstName} {jwtToken.user.memberLastName}</h2>
+            <h2 className="text-center mt-3 mb-5 welcomeName">{jwtToken.data.memberFirstName} {jwtToken.data.memberLastName}</h2>
             
 
             <div className="text-center mb-5">
