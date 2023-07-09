@@ -329,9 +329,10 @@ const resolvers = {
 
       // console.log("USER = " + user);
       
-      //* Return Token to User
+      //* Return Signed Token to User
       const token = signToken(user);
-      return { token, user, admin };
+      // return { token, user, admin };
+      return { token, admin };
     },
     updateEmail: async (parent, { memberEmail, _id }) => {
 
@@ -341,7 +342,26 @@ const resolvers = {
 
       await UserMongo.updateOne({ _id: _id }, { $set: { memberEmail: memberEmail } })
 
-      console.log("\x1b[32m   Email Update Successful\x1b[0m\n")
+      console.log("\x1b[32m   Email Update Successful\x1b[0m\n");
+
+      //* Get updated user data from DB via Email
+      const user = await UserMongo.findOne({ memberEmail });
+
+      let admin = false
+
+      if (process.env.ADMIN_ACCOUNT == memberEmail) {
+        console.log("\n========================================")
+        console.log("=\x1b[31m    WARNING ADMIN LOG IN DETECTED!\x1b[0m    =")
+        console.log("========================================")
+        admin = true
+      }
+      else {
+        admin = false
+      }
+
+      //* Return Signed Token to User
+      const token = signToken(user);
+      return { token, admin };
 
     },
     updatePassword: async (parent, { password, _id }) => {
@@ -355,7 +375,14 @@ const resolvers = {
       //TODO: Add Try/Catch logic to print failed update to console
       await UserMongo.updateOne({ _id: _id }, { $set: { password: hashword } })
 
-      console.log("\x1b[32m   Password Update Successful\x1b[0m\n")
+      console.log("\x1b[32m   Password Update Successful\x1b[0m\n");
+
+      //* Get updated user data from DB via userID
+      const updatedUser = await UserMongo.findOne({ _id });
+
+      //* Return Signed Token to User
+      const token = signToken(updatedUser);
+      return { token };
 
     },
     updateName: async (parent, { memberFirstName, memberLastName, _id }) => {
@@ -366,12 +393,12 @@ const resolvers = {
 
       console.log("\x1b[32m   Name Update Successful\x1b[0m\n")
 
+      //* Get updated user data from DB via userID
       const user = await UserMongo.findOne({ _id });
 
-      // //* Return Token to User
-      // const token = signToken(user);
-      // return { token, user, admin };
-      return { user };
+      //* Return Signed Token to User
+      const token = signToken(user);
+      return { token };
 
     },
     createEvent: async (parent, { eventName, eventSlogan, eventDate, eventLength, eventDescription, eventPhotoURL, eventCurrent }) => {
@@ -382,19 +409,12 @@ const resolvers = {
       const event = await EventMongo.create({ eventName, eventSlogan, eventDate, eventLength, eventDescription, eventPhotoURL, eventCurrent });
 
       //TODO: Enable way to print this when it fails...
-      //console.log("\x1b[35mAccount Creation Failed: Email already associated with an account \x1b[0m");
-
-
-      // console.log(user)
-      //* Sign/Generate JWT Token
-      // const token = signToken(user);
+      //console.log("\x1b[35mEvent Creation Failed: \x1b[0m");
 
       console.log("\x1b[32mEvent Creation Successful\x1b[0m");
-      console.log(event)
+      // console.log(event)
 
-      //* Return Token to User
-      // return { token, user };
-      return { event };
+      return event;
     },
     createSurfSession: async (parent, { userID, sessionDate, sessionTime, sessionLocation, skyConditions, waveSize, tideLevel, tideDirection, sessionLength, surfboardShaper, surfboardModel, surfboardLengthFT, surfboardLengthIN, surfboardVolume, surfboardFinConfig, sessionNotes, sessionRating  }) => {
 
@@ -402,7 +422,7 @@ const resolvers = {
 
       console.log("\x1b[32m CREATE: [" + surfSession.sessionID + "] Surf Session\x1b[0m\n")
 
-      return { surfSession };
+      return surfSession;
     },
     deleteSurfSession: async (parent, { sessionID }) => {
 
@@ -411,7 +431,6 @@ const resolvers = {
       console.log("\x1b[31m DELETE: [" + sessionID + "] Surf Session\x1b[0m\n")
 
       return sessionID + " Surf Session Was Deleted Successfully!";
-      // return sessionDelete
     }
   },
 

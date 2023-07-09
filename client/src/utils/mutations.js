@@ -18,12 +18,8 @@ mutation CreateUser($memberEmail: String!, $password: String!, $clubPassword: St
 export const LOGIN_M = gql`
   mutation Login($password: String!, $memberEmail: String!) {
     login(password: $password, memberEmail: $memberEmail) {
-      user {
-        memberEmail
-        memberFirstName
-        memberLastName
-        _id
-      }
+      token
+      admin
     }
   }
 `;
@@ -47,10 +43,7 @@ export const PASS_UPDATE = gql`
 export const NAME_UPDATE = gql`
   mutation Mutation($id: String!, $memberFirstName: String!, $memberLastName: String!) {
     updateName(_id: $id, memberFirstName: $memberFirstName, memberLastName: $memberLastName) {
-      user {
-        memberFirstName
-        memberLastName
-      }
+      token
     }
   }
 `;

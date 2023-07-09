@@ -16,12 +16,11 @@ function ViewPreviousSessions() {
   const navigate = useNavigate();
 
   //* Grab Current User ID from JWT Token
-  let jwtToken = Auth.getToken()
-  jwtToken = JSON.parse(jwtToken)
+  let jwtToken = Auth.getProfile()
 
   //* Get List of surf sessions for user from Database
   var { loading, data } = useQuery(getSurfSessionList_Q, {
-    variables: { userId: jwtToken.user._id },
+    variables: { userId: jwtToken.data._id },
   });
 
   
