@@ -36,18 +36,21 @@ function ViewSurfSession() {
 
     console.log("Delete Session: " + surfSessionID)
 
+    let confirmCheck = confirm("Are you sure you want to delete this Surf Session?");
+
+    if(confirmCheck) {
     
+      const { surfSessionData } = await deleteSurfSession({
 
-    const { surfSessionData } = await deleteSurfSession({
+        variables: { 
+          sessionId: surfSessionID
+        },
+      });
 
-      variables: { 
-        sessionId: surfSessionID
-      },
-   });
+      navigate("/surf_log/view_previous_sessions");
+      location.reload()
+    }
 
-    
-    navigate("/surf_log/view_previous_sessions");
-    location.reload()
   };
 
 
