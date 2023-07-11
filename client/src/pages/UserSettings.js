@@ -137,7 +137,7 @@ function UserSettings() {
     // console.log(name)
     // console.log(value)
 
-    const { data2 } = await updateEmail({
+    const  tokenData = await updateEmail({
       variables: { ...emailState },
     });
 
@@ -149,6 +149,15 @@ function UserSettings() {
 
     // toast.success("Email Address Has Been Updated!", toastOptions);
     console.log("Email Address Has Been Updated!");
+
+    //* Generate Updated JWT Token
+    Auth.login(JSON.stringify(tokenData.data.updateEmail));
+
+    //* Refresh Page to grab updated data from stored JWT token
+    window.location.reload(false);
+
+
+    // window.location.reload(false);
 
   }
 
@@ -163,13 +172,20 @@ function UserSettings() {
     console.log("   Confirm : " + passwordState.confirm)
 
     if( passwordState.password === passwordState.confirm){
-      const { passData } = await updatePass({
+      const tokenData = await updatePass({
         variables: { ...passwordState },
       });
 
-      console.log(passData)
+      // console.log(tokenData)
       
       // toast.success("Password Has Been Updated!", toastOptions);
+      // window.location.reload(false);
+      
+      //* Generate Updated JWT Token
+      Auth.login(JSON.stringify(tokenData.data.updatePassword));
+
+      //* Refresh Page to grab updated data from stored JWT token
+      window.location.reload(false);
 
     }
     else {
@@ -189,13 +205,21 @@ function UserSettings() {
     console.log("   First Name: " + nameState.memberFirstName)
     console.log("   Last Name: " + nameState.memberLastName)
 
-    const { nameData } = await updateName({
+    const tokenData = await updateName({
       variables: { ...nameState },
     });
 
-    console.log(nameData)
+    // console.log("Token Data = " + JSON.stringify(tokenData.data.updateName))
+
+    // console.log(nameData)
 
     // toast.success("Name Has Been Updated!", toastOptions);
+
+    //* Generate Updated JWT Token
+    Auth.login(JSON.stringify(tokenData.data.updateName));
+
+    //* Refresh Page to grab updated data from stored JWT token
+    window.location.reload(false);
 
   }
 
