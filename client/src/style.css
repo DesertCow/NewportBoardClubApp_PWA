@@ -959,3 +959,11 @@ bottom: 0;
   font-family: "Catamaran-Regular";
   font-style: italic;
 }
+
+
+/*? ============= TOS and Privacy Policy Page ============= */
+
+.tosPageTitles {
+  font-family: "Catamaran-ExtraBold";
+  height: 50px;
+}

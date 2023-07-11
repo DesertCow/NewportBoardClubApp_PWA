@@ -95,7 +95,7 @@ const Login = (props) => {
         <div className="col-12 mt-3 text-center ">
           <img src={require("../img/BC_Logo_Clear_1.png")}
             className="logo"
-            alt="Salt Lick logo" />
+            alt="The Board Club Logo" />
         </div>
 
         <div className="mid col loginBox mx-5">
