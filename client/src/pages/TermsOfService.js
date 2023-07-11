@@ -8,10 +8,17 @@ function TermsOfService() {
 
   const handleLogoClick = async (event) => {
     event.preventDefault();
+
     navigate("/");
 
   };
 
+  const returnToSignUp = async (event) => {
+    event.preventDefault();
+
+    navigate("/userRegister");
+
+  };
 
 return (
 
@@ -26,6 +33,10 @@ return (
 
       <h1 className="tosPageTitles mt-4 text-center">Terms Of Service</h1>
       <p className="text-center mb-5">************ INSERT TOS ************</p>
+
+      <div className="d-flex justify-content-center">
+        <button className="registerBTN backToLoginBTN text-center mb-4 p-3 d-flex flex-column align-items-center justify-content-center" type="button" onClick={(event) => returnToSignUp(event)}>Return To Registration Page</button>
+      </div>
 
       <footer className="d-flex justify-content-center footerLogin">
         <div className="d-flex align-items-left pt-2 px-2 pb-1 justify-content-around contactFooter">
