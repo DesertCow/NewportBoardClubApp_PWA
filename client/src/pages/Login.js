@@ -23,14 +23,12 @@ const Login = (props) => {
     // console.log("Handle Submit!")
     // console.log(formState);
 
-    
-
     try {
       const { data } = await login({
         variables: { ...formState },
       });
 
-      console.log("DATA =" + JSON.stringify(data));
+      // console.log("DATA =" + JSON.stringify(data));
       Auth.login(JSON.stringify(data.login));
 
       // console.log("Admin Status: " + data.login.admin)
@@ -55,7 +53,7 @@ const Login = (props) => {
       password: '',
     });
 
-    // navigate("/home")
+    navigate("/home")
 
   };
 
