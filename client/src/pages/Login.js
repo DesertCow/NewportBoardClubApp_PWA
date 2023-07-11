@@ -30,6 +30,7 @@ const Login = (props) => {
         variables: { ...formState },
       });
 
+      console.log("DATA =" + JSON.stringify(data));
       Auth.login(JSON.stringify(data.login));
 
       // console.log("Admin Status: " + data.login.admin)
@@ -39,7 +40,7 @@ const Login = (props) => {
 
       if (data.login.admin) {
         // toast.warn("Admin Access!", toastOptions);
-        Auth.adminSet(true)
+        // Auth.adminSet(true)
       }
       // navigate("/Home")
 
@@ -54,7 +55,7 @@ const Login = (props) => {
       password: '',
     });
 
-    navigate("/home")
+    // navigate("/home")
 
   };
 
