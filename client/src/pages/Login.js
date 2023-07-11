@@ -23,14 +23,12 @@ const Login = (props) => {
     // console.log("Handle Submit!")
     // console.log(formState);
 
-    
-
     try {
       const { data } = await login({
         variables: { ...formState },
       });
 
-      console.log("DATA =" + JSON.stringify(data));
+      // console.log("DATA =" + JSON.stringify(data));
       Auth.login(JSON.stringify(data.login));
 
       // console.log("Admin Status: " + data.login.admin)
@@ -55,7 +53,7 @@ const Login = (props) => {
       password: '',
     });
 
-    // navigate("/home")
+    navigate("/home")
 
   };
 
@@ -95,7 +93,7 @@ const Login = (props) => {
         <div className="col-12 mt-3 text-center ">
           <img src={require("../img/BC_Logo_Clear_1.png")}
             className="logo"
-            alt="Salt Lick logo" />
+            alt="The Board Club Logo" />
         </div>
 
         <div className="mid col loginBox mx-5">

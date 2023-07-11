@@ -7,6 +7,8 @@ import { CREATE_USER } from '../utils/mutations';
 
 import React, { useEffect, useState } from "react";
 
+import Form from 'react-bootstrap/Form';
+
 import Auth from '../utils/auth';
 
 
@@ -37,8 +39,14 @@ function UserSignUp() {
   const HandleSignUp = async (event) => {
     event.preventDefault();
 
+    //* Grab Status of TOS Check Box
+    let tosStatus = document.getElementById("tosCheckBox").checked;
+
+
+    //TODO: Add Code to validate signup data
     // if (validateSignUp()) {
-    if (true) {
+    if (tosStatus) {
+
       const { memberEmail, password, memberFirstName, memberLastName, clubPassword } = values;
 
       //* Create New User In Database
@@ -47,6 +55,7 @@ function UserSignUp() {
           variables: { ...values },
         });
 
+        // console.log(data)
         Auth.login(JSON.stringify(data.createUser));
 
         
@@ -58,6 +67,9 @@ function UserSignUp() {
         // toast.error("Sign-Up Failed", toastOptions);
         console.error(e);
       }
+    } else {
+      // console.log("TOS BOX NOT CHECKED!")
+      window.alert("Terms Of Service and Privacy Policy Acceptance Box Not Checked!");
     };
 
   }
@@ -162,18 +174,12 @@ return (
 
           <div className="px-4 mt-4 d-flex flex-column align-items-center justify-content-center">
             {/* <div className="tosBox d-flex m-2 form-check"> */}
-            <div className="form-check m-1">
-              <div className="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                {/* <div className="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."> */}
-                {/* </input> */}
-                {/* <label className="tosText form-check-label" for="flexCheckDefault"> */}
-                {/* <label className="form-check-label" for="flexCheckDefault">
-                  By signing up you are accepting the Terms Of Service and Privacy Policy
-                </label> */}
-
-              </div>
-              <div>
-                <h1 className="tosText pb-2 px-2" htmlFor="tosBoxID">By signing up you are accepting the <a href="/TermsOfService">Terms Of Service</a> and <a href="/PrivacyPolicy">Privacy Policy.</a></h1>
+            <div className="flex-column form-check m-1">
+              <div className="d-flex flex-row">
+                <input className="mb-2" type="checkbox" name="tosCheckBox" id="tosCheckBox" value="1"></input>
+                <h1 className="tosText mx-2" htmlFor="tosBoxID">
+                  By signing up you are accepting the <a href="/TermsOfService">Terms Of Service</a> and <a href="/PrivacyPolicy">Privacy Policy.</a>
+                </h1>
               </div>
             </div>
           </div>

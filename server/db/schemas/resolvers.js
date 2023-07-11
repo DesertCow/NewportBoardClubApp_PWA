@@ -267,13 +267,13 @@ const resolvers = {
 
       // console.log(user)
       //* Sign/Generate JWT Token
-      // const token = signToken(user);
+      const token = signToken(user);
 
       console.log("\x1b[32mAccount Creation Successful\x1b[0m");
 
       //* Return Token to User
-      // return { token, user };
-      return { user };
+      return { token };
+
     },
     login: async (parent, { memberEmail, password }) => {
 
