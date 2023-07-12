@@ -1,5 +1,8 @@
 
-
+var AWS = require('aws-sdk');
+// import { parseUrl } from "@aws-sdk/url-parser";
+var parseUrl = require('@aws-sdk/url-parser');
+var formatUrl = require('@aws-sdk/util-format-url');
 
 //* Models for SQL and MongoDB 
 // const { UserMongo, FoodItem, Category, Orders } = require('../../models');
@@ -26,6 +29,45 @@ let tideRising = "false";
 let surfline36thURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnabled=true&units%5BswellHeight%5D=FT&units%5Btemperature%5D=F&units%5BtideHeight%5D=FT&units%5BwaveHeight%5D=FT&units%5BwindSpeed%5D=MPH&spotIds=5842041f4e65fad6a770882a";
 let surflineBatchURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnabled=true&units%5BswellHeight%5D=FT&units%5Btemperature%5D=F&units%5BtideHeight%5D=FT&units%5BwaveHeight%5D=FT&units%5BwindSpeed%5D=MPH&spotIds=584204204e65fad6a7709115%2C5842041f4e65fad6a770882a%2C5842041f4e65fad6a7708e54%2C5842041f4e65fad6a77088ee";
 let realTimeData = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
+
+
+//* AWS Config (Get from ENV later...)
+var userProfileBucket = "theboardclubprofilepictures";
+// var userProfileBucket = "theboardclubevents";
+var bucketRegion = "us-west-1";
+var poolId = "us-west-1:1b2d3ad5-d56a-4b99-b141-18d6c6451a4f";
+
+AWS.config.update({
+  region: bucketRegion,
+  credentials: new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: poolId
+  })
+});
+
+var s3 = new AWS.S3({
+  apiVersion: "2006-03-01",
+  params: { Bucket: userProfileBucket }
+});
+
+
+const createPresignedUrlWithoutClient = async ({ region, bucket, key }) => {
+
+  console.log( region + "|||" + bucket + "|||" + key );
+  // const url = parseUrl(`https://${bucket}.s3.${region}.amazonaws.com/${key}`);
+  // const presigner = new S3RequestPresigner({
+  //   credentials: fromIni(),
+  //   region,
+  //   sha256: Hash.bind(null, "sha256"),
+  // });
+
+  const signedUrlObject = "======= Secure URL =======";
+  // const signedUrlObject = await presigner.presign(
+  //   new HttpRequest({ ...url, method: "PUT" })
+  // );
+  // return formatUrl(signedUrlObject);
+};
+
+
 
 const resolvers = {
 
@@ -256,9 +298,35 @@ const resolvers = {
 
         console.log("   \x1b[33mUser (" + userID +") Has Requested Upload URL\x1b[0m");
 
+
+
+
+        //* Request S3 for upload URL
+
+        // var myCredentials = new AWS.CognitoIdentityCredentials({IdentityPoolId:'IDENTITY_POOL_ID'});
+        // var myConfig = new AWS.Config({
+        //   credentials: myCredentials, region: 'us-west-2'
+        // });
+
+        s3.listObjects({ Delimiter: "/" }, function(err, data) {
+
+          console.log(data)
+
+        })
+
+        let profileUploadFileName = userID + ".jpg";
+
+        console.log("Filename = " + profileUploadFileName) 
+
+        const noClientUrl = await createPresignedUrlWithoutClient({
+          region: bucketRegion,
+          bucket: userProfileBucket,
+          key: profileUploadFileName,
+        });
+
         // const requestedSession = await SurfSessionMongo.findOne({_id: sessionID});
 
-        console.log("\n   Generate secure URL with file name \n   " + userID + ".jpeg" );
+        // console.log("\n   Generate secure URL with file name \n   " + userID + ".jpeg" );
 
         // return requestedSession;
         return secureS3url;
