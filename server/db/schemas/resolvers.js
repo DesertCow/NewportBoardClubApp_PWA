@@ -1,12 +1,12 @@
 
 var AWS = require('aws-sdk');
 // import { parseUrl } from "@aws-sdk/url-parser";
-var { parseUrl } = require('@aws-sdk/url-parser');
-var { formatUrl } = require('@aws-sdk/util-format-url');
-var { S3RequestPresigner } = require("@aws-sdk/s3-request-presigner");
-var { fromIni } = require("@aws-sdk/credential-providers");
-var { Hash } = require("@aws-sdk/hash-node");
-var { HttpRequest } = require('@aws-sdk/protocol-http');
+// var { parseUrl } = require('@aws-sdk/url-parser');
+// var { formatUrl } = require('@aws-sdk/util-format-url');
+// var { S3RequestPresigner } = require("@aws-sdk/s3-request-presigner");
+// var { fromIni } = require("@aws-sdk/credential-providers");
+// var { Hash } = require("@aws-sdk/hash-node");
+// var { HttpRequest } = require('@aws-sdk/protocol-http');
 
 //* Models for SQL and MongoDB 
 // const { UserMongo, FoodItem, Category, Orders } = require('../../models');
@@ -40,44 +40,26 @@ var userProfileBucket = "theboardclubprofilepictures";
 // var userProfileBucket = "theboardclubevents";
 var bucketRegion = "us-west-1";
 var poolId = "us-west-1:1b2d3ad5-d56a-4b99-b141-18d6c6451a4f";
-const URL_EXPIRATION_SECONDS = 300
+const URL_EXPIRATION_SECONDS = 900
 
-AWS.config.update({
-  region: bucketRegion,
-  credentials: new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: poolId
-  })
+// AWS.config.update({
+//   region: bucketRegion,
+//   credentials: new AWS.CognitoIdentityCredentials({
+//     IdentityPoolId: poolId
+//   })
+// });
+
+AWS.config.region = 'us-west-1'; // Region
+
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'us-west-1:1b2d3ad5-d56a-4b99-b141-18d6c6451a4f',
 });
 
 var s3 = new AWS.S3({
   apiVersion: "2006-03-01",
+  signatureVersion: 'v4',
   params: { Bucket: userProfileBucket }
 });
-
-
-const createPresignedUrlWithoutClient = async ({ region, bucket, key }) => {
-
-  console.log( region + "|||" + bucket + "|||" + key );
-
-  const url = parseUrl(`https://${bucket}.s3.${region}.amazonaws.com/${key}`);
-
-  const presigner = new S3RequestPresigner({
-    credentials: new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: poolId
-  }),
-    region,
-    sha256: Hash.bind(null, "sha256"),
-  });
-
-  // const signedUrlObject = "======= Secure URL =======";
-  // const signedUrlObject = "Secure URL: " + JSON.stringify(presigner);
-  const signedUrlObject = await presigner.presign(
-    new HttpRequest({ ...url, method: "PUT" })
-  );
-  return formatUrl(url);
-  // return signedUrlObject;
-};
-
 
 
 const resolvers = {
@@ -325,7 +307,7 @@ const resolvers = {
 
         // })
 
-        const profileUploadFileName = userID + ".jpg";
+        const profileUploadFileName = userID.substring(35) + ".jpg";
 
         console.log("Filename = " + profileUploadFileName) 
 
@@ -350,8 +332,8 @@ const resolvers = {
         // return requestedSession;
         // return uploadURL;
           return JSON.stringify({
-            uploadURL: uploadURL,
-            Key: profileUploadFileName
+            uploadURL: uploadURL
+            // Key: profileUploadFileName
           })
 
       }
