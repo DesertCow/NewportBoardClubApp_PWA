@@ -40,6 +40,7 @@ var userProfileBucket = "theboardclubprofilepictures";
 // var userProfileBucket = "theboardclubevents";
 var bucketRegion = "us-west-1";
 var poolId = "us-west-1:1b2d3ad5-d56a-4b99-b141-18d6c6451a4f";
+const URL_EXPIRATION_SECONDS = 300
 
 AWS.config.update({
   region: bucketRegion,
@@ -318,28 +319,40 @@ const resolvers = {
         //   credentials: myCredentials, region: 'us-west-2'
         // });
 
-        s3.listObjects({ Delimiter: "/" }, function(err, data) {
+        // s3.listObjects({ Delimiter: "/" }, function(err, data) {
 
-          console.log(data)
+        //   console.log(data)
 
-        })
+        // })
 
-        let profileUploadFileName = userID + ".jpg";
+        const profileUploadFileName = userID + ".jpg";
 
         console.log("Filename = " + profileUploadFileName) 
 
-        const noClientUrl = await createPresignedUrlWithoutClient({
-          region: bucketRegion,
-          bucket: userProfileBucket,
-          key: profileUploadFileName,
-        });
+        // const noClientUrl = await createPresignedUrlWithoutClient({
+        //   region: bucketRegion,
+        //   bucket: userProfileBucket,
+        //   key: profileUploadFileName,
+        // });
 
         // const requestedSession = await SurfSessionMongo.findOne({_id: sessionID});
+        
+        const s3Params = {
+          // Bucket: process.env.UploadBucket,
+          Bucket: userProfileBucket,
+          Key: profileUploadFileName,
+          Expires: URL_EXPIRATION_SECONDS,
+          ContentType: 'image/jpeg'
+        }
 
         // console.log("\n   Generate secure URL with file name \n   " + userID + ".jpeg" );
-
+        const uploadURL = await s3.getSignedUrlPromise('putObject', s3Params)
         // return requestedSession;
-        return noClientUrl;
+        // return uploadURL;
+          return JSON.stringify({
+            uploadURL: uploadURL,
+            Key: profileUploadFileName
+          })
 
       }
  
