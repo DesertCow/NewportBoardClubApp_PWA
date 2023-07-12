@@ -1,8 +1,12 @@
 
 var AWS = require('aws-sdk');
 // import { parseUrl } from "@aws-sdk/url-parser";
-var parseUrl = require('@aws-sdk/url-parser');
-var formatUrl = require('@aws-sdk/util-format-url');
+var { parseUrl } = require('@aws-sdk/url-parser');
+var { formatUrl } = require('@aws-sdk/util-format-url');
+var { S3RequestPresigner } = require("@aws-sdk/s3-request-presigner");
+var { fromIni } = require("@aws-sdk/credential-providers");
+var { Hash } = require("@aws-sdk/hash-node");
+var { HttpRequest } = require('@aws-sdk/protocol-http');
 
 //* Models for SQL and MongoDB 
 // const { UserMongo, FoodItem, Category, Orders } = require('../../models');
@@ -53,18 +57,24 @@ var s3 = new AWS.S3({
 const createPresignedUrlWithoutClient = async ({ region, bucket, key }) => {
 
   console.log( region + "|||" + bucket + "|||" + key );
-  // const url = parseUrl(`https://${bucket}.s3.${region}.amazonaws.com/${key}`);
-  // const presigner = new S3RequestPresigner({
-  //   credentials: fromIni(),
-  //   region,
-  //   sha256: Hash.bind(null, "sha256"),
-  // });
 
-  const signedUrlObject = "======= Secure URL =======";
-  // const signedUrlObject = await presigner.presign(
-  //   new HttpRequest({ ...url, method: "PUT" })
-  // );
-  // return formatUrl(signedUrlObject);
+  const url = parseUrl(`https://${bucket}.s3.${region}.amazonaws.com/${key}`);
+
+  const presigner = new S3RequestPresigner({
+    credentials: new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: poolId
+  }),
+    region,
+    sha256: Hash.bind(null, "sha256"),
+  });
+
+  // const signedUrlObject = "======= Secure URL =======";
+  // const signedUrlObject = "Secure URL: " + JSON.stringify(presigner);
+  const signedUrlObject = await presigner.presign(
+    new HttpRequest({ ...url, method: "PUT" })
+  );
+  return formatUrl(url);
+  // return signedUrlObject;
 };
 
 
@@ -294,7 +304,7 @@ const resolvers = {
       },
       uploadUserProfilePicture: async (parent, { userID }) => {
 
-        let secureS3url = "-------SECURE URL LINK-------";
+        // let secureS3url = "-------SECURE URL LINK-------";
 
         console.log("   \x1b[33mUser (" + userID +") Has Requested Upload URL\x1b[0m");
 
@@ -329,7 +339,7 @@ const resolvers = {
         // console.log("\n   Generate secure URL with file name \n   " + userID + ".jpeg" );
 
         // return requestedSession;
-        return secureS3url;
+        return noClientUrl;
 
       }
  
