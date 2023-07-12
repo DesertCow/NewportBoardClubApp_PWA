@@ -25,6 +25,8 @@ function UserSettings() {
   const [updateName, { nameData }] = useMutation(NAME_UPDATE);
 
   const [getSecureURL, { secureURLdata } ] = useLazyQuery(getURLupload_Q);
+  // const [file, setFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState();
 
 
   const todayDate = new Date()
@@ -40,6 +42,17 @@ function UserSettings() {
   let jwtToken = Auth.getProfile()
   // console.log("Login! = " + JSON.stringify(login))
 
+  
+  //* Handle Profile Picture to be uploaded
+  // const handleFileChange = (e) => {
+  //   const file = e.target.files[0];
+  //   setFile(file);
+  // };
+
+  const changeHandler = (event) => {
+		setSelectedFile(event.target.files[0]);
+		// setIsSelected(true);
+	};
 
   //* update state based on form input changes
   const handleEmailChange = (event) => {
@@ -233,6 +246,9 @@ function UserSettings() {
   const HandleProfilePictureUpload = async (event) => {
     event.preventDefault();
 
+
+
+
     console.log("Request Secure upload URL from S3 via GraphQL");
 
     // const secureURL = await getSecureURL({
@@ -255,7 +271,21 @@ function UserSettings() {
 
     // }
     
+    const formData = new FormData();
 
+    // formData.append('File', selectedFile);
+
+    fetch(
+      parsedUploadURL,
+			{
+				method: 'PUT',
+				body: selectedFile,
+        headers: {
+          "Content-Type": "image/jpeg",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+			}
+		)
 
       //* Get Event Data from App Server
       // var { loading, data } = await useQuery(getURLupload_Q, {
@@ -268,6 +298,8 @@ function UserSettings() {
       // }
 
   }
+
+  console.log("https://theboardclubprofilepictures.s3.us-west-1.amazonaws.com/" + jwtToken.data._id + ".jpg")
 
   return (
 
@@ -292,7 +324,12 @@ function UserSettings() {
             alt="User Icon" />
           </div>
         </div>
-        <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleProfilePictureUpload(event)}>Upload Profile Picture</button>
+        {/* <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleProfilePictureUpload(event)}>Upload Profile Picture</button> */}
+        <div>
+          <input type="file" name="profilePictureFile" onChange={changeHandler} />
+          {/* <button onClick={uploadFile}>Upload</button> */}
+          <button onClick={(event) => HandleProfilePictureUpload(event)}>Upload</button>
+        </div>
       </div>
 
       <form className="mx-5 mt-0 applyMainFont mb-5">
