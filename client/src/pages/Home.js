@@ -59,7 +59,7 @@ function Home() {
 
   return (
 
-    <div className="d-flex flex-column min-vh-100">
+    <div className="d-flex flex-column min-vh-100 align-items-center justify-content-center">
       {/* <header className="mt-auto mb-0"> */}
       <header className="">
         <Header />
