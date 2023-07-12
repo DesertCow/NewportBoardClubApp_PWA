@@ -86,11 +86,11 @@ const Login = (props) => {
 //* ########################### RETURN ###########################
 
   return (
- <div className="d-flex flex-column w-100">
+ <div className="d-flex flex-column align-items-center justify-content-center">
 
-      <div className="row d-flex align-items-center justify-content-center">
+      <div className="row d-flex w-100">
 
-        <div className="col-12 mt-3 text-center ">
+        <div className="col-12 mt-3 text-center">
           <img src={require("../img/BC_Logo_Clear_1.png")}
             className="logo"
             alt="The Board Club Logo" />
