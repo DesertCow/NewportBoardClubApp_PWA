@@ -227,7 +227,7 @@ const resolvers = {
 
         const requestedEvent = await EventMongo.findOne({_id: eventID})
 
-        console.log("\x1b[33mEvent Requested (" + eventID + ")\x1b[0m")
+        console.log("   \x1b[33mEvent Requested (" + eventID + ")\x1b[0m")
         // console.log(requestedEvent);
 
         return requestedEvent
@@ -248,6 +248,20 @@ const resolvers = {
         const requestedSession = await SurfSessionMongo.findOne({_id: sessionID});
 
         return requestedSession;
+
+      },
+      uploadUserProfilePicture: async (parent, { userID }) => {
+
+        let secureS3url = "-------SECURE URL LINK-------";
+
+        console.log("   \x1b[33mUser (" + userID +") Has Requested Upload URL\x1b[0m");
+
+        // const requestedSession = await SurfSessionMongo.findOne({_id: sessionID});
+
+        console.log("\n   Generate secure URL with file name \n   " + userID + ".jpeg" );
+
+        // return requestedSession;
+        return secureS3url;
 
       }
  
