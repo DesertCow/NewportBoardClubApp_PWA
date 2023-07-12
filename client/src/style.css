@@ -54,10 +54,15 @@
   color: black;
 }
 
+.homeMenu {
+  max-width: 100%;
+}
+
 /*? ============= Header Component ============= */
 
 .NavBarClass {
   background-color: #C3C3C3;
+  max-width: 100%;
 }
 
 .HeaderClass {

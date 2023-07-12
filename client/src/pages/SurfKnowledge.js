@@ -43,7 +43,7 @@ function SurfKnowledge() {
 
   return (
 
-    <div className="d-flex flex-column min-vh-100">
+    <div className="d-flex flex-column min-vh-100 align-items-center justify-content-center">
       <header className="">
         <Header />
       </header>
