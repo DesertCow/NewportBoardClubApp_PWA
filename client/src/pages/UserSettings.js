@@ -10,7 +10,7 @@ import { useState, useCallback } from 'react';
 // import { PASS_UPDATE, EMAIL_UPDATE, LOGIN_Q, NAME_UPDATE } from '../utils/mutations';
 import { EMAIL_UPDATE, PASS_UPDATE, NAME_UPDATE } from '../utils/mutations';
 import { getURLupload_Q } from '../utils/queries';
-import { useMutation, useQuery  } from '@apollo/client';
+import { useMutation, useLazyQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 
 
@@ -24,7 +24,7 @@ function UserSettings() {
   const [updateEmail, { emailData }] = useMutation(EMAIL_UPDATE);
   const [updateName, { nameData }] = useMutation(NAME_UPDATE);
 
-  // const [getSecureURL, secureURLdata ] = useQuery(getURLupload_Q);
+  const [getSecureURL, { secureURLdata } ] = useLazyQuery(getURLupload_Q);
 
 
   const todayDate = new Date()
@@ -234,6 +234,28 @@ function UserSettings() {
     event.preventDefault();
 
     console.log("Request Secure upload URL from S3 via GraphQL");
+
+    // const secureURL = await getSecureURL({
+    //   userId: jwtToken.data._id
+    // })
+      //* Get requested Event from Database
+    const URLdata = await getSecureURL({
+      variables: { userId: jwtToken.data._id},
+    });
+
+    // if(!loading){
+      
+    let parsedUploadURL = URLdata.data.uploadUserProfilePicture.split(`https:`)
+
+    parsedUploadURL = "https:" + parsedUploadURL[1];
+    parsedUploadURL = parsedUploadURL.substring(0, parsedUploadURL.length - 2)
+      
+      console.log("Raw Data: " + JSON.stringify(URLdata.data));
+      console.log("Secure URL: " + parsedUploadURL);
+
+    // }
+    
+
 
       //* Get Event Data from App Server
       // var { loading, data } = await useQuery(getURLupload_Q, {
