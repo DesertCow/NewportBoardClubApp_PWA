@@ -9,7 +9,8 @@ import { useState, useCallback } from 'react';
 
 // import { PASS_UPDATE, EMAIL_UPDATE, LOGIN_Q, NAME_UPDATE } from '../utils/mutations';
 import { EMAIL_UPDATE, PASS_UPDATE, NAME_UPDATE } from '../utils/mutations';
-import { useMutation } from '@apollo/client';
+import { getURLupload_Q } from '../utils/queries';
+import { useMutation, useQuery  } from '@apollo/client';
 import Auth from '../utils/auth';
 
 
@@ -22,7 +23,8 @@ function UserSettings() {
   const [updatePass, { passData }] = useMutation(PASS_UPDATE);
   const [updateEmail, { emailData }] = useMutation(EMAIL_UPDATE);
   const [updateName, { nameData }] = useMutation(NAME_UPDATE);
-  // const [loginTwo, { loginData }] = useMutation(LOGIN_Q);
+
+  // const [getSecureURL, secureURLdata ] = useQuery(getURLupload_Q);
 
 
   const todayDate = new Date()
@@ -223,6 +225,28 @@ function UserSettings() {
 
   }
 
+  //* Get Event Data from App Server
+  // var { loading, data } = await useQuery(getURLupload_Q, {
+  //   variables: { userId: jwtToken.data._id },
+  // });
+
+  const HandleProfilePictureUpload = async (event) => {
+    event.preventDefault();
+
+    console.log("Request Secure upload URL from S3 via GraphQL");
+
+      //* Get Event Data from App Server
+      // var { loading, data } = await useQuery(getURLupload_Q, {
+      //   variables: { userId: jwtToken.data._id },
+      // });
+      // // var { loading, data } = useQuery(getURLupload_Q)
+
+      // if(!loading) {
+      //   console.log("Secure URL: " + data)
+      // }
+
+  }
+
   return (
 
     <div className="d-flex flex-column min-vh-100">
@@ -235,13 +259,18 @@ function UserSettings() {
       
       <h1 className="editProfileText text-center mt-5">{jwtToken.data.memberFirstName} {jwtToken.data.memberLastName}</h1>
       <h3 className="editProfileText text-center"> Welcome to your Board Club Profile!</h3>
-
-      <div className="my-3">
-        <div className="text-center">
-          <img src={require("../img/Avatar.jpg")}
-            className="avatarIcon"
-          alt="User Icon" />
+      
+      <div className="mx-2 text-center">
+        <div className="my-3">
+          <div className="text-center">
+            {/* <img src={require("../img/Avatar.jpg")} */}
+            {/* <img src={"https://theboardclubprofilepictures.s3.us-west-1.amazonaws.com/3IZYnXSkBOn34JYpONvfetWnW.jpg"} */}
+            <img src={"https://theboardclubprofilepictures.s3.us-west-1.amazonaws.com/" + jwtToken.data._id + ".jpg"}
+              className="avatarIcon"
+            alt="User Icon" />
+          </div>
         </div>
+        <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleProfilePictureUpload(event)}>Upload Profile Picture</button>
       </div>
 
       <form className="mx-5 mt-0 applyMainFont mb-5">

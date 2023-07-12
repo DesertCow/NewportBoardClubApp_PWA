@@ -40,20 +40,33 @@ var userProfileBucket = "theboardclubprofilepictures";
 // var userProfileBucket = "theboardclubevents";
 var bucketRegion = "us-west-1";
 var poolId = "us-west-1:1b2d3ad5-d56a-4b99-b141-18d6c6451a4f";
-const URL_EXPIRATION_SECONDS = 900
+const URL_EXPIRATION_SECONDS = 300
 
-// AWS.config.update({
-//   region: bucketRegion,
-//   credentials: new AWS.CognitoIdentityCredentials({
-//     IdentityPoolId: poolId
-//   })
+AWS.config.update({
+  region: bucketRegion,
+  credentials: new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: poolId
+  })
+});
+
+// AWS.config.region = 'us-west-1'; // Region
+
+// var credentials = {
+//   accessKeyId: process.env.S3_ACCESS_KEY,
+//   secretAccessKey : process.env.S3_SECRET_KEY
+// };
+
+// AWS.config.credentials = 
+
+// AWS.config.update({credentials: credentials, region: 'us-west-1'});
+
+// AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+//     IdentityPoolId: 'us-west-1:1b2d3ad5-d56a-4b99-b141-18d6c6451a4f',
 // });
 
-AWS.config.region = 'us-west-1'; // Region
+// console.log(process.env.S3_ACCESS_KEY)
 
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-west-1:1b2d3ad5-d56a-4b99-b141-18d6c6451a4f',
-});
+
 
 var s3 = new AWS.S3({
   apiVersion: "2006-03-01",
@@ -307,7 +320,7 @@ const resolvers = {
 
         // })
 
-        const profileUploadFileName = userID.substring(35) + ".jpg";
+        const profileUploadFileName = userID + ".jpg";
 
         console.log("Filename = " + profileUploadFileName) 
 
