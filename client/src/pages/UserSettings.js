@@ -25,7 +25,7 @@ function UserSettings() {
   const [updateName, { nameData }] = useMutation(NAME_UPDATE);
 
   const [getSecureURL, { secureURLdata } ] = useLazyQuery(getURLupload_Q);
-  // const [file, setFile] = useState(null);
+
   const [selectedFile, setSelectedFile] = useState();
 
 
@@ -238,44 +238,29 @@ function UserSettings() {
 
   }
 
-  //* Get Event Data from App Server
-  // var { loading, data } = await useQuery(getURLupload_Q, {
-  //   variables: { userId: jwtToken.data._id },
-  // });
-
   const HandleProfilePictureUpload = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
-
-
-
-    console.log("Request Secure upload URL from S3 via GraphQL");
-
-    // const secureURL = await getSecureURL({
-    //   userId: jwtToken.data._id
-    // })
-      //* Get requested Event from Database
+    //* Request secure URL for upload from AWS/S3 via graphQL
     const URLdata = await getSecureURL({
       variables: { userId: jwtToken.data._id},
     });
 
-    // if(!loading){
-      
+    console.log("Raw Data: " + JSON.stringify(URLdata.data));  
+
     let parsedUploadURL = URLdata.data.uploadUserProfilePicture.split(`https:`)
 
+    //* Add back HTTPS that was parsed off
     parsedUploadURL = "https:" + parsedUploadURL[1];
+
+    //* Remove last two trailing chars to cleanup URL
     parsedUploadURL = parsedUploadURL.substring(0, parsedUploadURL.length - 2)
       
-      console.log("Raw Data: " + JSON.stringify(URLdata.data));
-      console.log("Secure URL: " + parsedUploadURL);
-
-    // }
     
-    const formData = new FormData();
+    console.log("Secure URL: " + parsedUploadURL);
 
-    // formData.append('File', selectedFile);
-
-    fetch(
+    //* Use parsed/clean URL to submit PUT request to S3 server
+    const response = await fetch(
       parsedUploadURL,
 			{
 				method: 'PUT',
@@ -283,23 +268,21 @@ function UserSettings() {
         headers: {
           "Content-Type": "image/jpeg",
           // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
+        },
 			}
 		)
 
-      //* Get Event Data from App Server
-      // var { loading, data } = await useQuery(getURLupload_Q, {
-      //   variables: { userId: jwtToken.data._id },
-      // });
-      // // var { loading, data } = useQuery(getURLupload_Q)
+    // console.log(response.status);
 
-      // if(!loading) {
-      //   console.log("Secure URL: " + data)
-      // }
+    //* After Fetch is complete reload page to display new user Profile Picture
+    if(response.status == 200){
+      window.location.reload(false);
+    }
+    else{
+      //TODO: Add error handling for failed upload!
+    }
 
   }
-
-  console.log("https://theboardclubprofilepictures.s3.us-west-1.amazonaws.com/" + jwtToken.data._id + ".jpg")
 
   return (
 
@@ -317,19 +300,16 @@ function UserSettings() {
       <div className="mx-2 text-center">
         <div className="my-3">
           <div className="text-center">
-            {/* <img src={require("../img/Avatar.jpg")} */}
-            {/* <img src={"https://theboardclubprofilepictures.s3.us-west-1.amazonaws.com/3IZYnXSkBOn34JYpONvfetWnW.jpg"} */}
             <img src={"https://theboardclubprofilepictures.s3.us-west-1.amazonaws.com/" + jwtToken.data._id + ".jpg"}
               className="avatarIcon"
             alt="User Icon" />
           </div>
         </div>
         {/* <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleProfilePictureUpload(event)}>Upload Profile Picture</button> */}
-        <div>
-          <input type="file" name="profilePictureFile" onChange={changeHandler} />
-          {/* <button onClick={uploadFile}>Upload</button> */}
-          <button onClick={(event) => HandleProfilePictureUpload(event)}>Upload</button>
+        <div className="mt-3">
+          <input className="p-2 uploadBox" type="file" name="profilePictureFile" onChange={changeHandler} />
         </div>
+        <button className="mt-3 py-2 userProfileUpdateBtn" onClick={(event) => HandleProfilePictureUpload(event)}>Upload</button>
       </div>
 
       <form className="mx-5 mt-0 applyMainFont mb-5">

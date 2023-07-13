@@ -437,9 +437,12 @@
 
 /*? ============= User Settings Page ============= */
 
-/* .userSettings {
-
-} */
+.uploadBox {
+  /* background-color: #1519d2; */
+  border-style: solid;
+  border-color: #c3c3c3b5;
+  border-width: 5px;
+}
 
 .avatarIcon {
   width: 200px;
