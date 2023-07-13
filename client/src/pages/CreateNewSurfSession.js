@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
 import WeatherWidget from "../components/WeatherWidget";
 
+import { useNavigate } from "react-router-dom";
 
 import { useMutation } from '@apollo/client';
 import { CREATE_SURF_SESSION } from '../utils/mutations';
@@ -19,10 +20,15 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 function CreateNewSession() {
 
+  const navigate = useNavigate();
+
   const [surfSessionState, setSurfSessionState] = useState({ userID: '', sessionDate: '' , sessionDate: '' , sessionTime: '' , sessionLocation: '' , skyConditions: '' , waveSize: '' , tideLevel: '' , sessionNotes: '' , sessionRating: '' , surfboardShaper: '' , surfboardModel: '' , surfboardLengthFT: '' , surfboardLengthIN: '' , surfboardVolume: '' , surfboardFinConfig: ''});
 
-  let login = Auth.getToken()
-  login = JSON.parse(login)
+  //* Grab and Decode JWT Token
+  let jwtToken = Auth.getProfile()
+
+  // let login = Auth.getToken()
+  // login = JSON.parse(login)
 
   const todayDate = new Date()
 
@@ -101,7 +107,7 @@ function CreateNewSession() {
 
       
       variables: { 
-        userId: login.user._id,
+        userId: jwtToken.data._id,
         sessionDate: surfSessionDateFinal,
         sessionTime: surfSessionTimeFinal,
         sessionLocation: surfSessionForm.get("surfLocation"),
@@ -121,6 +127,8 @@ function CreateNewSession() {
       },
     });
 
+    navigate("/surf_log/view_previous_sessions");
+    window.location.reload(false);
   }
 
 
