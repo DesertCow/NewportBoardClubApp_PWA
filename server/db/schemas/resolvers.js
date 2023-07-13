@@ -8,8 +8,16 @@ var AWS = require('aws-sdk');
 // var { Hash } = require("@aws-sdk/hash-node");
 // var { HttpRequest } = require('@aws-sdk/protocol-http');
 
-//* Models for SQL and MongoDB 
-// const { UserMongo, FoodItem, Category, Orders } = require('../../models');
+// const defaultProfilePictureFile = require("../../asset/Default_Profile.jpg");
+const fs = require('fs');
+
+// fs.readFile('../../asset/Default_Profile.jpg', 'utf8' ,function(err, data)){
+
+// }
+
+
+
+//* Models for MongoDB 
 const UserMongo = require('../../models/UserMongo');
 const EventMongo = require('../../models/EventMongo');
 const SurfSessionMongo = require('../../models/SurfSession');
@@ -302,7 +310,7 @@ const resolvers = {
 
         // let secureS3url = "-------SECURE URL LINK-------";
 
-        console.log("   \x1b[33mUser (" + userID +") Has Requested Upload URL\x1b[0m");
+        console.log("\n   \x1b[33mUser (" + userID +") Has Requested Upload URL\x1b[0m");
 
 
 
@@ -349,8 +357,45 @@ const resolvers = {
             // Key: profileUploadFileName
           })
 
+      },
+      uploadUserDefaultProfilePicture: async (parent, { userID }) => {
+      
+        const fileKey = userID + ".jpg";
+
+        // fs.readFile('../../asset/test.txt', 'utf8', function(err, data){
+      
+        //     // Display the file content
+        //     console.log(data);
+        // });
+
+        // fs.readFile('../../asset/test.txt', 'utf8', function(err, data){
+      
+        //     // Display the file content
+        //     console.log(data);
+        // });
+
+        try {
+          const defaultProfilePictureFile = fs.readFileSync('C:/Users/Desert-Cow/Dev/Main_Clone_Zone/boardClubApp/server/asset/Default_Profile.jpg');
+          console.log(defaultProfilePictureFile);
+        } catch (err) {
+          console.error(err);
+        }
+
+        
+        
+        console.log("\n   \x1b[32mNew Account (" + userID +") Has Been Created!\x1b[0m");
+        console.log("   \x1b[33mUploading Default Profile Picture as (" + fileKey + ")\x1b[0m");
+
+        const s3Params = {
+          Bucket: userProfileBucket,
+          Key: fileKey,
+          Expires: URL_EXPIRATION_SECONDS,
+          ContentType: 'image/jpeg'
+        }
+
+
+
       }
- 
     },
 
   Mutation: {

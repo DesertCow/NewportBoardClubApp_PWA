@@ -58,6 +58,12 @@ function UserSignUp() {
         // console.log(data)
         Auth.login(JSON.stringify(data.createUser));
 
+
+        
+        //* Grab and Decode JWT Token
+        let jwtToken = Auth.getProfile()
+
+        console.log("New User ID: " + jwtToken.data._id)
         
         // toast.success("Sign-Up Successful!", toastOptions);
         // console.log("Sign-Up Successful!");
