@@ -113,3 +113,9 @@ export const getEvent_Q = gql`
     }
   }
 `;
+
+export const getURLupload_Q = gql`
+query Query($userId: String!) {
+  uploadUserProfilePicture(userID: $userId)
+}
+`;

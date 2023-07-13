@@ -16,6 +16,7 @@ const typeDefs = `#graphql
     getEvent(eventID: String): Event
     getAllUsersSurfSession(userID: String!): [SurfSession]
     getSurfSession(sessionID: String!): SurfSession
+    uploadUserProfilePicture(userID: String!): String
   }
 
   type Mutation {

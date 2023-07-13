@@ -9,7 +9,8 @@ import { useState, useCallback } from 'react';
 
 // import { PASS_UPDATE, EMAIL_UPDATE, LOGIN_Q, NAME_UPDATE } from '../utils/mutations';
 import { EMAIL_UPDATE, PASS_UPDATE, NAME_UPDATE } from '../utils/mutations';
-import { useMutation } from '@apollo/client';
+import { getURLupload_Q } from '../utils/queries';
+import { useMutation, useLazyQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 
 
@@ -22,7 +23,10 @@ function UserSettings() {
   const [updatePass, { passData }] = useMutation(PASS_UPDATE);
   const [updateEmail, { emailData }] = useMutation(EMAIL_UPDATE);
   const [updateName, { nameData }] = useMutation(NAME_UPDATE);
-  // const [loginTwo, { loginData }] = useMutation(LOGIN_Q);
+
+  const [getSecureURL, { secureURLdata } ] = useLazyQuery(getURLupload_Q);
+
+  const [selectedFile, setSelectedFile] = useState();
 
 
   const todayDate = new Date()
@@ -38,6 +42,17 @@ function UserSettings() {
   let jwtToken = Auth.getProfile()
   // console.log("Login! = " + JSON.stringify(login))
 
+  
+  //* Handle Profile Picture to be uploaded
+  // const handleFileChange = (e) => {
+  //   const file = e.target.files[0];
+  //   setFile(file);
+  // };
+
+  const changeHandler = (event) => {
+		setSelectedFile(event.target.files[0]);
+		// setIsSelected(true);
+	};
 
   //* update state based on form input changes
   const handleEmailChange = (event) => {
@@ -223,6 +238,52 @@ function UserSettings() {
 
   }
 
+  const HandleProfilePictureUpload = async (event) => {
+    // event.preventDefault();
+
+    //* Request secure URL for upload from AWS/S3 via graphQL
+    const URLdata = await getSecureURL({
+      variables: { userId: jwtToken.data._id},
+    });
+
+    console.log("Raw Data: " + JSON.stringify(URLdata.data));  
+
+    let parsedUploadURL = URLdata.data.uploadUserProfilePicture.split(`https:`)
+
+    //* Add back HTTPS that was parsed off
+    parsedUploadURL = "https:" + parsedUploadURL[1];
+
+    //* Remove last two trailing chars to cleanup URL
+    parsedUploadURL = parsedUploadURL.substring(0, parsedUploadURL.length - 2)
+      
+    
+    console.log("Secure URL: " + parsedUploadURL);
+
+    //* Use parsed/clean URL to submit PUT request to S3 server
+    const response = await fetch(
+      parsedUploadURL,
+			{
+				method: 'PUT',
+				body: selectedFile,
+        headers: {
+          "Content-Type": "image/jpeg",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+			}
+		)
+
+    // console.log(response.status);
+
+    //* After Fetch is complete reload page to display new user Profile Picture
+    if(response.status == 200){
+      window.location.reload(false);
+    }
+    else{
+      //TODO: Add error handling for failed upload!
+    }
+
+  }
+
   return (
 
     <div className="d-flex flex-column min-vh-100">
@@ -235,13 +296,20 @@ function UserSettings() {
       
       <h1 className="editProfileText text-center mt-5">{jwtToken.data.memberFirstName} {jwtToken.data.memberLastName}</h1>
       <h3 className="editProfileText text-center"> Welcome to your Board Club Profile!</h3>
-
-      <div className="my-3">
-        <div className="text-center">
-          <img src={require("../img/Avatar.jpg")}
-            className="avatarIcon"
-          alt="User Icon" />
+      
+      <div className="mx-2 text-center">
+        <div className="my-3">
+          <div className="text-center">
+            <img src={"https://theboardclubprofilepictures.s3.us-west-1.amazonaws.com/" + jwtToken.data._id + ".jpg"}
+              className="avatarIcon"
+            alt="User Icon" />
+          </div>
         </div>
+        {/* <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleProfilePictureUpload(event)}>Upload Profile Picture</button> */}
+        <div className="mt-3">
+          <input className="p-2 uploadBox" type="file" name="profilePictureFile" onChange={changeHandler} />
+        </div>
+        <button className="mt-3 py-2 userProfileUpdateBtn" onClick={(event) => HandleProfilePictureUpload(event)}>Upload</button>
       </div>
 
       <form className="mx-5 mt-0 applyMainFont mb-5">

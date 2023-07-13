@@ -1,5 +1,12 @@
 
-
+var AWS = require('aws-sdk');
+// import { parseUrl } from "@aws-sdk/url-parser";
+// var { parseUrl } = require('@aws-sdk/url-parser');
+// var { formatUrl } = require('@aws-sdk/util-format-url');
+// var { S3RequestPresigner } = require("@aws-sdk/s3-request-presigner");
+// var { fromIni } = require("@aws-sdk/credential-providers");
+// var { Hash } = require("@aws-sdk/hash-node");
+// var { HttpRequest } = require('@aws-sdk/protocol-http');
 
 //* Models for SQL and MongoDB 
 // const { UserMongo, FoodItem, Category, Orders } = require('../../models');
@@ -26,6 +33,47 @@ let tideRising = "false";
 let surfline36thURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnabled=true&units%5BswellHeight%5D=FT&units%5Btemperature%5D=F&units%5BtideHeight%5D=FT&units%5BwaveHeight%5D=FT&units%5BwindSpeed%5D=MPH&spotIds=5842041f4e65fad6a770882a";
 let surflineBatchURL = "https://services.surfline.com/kbyg/spots/batch?cacheEnabled=true&units%5BswellHeight%5D=FT&units%5Btemperature%5D=F&units%5BtideHeight%5D=FT&units%5BwaveHeight%5D=FT&units%5BwindSpeed%5D=MPH&spotIds=584204204e65fad6a7709115%2C5842041f4e65fad6a770882a%2C5842041f4e65fad6a7708e54%2C5842041f4e65fad6a77088ee";
 let realTimeData = "https://api.weather.com/v2/pws/observations/current?stationId=KCANEWPO204&format=json&units=e&apiKey=f157bb453d9d4a5997bb453d9d9a59af";
+
+
+//* AWS Config (Get from ENV later...)
+var userProfileBucket = "theboardclubprofilepictures";
+// var userProfileBucket = "theboardclubevents";
+var bucketRegion = "us-west-1";
+var poolId = "us-west-1:1b2d3ad5-d56a-4b99-b141-18d6c6451a4f";
+const URL_EXPIRATION_SECONDS = 300
+
+AWS.config.update({
+  region: bucketRegion,
+  credentials: new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: poolId
+  })
+});
+
+// AWS.config.region = 'us-west-1'; // Region
+
+// var credentials = {
+//   accessKeyId: process.env.S3_ACCESS_KEY,
+//   secretAccessKey : process.env.S3_SECRET_KEY
+// };
+
+// AWS.config.credentials = 
+
+// AWS.config.update({credentials: credentials, region: 'us-west-1'});
+
+// AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+//     IdentityPoolId: 'us-west-1:1b2d3ad5-d56a-4b99-b141-18d6c6451a4f',
+// });
+
+// console.log(process.env.S3_ACCESS_KEY)
+
+
+
+var s3 = new AWS.S3({
+  apiVersion: "2006-03-01",
+  signatureVersion: 'v4',
+  params: { Bucket: userProfileBucket }
+});
+
 
 const resolvers = {
 
@@ -227,7 +275,7 @@ const resolvers = {
 
         const requestedEvent = await EventMongo.findOne({_id: eventID})
 
-        console.log("\x1b[33mEvent Requested (" + eventID + ")\x1b[0m")
+        console.log("   \x1b[33mEvent Requested (" + eventID + ")\x1b[0m")
         // console.log(requestedEvent);
 
         return requestedEvent
@@ -248,6 +296,58 @@ const resolvers = {
         const requestedSession = await SurfSessionMongo.findOne({_id: sessionID});
 
         return requestedSession;
+
+      },
+      uploadUserProfilePicture: async (parent, { userID }) => {
+
+        // let secureS3url = "-------SECURE URL LINK-------";
+
+        console.log("   \x1b[33mUser (" + userID +") Has Requested Upload URL\x1b[0m");
+
+
+
+
+        //* Request S3 for upload URL
+
+        // var myCredentials = new AWS.CognitoIdentityCredentials({IdentityPoolId:'IDENTITY_POOL_ID'});
+        // var myConfig = new AWS.Config({
+        //   credentials: myCredentials, region: 'us-west-2'
+        // });
+
+        // s3.listObjects({ Delimiter: "/" }, function(err, data) {
+
+        //   console.log(data)
+
+        // })
+
+        const profileUploadFileName = userID + ".jpg";
+
+        console.log("Filename = " + profileUploadFileName) 
+
+        // const noClientUrl = await createPresignedUrlWithoutClient({
+        //   region: bucketRegion,
+        //   bucket: userProfileBucket,
+        //   key: profileUploadFileName,
+        // });
+
+        // const requestedSession = await SurfSessionMongo.findOne({_id: sessionID});
+        
+        const s3Params = {
+          // Bucket: process.env.UploadBucket,
+          Bucket: userProfileBucket,
+          Key: profileUploadFileName,
+          Expires: URL_EXPIRATION_SECONDS,
+          ContentType: 'image/jpeg'
+        }
+
+        // console.log("\n   Generate secure URL with file name \n   " + userID + ".jpeg" );
+        const uploadURL = await s3.getSignedUrlPromise('putObject', s3Params)
+        // return requestedSession;
+        // return uploadURL;
+          return JSON.stringify({
+            uploadURL: uploadURL
+            // Key: profileUploadFileName
+          })
 
       }
  
