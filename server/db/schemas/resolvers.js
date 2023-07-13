@@ -10,6 +10,7 @@ var AWS = require('aws-sdk');
 
 // const defaultProfilePictureFile = require("../../asset/Default_Profile.jpg");
 const fs = require('fs');
+const path = require('node:path');
 
 // fs.readFile('../../asset/Default_Profile.jpg', 'utf8' ,function(err, data)){
 
@@ -360,41 +361,37 @@ const resolvers = {
       },
       uploadUserDefaultProfilePicture: async (parent, { userID }) => {
       
+        //* Generate File Name based off UserID
         const fileKey = userID + ".jpg";
 
-        // fs.readFile('../../asset/test.txt', 'utf8', function(err, data){
-      
-        //     // Display the file content
-        //     console.log(data);
-        // });
+        //* Create FULL path to load default picture
+        let defaultProfilePicturePath = path.join(path.dirname(require.main.filename),"/assets/Default_Profile.jpg");
 
-        // fs.readFile('../../asset/test.txt', 'utf8', function(err, data){
-      
-        //     // Display the file content
-        //     console.log(data);
-        // });
+        //* Replace backslash(s) in path to forwardslash(s)
+        defaultProfilePicturePath = defaultProfilePicturePath.replace(/\\/g, '/');
 
-        try {
-          const defaultProfilePictureFile = fs.readFileSync('C:/Users/Desert-Cow/Dev/Main_Clone_Zone/boardClubApp/server/asset/Default_Profile.jpg');
-          console.log(defaultProfilePictureFile);
-        } catch (err) {
-          console.error(err);
-        }
+        //* Load Default Profile Picture
+        const defaultProfilePictureFile = fs.readFileSync(defaultProfilePicturePath);
 
-        
-        
         console.log("\n   \x1b[32mNew Account (" + userID +") Has Been Created!\x1b[0m");
         console.log("   \x1b[33mUploading Default Profile Picture as (" + fileKey + ")\x1b[0m");
 
         const s3Params = {
           Bucket: userProfileBucket,
           Key: fileKey,
-          Expires: URL_EXPIRATION_SECONDS,
-          ContentType: 'image/jpeg'
+          Body: defaultProfilePictureFile
         }
 
+        await s3.upload(s3Params, function(err, data) {
+        if (err) {
+            throw err;
+        }
+        console.log("\x1b[32m   File " + fileKey + " successfully uploaded.\n   \x1b[33m" + data.Location + "\x1b[0m");
+        return data.Location;
+        });
 
-
+      //  console.log(uploadURL);
+        return "Upload Successfully!";
       }
     },
 

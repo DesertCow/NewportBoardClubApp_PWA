@@ -115,7 +115,13 @@ export const getEvent_Q = gql`
 `;
 
 export const getURLupload_Q = gql`
-query Query($userId: String!) {
-  uploadUserProfilePicture(userID: $userId)
-}
+  query Query($userId: String!) {
+    uploadUserProfilePicture(userID: $userId)
+  }
+`;
+
+export const defaultProfilePictureUpload_Q = gql`
+  query Query($userId: String!) {
+    uploadUserDefaultProfilePicture(userID: $userId)
+  }
 `;
