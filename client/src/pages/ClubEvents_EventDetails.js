@@ -48,7 +48,7 @@ function EventDetails() {
                 />
               </div>
 
-              <h1 className="mt-2 px-2 text-center eventDetailsEventTitle">{data.getEvent.eventName}</h1>
+              <h1 className="mt-2 px-3 text-center eventDetailsEventTitle">{data.getEvent.eventName}</h1>
 
               <h3 className="mt-2 eventDetailsEventSlogan">{data.getEvent.eventSlogan}</h3>
 

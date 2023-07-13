@@ -17,12 +17,19 @@ const EventMongo = require('../../models/EventMongo');
     eventCurrent: false
   },
   { 
-    eventName: "SOLID Surfboards Demo Day",
-    eventSlogan: "Come on out and demo some awsome surfboards!",  
-    eventDate: "5-15-23",
-    eventBody: "Swing by the club to demo a wide selection of SOLID surfboards.",
-    eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/Solid_Surf_Demo_Day.jpg",
-    eventLength: "6",
+    eventName: "Solid Surfboard's Demo Day",
+    eventSlogan: "July 8th from 8am - 11am",  
+    eventDate: "7-8-23",
+    eventBody: `<div style="text-align: center;">
+                  <p style="text-align: center; margin-top: 15px; padding: 0px 20px 0px 20px;">
+                This Saturday the Solid Surfboards crew will be at the Board Club with a wide selection of models for members to try out from 8-11am. Donuts will be here to fuel you up, and with fun waves in the water, you won't want to miss out on this opportunity.
+                  </p>
+                  <div style="text-align: center; margin-top: 30px;">
+                    🤙	See ya Saturday! 🤙	
+                  </div>
+                </div>`,
+    eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/Solid_Surf_Demo_Day_7-8-23.jpg",
+    eventLength: "3",
     eventCurrent: false
   },
   {  
@@ -33,6 +40,19 @@ const EventMongo = require('../../models/EventMongo');
     eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/BenDidGo8p0.jpg",
     eventLength: "2",
     eventCurrent: false
+  },
+  {  
+    eventName: "Summer Kickoff Art Fair",
+    eventSlogan: "Support Your Local Artisans",  
+    eventDate: "6-24-23",
+    eventBody: `<div style="text-align: center;">
+                  <p style="text-align: center; margin-top: 15px; padding: 0px 20px 0px 20px;">
+                It's slowly starting to feel like Summer and everyone will be looking for fun things to do so we're hosting another Art Fair!  Come check out the different artwork, photography, jewelry, succulents and other cool stuff from your locals artisans.
+                  </p>
+                </div>`,
+    eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/SummerArtFair.jpg",
+    eventLength: "4",
+    eventCurrent: true
   },
   {  
     eventName: "Surf Coaching with Spencer Pirdy",
@@ -64,15 +84,6 @@ const EventMongo = require('../../models/EventMongo');
                 </div>`,
     eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/Spencer%2BPirdy.jpeg",
     eventLength: "2",
-    eventCurrent: true
-  },
-  {  
-    eventName: "Summer Kickoff Art Fair",
-    eventSlogan: "Support Your Local Artisans",  
-    eventDate: "6-24-23",
-    eventBody: "It's slowly starting to feel like Summer and everyone will be looking for fun things to do so we're hosting another Art Fair!  Come check out the different artwork, photography, jewelry, succulents and other cool stuff from your locals artisans.",
-    eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/SummerArtFair.jpg",
-    eventLength: "4",
     eventCurrent: true
   },
 

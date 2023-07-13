@@ -285,7 +285,7 @@ const resolvers = {
         const requestedEvent = await EventMongo.findOne({_id: eventID})
 
         console.log("   \x1b[33mEvent Requested (" + eventID + ")\x1b[0m")
-        console.log(requestedEvent);
+        // console.log(requestedEvent);
 
         return requestedEvent
 
