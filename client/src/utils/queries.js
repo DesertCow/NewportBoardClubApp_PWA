@@ -41,7 +41,7 @@ export const getCurrentEvents_Q = gql`
       eventSlogan
       eventDate
       eventLength
-      eventDescription
+      eventBody
       eventPhotoURL
       eventCurrent
     }
@@ -56,7 +56,7 @@ export const getHistoryEvents_Q = gql`
       eventSlogan
       eventDate
       eventLength
-      eventDescription
+      eventBody
       eventPhotoURL
       eventCurrent
     }
@@ -107,7 +107,7 @@ export const getEvent_Q = gql`
       eventSlogan
       eventDate
       eventLength
-      eventDescription
+      eventBody
       eventPhotoURL
       eventCurrent
     }

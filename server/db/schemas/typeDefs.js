@@ -26,7 +26,7 @@ const typeDefs = `#graphql
     updateEmail(_id: String!, memberEmail: String!): Auth
     updatePassword(_id: String!, password: String!): Auth
     updateName(_id: String!, memberFirstName: String!, memberLastName: String!): Auth
-    createEvent( eventName: String!, eventSlogan: String!, eventDate: String!, eventLength: String, eventDescription: String!, eventPhotoURL: String!, eventCurrent: Boolean!): Event
+    createEvent( eventName: String!, eventSlogan: String!, eventDate: String!, eventLength: String, eventBody: String!, eventPhotoURL: String!, eventCurrent: Boolean!): Event
     createSurfSession( userID: String!, sessionDate: String!, sessionTime: String!, sessionLocation: String, skyConditions: String!, waveSize: String!, tideLevel: Float, tideDirection: String, sessionLength: String!, surfboardShaper: String, surfboardModel: String, surfboardLengthFT: Int, surfboardLengthIN: Int, surfboardVolume: Float, surfboardFinConfig: String, sessionNotes: String, sessionRating: Int): SurfSession
     deleteSurfSession(sessionID: String!): String
   }
@@ -48,7 +48,7 @@ const typeDefs = `#graphql
     eventSlogan: String
     eventDate: String
     eventLength: String
-    eventDescription: String
+    eventBody: String
     eventPhotoURL: String
     eventCurrent: Boolean
   }

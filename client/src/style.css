@@ -968,6 +968,10 @@ bottom: 0;
   font-style: italic;
 }
 
+.eventBottomMargin{
+  margin-bottom: 100px;
+}
+
 
 /*? ============= TOS and Privacy Policy Page ============= */
 

@@ -7,6 +7,8 @@ import WeatherWidget from "../components/WeatherWidget";
 import { getEvent_Q } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 
+import { Interweave } from 'interweave';
+
 function EventDetails() {
 
   let eventID = window.location.href.split(`/club_events/event/`)
@@ -23,6 +25,8 @@ function EventDetails() {
   {
 
     let eventData = data.getEvent
+
+    console.log(eventData)
 
     return (
 
@@ -48,9 +52,9 @@ function EventDetails() {
 
               <h3 className="mt-2 eventDetailsEventSlogan">{data.getEvent.eventSlogan}</h3>
 
-              <p className="mt-4 px-2 text-center">
-                {data.getEvent.eventDescription}
-              </p>
+              <div className="mt-0 eventBottomMargin text-center">
+                <Interweave content={data.getEvent.eventBody} />
+              </div>
             
             </div>
 

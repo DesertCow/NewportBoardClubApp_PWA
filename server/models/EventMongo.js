@@ -23,7 +23,7 @@ const eventSchema = new Schema({
     required: true,
     trim: true,
   },
-  eventDescription: {
+  eventBody: {
     type: String,
     required: true,
     trim: true,
