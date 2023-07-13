@@ -2,8 +2,9 @@
 
 import { useNavigate } from "react-router-dom";
 
-import { useMutation } from '@apollo/client';
+import { useMutation, useLazyQuery } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
+import { defaultProfilePictureUpload_Q } from '../utils/queries';
 
 import React, { useEffect, useState } from "react";
 
@@ -17,6 +18,7 @@ function UserSignUp() {
   const [values, setValues] = useState({ memberEmail: "", password: "", confirmPassword: "", memberFirstName: "", memberLastName: "", clubPassword: "" });
 
   const [createUser, { error, data }] = useMutation(CREATE_USER);
+  const [getDefaultProfilePictureUpload, { defaultProfilePictureUploadData } ] = useLazyQuery(defaultProfilePictureUpload_Q);
 
   const navigate = useNavigate();
 
@@ -55,9 +57,20 @@ function UserSignUp() {
           variables: { ...values },
         });
 
-        // console.log(data)
+        //* Generate New JWT Token
         Auth.login(JSON.stringify(data.createUser));
 
+        //* Grab and Decode JWT Token
+        let jwtToken = Auth.getProfile()
+
+        // console.log("New User ID: " + jwtToken.data._id)
+
+        //* Trigger Sever to upload a default User Profile Picture for new Account
+        const defaultProfileData = await getDefaultProfilePictureUpload({
+          variables: { userId: jwtToken.data._id},
+        });
+
+        // console.log(defaultProfileData)
         
         // toast.success("Sign-Up Successful!", toastOptions);
         // console.log("Sign-Up Successful!");

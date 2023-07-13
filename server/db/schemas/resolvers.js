@@ -8,8 +8,17 @@ var AWS = require('aws-sdk');
 // var { Hash } = require("@aws-sdk/hash-node");
 // var { HttpRequest } = require('@aws-sdk/protocol-http');
 
-//* Models for SQL and MongoDB 
-// const { UserMongo, FoodItem, Category, Orders } = require('../../models');
+// const defaultProfilePictureFile = require("../../asset/Default_Profile.jpg");
+const fs = require('fs');
+const path = require('node:path');
+
+// fs.readFile('../../asset/Default_Profile.jpg', 'utf8' ,function(err, data)){
+
+// }
+
+
+
+//* Models for MongoDB 
 const UserMongo = require('../../models/UserMongo');
 const EventMongo = require('../../models/EventMongo');
 const SurfSessionMongo = require('../../models/SurfSession');
@@ -302,7 +311,7 @@ const resolvers = {
 
         // let secureS3url = "-------SECURE URL LINK-------";
 
-        console.log("   \x1b[33mUser (" + userID +") Has Requested Upload URL\x1b[0m");
+        console.log("\n   \x1b[33mUser (" + userID +") Has Requested Upload URL\x1b[0m");
 
 
 
@@ -349,8 +358,41 @@ const resolvers = {
             // Key: profileUploadFileName
           })
 
+      },
+      uploadUserDefaultProfilePicture: async (parent, { userID }) => {
+      
+        //* Generate File Name based off UserID
+        const fileKey = userID + ".jpg";
+
+        //* Create FULL path to load default picture
+        let defaultProfilePicturePath = path.join(path.dirname(require.main.filename),"/assets/Default_Profile.jpg");
+
+        //* Replace backslash(s) in path to forwardslash(s)
+        defaultProfilePicturePath = defaultProfilePicturePath.replace(/\\/g, '/');
+
+        //* Load Default Profile Picture
+        const defaultProfilePictureFile = fs.readFileSync(defaultProfilePicturePath);
+
+        console.log("\n   \x1b[32mNew Account (" + userID +") Has Been Created!\x1b[0m");
+        console.log("   \x1b[33mUploading Default Profile Picture as (" + fileKey + ")\x1b[0m");
+
+        const s3Params = {
+          Bucket: userProfileBucket,
+          Key: fileKey,
+          Body: defaultProfilePictureFile
+        }
+
+        await s3.upload(s3Params, function(err, data) {
+        if (err) {
+            throw err;
+        }
+        console.log("\x1b[32m   File " + fileKey + " successfully uploaded.\n   \x1b[33m" + data.Location + "\x1b[0m");
+        return data.Location;
+        });
+
+      //  console.log(uploadURL);
+        return "Upload Successfully!";
       }
- 
     },
 
   Mutation: {

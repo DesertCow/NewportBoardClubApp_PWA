@@ -62,7 +62,7 @@ function SurfLogHome() {
             <div className="text-center mb-5">
               <img src={"https://theboardclubprofilepictures.s3.us-west-1.amazonaws.com/" + jwtToken.data._id + ".jpg"}
                 className="userPhoto"
-                alt="Outside Shot of Board Club" />
+                alt="User Profile Picture" />
             </div>
           </div>
           
