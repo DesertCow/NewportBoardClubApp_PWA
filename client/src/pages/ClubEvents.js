@@ -61,7 +61,7 @@ function ClubEvents_Current() {
 
   }
 
-
+  //* Load Current Events
   if(!loading && !checked) {
 
 
@@ -113,6 +113,7 @@ function ClubEvents_Current() {
 
   }
 
+  //* Load Historic Events
   if(!loading && checked) {
 
 

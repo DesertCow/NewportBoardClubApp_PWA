@@ -28,7 +28,7 @@ function Home() {
 
   const handleClubEvents = async (event) => {
   event.preventDefault();
-  navigate("/club_events/current_events");
+  navigate("/club_events");
   };
 
   const handleSurfLog = async (event) => {
