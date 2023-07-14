@@ -25,6 +25,7 @@
     "react-scripts": "^5.0.1",
     "react-select-datepicker": "^2.1.2",
     "react-spinners": "^0.13.8",
+    "react-switch": "^7.0.0",
     "react-time-picker": "^6.2.0",
     "styled-components": "^5.3.11"
   },
