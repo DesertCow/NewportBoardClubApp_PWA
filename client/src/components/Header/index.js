@@ -64,7 +64,7 @@ const Header = () => {
                       className="homePageLogo"
                       alt="Board Club Logo" />
                     <div className="row d-flex align-items-center justify-content-center clubStatusText mt-2 ml-0">
-                      <div className='col'>Club Status: </div>
+                      <div className='col'>Club House: </div>
                       <div className='col d-flex ml-0 align-items-center justify-content-start'>
                         <ClipLoader
                           color={color}
@@ -217,7 +217,7 @@ const Header = () => {
                       className="homePageLogo"
                       alt="Board Club Logo" />                  
                     <div className="row d-flex align-items-center justify-content-center clubStatusText mt-2 ml-0">
-                      <div className='col'>Club Status: </div>
+                      <div className='col'>Club House: </div>
                       <div className='col d-flex ml-0 align-items-center justify-content-start' style={{color: data.getWX.clubStatus ? 'green' : 'red'}}>
                         {currentClubStatus}
                       </div>
