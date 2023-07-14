@@ -36,9 +36,14 @@ function Home() {
   navigate("/surf_log");
   };
 
-  const handleSurfKnowledge = async (event) => {
+  const handleSurfHacks = async (event) => {
   event.preventDefault();
-  navigate("/surf_knowledge");
+  navigate("/surf_hacks");
+  };
+
+  const handleNewportSurfMap = async (event) => {
+  event.preventDefault();
+  navigate("/newport_surf_map");
   };
 
   const handleCommunityForum = async (event) => {
@@ -81,7 +86,10 @@ function Home() {
           <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleCommunityForum(event)}>Community Forum</div>
         </div>
         <div className="row px-5 py-3">
-          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleSurfKnowledge(event)}>Surf Knowledge</div>
+          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleSurfHacks(event)}>Surf Hacks</div>
+        </div>
+        <div className="row px-5 py-3">
+          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleNewportSurfMap(event)}>Newport Surf Map</div>
         </div>
         <div className="row px-5 py-3">
           <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleRentals(event)}>Rentals</div>
