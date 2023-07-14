@@ -13,18 +13,21 @@ const NavFooter = () => {
   const navigate = useNavigate();
 
   const handleHomeClicked = async (event) => {
-  event.preventDefault();
-  navigate("/home");
+    event.preventDefault();
+    navigate("/home");
+    window.scrollTo(0, 0);
   };
 
   const handleSurfLogClicked = async (event) => {
-  event.preventDefault();
-  navigate("/surf_log");
+    event.preventDefault();
+    navigate("/surf_log");
+    window.scrollTo(0, 0);
   };
 
   const handleUserSettingsClicked = async (event) => {
-  event.preventDefault();
-  navigate("/user_settings");
+    event.preventDefault();
+    navigate("/user_settings");
+    window.scrollTo(0, 0);
   };
 
 

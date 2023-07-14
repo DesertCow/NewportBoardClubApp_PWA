@@ -31,13 +31,15 @@ function SurfLogHome() {
   const userLastSessionDate = "6/12/2023";
 
   const handleCreateNewSession = async (event) => {
-  event.preventDefault();
-  navigate("/surf_log/create_new_session");
+    event.preventDefault();
+    navigate("/surf_log/create_new_session");
+    window.scrollTo(0, 0);
   };
 
   const handlePreviousSessions = async (event) => {
-  event.preventDefault();
-  navigate("/surf_log/view_previous_sessions");
+    event.preventDefault();
+    navigate("/surf_log/view_previous_sessions");
+    window.scrollTo(0, 0);
   };
 
   if(!loading)

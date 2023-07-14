@@ -27,38 +27,45 @@ function Home() {
   const navigate = useNavigate();
 
   const handleClubEvents = async (event) => {
-  event.preventDefault();
-  navigate("/club_events");
+    event.preventDefault();
+    navigate("/club_events");
+    window.scrollTo(0, 0);
   };
 
   const handleSurfLog = async (event) => {
-  event.preventDefault();
-  navigate("/surf_log");
+    event.preventDefault();
+    navigate("/surf_log");
+    window.scrollTo(0, 0);
   };
 
   const handleSurfHacks = async (event) => {
-  event.preventDefault();
-  navigate("/surf_hacks");
+    event.preventDefault();
+    navigate("/surf_hacks");
+    window.scrollTo(0, 0);
   };
 
   const handleNewportSurfMap = async (event) => {
-  event.preventDefault();
-  navigate("/newport_surf_map");
+    event.preventDefault();
+    navigate("/newport_surf_map");
+    window.scrollTo(0, 0);
   };
 
   const handleCommunityForum = async (event) => {
-  event.preventDefault();
-  navigate("/community_forum");
+    event.preventDefault();
+    navigate("/community_forum");
+    window.scrollTo(0, 0);
   };
 
   const handleRentals = async (event) => {
-  event.preventDefault();
-  navigate("/surf_rentals");
+    event.preventDefault();
+    navigate("/surf_rentals");
+    window.scrollTo(0, 0);
   };
 
   const handleAbout = async (event) => {
-  event.preventDefault();
-  navigate("/about_club");
+    event.preventDefault();
+    navigate("/about_club");
+    window.scrollTo(0, 0);
   };
 
 
