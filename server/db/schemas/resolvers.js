@@ -102,7 +102,7 @@ const resolvers = {
       if(currentTime.getDay() != 1){
 
         //* Check it's between 8am and 6pm
-        if((currentTime.getHours() > 8) && (currentTime.getHours() < 16)){
+        if((currentTime.getHours() > 8) && (currentTime.getHours() < 18)){
 
           // console.log("Current Time: "+ currentTime.getHours());
           finalClubStatus = true;
