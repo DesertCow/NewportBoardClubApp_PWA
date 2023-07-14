@@ -8,15 +8,6 @@ const EventMongo = require('../../models/EventMongo');
  const EventsSeed = [
 
   { 
-    eventName: "STAB in the Dark at The Board Club",
-    eventSlogan: "Win Italo Ferreira's Surfboard!",  
-    eventDate: "5-27-23",
-    eventBody: "Don't miss this one! The Board Club has partnered with Billabong and STAB in the Dark to show their final episode featuring Italo Ferreira. There will be giveaways for wetsuits, T-shirts, hats, and all kinds of awesome gear. But most importantly, Italo Ferreira's surfboards from the show will be here at the club for you to check out and one of them will be raffled off to a Board Club member in attendance! I'm serious, you can win Italo's board. Free food and beverages. All ages welcome. Bring your friends and family for an awesome night.",
-    eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/Stab_In_The_Dark.jpg",
-    eventLength: "3",
-    eventCurrent: false
-  },
-  { 
     eventName: "Solid Surfboard's Demo Day",
     eventSlogan: "July 8th from 8am - 11am",  
     eventDate: "7-8-23",
@@ -29,6 +20,15 @@ const EventMongo = require('../../models/EventMongo');
                   </div>
                 </div>`,
     eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/Solid_Surf_Demo_Day_7-8-23.jpg",
+    eventLength: "3",
+    eventCurrent: false
+  },
+  { 
+    eventName: "STAB in the Dark at The Board Club",
+    eventSlogan: "Win Italo Ferreira's Surfboard!",  
+    eventDate: "5-27-23",
+    eventBody: "Don't miss this one! The Board Club has partnered with Billabong and STAB in the Dark to show their final episode featuring Italo Ferreira. There will be giveaways for wetsuits, T-shirts, hats, and all kinds of awesome gear. But most importantly, Italo Ferreira's surfboards from the show will be here at the club for you to check out and one of them will be raffled off to a Board Club member in attendance! I'm serious, you can win Italo's board. Free food and beverages. All ages welcome. Bring your friends and family for an awesome night.",
+    eventPhotoURL: "https://theboardclubevents.s3.us-west-1.amazonaws.com/Stab_In_The_Dark.jpg",
     eventLength: "3",
     eventCurrent: false
   },
@@ -57,7 +57,7 @@ const EventMongo = require('../../models/EventMongo');
   {  
     eventName: "Surf Coaching with Spencer Pirdy",
     eventSlogan: "Surf Coaching",  
-    eventDate: "5-25-23",
+    eventDate: "Call To Schedule",
     eventBody: `                <div style="text-align: center;">
                   <p style="text-align: center; margin-top: 15px; padding: 0px 20px 0px 20px;">
                     This is for anyone looking to improve their surfing. Spencer helps surfers at all levels improve technique, increase wave count, improve paddling efficiency, overall fitness, and comfortability in the lineup.

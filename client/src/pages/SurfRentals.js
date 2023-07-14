@@ -25,8 +25,8 @@ function SurfRentals() {
       </p>
 
       <Container className="d-flex align-items-center justify-content-center mt-5">
-        <div className="d-flex rentalBox ">
-            <div className="flex-col p-4">
+        <div className="d-flex rentalBox">
+            <div className="flex-col p-3">
               <div className="rentalItemsTitle flex-row mt-0">
                  <pre> </pre>
               </div>
@@ -46,7 +46,7 @@ function SurfRentals() {
                 Beach Item
               </div>
             </div>
-            <div className="flex-col p-4 text-center">
+            <div className="flex-col p-3 text-center">
               <div className="rentalItemsPrice flex-row mt-0">
                 4hrs
               </div>
@@ -66,7 +66,7 @@ function SurfRentals() {
                 $10
               </div>
             </div>
-            <div className="flex-col p-4 text-center">
+            <div className="flex-col p-3 text-center">
               <div className="rentalItemsPrice flex-row mt-0">
                 24hrs
               </div>
@@ -86,7 +86,7 @@ function SurfRentals() {
                 $15
               </div>
             </div>
-            <div className="flex-col p-4 text-center">
+            <div className="flex-col p-3 text-center">
               <div className="rentalItemsPrice flex-row mt-0">
                 Week
               </div>

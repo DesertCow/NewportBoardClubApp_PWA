@@ -26,7 +26,7 @@ function EventDetails() {
 
     let eventData = data.getEvent
 
-    console.log(eventData)
+    // console.log(eventData)
 
     return (
 
@@ -43,8 +43,8 @@ function EventDetails() {
               <div className="mt-4 ml-3 d-flex justify-content-center align-items-center">
                 <img src={data.getEvent.eventPhotoURL}
                   className="eventDetailsPhoto mb-3"
-                  onClick={(event) => handleClubEvents(event)}
-                  alt="Event Photo" 
+                  // onClick={(event) => handleClubEvents(event)}
+                  alt={data.getEvent.eventName} 
                 />
               </div>
 
