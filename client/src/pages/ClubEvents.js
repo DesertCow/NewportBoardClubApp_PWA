@@ -17,34 +17,22 @@ function ClubEvents_Current() {
 
   const [checked, setChecked] = useState(false);
 
-
-  const handleChange = nextChecked => {
-    setChecked(nextChecked);
-
-
-
-  };
-
   var finalCurrentEventHTML = []
   
-  //* Get Event Data from App Server
+  //* Get Current Event Data from App Server
   var { loading, data } = useQuery(getCurrentEvents_Q)
   
   var currrentEventData = data;
   
-  //* Get Event Data from App Server
+  //* Get Historic Event Data from App Server
   var { loading, data } = useQuery(getHistoryEvents_Q)
   
   var historyEventData = data;
 
-  //* =========== Event Handlers ===========
 
-  const displayEventDetails = async (event, reqEventID) => {
-    event.preventDefault();
+  //* =========== Functions ===========
 
-    navigate("/club_events/event/" + reqEventID);
-  };
-
+  //* Build Events HTML based off passed Event Data
   function buildEventBTN(eventData){
 
     //* Generate IMG and Button for each event
@@ -58,6 +46,21 @@ function ClubEvents_Current() {
       </div>)
 
   }
+
+  //* =========== Event Handlers ===========
+
+  const displayEventDetails = async (event, reqEventID) => {
+    event.preventDefault();
+
+    navigate("/club_events/event/" + reqEventID);
+  };
+
+  //* Handles Event Switch Changes
+  const handleChange = nextChecked => {
+    setChecked(nextChecked);
+  };
+
+  //* =========== HTML Return  ===========
 
   //* Load Current Events
   if(!loading && !checked) {
@@ -78,7 +81,7 @@ function ClubEvents_Current() {
         {/* Weather Widget Component */}
         <WeatherWidget />
 
-        <div className="p-3 text-center eventsSwitchBox">
+        <div className="p-3 text-center eventsSwitchBox eventsCurrent">
           <label className="d-flex w-100 align-items-center justify-content-center">
             <span className="d-flex align-items-center col">Current Events</span>
             <div className="col">
@@ -87,14 +90,17 @@ function ClubEvents_Current() {
               checked={checked}
               className="react-switch d-flex align-items-center"
               height={40}
-              width={150}
+              width={180}
+              offColor="#51a7ff"
+              offHandleColor="#0480FF"
+              uncheckedIcon={false}
               />
             </div>
             <span className="col">Previous Events</span>
           </label>
         </div>
           
-        <div className="text-center eventListMain">
+        <div className="text-center eventListMain eventsCurrent">
           {finalCurrentEventHTML} 
         </div>
 
@@ -126,7 +132,7 @@ function ClubEvents_Current() {
         {/* Weather Widget Component */}
         <WeatherWidget />
 
-        <div className="p-3 text-center eventsSwitchBox">
+        <div className="p-3 text-center eventsSwitchBox eventsHistory">
           <label className="d-flex w-100 align-items-center justify-content-center">
             <span className="d-flex align-items-center col">Current Events</span>
             <div className="col">
@@ -135,14 +141,17 @@ function ClubEvents_Current() {
               checked={checked}
               className="react-switch d-flex align-items-center"
               height={40}
-              width={150}
+              width={180}
+              onColor="#FFA951"
+              onHandleColor="#ff8304"
+              checkedIcon={false}
               />
             </div>
             <span className="col">Previous Events</span>
           </label>
         </div>
           
-        <div className="text-center eventListMain">
+        <div className="text-center eventListMain eventsHistory">
           {finalCurrentEventHTML} 
         </div>
 

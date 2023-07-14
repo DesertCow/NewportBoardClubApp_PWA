@@ -435,10 +435,18 @@
 
 .eventsDisplayBox {
   font-family: "Catamaran-ExtraBold";
-  background-color: #3b94d836;
+  /* background-color: #3b94d836; */
   border-style: solid;
   border-width: 10px;
   border-color: #6f6f6f75;
+}
+
+.eventsCurrent {
+background-color: #51a8ff28;
+}
+
+.eventsHistory {
+background-color: #ffa85129;
 }
 
 .eventsDisplayBoxHistory {
