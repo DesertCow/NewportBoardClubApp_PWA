@@ -146,33 +146,19 @@ function UserSettings() {
 
     const { name, value } = event.target;
 
-    console.log("New Email Submitted!")
-    // console.log(JSON.stringify(emailState))
-    console.log("   " + emailState.memberEmail)
-    // console.log(name)
-    // console.log(value)
-
     const  tokenData = await updateEmail({
       variables: { ...emailState },
     });
 
-    // const { data } = await loginTwo({
-    //   variables: { email: emailState.email, password: login.user.password },
-    // });
-
-    // Auth.login(JSON.stringify(data2.login))
-
+    //TODO: Add Notification Email Updated
     // toast.success("Email Address Has Been Updated!", toastOptions);
-    console.log("Email Address Has Been Updated!");
+    // console.log("Email Address Has Been Updated!");
 
     //* Generate Updated JWT Token
     Auth.login(JSON.stringify(tokenData.data.updateEmail));
 
     //* Refresh Page to grab updated data from stored JWT token
     window.location.reload(false);
-
-
-    // window.location.reload(false);
 
   }
 
@@ -182,9 +168,9 @@ function UserSettings() {
 
     const { name, value } = event.target;
 
-    console.log("New Password Submitted!")
-    console.log("   Password: " + passwordState.password)
-    console.log("   Confirm : " + passwordState.confirm)
+    // console.log("New Password Submitted!")
+    // console.log("   Password: " + passwordState.password)
+    // console.log("   Confirm : " + passwordState.confirm)
 
     if( passwordState.password === passwordState.confirm){
       const tokenData = await updatePass({
@@ -216,9 +202,9 @@ function UserSettings() {
 
     const { name, value } = event.target;
 
-    console.log("New Name Submitted!")
-    console.log("   First Name: " + nameState.memberFirstName)
-    console.log("   Last Name: " + nameState.memberLastName)
+    // console.log("New Name Submitted!")
+    // console.log("   First Name: " + nameState.memberFirstName)
+    // console.log("   Last Name: " + nameState.memberLastName)
 
     const tokenData = await updateName({
       variables: { ...nameState },
@@ -267,7 +253,6 @@ function UserSettings() {
 				body: selectedFile,
         headers: {
           "Content-Type": "image/jpeg",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
 			}
 		)
