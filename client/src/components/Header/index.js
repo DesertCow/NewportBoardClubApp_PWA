@@ -183,6 +183,7 @@ const Header = () => {
     if(data.getWX.clubStatus == true)
     {
       currentClubStatus = "Open"
+      // currentClubStatus = "Closed"
     }else{
       currentClubStatus = "Closed"
     }
@@ -201,9 +202,9 @@ const Header = () => {
                     <img src={require("../../img/BC_Logo_Clear_2.png")}
                       className="homePageLogo"
                       alt="Board Club Logo" />                  
-                    <div className="row clubStatusText mt-2 ml-0">
-                      Club Status: 
-                      <div className='col' style={{color: currentClubStatus ? 'Open' : 'Closed'}}>
+                    <div className="row d-flex align-items-center justify-content-center clubStatusText mt-2 ml-0">
+                      <div className='col'>Club Status: </div>
+                      <div className='col d-flex ml-0 align-items-center justify-content-start' style={{color: data.getWX.clubStatus ? 'green' : 'red'}}>
                         {currentClubStatus}
                       </div>
                     </div>
