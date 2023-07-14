@@ -59,10 +59,24 @@ const Header = () => {
               <div className="row px-1">
 
                 <div className="col d-flex align-items-center">
-                  <div className="text-center" onClick={(event) => handleLogoClick(event)}>
-                    <img src={require("../../img/BC_Logo_Clear_1.png")}
+                  <div className="text-center row" onClick={(event) => handleLogoClick(event)}>
+                    <img src={require("../../img/BC_Logo_Clear_2.png")}
                       className="homePageLogo"
                       alt="Board Club Logo" />
+                    <div className="row d-flex align-items-center justify-content-center clubStatusText mt-2 ml-0">
+                      <div className='col'>Club Status: </div>
+                      <div className='col d-flex ml-0 align-items-center justify-content-start'>
+                        <ClipLoader
+                          color={color}
+                          loading={loadingData}
+                          cssOverride={override}
+                          size={30}
+                          aria-label="Loading Spinner"
+                          data-testid="loader"
+                          className='col d-flex ml-0 align-items-center justify-content-start'
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
