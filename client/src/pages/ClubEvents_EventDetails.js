@@ -9,7 +9,11 @@ import { useQuery } from '@apollo/client';
 
 import { Interweave } from 'interweave';
 
+import { useNavigate } from "react-router-dom";
+
 function EventDetails() {
+
+  const navigate = useNavigate();
 
   let eventID = window.location.href.split(`/club_events/event/`)
   eventID = eventID[1]
@@ -19,6 +23,10 @@ function EventDetails() {
     variables: { eventId: eventID },
   });
 
+  //* Handles Event Switch Changes
+  const handleReturnEvents = async (event) => {
+    navigate("/club_events");
+  };
 
 
   if(!loading)
@@ -52,9 +60,13 @@ function EventDetails() {
 
               <h3 className="mt-2 eventDetailsEventSlogan">{data.getEvent.eventSlogan}</h3>
 
-              <div className="mt-0 eventBottomMargin text-center">
+              <div className="mt-0 text-center">
                 <Interweave content={data.getEvent.eventBody} />
               </div>
+
+              <h3 className="mt-5 eventDateBox p-3">Event Date: {data.getEvent.eventDate}</h3>
+
+              <div className="eventDetailReturnBTN eventBottomMargin p-2 mt-4 d-flex align-items-center justify-content-center" onClick={(event) => handleReturnEvents(event)}>Club Events Home</div>
             
             </div>
 

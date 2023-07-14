@@ -996,6 +996,22 @@ bottom: 0;
   font-style: italic;
 }
 
+.eventDetailReturnBTN{
+  font-family: "Catamaran-ExtraBold";
+  height: 60px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: rgba(0, 0, 0, 0.902);
+  color: white;
+  opacity: 80%;
+  border-radius: 15px;
+}
+
+.eventDateBox {
+  border-style: dashed;
+  border-width: 5px;
+}
+
 .eventBottomMargin{
   margin-bottom: 100px;
 }
