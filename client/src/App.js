@@ -33,9 +33,8 @@ import ViewSurfSession from './pages/ViewSurfSession';
 
 import UserSettings from './pages/UserSettings';
 
-// import ClubEvents from './pages/ClubEvents';
-import ClubEventsCurrent from './pages/ClubEvents_Current';
-import ClubEventsHistory from './pages/ClubEvents_History';
+
+import ClubEventsMain from './pages/ClubEvents';
 import ViewEventDetails from './pages/ClubEvents_EventDetails'
 
 import SurfKnowledge from './pages/SurfKnowledge';
@@ -77,8 +76,7 @@ export default function App() {
         <Route path="/surf_log/view_previous_sessions" element={<SurfSessionsList />} />
         <Route path="/surf_log/surfSession/:sessionID" element={<ViewSurfSession />} />
         <Route path="/user_settings" element={<UserSettings />} />
-        <Route path="/club_events/current_events" element={<ClubEventsCurrent />} />
-        <Route path="/club_events/eventHistory" element={<ClubEventsHistory />} />
+        <Route path="/club_events" element={<ClubEventsMain />} />
         <Route path="/club_events/event/:eventID" element={<ViewEventDetails />} />
         <Route path="/surf_knowledge" element={<SurfKnowledge />} />
         <Route path="/community_forum" element={<CommunityForum />} />

@@ -435,10 +435,18 @@
 
 .eventsDisplayBox {
   font-family: "Catamaran-ExtraBold";
-  background-color: #3b94d836;
+  /* background-color: #3b94d836; */
   border-style: solid;
   border-width: 10px;
   border-color: #6f6f6f75;
+}
+
+.eventsCurrent {
+background-color: #51a8ff28;
+}
+
+.eventsHistory {
+background-color: #ffa85129;
 }
 
 .eventsDisplayBoxHistory {
@@ -447,6 +455,11 @@
   border-style: solid;
   border-width: 10px;
   border-color: #6f6f6f75;
+}
+
+.eventsSwitchBox {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 23px;
 }
 
 
@@ -981,6 +994,22 @@ bottom: 0;
   font-size: 20px;
   font-family: "Catamaran-Regular";
   font-style: italic;
+}
+
+.eventDetailReturnBTN{
+  font-family: "Catamaran-ExtraBold";
+  height: 60px;
+  font-weight: 900;
+  font-size: 25px;
+  background-color: rgba(0, 0, 0, 0.902);
+  color: white;
+  opacity: 80%;
+  border-radius: 15px;
+}
+
+.eventDateBox {
+  border-style: dashed;
+  border-width: 5px;
 }
 
 .eventBottomMargin{
