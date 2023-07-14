@@ -4,8 +4,6 @@ import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
 import WeatherWidget from "../components/WeatherWidget";
 
-import EventPageHeaderUpcoming from '../components/EventPageHeader_Upcoming';
-
 import { useQuery } from '@apollo/client';
 import { getCurrentEvents_Q, getHistoryEvents_Q } from '../utils/queries';
 
@@ -79,10 +77,6 @@ function ClubEvents_Current() {
 
         {/* Weather Widget Component */}
         <WeatherWidget />
-        
-        <div>
-          {/* <EventPageHeaderUpcoming /> */}
-        </div>
 
         <div className="p-3 text-center eventsSwitchBox">
           <label className="d-flex w-100 align-items-center justify-content-center">
@@ -131,10 +125,6 @@ function ClubEvents_Current() {
 
         {/* Weather Widget Component */}
         <WeatherWidget />
-        
-        <div>
-          {/* <EventPageHeaderUpcoming /> */}
-        </div>
 
         <div className="p-3 text-center eventsSwitchBox">
           <label className="d-flex w-100 align-items-center justify-content-center">
