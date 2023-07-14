@@ -37,17 +37,19 @@ import UserSettings from './pages/UserSettings';
 import ClubEventsMain from './pages/ClubEvents';
 import ViewEventDetails from './pages/ClubEvents_EventDetails'
 
-import SurfKnowledge from './pages/SurfKnowledge';
+import SurfHacks from './pages/SurfHacks';
+import NewportSurfMap from './pages/NewportSurfMap';
+
 import SurfRentals from './pages/SurfRentals';
 import AboutClub from './pages/AboutClub';
-import Login from './pages/Login';
 
+import Login from './pages/Login';
 import UserSignUp from './pages/UserSignUp';
+import PasswordReset from './pages/PasswordReset';
+
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy'
 
-
-import PasswordReset from './pages/PasswordReset';
 import CommunityForum from './pages/CommunityForum';
 
 
@@ -78,7 +80,8 @@ export default function App() {
         <Route path="/user_settings" element={<UserSettings />} />
         <Route path="/club_events" element={<ClubEventsMain />} />
         <Route path="/club_events/event/:eventID" element={<ViewEventDetails />} />
-        <Route path="/surf_knowledge" element={<SurfKnowledge />} />
+        <Route path="/surf_hacks" element={<SurfHacks />} />
+        <Route path="/newport_surf_map" element={<NewportSurfMap />} />
         <Route path="/community_forum" element={<CommunityForum />} />
         <Route path="/surf_rentals" element={<SurfRentals />} />
         <Route path="/about_club" element={<AboutClub />} />

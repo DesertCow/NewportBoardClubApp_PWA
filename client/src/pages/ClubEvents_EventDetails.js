@@ -25,7 +25,9 @@ function EventDetails() {
 
   //* Handles Event Switch Changes
   const handleReturnEvents = async (event) => {
+    event.preventDefault();
     navigate("/club_events");
+    window.scrollTo(0, 0);
   };
 
 
