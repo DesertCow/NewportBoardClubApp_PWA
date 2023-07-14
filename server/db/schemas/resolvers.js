@@ -543,12 +543,12 @@ const resolvers = {
       return { token };
 
     },
-    createEvent: async (parent, { eventName, eventSlogan, eventDate, eventLength, eventDescription, eventPhotoURL, eventCurrent }) => {
+    createEvent: async (parent, { eventName, eventSlogan, eventDate, eventLength, eventBody, eventPhotoURL, eventCurrent }) => {
 
       console.log("\n\x1b[33mCreate New Event (MongoDB)\x1b[0m\n\x1b[0m\n   Event Title: \x1b[35m" + eventName + "\x1b[0m\n   Event Date: \x1b[35m" + eventDate + "\x1b[0m\n   Event Length: " + eventLength + "\x1b[0m\n   Event Photo URL: " + eventPhotoURL);
 
       //* Request Database create a new "Event"
-      const event = await EventMongo.create({ eventName, eventSlogan, eventDate, eventLength, eventDescription, eventPhotoURL, eventCurrent });
+      const event = await EventMongo.create({ eventName, eventSlogan, eventDate, eventLength, eventBody, eventPhotoURL, eventCurrent });
 
       //TODO: Enable way to print this when it fails...
       //console.log("\x1b[35mEvent Creation Failed: \x1b[0m");

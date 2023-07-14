@@ -14,8 +14,8 @@ const seedAll = async () => {
   await seedEventDB();
   console.log('\n\x1b[43m ~~~ EVENTS SEEDED ~~~ \x1b[0m\n');
 
-  await seedSurfSessionDB();
-  console.log('\n\x1b[43m ~~~ SURF SESSIONS SEEDED~~~ \x1b[0m\n');
+  // await seedSurfSessionDB();
+  // console.log('\n\x1b[43m ~~~ SURF SESSIONS SEEDED~~~ \x1b[0m\n');
 
   return true;
 };

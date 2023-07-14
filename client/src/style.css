@@ -142,7 +142,7 @@
 
 .rentalBox {
   height: 335px;
-  width: 450px;
+  width: 390px;
   outline-style: solid;
   outline-width: 5px;
   outline-color: black;
@@ -401,7 +401,7 @@
 
 .eventIconPhoto {
   width: 95%;
-  height: 300px;
+  height: 250px;
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
@@ -433,6 +433,21 @@
   margin-bottom: 80px;
 }
 
+.eventsDisplayBox {
+  font-family: "Catamaran-ExtraBold";
+  background-color: #3b94d836;
+  border-style: solid;
+  border-width: 10px;
+  border-color: #6f6f6f75;
+}
+
+.eventsDisplayBoxHistory {
+  font-family: "Catamaran-ExtraBold";
+  background-color: #3bd87a3b;
+  border-style: solid;
+  border-width: 10px;
+  border-color: #6f6f6f75;
+}
 
 
 /*? ============= User Settings Page ============= */
@@ -966,6 +981,10 @@ bottom: 0;
   font-size: 20px;
   font-family: "Catamaran-Regular";
   font-style: italic;
+}
+
+.eventBottomMargin{
+  margin-bottom: 100px;
 }
 
 
