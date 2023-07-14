@@ -69,6 +69,7 @@ const typeDefs = `#graphql
     waterTemp: Float
     tideMSL: Float
     tideRise: Boolean
+    clubStatus: Boolean
   }
 
   type WidgetWX {
