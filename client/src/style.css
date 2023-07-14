@@ -28,7 +28,8 @@
 
 .homePageLogo {
 
-    width: 176px;
+    /* width: 176px; */
+    max-height: 130px;
 }
 
 .headerTideIcon {
@@ -94,6 +95,11 @@
   font-size: 14px;
   font-weight: 700;
   white-space: nowrap;
+}
+
+.clubStatusText{
+  font-family: "Catamaran-ExtraBold";
+  /* height: 100px; */
 }
 
 /*? ============= Footer Component ============= */

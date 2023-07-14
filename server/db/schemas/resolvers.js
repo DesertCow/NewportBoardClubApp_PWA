@@ -57,6 +57,7 @@ const resolvers = {
       let finalWaterTemp = "null";
       let finalLiveTideMSL = "null";
       let finalTideDir = "null";
+      let finalClubStatus = false;
 
       //* Fetch Surfline Live Conditions Data
       await fetch(surfline36thURL)
@@ -91,14 +92,30 @@ const resolvers = {
           finalLiveWindSpeed = realTimeData.observations[0].imperial.windGust;
           finalAirTemp = realTimeData.observations[0].imperial.temp;
         })
+
+      //* Get Current time and determind if club is open
+      const currentTime = new Date();
         
+      // console.log("Current Time: "+ currentTime.getDay());
+
+      //*Confirm it's not Monday
+      if(currentTime.getDay() != 1){
+
+        //* Check it's between 8am and 6pm
+        if((currentTime.getHours() > 8) && (currentTime.getHours() < 16)){
+
+          // console.log("Current Time: "+ currentTime.getHours());
+          finalClubStatus = true;
+        }
+      }
     
       return {
         wind: finalLiveWindSpeed,
         airTemp: finalAirTemp,
         waterTemp: finalWaterTemp,
         tideMSL: finalLiveTideMSL,
-        tideRise: finalTideDir
+        tideRise: finalTideDir,
+        clubStatus: finalClubStatus
       }
 
     },

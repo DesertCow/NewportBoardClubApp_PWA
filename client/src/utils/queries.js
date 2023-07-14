@@ -9,6 +9,7 @@ export const getWX_Q = gql`
         tideRise
         waterTemp
         wind
+        clubStatus
       }
     }
 `;
