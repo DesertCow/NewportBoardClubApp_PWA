@@ -8,12 +8,13 @@ import { getWX_Q } from '../utils/queries';
 
 import { React } from 'react';
 
-// import menuPDF from '../img/Salt_Lick_Menu_DWood-PDF.pdf';
-// import MainFooter from '../components/Footer';
 
 import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
 import WeatherWidget from "../components/WeatherWidget";
+import LoginPage from "../components/LoginPage";
+
+import Auth from '../utils/auth';
 
 //* React Toastify
 // import { toast } from "react-toastify";
@@ -69,48 +70,62 @@ function Home() {
   };
 
 
-  return (
+  //* Validate JWT Token/Login
+  if(Auth.loggedIn()){
 
-    <div className="d-flex flex-column min-vh-100 align-items-center justify-content-center">
-      {/* <header className="mt-auto mb-0"> */}
-      <header className="">
-        <Header />
-      </header>
+    return (
 
-      
-      {/* Weather Widget Component */}
-      <WeatherWidget />
+      <div className="d-flex flex-column min-vh-100 align-items-center justify-content-center">
+        {/* <header className="mt-auto mb-0"> */}
+        <header className="">
+          <Header />
+        </header>
+
+        
+        {/* Weather Widget Component */}
+        <WeatherWidget />
 
 
-      <div className="text-center homeMenu row d-flex align-items-center justify-content-center">
-        <div className="row px-5 py-3">
-          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Club Events</div>
+        <div className="text-center homeMenu row d-flex align-items-center justify-content-center">
+          <div className="row px-5 py-3">
+            <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleClubEvents(event)}>Club Events</div>
+          </div>
+          <div className="row px-5 py-3">
+            <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleSurfLog(event)}>Surf Log</div>
+          </div>
+          <div className="row px-5 py-3">
+            <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleCommunityForum(event)}>Community Forum</div>
+          </div>
+          <div className="row px-5 py-3">
+            <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleSurfHacks(event)}>Surf Hacks</div>
+          </div>
+          <div className="row px-5 py-3">
+            <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleNewportSurfMap(event)}>Newport Surf Map</div>
+          </div>
+          <div className="row px-5 py-3">
+            <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleRentals(event)}>Rentals</div>
+          </div>
+          <div className="row px-5 py-3 mb-5">
+            <div className="homeBTNs p-2 mb-5 d-flex align-items-center justify-content-center" onClick={(event) => handleAbout(event)}>About</div>
+          </div>
         </div>
-        <div className="row px-5 py-3">
-          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleSurfLog(event)}>Surf Log</div>
-        </div>
-        <div className="row px-5 py-3">
-          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleCommunityForum(event)}>Community Forum</div>
-        </div>
-        <div className="row px-5 py-3">
-          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleSurfHacks(event)}>Surf Hacks</div>
-        </div>
-        <div className="row px-5 py-3">
-          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleNewportSurfMap(event)}>Newport Surf Map</div>
-        </div>
-        <div className="row px-5 py-3">
-          <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleRentals(event)}>Rentals</div>
-        </div>
-        <div className="row px-5 py-3 mb-5">
-          <div className="homeBTNs p-2 mb-5 d-flex align-items-center justify-content-center" onClick={(event) => handleAbout(event)}>About</div>
-        </div>
+
+        <footer className="mt-auto mb-0">
+          <NavFooter />
+        </footer>
       </div>
+    );
+  }
+  else {
 
-      <footer className="mt-auto mb-0">
-        <NavFooter />
-      </footer>
-    </div>
-  );
+    return(
+      <div className="d-flex flex-column align-items-center justify-content-center">
+
+        <LoginPage />
+
+      </div>   
+    )
+  }
 
 }
 

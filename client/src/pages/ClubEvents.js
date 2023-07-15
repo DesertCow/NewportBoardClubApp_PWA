@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Header from '../components/Header';
 import NavFooter from '../components/NavFooter';
 import WeatherWidget from "../components/WeatherWidget";
+import LoginPage from "../components/LoginPage";
+
+import Auth from '../utils/auth';
 
 import { useQuery } from '@apollo/client';
 import { getCurrentEvents_Q, getHistoryEvents_Q } from '../utils/queries';
@@ -62,109 +65,121 @@ function ClubEvents_Current() {
 
   //* =========== HTML Return  ===========
 
-  //* Load Current Events
-  if(!loading && !checked) {
+  //* Validate JWT Token/Login
+  if(Auth.loggedIn()){
+
+    //* Load Current Events
+    if(!loading && !checked) {
 
 
-    let eventList = currrentEventData.getCurrentEvents;
+      let eventList = currrentEventData.getCurrentEvents;
 
-    //* Lopp over each current event
-    eventList.forEach(buildEventBTN)
+      //* Lopp over each current event
+      eventList.forEach(buildEventBTN)
 
-    return (
+      return (
 
-      <div className="d-flex flex-column min-vh-100">
-        <header className="">
-          <Header />
-        </header>
+        <div className="d-flex flex-column min-vh-100">
+          <header className="">
+            <Header />
+          </header>
 
-        {/* Weather Widget Component */}
-        <WeatherWidget />
+          {/* Weather Widget Component */}
+          <WeatherWidget />
 
-        <div className="p-3 text-center eventsSwitchBox eventsCurrent">
-          <label className="d-flex w-100 align-items-center justify-content-center">
-            <span className="d-flex align-items-center col">Current Events</span>
-            <div className="col">
-              <Switch
-              onChange={handleChange}
-              checked={checked}
-              className="react-switch d-flex align-items-center"
-              height={40}
-              width={180}
-              offColor="#51a7ff"
-              offHandleColor="#0480FF"
-              uncheckedIcon={false}
-              />
-            </div>
-            <span className="col">Previous Events</span>
-          </label>
+          <div className="p-3 text-center eventsSwitchBox eventsCurrent">
+            <label className="d-flex w-100 align-items-center justify-content-center">
+              <span className="d-flex align-items-center col">Current Events</span>
+              <div className="col">
+                <Switch
+                onChange={handleChange}
+                checked={checked}
+                className="react-switch d-flex align-items-center"
+                height={40}
+                width={180}
+                offColor="#51a7ff"
+                offHandleColor="#0480FF"
+                uncheckedIcon={false}
+                />
+              </div>
+              <span className="col">Previous Events</span>
+            </label>
+          </div>
+            
+          <div className="text-center eventListMain eventsCurrent">
+            {finalCurrentEventHTML} 
+          </div>
+
+          <footer className="mt-auto mb-0">
+            <NavFooter />
+          </footer>
         </div>
-          
-        <div className="text-center eventListMain eventsCurrent">
-          {finalCurrentEventHTML} 
+
+      )
+
+    }
+
+    //* Load Historic Events
+    if(!loading && checked) {
+
+
+      let eventList = historyEventData.getPreviousEvents;
+
+      //* Lopp over each current event
+      eventList.forEach(buildEventBTN)
+
+      return (
+
+        <div className="d-flex flex-column min-vh-100">
+          <header className="">
+            <Header />
+          </header>
+
+          {/* Weather Widget Component */}
+          <WeatherWidget />
+
+          <div className="p-3 text-center eventsSwitchBox eventsHistory">
+            <label className="d-flex w-100 align-items-center justify-content-center">
+              <span className="d-flex align-items-center col">Current Events</span>
+              <div className="col">
+                <Switch
+                onChange={handleChange}
+                checked={checked}
+                className="react-switch d-flex align-items-center"
+                height={40}
+                width={180}
+                onColor="#FFA951"
+                onHandleColor="#ff8304"
+                checkedIcon={false}
+                />
+              </div>
+              <span className="col">Previous Events</span>
+            </label>
+          </div>
+            
+          <div className="text-center eventListMain eventsHistory">
+            {finalCurrentEventHTML} 
+          </div>
+
+          <footer className="mt-auto mb-0">
+            <NavFooter />
+          </footer>
         </div>
 
-        <footer className="mt-auto mb-0">
-          <NavFooter />
-        </footer>
-      </div>
+      )
 
-    )
-
+    }
   }
+  else {
 
-  //* Load Historic Events
-  if(!loading && checked) {
+    return(
+      <div className="d-flex flex-column align-items-center justify-content-center">
 
+        <LoginPage />
 
-    let eventList = historyEventData.getPreviousEvents;
-
-    //* Lopp over each current event
-    eventList.forEach(buildEventBTN)
-
-    return (
-
-      <div className="d-flex flex-column min-vh-100">
-        <header className="">
-          <Header />
-        </header>
-
-        {/* Weather Widget Component */}
-        <WeatherWidget />
-
-        <div className="p-3 text-center eventsSwitchBox eventsHistory">
-          <label className="d-flex w-100 align-items-center justify-content-center">
-            <span className="d-flex align-items-center col">Current Events</span>
-            <div className="col">
-              <Switch
-              onChange={handleChange}
-              checked={checked}
-              className="react-switch d-flex align-items-center"
-              height={40}
-              width={180}
-              onColor="#FFA951"
-              onHandleColor="#ff8304"
-              checkedIcon={false}
-              />
-            </div>
-            <span className="col">Previous Events</span>
-          </label>
-        </div>
-          
-        <div className="text-center eventListMain eventsHistory">
-          {finalCurrentEventHTML} 
-        </div>
-
-        <footer className="mt-auto mb-0">
-          <NavFooter />
-        </footer>
-      </div>
-
+      </div>   
     )
-
   }
-
- 
 
 }
 

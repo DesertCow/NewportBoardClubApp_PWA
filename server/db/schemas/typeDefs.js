@@ -8,7 +8,6 @@ const { gql } = require("@apollo/server");
 const typeDefs = `#graphql
 
   type Query {
-    login(memberEmail: String!, password: String!): Auth
     getWX: WX
     getWidgetWX: WidgetWX
     getCurrentEvents: [Event]

@@ -370,7 +370,7 @@ const resolvers = {
       if (!correctPw) {
         console.log("\x1b[35mLogin Failed\x1b[0m")
         loginValid = false;
-        throw new AuthenticationError('Incorrect password!');
+        // throw new AuthenticationError('Incorrect password!');
       }
 
       if(correctPw)
@@ -397,10 +397,17 @@ const resolvers = {
 
       // console.log("USER = " + user);
       
-      //* Return Signed Token to User
-      const token = signToken(user);
-      // return { token, user, admin };
-      return { token, admin };
+      if(loginValid){
+        //* Return Signed Token to User
+        const token = signToken(user);
+        // return { token, user, admin };
+        return { token, admin };
+      }
+      else {
+        const token = "INVALID LOGIN"
+        return { token, admin };
+      }
+
     },
 
     updateEmail: async (parent, { memberEmail, _id }) => {
