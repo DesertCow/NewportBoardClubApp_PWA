@@ -23,10 +23,6 @@ const LoginBox = () => {
     const loginSession = event.target;
     const loginForm = new FormData(loginSession);
 
-    console.log("Login Submitted!")
-    // console.log(loginForm.get("memberEmail"));
-
-
     const { data } = await login({
       
       variables: { 
@@ -34,17 +30,15 @@ const LoginBox = () => {
         password: loginForm.get("password"),
       },
 
-     });
+    });
 
-     console.log(data)
-
-     Auth.login(JSON.stringify(data.login));
+    //* Create JWT Token
+    Auth.login(JSON.stringify(data.login));
 
     setFormState({
       memberEmail: '',
       password: '',
     });
-
 
     navigate("/home")
     window.scrollTo(0, 0);
@@ -121,13 +115,7 @@ const LoginBox = () => {
         </div >
 
       </div >
-
-
-
-
   )
-
-
 };
 
 export default LoginBox;

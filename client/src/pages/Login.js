@@ -88,63 +88,9 @@ const Login = (props) => {
 //* ########################### RETURN ###########################
 
   return (
- <div className="d-flex flex-column align-items-center justify-content-center">
+    <div className="d-flex flex-column align-items-center justify-content-center">
 
-    <LoginBox />
-      {/* <div className="row d-flex w-100">
-
-        <div className="col-12 mt-3 text-center">
-          <img src={require("../img/BC_Logo_Clear_1.png")}
-            className="logo"
-            alt="The Board Club Logo" />
-        </div>
-
-        <div className="mid col loginBox mx-5">
-
-          <form className="welcome"> */}
-            {/* <h1 className="text-center welcometo mt-2">Welcome to</h1> */}
-            {/* <h1 className="homeTitle text-center mt-4"> The Board Club</h1> */}
-
-            {/* <div className="text-center mt-3">
-              <div className="inputdiv loginTextLabel">
-                <p className="inputlabel">Email:</p>
-                <div className="loginTextBox">
-                  <input
-                    className="startinputs loginTextBox"
-                    type="text"
-                    id="memberEmail"
-                    name="memberEmail"
-                    placeholder="Email"
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-              </div>
-
-              <div className="inputdiv mt-4">
-                <p className="inputlabel loginTextLabel">Password:</p>
-                <div className="">
-                  <input
-                    className="startinputs loginTextBox"
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-              </div>
-              <div>
-                <p className="passwordRecoveryLink mb-3 mt-4" onClick={(event) => passwordReset(event)}>Forgot Password?</p>
-              </div>
-            </div>
-          </form>
-
-        </div >
-        <div className="text-center">
-          <button className="loginbtns p-3 loginBTN" type="button" action="" onClick={(event) => handleSubmit(event)}>Log in</button>
-          <button className="loginbtns p-3 registerBTN" type="button" onClick={(event) => newUserRegister(event)}>New Member Registration</button>
-        </div>
-      </div > */}
+      <LoginBox />
 
       <footer className="d-flex justify-content-center footerLogin">
         <div className="d-flex align-items-left pt-2 px-2 pb-1 justify-content-around contactFooter">
@@ -168,11 +114,8 @@ const Login = (props) => {
       </footer>
 
     </div>
-
   )
-
-
-}
+};
 
 
 export default Login;
