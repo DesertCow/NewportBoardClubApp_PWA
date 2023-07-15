@@ -7,6 +7,8 @@ import { LOGIN_M } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 
+import LoginBox from "../components/LoginBox";
+
 
 const Login = (props) => {
 
@@ -88,7 +90,8 @@ const Login = (props) => {
   return (
  <div className="d-flex flex-column align-items-center justify-content-center">
 
-      <div className="row d-flex w-100">
+    <LoginBox />
+      {/* <div className="row d-flex w-100">
 
         <div className="col-12 mt-3 text-center">
           <img src={require("../img/BC_Logo_Clear_1.png")}
@@ -98,11 +101,11 @@ const Login = (props) => {
 
         <div className="mid col loginBox mx-5">
 
-          <form className="welcome">
+          <form className="welcome"> */}
             {/* <h1 className="text-center welcometo mt-2">Welcome to</h1> */}
             {/* <h1 className="homeTitle text-center mt-4"> The Board Club</h1> */}
 
-            <div className="text-center mt-3">
+            {/* <div className="text-center mt-3">
               <div className="inputdiv loginTextLabel">
                 <p className="inputlabel">Email:</p>
                 <div className="loginTextBox">
@@ -141,7 +144,7 @@ const Login = (props) => {
           <button className="loginbtns p-3 loginBTN" type="button" action="" onClick={(event) => handleSubmit(event)}>Log in</button>
           <button className="loginbtns p-3 registerBTN" type="button" onClick={(event) => newUserRegister(event)}>New Member Registration</button>
         </div>
-      </div >
+      </div > */}
 
       <footer className="d-flex justify-content-center footerLogin">
         <div className="d-flex align-items-left pt-2 px-2 pb-1 justify-content-around contactFooter">

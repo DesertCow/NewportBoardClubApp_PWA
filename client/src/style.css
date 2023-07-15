@@ -698,7 +698,7 @@ background-color: #ffa85129;
 /*? ============= Login Page ============= */
 
 .loginBox {
-  margin-top: 20%;
+  margin-top: 30px;
   /* width: 80%; */
   background-color: rgb(175, 175, 175);
   border-radius: 15px;
@@ -710,12 +710,13 @@ background-color: #ffa85129;
 
 .loginBTN {
   /* background-color: rgba(173, 113, 113, 0.465); */
-  margin-top: 50px !important;
+  /* margin-top: 50px !important; */
+  margin-top: 30px;
 }
 
 .registerBTN {
   margin-top: 50px !important;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
 }
 
 .welcometo {
@@ -779,7 +780,7 @@ background-color: #ffa85129;
   font-family: "Catamaran-ExtraBold";
 	font-weight: 600;
 	border: none;
-	width: 350px;
+	width: 300px;
 	background-color: rgba(0, 0, 0, 0.902);
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
