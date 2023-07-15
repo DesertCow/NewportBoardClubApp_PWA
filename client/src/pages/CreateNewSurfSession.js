@@ -89,18 +89,32 @@ function CreateNewSession() {
 
     //* Convert Date output from DatePicker to MM-DD-YYYY
     var surfSessionDate = new Date( datevalue );
-    var surfSessionDateFinal = surfSessionDate.getMonth() + "-" + surfSessionDate.getDate() + "-" + surfSessionDate.getFullYear();
+    var offsetSessionMonth = surfSessionDate.getMonth() + 1;
+    // var surfSessionDateFinal = surfSessionDate.getMonth() + "-" + surfSessionDate.getDate() + "-" + surfSessionDate.getFullYear();
+    var surfSessionDateFinal = offsetSessionMonth + "-" + surfSessionDate.getDate() + "-" + surfSessionDate.getFullYear();
 
     //* Convert Time output from TimePicker
     var surfSessionTime = new Date( value );
 
+
+    // console.log("Surf Min: " + surfSessionTime.getMinutes())
+
+    var finalSurfSessionMin
+
+    if(surfSessionTime.getMinutes() < 10){
+      // console.log("Surf Min: " + "0" + surfSessionTime.getMinutes());
+      finalSurfSessionMin = "0" + surfSessionTime.getMinutes();
+    } else{
+      finalSurfSessionMin = surfSessionTime.getMinutes();
+    }
+
     //* Convert Military Time to AM/PM Time
     if(surfSessionTime.getHours() < 13)
     {
-      var surfSessionTimeFinal = surfSessionTime.getHours() + ":" + surfSessionTime.getMinutes() + " AM";
+      var surfSessionTimeFinal = surfSessionTime.getHours() + ":" + finalSurfSessionMin + " AM";
     }
     else {
-      var surfSessionTimeFinal = surfSessionTime.getHours()-12 + ":" + surfSessionTime.getMinutes() + " PM";
+      var surfSessionTimeFinal = surfSessionTime.getHours()-12 + ":" + finalSurfSessionMin + " PM";
     }
     
     const { surfSessionData } = await createSurfSession({
@@ -166,7 +180,7 @@ function CreateNewSession() {
         <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
           Location:&nbsp;&nbsp;
           <div>
-            <input type="text" name="surfLocation" className="locationInputBox d-flex justify-content-center align-items-center p-1" />
+            <input required type="text" name="surfLocation" className="locationInputBox d-flex justify-content-center align-items-center p-1" />
           </div>
         </div>
         <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
