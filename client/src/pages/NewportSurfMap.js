@@ -25,8 +25,13 @@ function NewportSurfMap() {
       {/* Weather Widget Component */}
       <WeatherWidget />
 
-
-      <h1>Newport Surf Map</h1>
+      <h1 className="text-center my-3 surfMapTitle">Newport Surf Map</h1>
+      <div className="surfMapBox">
+        <img src={require("../img/Newport_Surf_Map_Sat_1.png")}
+      className="surfMap"
+      alt="Board Club Logo" /> 
+      </div>
+              
 
       <footer className="mt-auto mb-0">
         <NavFooter />

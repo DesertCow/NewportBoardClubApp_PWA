@@ -110,6 +110,22 @@
   width: 100%;
 }
 
+/*? ============= Surf Map Page ============= */
+.surfMapBox {
+  /* width: 500px;
+   */
+  /* overflowX: 'scroll'; */
+}
+
+.surfMap {
+  max-width: 100%;
+}
+
+.surfMapTitle{
+  font-family: "Catamaran-ExtraBold";
+  font-size: 30px;
+}
+
 
 /*? ============= Surf Knowledge Page ============= */
 
