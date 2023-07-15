@@ -390,8 +390,8 @@ function CreateNewSession() {
               </select>
           </div>
           <div className="d-flex flex-row justify-content-between align-items-center smallBoxRow endSpacer">
-            <button type="button" type="submit" className="btn btn-lg btn-block btn-success mx-3">Save</button>
-            <button type="button" type="reset" className="btn btn-lg btn-block btn-danger mx-3">Reset</button>
+            <button type="button" type="submit" className="btn col btn-lg btn-block btn-success mx-3">Save</button>
+            <button type="button" type="reset" className="btn col btn-lg mt-0 btn-block btn-danger mx-3">Reset</button>
           </div>
         </form>
         <footer className="mt-auto mb-0">

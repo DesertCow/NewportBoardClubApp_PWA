@@ -52,7 +52,7 @@ function SurfLogHome() {
 
       return (
 
-        <div className="d-flex flex-column min-vh-100">
+        <div className="d-flex flex-column min-vh-100 surfSessionsBG">
           <header className="">
             <Header />
           </header>
@@ -60,7 +60,7 @@ function SurfLogHome() {
           {/* Weather Widget Component */}
           <WeatherWidget />
 
-          <div className="userDataBG">
+          <div className="">
             <div className="justify-content-center mt-5">
 
               <h2 className="text-center mt-3 mb-5 welcomeName">{jwtToken.data.memberFirstName} {jwtToken.data.memberLastName}</h2>
