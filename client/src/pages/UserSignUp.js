@@ -43,48 +43,69 @@ function UserSignUp() {
 
     //* Grab Status of TOS Check Box
     let tosStatus = document.getElementById("tosCheckBox").checked;
+    
+    //* Validate Signup Data
+    let signUpDataValid = false
+
+    //* Confirms no fields are empty
+    if(values.memberFirstName != "" && values.memberLastName != "" && values.password != "" && values.clubPassword != ""){
+      
+      const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+      //* Confirms Email Address is valid
+      if(values.memberEmail.match(validRegex)){
+        signUpDataValid = true
+      }
+      else{
+        window.alert("Invalid Email Address!");
+        signUpDataValid = false
+      }
+      
+    } else{
+      window.alert("Missing Required Signup Information! All Fields are Required!");
+    }
 
 
     //TODO: Add Code to validate signup data
-    // if (validateSignUp()) {
-    if (tosStatus) {
+    if (signUpDataValid) {
+      if (tosStatus) {
 
-      const { memberEmail, password, memberFirstName, memberLastName, clubPassword } = values;
+        const { memberEmail, password, memberFirstName, memberLastName, clubPassword } = values;
 
-      //* Create New User In Database
-      try {
-        const { data } = await createUser({
-          variables: { ...values },
-        });
+        //* Create New User In Database
+        try {
+          const { data } = await createUser({
+            variables: { ...values },
+          });
 
-        //* Generate New JWT Token
-        Auth.login(JSON.stringify(data.createUser));
+          //* Generate New JWT Token
+          Auth.login(JSON.stringify(data.createUser));
 
-        //* Grab and Decode JWT Token
-        let jwtToken = Auth.getProfile()
+          //* Grab and Decode JWT Token
+          let jwtToken = Auth.getProfile()
 
-        // console.log("New User ID: " + jwtToken.data._id)
+          // console.log("New User ID: " + jwtToken.data._id)
 
-        //* Trigger Sever to upload a default User Profile Picture for new Account
-        const defaultProfileData = await getDefaultProfilePictureUpload({
-          variables: { userId: jwtToken.data._id},
-        });
+          //* Trigger Sever to upload a default User Profile Picture for new Account
+          const defaultProfileData = await getDefaultProfilePictureUpload({
+            variables: { userId: jwtToken.data._id},
+          });
 
-        // console.log(defaultProfileData)
-        
-        // toast.success("Sign-Up Successful!", toastOptions);
-        // console.log("Sign-Up Successful!");
-        navigate("/home")
+          // console.log(defaultProfileData)
+          
+          // toast.success("Sign-Up Successful!", toastOptions);
+          // console.log("Sign-Up Successful!");
+          navigate("/home")
 
-      } catch (e) {
-        // toast.error("Sign-Up Failed", toastOptions);
-        console.error(e);
-      }
-    } else {
-      // console.log("TOS BOX NOT CHECKED!")
-      window.alert("Terms Of Service and Privacy Policy Acceptance Box Not Checked!");
-    };
-
+        } catch (e) {
+          // toast.error("Sign-Up Failed", toastOptions);
+          console.error(e);
+        }
+      } else {
+        // console.log("TOS BOX NOT CHECKED!")
+        window.alert("Terms Of Service and Privacy Policy Acceptance Box Not Checked!");
+      };
+    }
   }
 
 return (

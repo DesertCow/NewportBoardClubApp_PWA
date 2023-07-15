@@ -11,9 +11,9 @@ import { CREATE_SURF_SESSION } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
-//* Date Picker Setup
 import { useState, useCallback } from 'react';
-// import { TimePicker } from 'react-ios-time-picker';
+
+//* Date Picker Setup
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
@@ -24,49 +24,23 @@ function CreateNewSession() {
 
   const [surfSessionState, setSurfSessionState] = useState({ userID: '', sessionDate: '' , sessionDate: '' , sessionTime: '' , sessionLocation: '' , skyConditions: '' , waveSize: '' , tideLevel: '' , sessionNotes: '' , sessionRating: '' , surfboardShaper: '' , surfboardModel: '' , surfboardLengthFT: '' , surfboardLengthIN: '' , surfboardVolume: '' , surfboardFinConfig: ''});
 
+  const [createSurfSession, { surfSessionData }] = useMutation(CREATE_SURF_SESSION);
+
   //* Grab and Decode JWT Token
   let jwtToken = Auth.getProfile()
 
-  // let login = Auth.getToken()
-  // login = JSON.parse(login)
-
+  //* Grabt Todays Time/Date
   const todayDate = new Date()
 
-
-  const [createSurfSession, { surfSessionData }] = useMutation(CREATE_SURF_SESSION);
-
+  const [datevalue, setDateValue] = useState(todayDate);
 
   // TODO: Set to Current local time
   // const [value, setTimeValue] = useState('10:00 AM');
   const [value, setTimeValue] = useState(todayDate.getHours() + ":" + todayDate.getMinutes());
 
-  //  const onTimeChange = (timeValue) => {
-  //     setTimeValue(timeValue);
-  //  }
+  // console.log("Time: " + value)
+
   
-  // console.log("Value: " + value)
-  
-  // console.log("Time = " + todayDate.getHours() + ":" + todayDate.getMinutes())
-  const [datevalue, setDateValue] = useState(todayDate);
-  // const [timevalue, onChange] = useState(todayDate.getHours() + ":" + todayDate.getMinutes());
-
-  // console.log("Full Date: " + todayDate)
-
-  // const dateDay = todayDate.getDay()
-  // const dateMonth = todayDate.getMonth() + 1;
-  // const dateYear = todayDate.getFullYear()
-
-  // console.log("DATE = " + Date.now.getFullYear());
-  // console.log("DATE = " + dateMonth + "-" + todayDate.getDay() + "-" + todayDate.getFullYear());
-
-  // const onDateChange = useCallback((date: Date) => {
-  //   setValue(date);
-  // }, []);
-
-
-  //* ########################### Form Submit Handle ###########################
-  
-
   //* Submit surf session data to Database
   const handleSurfSessionSubmit = async (event) => {
     
@@ -75,32 +49,34 @@ function CreateNewSession() {
     const surfSession = event.target;
     const surfSessionForm = new FormData(surfSession);
 
-    // console.log("E =" + JSON.stringify(event.target))
-    // console.log("surfSession =" + surfSession)
-    // console.log("Event Target = " + JSON.stringify(event.target))
-    // console.log("Name =" + name)
-    // console.log("Value =" + value)
-
-    
-
-    // console.log("surfSessionForm = " + surfSessionForm)
-    // console.log("surfSession = " + surfSession.name)
-    // console.log("Raw Date: " + datevalue)
-
     //* Convert Date output from DatePicker to MM-DD-YYYY
     var surfSessionDate = new Date( datevalue );
-    var surfSessionDateFinal = surfSessionDate.getMonth() + "-" + surfSessionDate.getDate() + "-" + surfSessionDate.getFullYear();
+
+    //* Add 1 to offset months start counting at 0
+    var offsetSessionMonth = surfSessionDate.getMonth() + 1;
+    // var surfSessionDateFinal = surfSessionDate.getMonth() + "-" + surfSessionDate.getDate() + "-" + surfSessionDate.getFullYear();
+    var surfSessionDateFinal = offsetSessionMonth + "-" + surfSessionDate.getDate() + "-" + surfSessionDate.getFullYear();
 
     //* Convert Time output from TimePicker
     var surfSessionTime = new Date( value );
 
+    var finalSurfSessionMin
+
+    //* Add truncated zero when mintues is below 10
+    if(surfSessionTime.getMinutes() < 10){
+      // console.log("Surf Min: " + "0" + surfSessionTime.getMinutes());
+      finalSurfSessionMin = "0" + surfSessionTime.getMinutes();
+    } else{
+      finalSurfSessionMin = surfSessionTime.getMinutes();
+    }
+
     //* Convert Military Time to AM/PM Time
     if(surfSessionTime.getHours() < 13)
     {
-      var surfSessionTimeFinal = surfSessionTime.getHours() + ":" + surfSessionTime.getMinutes() + " AM";
+      var surfSessionTimeFinal = surfSessionTime.getHours() + ":" + finalSurfSessionMin + " AM";
     }
     else {
-      var surfSessionTimeFinal = surfSessionTime.getHours()-12 + ":" + surfSessionTime.getMinutes() + " PM";
+      var surfSessionTimeFinal = surfSessionTime.getHours()-12 + ":" + finalSurfSessionMin + " PM";
     }
     
     const { surfSessionData } = await createSurfSession({
@@ -148,7 +124,7 @@ function CreateNewSession() {
               Date:
             </div>
             <div name="sessionDate">
-              <DatePicker value={value} onChange={(newValue) => setDateValue(newValue)}/>
+              <DatePicker required="true" value={value} onChange={(newValue) => setDateValue(newValue)}/>
             </div>
           </div>
         </div>
@@ -158,7 +134,7 @@ function CreateNewSession() {
           </div>
           <div className="timePicker">
             <div>
-              <TimePicker value={value} onChange={(newValue) => setTimeValue(newValue)} use12Hours/>
+              <TimePicker required="true" value={value} onChange={(newValue) => setTimeValue(newValue)} use12Hours/>
             </div>
 
           </div>
@@ -166,7 +142,7 @@ function CreateNewSession() {
         <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
           Location:&nbsp;&nbsp;
           <div>
-            <input type="text" name="surfLocation" className="locationInputBox d-flex justify-content-center align-items-center p-1" />
+            <input required type="text" name="surfLocation" className="locationInputBox d-flex justify-content-center align-items-center p-1" />
           </div>
         </div>
         <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">

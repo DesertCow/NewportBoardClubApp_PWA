@@ -190,7 +190,7 @@ const Header = () => {
         tideDirIcon = <MaterialSymbol icon="keyboard_double_arrow_down" size={60} fill grade={-25} color='black' />
     }
 
-    console.log(data.getWX.clubStatus)
+    // console.log(data.getWX.clubStatus)
 
     let currentClubStatus;
 
