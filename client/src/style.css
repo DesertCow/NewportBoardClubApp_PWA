@@ -307,7 +307,7 @@
     width: 150px;
     outline-style: solid;
     outline-width: 10px;
-    outline-color: rgb(255, 255, 255);
+    outline-color: #cacaca;
     border-radius: 15px;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
@@ -329,9 +329,10 @@
   margin-bottom: 105px;
 }
 
-.userDataBG {
-  background-image: url("./img/Newport-Beach-Surf.jpg");
-  width: 100%;
+.surfSessionsBG {
+  /* background-image: url("./img/Newport-Beach-Surf.jpg"); */
+  background-color: #0594c320;
+  /* width: 100%; */
 }
 
 
@@ -885,7 +886,7 @@ bottom: 0;
   font-family: "Catamaran-ExtraBold";
   font-size: 20px;
   color: white;
-  width: 400px;
+  width: 400px !important;
   /* height: 50px; */
   background-color: rgba(46, 46, 46, 0.902);
   border-radius: 15px;
@@ -902,16 +903,25 @@ bottom: 0;
   color: black;
 }
 
+.surfSessionsTitleBox {
+  border-bottom: #C3C3C3;
+  border-style: dashed;
+  border-bottom-width: 7px;
+  /* max-width: 90% !important; */
+}
 
 .previousSurfSessionTitle {
   font-size: 40px;
   font-family: "Catamaran-ExtraBold";
-  margin-left: 7%;
+  margin-left: 3%;
+  /* border-bottom: #C3C3C3;
+  border-style: dashed; */
+
 
 }
 
 .surfSessionCol {
-  width: 96%;
+  width: 102%;
 }
 
 /*? ============= View Surf Session ============= */

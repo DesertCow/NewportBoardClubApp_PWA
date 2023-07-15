@@ -52,7 +52,7 @@ function ViewPreviousSessions() {
       
       //* Create Buttons based user sessions pulled from DB
       // sessionListHTML.push(<li key={sessionData._id} onClick={(event) => displayItem(event, sessionData.sessionDate, essionData.sessionTime)} className="subMenuBtns m-4 p-2"><div variant="light">{sessionData._id}</div>{' '}</li>)
-      sessionListHTML.push(<li key={sessionData._id} onClick={(event) => displaySurfSession(event, sessionData._id)} className="previousSurfSessionBTN m-4 p-3">{sessionData.sessionDate} ({sessionData.sessionTime}) @ {sessionData.sessionLocation}</li>)
+      sessionListHTML.push(<li key={sessionData._id} onClick={(event) => displaySurfSession(event, sessionData._id)} className="previousSurfSessionBTN mt-4 p-3">{sessionData.sessionDate} ({sessionData.sessionTime}) @ {sessionData.sessionLocation}</li>)
       // console.log(sessionListHTML)
     }
 
@@ -69,7 +69,7 @@ function ViewPreviousSessions() {
 
       return (
 
-        <div className="d-flex flex-column min-vh-100">
+        <div className="d-flex flex-column min-vh-100 surfSessionsBG">
           <header className="">
             <Header />
           </header>
@@ -77,11 +77,14 @@ function ViewPreviousSessions() {
           {/* Weather Widget Component */}
           <WeatherWidget />
 
-          <div className="d-flex flex-column justify-content-center align-items-center surfSessionCol">
+          <div className="d-flex row justify-content-center align-items-center surfSessionCol">
           
-          <h1 className="previousSurfSessionTitle text-center mt-3">Surf Sessions</h1>
+          <div className="row surfSessionsTitleBox">
+            <h1 className="previousSurfSessionTitle justify-content-center align-items-center text-center my-3">Surf Sessions</h1>
+          </div>
           
-            <ul className="text-center viewSurfSessionSpacer">
+          
+            <ul className="row justify-content-center align-items-center text-center viewSurfSessionSpacer w-100 pr-0">
               {sessionListHTML}
             </ul>
           </div>
