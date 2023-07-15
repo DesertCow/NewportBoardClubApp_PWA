@@ -41,17 +41,8 @@ function ViewSurfSession() {
       // event.preventDefault();
 
       console.log("Delete Session: " + surfSessionID)
-
       
-
-      const { surfSessionData } = await deleteSurfSession({
-
-        variables: { 
-          sessionId: surfSessionID
-        },
-    });
-      
-    let confirmCheck = confirm("Are you sure you want to delete this Surf Session?");
+      let confirmCheck = confirm("Are you sure you want to delete this Surf Session?");
 
       if(confirmCheck) {
       
@@ -72,9 +63,6 @@ function ViewSurfSession() {
       
       var surfSessionData = data.getSurfSession
 
-      // console.log(surfSessionData)
-      // console.log(surfSessionData.sessionDate)
-
       return (
 
         <div className="d-flex flex-column min-vh-100">
@@ -88,7 +76,6 @@ function ViewSurfSession() {
           <div className="d-flex flex-column justify-content-center align-items-center">
           
           <h1 className="viewSurfSessionTitle text-center mt-3">Surf Session</h1>
-          {/* <h3 className="text-center mt-3">{surfSessionID}</h3> */}
 
             <div className="d-flex flex-row justify-content-center align-items-center viewSurfSessionDateBox">
               <div className="d-flex p-2 mx-5">
