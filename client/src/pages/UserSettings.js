@@ -15,11 +15,14 @@ import { EMAIL_UPDATE, PASS_UPDATE, NAME_UPDATE } from '../utils/mutations';
 import { getURLupload_Q } from '../utils/queries';
 import { useMutation, useLazyQuery } from '@apollo/client';
 
+import { useNavigate } from "react-router-dom";
 
 function UserSettings() {
 
   //* Validate JWT Token/Login
   if(Auth.loggedIn()){
+
+    const navigate = useNavigate();
 
     const [emailState, setEmailState] = useState({ memberEmail: '', id: '' });
     const [passwordState, setPasswordState] = useState({ password: '', confirm: '', id: '' });
@@ -274,6 +277,22 @@ function UserSettings() {
 
     }
 
+    const handleLogout = async (event) => {
+      // event.preventDefault();
+
+      let confirmCheck = confirm("Are you sure you want to logout?");
+
+      if(confirmCheck) {
+      
+        //*Logout by Deleting JWT Token
+        Auth.logout();
+
+        navigate("/");
+        location.reload()
+        window.scrollTo(0, 0);
+      }
+    };
+
     return (
 
       <div className="d-flex flex-column min-vh-100">
@@ -306,43 +325,24 @@ function UserSettings() {
 
           <div className="form-group mx-2 my-5 text-center">
             <label htmlFor="exampleInputEmail1">Member Name</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={jwtToken.data.memberFirstName} onChange={(e) => handleFirstNameChange(e)}></input>
-            <input type="email" className="form-control mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={jwtToken.data.memberLastName} onChange={(e) => handleLastNameChange(e)}></input>
+            <input type="email" className="form-control" id="memberFirstName" aria-describedby="emailHelp" placeholder={jwtToken.data.memberFirstName} onChange={(e) => handleFirstNameChange(e)}></input>
+            <input type="email" className="form-control mt-2" id="memberLastName" aria-describedby="emailHelp" placeholder={jwtToken.data.memberLastName} onChange={(e) => handleLastNameChange(e)}></input>
             <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleNameSubmit(event)}>Update Name</button>
           </div>
           <div className="form-group mx-2 my-5 text-center">
             <label htmlFor="exampleInputEmail1">Email address</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={jwtToken.data.memberEmail} onChange={(e) => handleEmailChange(e)}></input>
+            <input type="email" className="form-control" id="memberEmail" aria-describedby="emailHelp" placeholder={jwtToken.data.memberEmail} onChange={(e) => handleEmailChange(e)}></input>
             <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleEmailSubmit(event)}>Update Email</button>
           </div>
           <div className="form-group mx-2 my-5 text-center">
             <label htmlFor="exampleInputPassword1">Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e) => handlePasswordChange(e)}></input>
+            <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e) => handlePasswordChange(e)}></input>
             <label htmlFor="exampleInputPassword1" className="mt-3">Password Confirm</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e) => handleConfirmPasswordChange(e)}></input>
-            <button type="button" className="userProfileUpdateBtn p-2 mt-3 mb-5 text-center" onClick={(event) => HandlePasswordSubmit(event)}>Update Password</button>
+            <input type="password" className="form-control" id="passwordConfirm" placeholder="Password" onChange={(e) => handleConfirmPasswordChange(e)}></input>
+            <button type="button" className="userProfileUpdateBtn p-2 mt-3 mb-2 text-center" onClick={(event) => HandlePasswordSubmit(event)}>Update Password</button>
           </div>
-        <div className="form-group mx-2 my-5">
-
-          </div>
-          {/* <div className="form-check">
-            <input type="checkbox" className="form-check-input" id="exampleCheck1">
-            <label className="form-check-label" for="exampleCheck1">Check me out</label>
-          </div> */}
-          {/* <div className="">
-            <p className="text-center dateOBText">Date Of Birth</p>
-            <div className="row datePicker text-center">
-              <SelectDatepicker
-                selectedDate={datevalue}
-                onDateChange={onDateChange}
-                className="d-flex mt-3 row justify-content-center align-items-center"
-              />
-            </div>
-          </div> */}
-          <div className="d-flex align-items-center justify-content-center">
-          {/* <button type="submit" className="btn btn-primary text-center mx-5 mt-3 mb-5 editSpacer">Submit</button>  */}
-          
-          {/* <button type="submit" className="profileSaveBtn text-center mx-5 mt-3 mb-5 editSpacer p-3">Save Changes</button>  */}
+          <div className="d-flex align-items-center justify-content-center mb-5 logoutBTNBox">
+            <button type="button" className="btn btn-danger text-center mt-3 mb-3 logoutBTN" onClick={(event) => handleLogout(event)}>Log Out</button>   
           </div>
         </form>
 

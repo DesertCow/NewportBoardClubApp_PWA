@@ -531,8 +531,16 @@ background-color: #ffa85129;
   font-family: "Catamaran-ExtraBold";
 }
 
-.editSpacer {
-  width: 100px;
+.logoutBTN {
+  width: 300px;
+  /* font-family: "Catamaran-ExtraBold"; */
+  /* font-size: 30px; */
+}
+
+.logoutBTNBox{
+  border: #c3c3c3b5;
+  border-width: 5px;
+  border-style: dashed;
 }
 
 .dateOBText {
