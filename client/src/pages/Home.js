@@ -71,8 +71,7 @@ function Home() {
 
 
   //* Validate JWT Token/Login
-  // if(Auth.loggedIn()){
-  if(true){
+  if(Auth.loggedIn()){
 
     return (
 
