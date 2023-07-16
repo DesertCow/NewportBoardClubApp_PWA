@@ -1043,7 +1043,9 @@ bottom: 0;
 /*? ============= Event Details Page ============= */
 
 .eventDetailsPhoto{
-  width: 100%;
+  /* width: 100%; */
+  width: 380px;
+  margin-right: 25px;
   border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
