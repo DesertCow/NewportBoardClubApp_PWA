@@ -112,6 +112,7 @@ const typeDefs = `#graphql
   }
 
   type SurfHack {
+    _id: String
     hackTitle: String
     hackBody: String
     hackPhotoURL: String

@@ -38,6 +38,8 @@ import ClubEventsMain from './pages/ClubEvents';
 import ViewEventDetails from './pages/ClubEvents_EventDetails'
 
 import SurfHacks from './pages/SurfHacks';
+import SurfHackDetails from './pages/SurfHack_Details';
+
 import NewportSurfMap from './pages/NewportSurfMap';
 
 import SurfRentals from './pages/SurfRentals';
@@ -81,6 +83,7 @@ export default function App() {
         <Route path="/club_events" element={<ClubEventsMain />} />
         <Route path="/club_events/event/:eventID" element={<ViewEventDetails />} />
         <Route path="/surf_hacks" element={<SurfHacks />} />
+        <Route path="/surf_hacks/:surfHackID" element={<SurfHackDetails />} />
         <Route path="/newport_surf_map" element={<NewportSurfMap />} />
         <Route path="/community_forum" element={<CommunityForum />} />
         <Route path="/surf_rentals" element={<SurfRentals />} />

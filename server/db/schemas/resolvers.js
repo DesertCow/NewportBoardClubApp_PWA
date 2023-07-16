@@ -330,7 +330,7 @@ const resolvers = {
 
     getSurfHack: async (parent, { surfHackID }) => {
       
-      console.log("surfHackID: " + surfHackID)
+      // console.log("surfHackID: " + surfHackID)
       
       const surfHack = await SurfHack.findOne({_id: surfHackID})
 

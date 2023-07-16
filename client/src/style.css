@@ -1091,3 +1091,41 @@ bottom: 0;
   font-family: "Catamaran-ExtraBold";
   height: 50px;
 }
+
+/*? ============= Surf Hacks List ============= */
+
+.surfHacksTitle{
+  font-family: "Catamaran-ExtraBold";
+  font-size: 40px;
+}
+
+.surfHackIconPhoto{
+  width: 95%;
+  height: 250px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.surfHackDisplayBox {
+  font-family: "Catamaran-ExtraBold";
+  /* background-color: #3b94d836; */
+  border-style: solid;
+  border-width: 10px;
+  border-color: #6f6f6f75;
+}
+
+.surfHackListMain{
+  margin-bottom: 80px;
+}
+
+.surfHackDetailsPhoto{
+  width: 85%;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
