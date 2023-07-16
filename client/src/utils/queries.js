@@ -126,3 +126,25 @@ export const defaultProfilePictureUpload_Q = gql`
     uploadUserDefaultProfilePicture(userID: $userId)
   }
 `;
+
+export const getSurfHack_Q = gql`
+  query GetSurfHack($surfHackId: String) {
+    getSurfHack(surfHackID: $surfHackId) {
+      _id
+      hackTitle
+      hackBody
+      hackPhotoURL
+    }
+  }
+`;
+
+export const getSurfHackList_Q = gql`
+  query GetSurfHackList {
+    getSurfHackList {
+      hackTitle
+      hackBody
+      hackPhotoURL
+      _id
+    }
+  }
+`;
