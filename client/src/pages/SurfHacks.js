@@ -35,9 +35,10 @@ function SurfHacks() {
   }
 
   const displaySurfHackDetails = async (event, reqSurfHackID) => {
+    
     event.preventDefault();
-
     navigate("/surf_hacks/" + reqSurfHackID);
+    window.scrollTo(0, 0);
   };
 
   //* Validate JWT Token/Login

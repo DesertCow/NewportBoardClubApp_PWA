@@ -54,7 +54,7 @@ function SurfHackDetails() {
               {/* Weather Widget Component */}
               <WeatherWidget />
 
-              <div className="d-flex flex-column justify-content-center align-items-center surfSessionCol">
+              <div className="d-flex flex-column justify-content-center align-items-center">
 
                 <div className="mt-4 ml-3 d-flex justify-content-center align-items-center">
                   <img src={data.getSurfHack.hackPhotoURL}
@@ -63,7 +63,7 @@ function SurfHackDetails() {
                   />
                 </div>
 
-                <h1 className="mt-2 px-3 text-center eventDetailsEventTitle">{data.getSurfHack.hackTitle}</h1>
+                <h1 className="mt-4 text-center eventDetailsEventTitle">{data.getSurfHack.hackTitle}</h1>
 
                 <div className="mt-0 text-center">
                   <Interweave content={data.getSurfHack.hackBody} />

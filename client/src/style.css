@@ -1101,7 +1101,7 @@ bottom: 0;
 
 .surfHackIconPhoto{
   width: 95%;
-  height: 250px;
+  /* height: 250px; */
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
@@ -1111,7 +1111,6 @@ bottom: 0;
 
 .surfHackDisplayBox {
   font-family: "Catamaran-ExtraBold";
-  /* background-color: #3b94d836; */
   border-style: solid;
   border-width: 10px;
   border-color: #6f6f6f75;
