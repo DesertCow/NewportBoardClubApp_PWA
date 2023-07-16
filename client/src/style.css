@@ -116,11 +116,10 @@
 }
 
 /*? ============= Surf Map Page ============= */
-.surfMapBox {
-  /* width: 500px;
-   */
-  /* overflowX: 'scroll'; */
-}
+/* .surfMapBox {
+  width: 500px;
+  overflowX: 'scroll';
+} */
 
 .surfMap {
   max-width: 100%;

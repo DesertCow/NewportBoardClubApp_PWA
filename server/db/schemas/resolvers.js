@@ -7,6 +7,7 @@ const path = require('node:path');
 const UserMongo = require('../../models/UserMongo');
 const EventMongo = require('../../models/EventMongo');
 const SurfSessionMongo = require('../../models/SurfSession');
+const SurfHack = require('../../models/SurfHacks');
 
 //* Auth Tools
 const bcrypt = require("bcrypt")
@@ -246,6 +247,7 @@ const resolvers = {
       return requestedEvent
 
     },
+
     getAllUsersSurfSession: async (parent, { userID }) => {
       
       // console.log("UserID: " + userID)
@@ -254,6 +256,7 @@ const resolvers = {
 
       return allUserSurfSessions
     },
+
     getSurfSession: async (parent, { sessionID }) => {
 
       console.log("Requested Session ID: " + sessionID);
@@ -263,6 +266,7 @@ const resolvers = {
       return requestedSession;
 
     },
+
     uploadUserProfilePicture: async (parent, { userID }) => {
 
       console.log("\n   \x1b[33mUser (" + userID +") Has Requested Upload URL\x1b[0m");
@@ -322,7 +326,25 @@ const resolvers = {
 
     //  console.log(uploadURL);
       return "Upload Successfully!";
-    }
+    },
+
+    getSurfHack: async (parent, { surfHackID }) => {
+      
+      console.log("surfHackID: " + surfHackID)
+      
+      const surfHack = await SurfHack.findOne({_id: surfHackID})
+
+      return surfHack
+    },
+
+    getSurfHackList: async () => {
+      
+      // console.log("surfHackID: " + surfHackID)
+      
+      const surfHackList = await SurfHack.find()
+
+      return surfHackList
+    },
   },
 
   Mutation: {
@@ -517,6 +539,14 @@ const resolvers = {
       console.log("\x1b[31m DELETE: [" + sessionID + "] Surf Session\x1b[0m\n")
 
       return sessionID + " Surf Session Was Deleted Successfully!";
+    },
+
+    createSurfHack: async (parent, { hackTitle, hackBody, hackPhotoURL }) => {
+
+      const surfHack = await SurfHack.create({hackTitle, hackBody, hackPhotoURL});
+    
+      console.log("\x1b[32m CREATE: Surf Hack (" + hackTitle + ")\x1b[0m\n")
+
     }
   },
 
