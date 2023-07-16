@@ -14,35 +14,44 @@ const WeatherWidget = () => {
   //* Get Latest Weather Data from App Server
   var { loading, data } = useQuery(getWidgetWX_Q)
 
-  // console.log("TEST");
+  let tideDirIcon;
 
   if(!loading){
 
-      // console.log(data.getWidgetWX);
+    //* Logic for Tide Direction Icon
+    if (data.getWidgetWX.tideRise) {
+        // tideDirIcon = <MaterialSymbol icon="keyboard_double_arrow_up" size={60} fill grade={-25} color='black' />
+        tideDirIcon = <img src={require("../../img/Tide_Rising.png")} className="headerTideDir" alt="Tide Icon" />
+    } 
+
+    if (!data.getWidgetWX.tideRise) {
+        tideDirIcon = <img src={require("../../img/Tide_Falling.png")} className="headerTideDir" alt="Tide Icon" />
+    }
 
     return (
 
-      <div className="modal fade px-2 opacity-75 weatherWidgetMain" id="weatherWidget" tabIndex="-1" role="dialog" aria-labelledby="WeatherModel" aria-hidden="true">
+      <div className="modal fade px-2 opacity-100 weatherWidgetMain" id="weatherWidget" tabIndex="-1" role="dialog" aria-labelledby="WeatherModel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
 
             <div className="modal-body weatherWidgetBody weatherWidgetMain">
-              {/* <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button> */}
               <div className="d-flex w-100 justify-content-center">
                 <div className="d-flex col-8">
                   <div className="row-3">
                   </div>
                     <div className="d-flex align-items-center justify-content-center row-3 px-3">
-                    <MaterialSymbol icon="waves" size={50} fill grade={-25} color='black' />
+                      <img src={require("../../img/water-temp-icon.png")}
+                        className="waterTempIcon"
+                        alt="Water Temperature Icon" />
                     </div>
                     <div className="row-3 px-3 weatherWidgetTempFont d-flex align-items-center justify-content-center">
                       {data.getWidgetWX.waterTemp} &deg;F
                     </div>
                   </div>
                 <div className="col-6 d-flex align-items-center justify-content-center">
-                  <MaterialSymbol icon="waves" size={50} fill grade={-25} color='black' />
+                  <img src={require("../../img/surf-wave-icon.jpg")}
+                    className="weatherWidgetWavesIcon"
+                    alt="Tide Icon" />
                 </div>
               </div>
               <div className="d-flex w-100 justify-content-center mt-3">
@@ -73,7 +82,7 @@ const WeatherWidget = () => {
                     <MaterialSymbol icon="air" size={50} fill grade={-25} color='black' />
                     </div>
                     <div className="row-3 px-3 weatherWidgetTempFont d-flex align-items-center justify-content-center">
-                      {data.getWidgetWX.wind} mph
+                      <div className="col mr-4 px-0">{data.getWidgetWX.wind} mph</div> <div className="col mx-0 px-0 windType">({data.getWidgetWX.windType})</div>
                     </div>
                   </div>
                 <div className="col-6 d-flex align-items-center justify-content-left">
@@ -115,9 +124,10 @@ const WeatherWidget = () => {
                   <div className="row-3">
                   </div>
                     <div className="d-flex align-items-center justify-content-center row-3 px-2">
-                      <MaterialSymbol icon="keyboard_double_arrow_up" size={60} fill grade={-25} color='black' />
+                      {/* <MaterialSymbol icon="keyboard_double_arrow_up" size={60} fill grade={-25} color='black' /> */}
+                      {tideDirIcon}
                     </div>
-                    <div className="row-3 weatherWidgetTideText d-flex align-items-center justify-content-center">
+                    <div className="row-3 weatherWidgetTideText d-flex ml-2 align-items-center justify-content-center">
                       {/* {liveAirTemp} &deg;F */}
                       {data.getWidgetWX.nextTideHeight} {data.getWidgetWX.nextTideType} at {data.getWidgetWX.nextTideTime}
                     </div>
