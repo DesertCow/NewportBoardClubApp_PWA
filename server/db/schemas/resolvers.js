@@ -84,14 +84,14 @@ const resolvers = {
         })
 
       //* Fetch Real-Time Wind/Tempeture (Weather Undergound)
-      await fetch(realTimeData)
-        .then((response) => {
-          return response.json();
-        })
-        .then((realTimeData) => {
-          finalLiveWindSpeed = realTimeData.observations[0].imperial.windGust;
-          finalAirTemp = realTimeData.observations[0].imperial.temp;
-        })
+      // await fetch(realTimeData)
+      //   .then((response) => {
+      //     return response.json();
+      //   })
+      //   .then((realTimeData) => {
+      //     finalLiveWindSpeed = realTimeData.observations[0].imperial.windGust;
+      //     finalAirTemp = realTimeData.observations[0].imperial.temp;
+      //   })
 
       //* Get Current time and determind if club is open
       const currentTime = new Date();
@@ -110,12 +110,14 @@ const resolvers = {
       }
     
       return {
-        wind: finalLiveWindSpeed,
-        airTemp: finalAirTemp,
+        // wind: finalLiveWindSpeed,
+        wind: "10",
+        // airTemp: finalAirTemp,
+        airTemp: "66",
         waterTemp: finalWaterTemp,
         tideMSL: finalLiveTideMSL,
         tideRise: finalTideDir,
-        clubStatus: finalClubStatus
+        clubStatus: finalClubStatus,
       }
 
     },
@@ -166,27 +168,32 @@ const resolvers = {
         })
 
     //* Fetch Real-Time Wind/Tempeture (Weather Undergound)
-    await fetch(realTimeData)
-      .then((response) => {
-        return response.json();
-      })
-      .then((realTimeData) => {
+    // await fetch(realTimeData)
+    //   .then((response) => {
+    //     // return response.json();
+    //     finalWind = "Null";
+        
+    //     finalAirTemp = "Null";
+    //   })
+    //   .then((realTimeData) => {
 
-        // console.log("Temperature (Real-Time): " + JSON.stringify(realTimeData.observations[0].imperial.temp))
-        // console.log("Wind (Real-Time): " + JSON.stringify(realTimeData.observations[0].imperial.windSpeed))
-        // console.log("UV (Real-Time): " + JSON.stringify(realTimeData.observations[0].solarRadiation))
+    //     // console.log("Temperature (Real-Time): " + JSON.stringify(realTimeData.observations[0].imperial.temp))
+    //     // console.log("Wind (Real-Time): " + JSON.stringify(realTimeData.observations[0].imperial.windSpeed))
+    //     // console.log("UV (Real-Time): " + JSON.stringify(realTimeData.observations[0].solarRadiation))
         
-        //TODO: Use Wind Speed or Gust Speed?
-        // finalWind = realTimeData.observations[0].imperial.windSpeed;
-        finalWind = realTimeData.observations[0].imperial.windGust;
+    //     //TODO: Use Wind Speed or Gust Speed?
+    //     // finalWind = realTimeData.observations[0].imperial.windSpeed;
+    //     finalWind = realTimeData.observations[0].imperial.windGust;
         
-        finalAirTemp = realTimeData.observations[0].imperial.temp;
-      })
+    //     finalAirTemp = realTimeData.observations[0].imperial.temp;
+    //   })
 
       return {
-        wind: finalWind,
+        // wind: finalWind,
+        wind: "10",
         windType: finalWindType,
-        airTemp: finalAirTemp,
+        // airTemp: finalAirTemp,
+        airTemp: "65",
         waterTemp: finalWaterTemp,
         tideMSL: finalTideMSL,
         tideRise: finalTideDir,

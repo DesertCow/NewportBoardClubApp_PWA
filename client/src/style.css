@@ -32,12 +32,6 @@
     max-height: 130px;
 }
 
-.headerTideIcon {
-
-    height: 33px;
-    width: 33px;
-}
-
 .homeBTNs {
   font-family: "Catamaran-ExtraBold";
   height: 80px;
@@ -100,6 +94,17 @@
 .clubStatusText{
   font-family: "Catamaran-ExtraBold";
   /* height: 100px; */
+}
+
+.headerTideDir{
+  width:60px;
+  height: 60px
+}
+
+.waterTempIconHeader {
+    /* margin-left: 5px; */
+    height: 35px;
+    width: 35px;
 }
 
 /*? ============= Footer Component ============= */
@@ -670,16 +675,18 @@ background-color: #ffa85129;
   /*margin-left: 100px;*/
   height: 340px;
   background-color: #1cadb2;
-
 }
 
 /* .weatherWidgetMain { */
-  /* opacity: 90%; */
-/* } */
+  /* opacity: 70%; */
+ /* } */
 
 .weatherWidgetTempFont {
   font-family: "Catamaran-ExtraBold";
-  font-size: 23px;
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .weatherWidgetTideFont {
@@ -702,6 +709,27 @@ background-color: #ffa85129;
 .weatherWidgetTideText {
   font-family: "Catamaran-Regular";
   font-size: 16px;
+}
+
+.windType {
+  font-family: "Catamaran-Regular";
+  font-size: 16px;
+}
+
+.headerTideIcon {
+    height: 50px;
+    width: 50px;
+}
+
+.waterTempIcon {
+    /* margin-left: 5px; */
+    height: 50px;
+    width: 50px;
+}
+
+.weatherWidgetWavesIcon{
+  height: 50px;
+  width: 100px
 }
 
 /*? ============= Login Page ============= */
