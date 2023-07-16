@@ -1,8 +1,6 @@
 
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import { Link } from 'react-router-dom';
 
-import AdminSideBar from "../components/AdminSidebar";
+import AdminSideBar from "../../components/AdminSidebar";
 
 
 

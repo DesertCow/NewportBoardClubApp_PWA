@@ -54,7 +54,14 @@ import PrivacyPolicy from './pages/PrivacyPolicy'
 
 import CommunityForum from './pages/CommunityForum';
 
-import AdminHome from './pages/Admin_Home';
+import AdminHome from './pages/AdminPages/Admin_Home';
+import AdminAddEvent from './pages/AdminPages/AddEvent';
+import AdminUpdateEvent from './pages/AdminPages/UpdateEvent';
+import AdminAddSurfHack from './pages/AdminPages/AddSurfHack';
+import AdminUpdateSurfHack from './pages/AdminPages/UpdateSurfHack';
+import AdminUpdateShaperList from './pages/AdminPages/UpdateShaperList';
+import AdminPushNotifications from './pages/AdminPages/PushNotifications';
+
 
 
 //* Component Import
@@ -91,6 +98,12 @@ export default function App() {
         <Route path="/surf_rentals" element={<SurfRentals />} />
         <Route path="/about_club" element={<AboutClub />} />
         <Route path="/admin" element={<AdminHome />} />
+        <Route path="/admin/addEvent" element={<AdminAddEvent />} />
+        <Route path="/admin/updateEvent" element={<AdminUpdateEvent />} />
+        <Route path="/admin/addSurfHack" element={<AdminAddSurfHack />} />
+        <Route path="/admin/updateSurfHack" element={<AdminUpdateSurfHack />} />
+        <Route path="/admin/updateShaperList" element={<AdminUpdateShaperList />} />
+        <Route path="/admin/pushNotifications" element={<AdminPushNotifications />} />
       </Routes>
     </Router>
   );
