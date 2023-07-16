@@ -54,6 +54,8 @@ import PrivacyPolicy from './pages/PrivacyPolicy'
 
 import CommunityForum from './pages/CommunityForum';
 
+import AdminHome from './pages/Admin_Home';
+
 
 //* Component Import
 
@@ -88,6 +90,7 @@ export default function App() {
         <Route path="/community_forum" element={<CommunityForum />} />
         <Route path="/surf_rentals" element={<SurfRentals />} />
         <Route path="/about_club" element={<AboutClub />} />
+        <Route path="/admin" element={<AdminHome />} />
       </Routes>
     </Router>
   );

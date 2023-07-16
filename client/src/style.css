@@ -1128,3 +1128,16 @@ bottom: 0;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
 }
+
+/*? ============= Admin Side Bar ============= */
+
+.sideBarLogo{
+
+  width: 200px;
+
+}
+
+.sideBarMain{
+  height: 950px;
+  margin-left: 0px !important;
+}

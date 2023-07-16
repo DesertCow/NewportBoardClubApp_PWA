@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-material-symbols": "^4.1.1",
     "react-popper": "^2.3.0",
+    "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-router-dom": "^6.12.1",
     "react-scripts": "^5.0.1",
     "react-select-datepicker": "^2.1.2",
