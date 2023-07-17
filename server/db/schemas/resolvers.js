@@ -249,6 +249,14 @@ const resolvers = {
 
     },
 
+    getEventList: async() => {
+
+      const eventList = await EventMongo.find()
+
+      return eventList;
+
+    },
+
     getAllUsersSurfSession: async (parent, { userID }) => {
       
       // console.log("UserID: " + userID)
@@ -531,6 +539,29 @@ const resolvers = {
       // console.log(event)
 
       return event;
+    },
+
+    updateEvent: async (parent, { eventID, newEventName, newEventSlogan, newEventDate, newEventLength, newEventBody, newEventPhotoURL, newEventCurrent }) => {
+    
+      console.log("\x1b[33m UPDATE: Event [" + eventID + "]\x1b[0m\n")
+
+      const eventUpdatedResponse = await EventMongo.updateOne({_id: eventID}, { $set: { eventName: newEventName, eventSlogan: newEventSlogan, eventDate: newEventDate, eventBody: newEventBody, eventPhotoURL: newEventPhotoURL, eventCurrent: newEventCurrent, eventLength: newEventLength } })
+
+      //* Get updated surf hack from DB via hackID
+      const eventUpdated = await EventMongo.findOne({ _id: eventID });
+
+      return eventUpdated;
+    
+    },
+
+    deleteEvent: async (parent, {eventID}) => {
+
+      const eventDelete = await EventMongo.deleteOne({_id: eventID});
+
+      console.log("\x1b[31m DELETE: Event [" + eventID + "]\x1b[0m\n")
+
+      return "Event (" + eventID + ") was Deleted!"
+
     },
 
     createSurfSession: async (parent, { userID, sessionDate, sessionTime, sessionLocation, skyConditions, waveSize, tideLevel, tideDirection, sessionLength, surfboardShaper, surfboardModel, surfboardLengthFT, surfboardLengthIN, surfboardVolume, surfboardFinConfig, sessionNotes, sessionRating  }) => {

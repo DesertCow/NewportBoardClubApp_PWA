@@ -98,3 +98,39 @@ export const UPDATE_SURF_HACK =gql`
     }
   }
 `;
+
+export const DELETE_EVENT_M = gql`
+  mutation DeleteEvent($eventId: String!) {
+    deleteEvent(eventID: $eventId)
+  }
+`;
+
+export const ADD_EVENT_M = gql`
+  mutation CreateEvent($eventName: String!, $eventSlogan: String!, $eventDate: String!, $eventBody: String!, $eventPhotoUrl: String!, $eventCurrent: Boolean!, $eventLength: String) {
+    createEvent(eventName: $eventName, eventSlogan: $eventSlogan, eventDate: $eventDate, eventBody: $eventBody, eventPhotoURL: $eventPhotoUrl, eventCurrent: $eventCurrent, eventLength: $eventLength) {
+      _id
+      eventName
+      eventSlogan
+      eventDate
+      eventLength
+      eventBody
+      eventPhotoURL
+      eventCurrent
+    }
+  }
+`;
+
+export const UPDATE_EVENT_M = gql`
+  mutation UpdateEvent($eventId: String!, $newEventName: String!, $newEventSlogan: String!, $newEventDate: String!, $newEventBody: String!, $newEventPhotoUrl: String!, $newEventCurrent: Boolean!, $newEventLength: String) {
+    updateEvent(eventID: $eventId, newEventName: $newEventName, newEventSlogan: $newEventSlogan, newEventDate: $newEventDate, newEventBody: $newEventBody, newEventPhotoURL: $newEventPhotoUrl, newEventCurrent: $newEventCurrent, newEventLength: $newEventLength) {
+      _id
+      eventName
+      eventSlogan
+      eventDate
+      eventLength
+      eventBody
+      eventPhotoURL
+      eventCurrent
+    }
+  }
+  `;

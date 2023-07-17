@@ -20,12 +20,11 @@ const AdminSideBar = () => {
         <MenuItem component={<Link to="/admin" />}> Admin Home</MenuItem>
         <SubMenu label="Events">
           <MenuItem component={<Link to="/admin/addEvent" />}> Add Event </MenuItem>
-          <MenuItem component={<Link to="/admin/updateEvent" />}> Update Event </MenuItem>
-          <MenuItem component={<Link to="/admin/deleteEvent" />}> Delete Event </MenuItem>
+          <MenuItem component={<Link to="/admin/deleteEvent" />}> Update/Delete </MenuItem>
         </SubMenu>
         <SubMenu label="Surf Hacks">
-          <MenuItem component={<Link to="/admin/addSurfHack" />}> Add </MenuItem>
-          <MenuItem component={<Link to="/admin/deleteSurfHack" />}> Update/Delete </MenuItem>
+          <MenuItem component={<Link to="/admin/addSurfHack" />}> Add Surf Hack</MenuItem>
+          <MenuItem component={<Link to="/admin/deleteSurfHack" />}> Update/Delete</MenuItem>
         </SubMenu>
         <SubMenu label="Shaper List">
           <MenuItem component={<Link to="/admin/addShaper" />}> Add </MenuItem>
