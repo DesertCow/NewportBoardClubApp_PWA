@@ -33,6 +33,7 @@ const typeDefs = `#graphql
     deleteSurfSession(sessionID: String!): String
     createSurfHack(hackTitle: String!, hackBody: String!, hackPhotoURL: String!): SurfHack
     createShaper(shaperName: String!): Shaper
+    deleteShaper(shaperID: String!): String
   }
 
   type UserCreated {

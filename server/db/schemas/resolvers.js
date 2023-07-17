@@ -568,6 +568,16 @@ const resolvers = {
       console.log("\x1b[32m CREATE: Shapper (" + shaperName + ")\x1b[0m\n")
 
       return shaper
+    },
+
+    deleteShaper: async (parent, {shaperID}) => {
+
+      const deleteShaper = await Shaper.deleteOne({_id: shaperID})
+
+      console.log("\x1b[31m DELETE: Shaper [" + shaperID + "]\x1b[0m\n")
+
+      return "Shaper (" + shaperID + ") Deleted!";
+
     }
   },
 
