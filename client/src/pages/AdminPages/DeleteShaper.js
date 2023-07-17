@@ -32,10 +32,10 @@ const UpdateShaperList = () => {
 
       const { surfSessionData } = await deleteShaper_M({
 
-          variables: { 
-            shaperId: shaperID
-          },
-        });
+        variables: { 
+          shaperId: shaperID
+        },
+      });
 
       navigate("/admin/deleteShaper");
       location.reload()

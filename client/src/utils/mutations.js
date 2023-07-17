@@ -71,3 +71,30 @@ export const ADD_SHAPER = gql`
     }
   }
 `;
+
+export const ADD_SURF_HACK = gql`
+  mutation CreateSurfHack($hackTitle: String!, $hackBody: String!, $hackPhotoUrl: String!) {
+    createSurfHack(hackTitle: $hackTitle, hackBody: $hackBody, hackPhotoURL: $hackPhotoUrl) {
+      hackTitle
+      hackBody
+      hackPhotoURL
+    }
+  }
+`;
+
+export const DELETE_SURF_HACK_M = gql`
+  mutation Mutation($hackId: String!) {
+    deleteSurfHack(hackID: $hackId)
+  }
+`;
+
+export const UPDATE_SURF_HACK =gql`
+  mutation Mutation($hackId: String!, $newHackTitle: String, $newHackBody: String, $newHackPhotoUrl: String) {
+    updateSurfHack(hackID: $hackId, newHackTitle: $newHackTitle, newHackBody: $newHackBody, newHackPhotoURL: $newHackPhotoUrl) {
+      _id
+      hackTitle
+      hackBody
+      hackPhotoURL
+    }
+  }
+`;
