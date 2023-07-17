@@ -15,7 +15,7 @@ import { useQuery } from '@apollo/client';
 
 function ViewPreviousSessions() {
 
-    //* Validate JWT Token/Login
+  //* Validate JWT Token/Login
   if(Auth.loggedIn()){
 
     const navigate = useNavigate();

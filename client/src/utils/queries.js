@@ -148,3 +148,12 @@ export const getSurfHackList_Q = gql`
     }
   }
 `;
+
+export const getShaperList_Q = gql`
+  query GetShaperList {
+    getShaperList {
+      _id
+      shaperName
+    }
+  }
+`;

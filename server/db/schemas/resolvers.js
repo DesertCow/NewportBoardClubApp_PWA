@@ -8,6 +8,7 @@ const UserMongo = require('../../models/UserMongo');
 const EventMongo = require('../../models/EventMongo');
 const SurfSessionMongo = require('../../models/SurfSession');
 const SurfHack = require('../../models/SurfHacks');
+const Shaper = require('../../models/Shaper')
 
 //* Auth Tools
 const bcrypt = require("bcrypt")
@@ -334,7 +335,7 @@ const resolvers = {
       
       const surfHack = await SurfHack.findOne({_id: surfHackID})
 
-      return surfHack
+      return surfHack;
     },
 
     getSurfHackList: async () => {
@@ -343,8 +344,17 @@ const resolvers = {
       
       const surfHackList = await SurfHack.find()
 
-      return surfHackList
+      return surfHackList;
     },
+
+    getShaperList: async () => {
+
+      const shaperList = await Shaper.find()
+
+      console.log("   \x1b[33mShaper List Requested (" + shaperList.length + ")\x1b[0m")
+
+      return shaperList;
+    }
   },
 
   Mutation: {
@@ -547,6 +557,17 @@ const resolvers = {
     
       console.log("\x1b[32m CREATE: Surf Hack (" + hackTitle + ")\x1b[0m\n")
 
+      return surfHack;
+
+    },
+
+    createShaper: async (parent, {shaperName}) => {
+
+      const shaper = await Shaper.create({shaperName});
+
+      console.log("\x1b[32m CREATE: Shapper (" + shaperName + ")\x1b[0m\n")
+
+      return shaper
     }
   },
 

@@ -19,6 +19,7 @@ const typeDefs = `#graphql
     uploadUserDefaultProfilePicture(userID: String!): String
     getSurfHack(surfHackID: String): SurfHack
     getSurfHackList: [SurfHack]
+    getShaperList: [Shaper]
   }
 
   type Mutation {
@@ -31,6 +32,7 @@ const typeDefs = `#graphql
     createSurfSession( userID: String!, sessionDate: String!, sessionTime: String!, sessionLocation: String, skyConditions: String!, waveSize: String!, tideLevel: Float, tideDirection: String, sessionLength: String!, surfboardShaper: String, surfboardModel: String, surfboardLengthFT: Int, surfboardLengthIN: Int, surfboardVolume: Float, surfboardFinConfig: String, sessionNotes: String, sessionRating: Int): SurfSession
     deleteSurfSession(sessionID: String!): String
     createSurfHack(hackTitle: String!, hackBody: String!, hackPhotoURL: String!): SurfHack
+    createShaper(shaperName: String!): Shaper
   }
 
   type UserCreated {
@@ -116,6 +118,11 @@ const typeDefs = `#graphql
     hackTitle: String
     hackBody: String
     hackPhotoURL: String
+  }
+
+  type Shaper {
+    _id: String
+    shaperName: String
   }
 
 `;

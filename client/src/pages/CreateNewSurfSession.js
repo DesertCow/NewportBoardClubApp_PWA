@@ -12,6 +12,9 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from '@apollo/client';
 import { CREATE_SURF_SESSION } from '../utils/mutations';
 
+import { getShaperList_Q } from '../utils/queries';
+import { useQuery } from '@apollo/client';
+
 import { useState, useCallback } from 'react';
 
 //* Date Picker Setup
@@ -44,7 +47,6 @@ function CreateNewSession() {
 
     // console.log("Time: " + value)
 
-    
     //* Submit surf session data to Database
     const handleSurfSessionSubmit = async (event) => {
       
@@ -112,293 +114,331 @@ function CreateNewSession() {
     }
 
 
-    return (
+    //* Get List of surf sessions for user from Database
+    var { loading, data } = useQuery(getShaperList_Q);
 
-      <div className="min-vh-100">
-        <header className="">
-          <Header />
-        </header>
 
-        <WeatherWidget />
+    function populateListOfShapers(shaperData) {
 
-        <form method="post" onSubmit={handleSurfSessionSubmit}>
-          <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
-            <div className="d-flex p-2 mx-5">
-              <div className="flex-col m-2 dateFont justify-content-center align-items-center">
-                Date:
-              </div>
-              <div name="sessionDate">
-                <DatePicker required="true" value={value} onChange={(newValue) => setDateValue(newValue)}/>
+      // var sessionListHTML = []
+
+      // console.log("Session ID: " + sessionData._id)
+      // console.log("Sesstion Date: " + JSON.stringify(sessionData.sessionDate));
+      // console.log("Sesstion Time: " + JSON.stringify(sessionData.sessionTime));
+      // console.log("Sesstion Location: " + JSON.stringify(sessionData.sessionLocation));
+
+      
+      //* Create Buttons based user sessions pulled from DB
+      // sessionListHTML.push(<li key={sessionData._id} onClick={(event) => displayItem(event, sessionData.sessionDate, essionData.sessionTime)} className="subMenuBtns m-4 p-2"><div variant="light">{sessionData._id}</div>{' '}</li>)
+      // sessionListHTML.push(<li key={sessionData._id} onClick={(event) => displaySurfSession(event, sessionData._id)} className="previousSurfSessionBTN mt-4 p-3">{sessionData.sessionDate} ({sessionData.sessionTime}) @ {sessionData.sessionLocation}</li>)
+      // sessionListHTML.push(<option value={shaperData.shaperName}>{shaperData.shaperName}</option>)
+      shaperListHTML.push(<option key={shaperData.shaperName}>{shaperData.shaperName}</option>)
+      // console.log(sessionListHTML)
+    }
+
+    if(!loading){
+    // if(true){
+
+      var shaperListHTML = []
+
+      data.getShaperList.forEach(populateListOfShapers)
+
+      // console.log(shaperListHTML)
+
+      return (
+
+        <div className="min-vh-100">
+          <header className="">
+            <Header />
+          </header>
+
+          <WeatherWidget />
+
+          <form method="post" onSubmit={handleSurfSessionSubmit}>
+            <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
+              <div className="d-flex p-2 mx-5">
+                <div className="flex-col m-2 dateFont justify-content-center align-items-center">
+                  Date:
+                </div>
+                <div name="sessionDate">
+                  <DatePicker required="true" value={value} onChange={(newValue) => setDateValue(newValue)}/>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
-            <div className="p-2 dateFont">
-                Time:
+            <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
+              <div className="p-2 dateFont">
+                  Time:
+              </div>
+              <div className="timePicker">
+                <div>
+                  <TimePicker required="true" value={value} onChange={(newValue) => setTimeValue(newValue)} use12Hours/>
+                </div>
+
+              </div>
             </div>
-            <div className="timePicker">
+            <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
+              Location:&nbsp;&nbsp;
               <div>
-                <TimePicker required="true" value={value} onChange={(newValue) => setTimeValue(newValue)} use12Hours/>
+                <input required type="text" name="surfLocation" className="locationInputBox d-flex justify-content-center align-items-center p-1" />
               </div>
-
             </div>
-          </div>
-          <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
-            Location:&nbsp;&nbsp;
+            <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
+              <div className="m-4 dateFont">
+                  Sky Condtions: 
+              </div>
+              <select name="skyConditions" defaultValue="Sunny" className="surfSessionDropDowns">
+                <option value="Sunny">Sunny</option>
+                <option value="Partly Sunny">Partly Sunny</option>
+                <option value="Cloudy">Cloudy</option>
+                <option value="Foggy">Foggy</option>
+                <option value="Rainy">Rainy</option>
+                <option value="Thunderstorms">Thunderstorms</option>
+              </select>
+            </div>
+            <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
+              <div className="m-4 dateFont">
+                  Wave Height: 
+              </div>
+              <select name="waveSize" defaultValue="0-1 ft" className="surfSessionDropDowns">
+                <option value="0-1">0-1 ft</option>
+                <option value="1-2">1-2 ft</option>
+                <option value="2-3">2-3 ft</option>
+                <option value="3-4">3-4 ft</option>
+                <option value="4-5">4-5 ft</option>
+                <option value="5-6">5-6 ft</option>
+                <option value="6-7">6-7 ft</option>
+                <option value="7-8">7-8 ft</option>
+                <option value="8-9">8-9 ft</option>
+                <option value="10+">10+ ft</option>
+              </select>
+            </div>
+            <div className="d-flex flex-row justify-content-around align-items-center smallBoxRow">
+              <div className="mx-0 dateFont">
+                  Tide: 
+              </div>
+              <div className="">
+                <select name="tideLevel" defaultValue="0" className="surfSessionDropDowns ml-4">
+                  <option>-3</option>
+                  <option>-2</option>
+                  <option>-1</option>
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                </select>
+                <label>.</label>
+                <select name="tideLevelDecimal" defaultValue="0" className="surfSessionDropDowns">
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                </select>
+              </div>
+              <div className="mx-0 dateFont">
+                Direction: 
+              </div>
+                <select name="tideDirection" defaultValue="Rising" className="surfSessionDropDowns">
+                  <option value="Rising">Rising</option>
+                  <option value="Falling">Falling</option>
+                </select>
+            </div>
+            <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
+              <div className="m-1 sessionLengthLabel">
+                  Session Length (H:MM)
+              </div>
+                <select name="sessionLengthHours" defaultValue="0" className="surfSessionDropDowns ml-4">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <label>:</label>
+                <select name="sessionLengthMinutes" defaultValue="0" className="surfSessionDropDowns">
+                  <option value="0">0</option>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="30">30</option>
+                  <option value="35">35</option>
+                  <option value="40">40</option>
+                  <option value="45">45</option>
+                  <option value="50">50</option>
+                  <option value="55">55</option>
+                </select>
+            </div>
+            <div className="surfboardMainBox">
+              <div className="d-flex flex-row justify-content-left align-items-center surfboardSection">
+                <div className="m-4 dateFont">
+                  Shaper:
+                </div>
+                <select name="surfboardShaper" className="surfSessionDropDowns">
+                  {shaperListHTML}
+                  {/* <option>Estrada Surfboard Design</option>
+                  <option value="Baltierra Surfboards">Baltierra Surfboards</option>
+                  <option value="Solid Surf">Solid Surf</option>
+                  <option value="Almond Surfboards">Almond Surfboards</option>
+                  <option value="DHD Surfboards">DHD Surfboards</option>
+                  <option value="Tanner Surfboards">Tanner Surfboards</option>
+                  <option value="Guy Takayama">Guy Takayama</option>
+                  <option value="Robert August">Robert August</option>
+                  <option value="Dano Surfboards">Dano Surfboards</option>
+                  <option value="Album Surf">Album Surf</option>
+                  <option value="Brink Surf">Brink Surf</option>
+                  <option value="Lost Surboards">Lost Surboards</option>
+                  <option value="Surf Prescriptions">Surf Prescriptions</option>
+                  <option value="Thread Surfboards">Thread Surfboards</option> */}
+                </select>
+              </div>
+              <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
+                <div className="m-4 dateFont">
+                    Model: 
+                </div>
+                <input name="surfboardModel" className="modelInputBox p-1"/>
+              </div>
+              <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
+                <div className="m-4 dateFont">
+                    Length:
+                </div>
+                  <select name="surfboardLengthFeet" className="surfSessionDropDowns">
+                    <option >4</option>
+                    <option >5</option>
+                    <option >6</option>
+                    <option >7</option>
+                    <option >8</option>
+                    <option >9</option>
+                    <option >10</option>
+                    <option >11</option>
+                  </select>
+                  <label className="ml-3"> FT</label>
+                <div className=" ml-4">
+                  <select name="surfboardLengthInches" className="surfSessionDropDowns">
+                    <option >0</option>
+                    <option >1</option>
+                    <option >2</option>
+                    <option >3</option>
+                    <option >4</option>
+                    <option >5</option>
+                    <option >6</option>
+                    <option >7</option>
+                    <option >8</option>
+                    <option >9</option>
+                    <option >10</option>
+                    <option >11</option>
+                  </select>
+                  <label className="ml-2"> IN</label>
+                </div>
+              </div>
+              <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
+                <div className="m-4 dateFont">
+                    Volume:
+                </div>
+                  <select name="surfboardVolume" className="surfSessionDropDowns">
+                    <option >20</option>
+                    <option >21</option>
+                    <option >22</option>
+                    <option >23</option>
+                    <option >24</option>
+                    <option >25</option>
+                    <option >26</option>
+                    <option >27</option>
+                    <option >28</option>
+                    <option >29</option>
+                    <option >30</option>
+                    <option >31</option>
+                    <option >32</option>
+                    <option >33</option>
+                    <option >34</option>
+                    <option >35</option>
+                    <option >36</option>
+                    <option >37</option>
+                    <option >38</option>
+                    <option >39</option>
+                    <option >40</option>
+                    <option >41</option>
+                    <option >42</option>
+                    <option >43</option>
+                    <option >44</option>
+                    <option >45</option>
+                  </select>
+                  <label className="ml-3">.</label>
+                <div className=" ml-2">
+                  <select name="surfboardVolumeDecimal" className="surfSessionDropDowns">
+                    <option >0</option>
+                    <option >1</option>
+                    <option >2</option>
+                    <option >3</option>
+                    <option >4</option>
+                    <option >5</option>
+                    <option >6</option>
+                    <option >7</option>
+                    <option >8</option>
+                    <option >9</option>
+                  </select>
+                  <label className="ml-4"> L</label>
+                </div>
+              </div>
+              <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionEnd">
+                <div className="m-4 dateFont">
+                    Fin Setup:
+                </div>
+                  <select name="surfboardFinConfig" className="surfSessionDropDowns">
+                    <option >Single</option>
+                    <option >Twin</option>
+                    <option >Thruster</option>
+                    <option >2+1</option>
+                    <option >Quad</option>
+                  </select>
+              </div> 
+            </div>
             <div>
-              <input required type="text" name="surfLocation" className="locationInputBox d-flex justify-content-center align-items-center p-1" />
+              <label className="text-center textBox">
+                Session Notes:
+              <textarea name="sessionNotes" rows={6} cols={40} className="textEntry mb-4"/>
+          </label>
             </div>
-          </div>
-          <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
-            <div className="m-4 dateFont">
-                Sky Condtions: 
-            </div>
-            <select name="skyConditions" defaultValue="Sunny" className="surfSessionDropDowns">
-              <option value="Sunny">Sunny</option>
-              <option value="Partly Sunny">Partly Sunny</option>
-              <option value="Cloudy">Cloudy</option>
-              <option value="Foggy">Foggy</option>
-              <option value="Rainy">Rainy</option>
-              <option value="Thunderstorms">Thunderstorms</option>
-            </select>
-          </div>
-          <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
-            <div className="m-4 dateFont">
-                Wave Height: 
-            </div>
-            <select name="waveSize" defaultValue="0-1 ft" className="surfSessionDropDowns">
-              <option value="0-1">0-1 ft</option>
-              <option value="1-2">1-2 ft</option>
-              <option value="2-3">2-3 ft</option>
-              <option value="3-4">3-4 ft</option>
-              <option value="4-5">4-5 ft</option>
-              <option value="5-6">5-6 ft</option>
-              <option value="6-7">6-7 ft</option>
-              <option value="7-8">7-8 ft</option>
-              <option value="8-9">8-9 ft</option>
-              <option value="10+">10+ ft</option>
-            </select>
-          </div>
-          <div className="d-flex flex-row justify-content-around align-items-center smallBoxRow">
-            <div className="mx-0 dateFont">
-                Tide: 
-            </div>
-            <div className="">
-              <select name="tideLevel" defaultValue="0" className="surfSessionDropDowns ml-4">
-                <option>-3</option>
-                <option>-2</option>
-                <option>-1</option>
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-              </select>
-              <label>.</label>
-              <select name="tideLevelDecimal" defaultValue="0" className="surfSessionDropDowns">
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-              </select>
-            </div>
-            <div className="mx-0 dateFont">
-              Direction: 
-            </div>
-              <select name="tideDirection" defaultValue="Rising" className="surfSessionDropDowns">
-                <option value="Rising">Rising</option>
-                <option value="Falling">Falling</option>
-              </select>
-          </div>
-          <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
-            <div className="m-1 sessionLengthLabel">
-                Session Length (H:MM)
-            </div>
-              <select name="sessionLengthHours" defaultValue="0" className="surfSessionDropDowns ml-4">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-              <label>:</label>
-              <select name="sessionLengthMinutes" defaultValue="0" className="surfSessionDropDowns">
-                <option value="0">0</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-                <option value="25">25</option>
-                <option value="30">30</option>
-                <option value="35">35</option>
-                <option value="40">40</option>
-                <option value="45">45</option>
-                <option value="50">50</option>
-                <option value="55">55</option>
-              </select>
-          </div>
-          <div className="surfboardMainBox">
-            <div className="d-flex flex-row justify-content-left align-items-center surfboardSection">
+            
+            <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
               <div className="m-4 dateFont">
-                Shaper:
+                  Session Rating: 
               </div>
-              <select name="surfboardShaper" className="surfSessionDropDowns">
-                <option value="Estrada Surfboard Design">Estrada Surfboard Design</option>
-                <option value="Baltierra Surfboards">Baltierra Surfboards</option>
-                <option value="Solid Surf">Solid Surf</option>
-                <option value="Almond Surfboards">Almond Surfboards</option>
-                <option value="DHD Surfboards">DHD Surfboards</option>
-                <option value="Tanner Surfboards">Tanner Surfboards</option>
-                <option value="Guy Takayama">Guy Takayama</option>
-                <option value="Robert August">Robert August</option>
-                <option value="Dano Surfboards">Dano Surfboards</option>
-                <option value="Album Surf">Album Surf</option>
-                <option value="Brink Surf">Brink Surf</option>
-                <option value="Lost Surboards">Lost Surboards</option>
-                <option value="Surf Prescriptions">Surf Prescriptions</option>
-                <option value="Thread Surfboards">Thread Surfboards</option>
-              </select>
-            </div>
-            <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
-              <div className="m-4 dateFont">
-                  Model: 
-              </div>
-              <input name="surfboardModel" className="modelInputBox p-1"/>
-            </div>
-            <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
-              <div className="m-4 dateFont">
-                  Length:
-              </div>
-                <select name="surfboardLengthFeet" className="surfSessionDropDowns">
-                  <option >4</option>
-                  <option >5</option>
-                  <option >6</option>
-                  <option >7</option>
-                  <option >8</option>
-                  <option >9</option>
-                  <option >10</option>
-                  <option >11</option>
-                </select>
-                <label className="ml-3"> FT</label>
-              <div className=" ml-4">
-                <select name="surfboardLengthInches" className="surfSessionDropDowns">
+                <select name="sessionRating" className="surfSessionDropDowns">
                   <option >0</option>
                   <option >1</option>
                   <option >2</option>
                   <option >3</option>
                   <option >4</option>
                   <option >5</option>
-                  <option >6</option>
-                  <option >7</option>
-                  <option >8</option>
-                  <option >9</option>
-                  <option >10</option>
-                  <option >11</option>
                 </select>
-                <label className="ml-2"> IN</label>
-              </div>
             </div>
-            <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
-              <div className="m-4 dateFont">
-                  Volume:
-              </div>
-                <select name="surfboardVolume" className="surfSessionDropDowns">
-                  <option >20</option>
-                  <option >21</option>
-                  <option >22</option>
-                  <option >23</option>
-                  <option >24</option>
-                  <option >25</option>
-                  <option >26</option>
-                  <option >27</option>
-                  <option >28</option>
-                  <option >29</option>
-                  <option >30</option>
-                  <option >31</option>
-                  <option >32</option>
-                  <option >33</option>
-                  <option >34</option>
-                  <option >35</option>
-                  <option >36</option>
-                  <option >37</option>
-                  <option >38</option>
-                  <option >39</option>
-                  <option >40</option>
-                  <option >41</option>
-                  <option >42</option>
-                  <option >43</option>
-                  <option >44</option>
-                  <option >45</option>
-                </select>
-                <label className="ml-3">.</label>
-              <div className=" ml-2">
-                <select name="surfboardVolumeDecimal" className="surfSessionDropDowns">
-                  <option >0</option>
-                  <option >1</option>
-                  <option >2</option>
-                  <option >3</option>
-                  <option >4</option>
-                  <option >5</option>
-                  <option >6</option>
-                  <option >7</option>
-                  <option >8</option>
-                  <option >9</option>
-                </select>
-                <label className="ml-4"> L</label>
-              </div>
+            <div className="d-flex flex-row justify-content-between align-items-center smallBoxRow endSpacer">
+              <button type="button" type="submit" className="btn col btn-lg btn-block btn-success mx-3">Save</button>
+              <button type="button" type="reset" className="btn col btn-lg mt-0 btn-block btn-danger mx-3">Reset</button>
             </div>
-            <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionEnd">
-              <div className="m-4 dateFont">
-                  Fin Setup:
-              </div>
-                <select name="surfboardFinConfig" className="surfSessionDropDowns">
-                  <option >Single</option>
-                  <option >Twin</option>
-                  <option >Thruster</option>
-                  <option >2+1</option>
-                  <option >Quad</option>
-                </select>
-            </div> 
-          </div>
-          <div>
-            <label className="text-center textBox">
-              Session Notes:
-            <textarea name="sessionNotes" rows={6} cols={40} className="textEntry mb-4"/>
-        </label>
-          </div>
-          
-          <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
-            <div className="m-4 dateFont">
-                Session Rating: 
-            </div>
-              <select name="sessionRating" className="surfSessionDropDowns">
-                <option >0</option>
-                <option >1</option>
-                <option >2</option>
-                <option >3</option>
-                <option >4</option>
-                <option >5</option>
-              </select>
-          </div>
-          <div className="d-flex flex-row justify-content-between align-items-center smallBoxRow endSpacer">
-            <button type="button" type="submit" className="btn col btn-lg btn-block btn-success mx-3">Save</button>
-            <button type="button" type="reset" className="btn col btn-lg mt-0 btn-block btn-danger mx-3">Reset</button>
-          </div>
-        </form>
-        <footer className="mt-auto mb-0">
-          <NavFooter />
-        </footer>
-      </div>
-    )
+          </form>
+          <footer className="mt-auto mb-0">
+            <NavFooter />
+          </footer>
+        </div>
+      )
+    }
+    else{
+      return(
+        <h1>Loading...</h1>
+      )
+    }
   }
   else {
 
@@ -410,7 +450,6 @@ function CreateNewSession() {
       </div>   
     )
   }
-  
 }
 
 export default CreateNewSession;
