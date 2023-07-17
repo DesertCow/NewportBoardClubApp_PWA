@@ -3,7 +3,7 @@
  <p align="center">
   <img src="./Dev_Docs/Art/BOARD_CLUB_LOGO_1.jpg" width="350" height="250" alt="Demo 1")
 </p>
-<h4>An application designed to allow members of the board club to view boards, events, rental information, and general information about the club.</h4>
+<h4>An application designed to allow members of the board club to view current surf/weather conditions, club events, log surf sessions, view surf tips, rental information, and general information about the club.</h4>
 </div>
 
 <br>
@@ -95,6 +95,12 @@ The goal of this application to make members want to go surf by providing them w
   * New Surfboards
   * Upcoming Events
   * Swell / Conditions
+
+<br>
+
+* Features Pushed to React Native Version :iphone:
+  * Push Notification
+  * Member Forum
  
 <br>
 <br>
@@ -191,16 +197,36 @@ The goal of this application to make members want to go surf by providing them w
       * mongoose (7.3.0)
       * node-fetch (2.6.11)
       * react (18.2.0)
-      * ~~ sequelize (6.32.1)~~
-      * ~~ sqlite3 (5.1.6)~~
+
 <br>
 
   * **Client** (React 18.2.0)
     * Packages
-      * Package 1
-      * Package 2
-      * Package 3
-      * Package 4
+      * @apollo/client (3.7.15)
+      * @emotion/react (11.11.1)
+      * @emotion/styled (11.11.0)
+      * @mui/material (5.13.6)
+      * @mui/styled-engine-sc (5.12.0)
+      * @mui/x-date-pickers (6.9.1)
+      * @popperjs/core (2.11.8)
+      * bootstrap (5.3.0)
+      * dayjs (1.11.9)
+      * interweave (13.1.0)
+      * jquery (3.7.0)
+      * jwt-decode (3.1.2)
+      * react (18.2.0)
+      * react-bootstrap (2.7.4)
+      * react-dom (18.2.0)
+      * react-material-symbols (4.1.1)
+      * react-popper (2.3.0)
+      * react-pro-sidebar (1.1.0-alpha.1)
+      * react-router-dom (6.12.1)
+      * react-scripts (5.0.1)
+      * react-select-datepicker (2.1.2)
+      * react-spinners (0.13.8)
+      * react-switch (7.0.0)
+      * react-time-picker (6.2.0)
+      * styled-components (5.3.11)
 
 <br>
 
