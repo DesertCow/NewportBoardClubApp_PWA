@@ -1,5 +1,3 @@
-
-
 import AdminSideBar from "../../components/AdminSidebar";
 
 
@@ -8,6 +6,8 @@ import AdminSideBar from "../../components/AdminSidebar";
 
 const UpdateSurfHack = () => {
 
+    let surfHackID = window.location.href.split(`/admin/updateSurfHack/`)
+    surfHackID = surfHackID[1]
 
   return (
 
@@ -17,7 +17,7 @@ const UpdateSurfHack = () => {
         <AdminSideBar />
       </aside>
     <main className="col mt-5">
-      <h1 className="text-center">Update Surf Hack Page!</h1>
+      <h1 className="text-center">Surf Hack ({surfHackID})</h1>
     </main>
 
     </div>

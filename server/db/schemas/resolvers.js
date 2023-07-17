@@ -578,7 +578,17 @@ const resolvers = {
 
       return "Shaper (" + shaperID + ") Deleted!";
 
-    }
+    },
+
+    deleteSurfHack: async (parent, {hackID}) => {
+
+      const surfHackDelete = await SurfHack.deleteOne({_id: hackID});
+
+      console.log("\x1b[31m DELETE: Surf Hack [" + hackID + "]\x1b[0m\n")
+
+      return "Surf Hack (" + hackID + ") Deleted!"
+
+    },
   },
 
 };
