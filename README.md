@@ -25,7 +25,7 @@
 
 ## [Goals](#table-of-contents)
 
-The goal of this application to make members want to go surf by providing them with the all the infomation they need to have a great suf session. While also enticing members to try new surfboards and also feel apart of **The Board Club** community though local events and online interaction. Learning to surf is a time consuming and difficult task and this application aims to help beginners get the relevent information to make the right decision on equipment, location, and techniqe to help drive improvement with each session and to have a sense of communutity while they imbark on this difficult challenge.
+The goal of this application to make members want to go surf by providing them with the all the infomation they need to have a great surf session. The app easily shows the current surf and weather conditons. Events are displayed to make it easy for memebers to get information they need to attend upcoming events. The Surf Log allow memebers to keep a log of all their surf sessions to track their progression and review previous sessions when selecting a surf spot or board for their next session. Surf hacks are listed to help new members with common surf problems. The Newport Surf map helps members easily pick the best spot to go surfing while visiting the club house based on  a variety of factors and conditions. The comminity forum helps memebers find other memebrs to surf with and also to interact memebers to build a sense of community.
 
 <br>
 <br>
@@ -59,13 +59,15 @@ The goal of this application to make members want to go surf by providing them w
 
 * About :question:
   * General Club Info
-  * Shaper Info/Links/Deals
-  * Club Press
+  * ~~Shaper Info/Links/Deals~~
+  * ~~Club Press~~
 
 <br>
 
 * Surf Diary :open_book:
-  * :building_construction: **Flush Out Feature Set...**  :building_construction:
+  * Log Each Surf Session
+  * Review previous surf Sessions
+  * Track surf progression
 
 <br>
 
@@ -79,8 +81,9 @@ The goal of this application to make members want to go surf by providing them w
 <br>
 
 * Surf Resources :open_book:
-  * Beginner Videos
-  * Equipment Tips
+  * ~~Beginner Videos~~
+  * ~~Equipment Tips~~
+  * Surf Hacks
   * Local Surf Spots Beta
   * Newport Surf Map
 
@@ -156,22 +159,40 @@ The goal of this application to make members want to go surf by providing them w
 * <h3> Software Stack </h3>
 
  * **Databases**
-    * SQL (relational)
-      * ~~Surfboards~~
-      * Events
-<br>
-
    * MongoDB (non-relational)
       * User
+      * Events
+      * Surf Sessions
+      * Surf Hacks
+      * Surfboard Shapers
 
 <br>
 
   * **Server** (Node 18.6.0)
     * Packages
-      * Package 1
-      * Package 2
-      * Package 3
-      * Package 4
+      * @apollo/server (4.7.4)
+      * @aws-sdk/credential-providers (3.369.0)
+      * @aws-sdk/hash-node (3.369.0)
+      * @aws-sdk/protocol-http (3.369.0)
+      * @aws-sdk/s3-request-presigner (3.369.0)
+      * @aws-sdk/url-parser (3.369.0)
+      * @aws-sdk/util-format-url(3.369.0)
+      * aws-sdk (2.1414.0)
+      * bcrypt (5.1.0)
+      * body-parser (1.20.2)
+      * cors (2.8.5)
+      * dotenv (16.3.1)
+      * express (4.18.2)
+      * graphql (16.6.0)
+      * graphql-http (1.19.0)
+      * json (11.0.0)
+      * jsonwebtoken (9.0.0)
+      * mongodb (5.6.0)
+      * mongoose (7.3.0)
+      * node-fetch (2.6.11)
+      * react (18.2.0)
+      * ~~ sequelize (6.32.1)~~
+      * ~~ sqlite3 (5.1.6)~~
 <br>
 
   * **Client** (React 18.2.0)
@@ -188,6 +209,7 @@ The goal of this application to make members want to go surf by providing them w
   * Railway (Databases)
   * Back4App (Host)
   * Version Control (gitHub)
+  * AWS (S3)
 
 <br>
 <br>
