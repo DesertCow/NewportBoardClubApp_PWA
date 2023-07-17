@@ -31,8 +31,6 @@ const UpdateEvent = () => {
 
     const eventForm = new FormData(event.target);
 
-    // console.log(eventForm.get("eventName"))
-
     const { surfHackData } = await updateEvent_M({
 
       
@@ -43,7 +41,7 @@ const UpdateEvent = () => {
         newEventDate: eventForm.get("eventDate"),
         newEventBody: eventForm.get("eventBody"),
         newEventPhotoUrl: eventForm.get("eventPhotoURL"),
-        newEventCurrent: Boolean(eventForm.get("eventCurrent")),
+        newEventCurrent: JSON.parse(eventForm.get("eventCurrent")),
         newEventLength: eventForm.get("eventLength"),
       },
     });

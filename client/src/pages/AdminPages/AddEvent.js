@@ -35,7 +35,7 @@ const AddEvent = () => {
         eventLength: eventForm.get("eventLength"),
         eventBody: eventForm.get("eventBody"),
         eventPhotoUrl: eventForm.get("eventPhotoURL"),
-        eventCurrent: Boolean(eventForm.get("eventCurrent")),
+        eventCurrent: JSON.parse(eventForm.get("eventCurrent")),
       },
     });
   

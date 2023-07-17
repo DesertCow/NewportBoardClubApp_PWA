@@ -545,7 +545,7 @@ const resolvers = {
     
       console.log("\x1b[33m UPDATE: Event [" + eventID + "]\x1b[0m\n")
 
-      const eventUpdatedResponse = await EventMongo.updateOne({_id: eventID}, { $set: { eventName: newEventName, eventSlogan: newEventSlogan, eventDate: newEventDate, eventBody: newEventBody, eventPhotoUrl: newEventPhotoURL, eventCurrent: newEventCurrent, eventLength: newEventLength } })
+      const eventUpdatedResponse = await EventMongo.updateOne({_id: eventID}, { $set: { eventName: newEventName, eventSlogan: newEventSlogan, eventDate: newEventDate, eventBody: newEventBody, eventPhotoURL: newEventPhotoURL, eventCurrent: newEventCurrent, eventLength: newEventLength } })
 
       //* Get updated surf hack from DB via hackID
       const eventUpdated = await EventMongo.findOne({ _id: eventID });
