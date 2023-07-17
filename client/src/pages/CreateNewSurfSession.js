@@ -132,7 +132,7 @@ function CreateNewSession() {
       // sessionListHTML.push(<li key={sessionData._id} onClick={(event) => displayItem(event, sessionData.sessionDate, essionData.sessionTime)} className="subMenuBtns m-4 p-2"><div variant="light">{sessionData._id}</div>{' '}</li>)
       // sessionListHTML.push(<li key={sessionData._id} onClick={(event) => displaySurfSession(event, sessionData._id)} className="previousSurfSessionBTN mt-4 p-3">{sessionData.sessionDate} ({sessionData.sessionTime}) @ {sessionData.sessionLocation}</li>)
       // sessionListHTML.push(<option value={shaperData.shaperName}>{shaperData.shaperName}</option>)
-      shaperListHTML.push(<option key={shaperData.shaperName}>{shaperData.shaperName}</option>)
+      shaperListHTML.push(<option key={shaperData._id}>{shaperData.shaperName}</option>)
       // console.log(sessionListHTML)
     }
 

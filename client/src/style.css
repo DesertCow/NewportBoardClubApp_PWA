@@ -1143,3 +1143,23 @@ bottom: 0;
   height: 950px;
   margin-left: 0px !important;
 }
+
+
+.shaperDeleteBTN{
+
+}
+
+.shaperBox {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 20px;
+  color: white;
+  width: 400px !important;
+  /* height: 50px; */
+  background-color: rgba(46, 46, 46, 0.902);
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  opacity: 94%;
+}

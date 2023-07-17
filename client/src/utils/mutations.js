@@ -52,7 +52,13 @@ export const CREATE_SURF_SESSION = gql`
 `;
 
 export const DELETE_SURF_SESSION = gql`
-mutation Mutation($sessionId: String!) {
-  deleteSurfSession(sessionID: $sessionId)
-}
+  mutation Mutation($sessionId: String!) {
+    deleteSurfSession(sessionID: $sessionId)
+  }
+`;
+
+export const DELETE_SHAPER = gql`
+  mutation DeleteShaper($shaperId: String!) {
+    deleteShaper(shaperID: $shaperId)
+  }
 `;
