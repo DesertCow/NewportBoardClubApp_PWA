@@ -93,9 +93,9 @@ function Home() {
           <div className="row px-5 py-3">
             <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleSurfLog(event)}>Surf Log</div>
           </div>
-          <div className="row px-5 py-3">
+          {/* <div className="row px-5 py-3">
             <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleCommunityForum(event)}>Community Forum</div>
-          </div>
+          </div> */}
           <div className="row px-5 py-3">
             <div className="homeBTNs p-2 d-flex align-items-center justify-content-center" onClick={(event) => handleSurfHacks(event)}>Surf Hacks</div>
           </div>
