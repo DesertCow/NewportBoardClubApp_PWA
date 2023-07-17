@@ -87,3 +87,14 @@ export const DELETE_SURF_HACK_M = gql`
     deleteSurfHack(hackID: $hackId)
   }
 `;
+
+export const UPDATE_SURF_HACK =gql`
+  mutation Mutation($hackId: String!, $newHackTitle: String, $newHackBody: String, $newHackPhotoUrl: String) {
+    updateSurfHack(hackID: $hackId, newHackTitle: $newHackTitle, newHackBody: $newHackBody, newHackPhotoURL: $newHackPhotoUrl) {
+      _id
+      hackTitle
+      hackBody
+      hackPhotoURL
+    }
+  }
+`;

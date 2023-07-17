@@ -589,6 +589,19 @@ const resolvers = {
       return "Surf Hack (" + hackID + ") Deleted!"
 
     },
+
+    updateSurfHack: async (parent, { hackID, newHackTitle, newHackBody, newHackPhotoURL }) => {
+
+      console.log("\x1b[33m UPDATE: Surf Hack [" + hackID + "]\x1b[0m\n")
+
+      const surfHackUpdatedResponse = await SurfHack.updateOne({_id: hackID}, { $set: { hackTitle: newHackTitle, hackBody: newHackBody, hackPhotoURL: newHackPhotoURL, } })
+
+      //* Get updated surf hack from DB via hackID
+      const surfHackUpdated = await SurfHack.findOne({ _id: hackID });
+
+      return surfHackUpdated;
+
+    },
   },
 
 };

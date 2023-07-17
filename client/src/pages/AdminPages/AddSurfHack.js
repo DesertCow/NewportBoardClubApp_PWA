@@ -1,4 +1,5 @@
 
+import { useNavigate } from "react-router-dom";
 
 import AdminSideBar from "../../components/AdminSidebar";
 
@@ -9,6 +10,8 @@ import { ADD_SURF_HACK } from '../../utils/mutations';
 
 const AddSurfHack = () => {
 
+  const navigate = useNavigate();
+
   const [createSurfHack, { surfHackData }] = useMutation(ADD_SURF_HACK);
 
   const handleNewSurfHack = async (event) => {
@@ -16,7 +19,7 @@ const AddSurfHack = () => {
     const surfHackForm = new FormData(event.target);
     
     event.preventDefault();
-    console.log("Tigger Add Surf Hack")
+    // console.log("Tigger Add Surf Hack")
   
     const { surfHackData } = await createSurfHack({
 
@@ -28,7 +31,9 @@ const AddSurfHack = () => {
       },
     });
   
-
+    navigate("/admin/deleteSurfHack");
+    location.reload()
+    window.scrollTo(0, 0);
   }
 
   return (

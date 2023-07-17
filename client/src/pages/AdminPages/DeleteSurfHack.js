@@ -36,7 +36,7 @@ const UpdateSurfHack = () => {
       },
     });
 
-    navigate("/admin/updateSurfHack");
+    navigate("/admin/deleteSurfHack");
     location.reload()
     window.scrollTo(0, 0);
 
