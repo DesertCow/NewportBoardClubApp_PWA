@@ -62,3 +62,12 @@ export const DELETE_SHAPER = gql`
     deleteShaper(shaperID: $shaperId)
   }
 `;
+
+export const ADD_SHAPER = gql`
+  mutation CreateShaper($shaperName: String!) {
+    createShaper(shaperName: $shaperName) {
+      _id
+      shaperName
+    }
+  }
+`;

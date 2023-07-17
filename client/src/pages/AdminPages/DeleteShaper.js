@@ -37,7 +37,7 @@ const UpdateShaperList = () => {
           },
         });
 
-      navigate("/admin/updateShaperList");
+      navigate("/admin/deleteShaper");
       location.reload()
       window.scrollTo(0, 0);
 
@@ -46,7 +46,7 @@ const UpdateShaperList = () => {
     function populateListOfShapers(shaperData) {
 
       //* Create Shaper List
-      shaperListHTML.push(<li className="d-flex col justify-content-center align-items-center" key={shaperData._id} className="shaperBox mt-4 p-3">{shaperData.shaperName}<Button onClick={(event) => deleteShaper(event, shaperData._id)} variant="danger" className="d-flex col justify-content-center align-items-center shaperDeleteBTN mt-3">Delete</Button></li>)
+      shaperListHTML.push(<li className="d-flex col justify-content-center align-items-center" key={shaperData._id} className="shaperBox mt-4 p-3 mx-3">{shaperData.shaperName}<Button onClick={(event) => deleteShaper(event, shaperData._id)} variant="danger" className="d-flex col justify-content-center align-items-center shaperDeleteBTN mt-3">Delete</Button></li>)
 
     }
 

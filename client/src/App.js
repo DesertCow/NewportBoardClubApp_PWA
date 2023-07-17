@@ -54,13 +54,14 @@ import PrivacyPolicy from './pages/PrivacyPolicy'
 
 import CommunityForum from './pages/CommunityForum';
 
-import AdminHome from './pages/AdminPages/Admin_Home';
-import AdminAddEvent from './pages/AdminPages/AddEvent';
-import AdminUpdateEvent from './pages/AdminPages/UpdateEvent';
-import AdminAddSurfHack from './pages/AdminPages/AddSurfHack';
-import AdminUpdateSurfHack from './pages/AdminPages/UpdateSurfHack';
-import AdminDeleteShaper from './pages/AdminPages/DeleteShaperList';
-import AdminPushNotifications from './pages/AdminPages/PushNotifications';
+import Admin_Home from './pages/AdminPages/Admin_Home';
+import Admin_AddEvent from './pages/AdminPages/AddEvent';
+import Admin_UpdateEvent from './pages/AdminPages/UpdateEvent';
+import Admin_AddSurfHack from './pages/AdminPages/AddSurfHack';
+import Admin_UpdateSurfHack from './pages/AdminPages/UpdateSurfHack';
+import Admin_DeleteShaper from './pages/AdminPages/DeleteShaper';
+import Admin_AddShaper from './pages/AdminPages/AddShaper';
+import Admin_PushNotifications from './pages/AdminPages/PushNotifications';
 
 
 
@@ -97,13 +98,14 @@ export default function App() {
         <Route path="/community_forum" element={<CommunityForum />} />
         <Route path="/surf_rentals" element={<SurfRentals />} />
         <Route path="/about_club" element={<AboutClub />} />
-        <Route path="/admin" element={<AdminHome />} />
-        <Route path="/admin/addEvent" element={<AdminAddEvent />} />
-        <Route path="/admin/updateEvent" element={<AdminUpdateEvent />} />
-        <Route path="/admin/addSurfHack" element={<AdminAddSurfHack />} />
-        <Route path="/admin/updateSurfHack" element={<AdminUpdateSurfHack />} />
-        <Route path="/admin/deleteShaper" element={<AdminDeleteShaper />} />
-        <Route path="/admin/pushNotifications" element={<AdminPushNotifications />} />
+        <Route path="/admin" element={<Admin_Home />} />
+        <Route path="/admin/addEvent" element={<Admin_AddEvent />} />
+        <Route path="/admin/updateEvent" element={<Admin_UpdateEvent />} />
+        <Route path="/admin/addSurfHack" element={<Admin_AddSurfHack />} />
+        <Route path="/admin/updateSurfHack" element={<Admin_UpdateSurfHack />} />
+        <Route path="/admin/deleteShaper" element={<Admin_DeleteShaper />} />
+        <Route path="/admin/addShaper" element={<Admin_AddShaper />} />
+        <Route path="/admin/pushNotifications" element={<Admin_PushNotifications />} />
       </Routes>
     </Router>
   );
