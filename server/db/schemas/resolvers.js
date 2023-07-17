@@ -249,6 +249,14 @@ const resolvers = {
 
     },
 
+    getEventList: async() => {
+
+      const eventList = await EventMongo.find()
+
+      return eventList;
+
+    },
+
     getAllUsersSurfSession: async (parent, { userID }) => {
       
       // console.log("UserID: " + userID)
@@ -531,6 +539,16 @@ const resolvers = {
       // console.log(event)
 
       return event;
+    },
+
+    deleteEvent: async (parent, {eventID}) => {
+
+      const eventDelete = await EventMongo.deleteOne({_id: eventID});
+
+      console.log("\x1b[31m DELETE: Event [" + eventID + "]\x1b[0m\n")
+
+      return "Event (" + eventID + ") was Deleted!"
+
     },
 
     createSurfSession: async (parent, { userID, sessionDate, sessionTime, sessionLocation, skyConditions, waveSize, tideLevel, tideDirection, sessionLength, surfboardShaper, surfboardModel, surfboardLengthFT, surfboardLengthIN, surfboardVolume, surfboardFinConfig, sessionNotes, sessionRating  }) => {

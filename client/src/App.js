@@ -56,7 +56,8 @@ import CommunityForum from './pages/CommunityForum';
 
 import Admin_Home from './pages/AdminPages/Admin_Home';
 import Admin_AddEvent from './pages/AdminPages/AddEvent';
-import Admin_UpdateEvent from './pages/AdminPages/UpdateEvent';
+import Admin_UpdateEvent from './pages/AdminPages/UpdateEvent'
+import Admin_DeleteEvent from './pages/AdminPages/DeleteEvent'
 import Admin_AddSurfHack from './pages/AdminPages/AddSurfHack';
 import Admin_UpdateSurfHack from './pages/AdminPages/UpdateSurfHack';
 import Admin_DeleteSurfHack from './pages/AdminPages/DeleteSurfHack';
@@ -101,7 +102,8 @@ export default function App() {
         <Route path="/about_club" element={<AboutClub />} />
         <Route path="/admin" element={<Admin_Home />} />
         <Route path="/admin/addEvent" element={<Admin_AddEvent />} />
-        <Route path="/admin/updateEvent" element={<Admin_UpdateEvent />} />
+        <Route path="/admin/deleteEvent" element={<Admin_DeleteEvent />} />
+        <Route path="/admin/updateEvent/:eventID" element={<Admin_UpdateEvent />} />
         <Route path="/admin/addSurfHack" element={<Admin_AddSurfHack />} />
         <Route path="/admin/deleteSurfHack" element={<Admin_DeleteSurfHack />} />
         <Route path="/admin/updateSurfHack/:surfHackID" element={<Admin_UpdateSurfHack />} />

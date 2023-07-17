@@ -157,3 +157,18 @@ export const getShaperList_Q = gql`
     }
   }
 `;
+
+export const getEventList_Q = gql`
+  query GetEventList {
+    getEventList {
+      _id
+      eventName
+      eventSlogan
+      eventDate
+      eventLength
+      eventBody
+      eventPhotoURL
+      eventCurrent
+    }
+  }
+`;

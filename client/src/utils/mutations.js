@@ -98,3 +98,9 @@ export const UPDATE_SURF_HACK =gql`
     }
   }
 `;
+
+export const DELETE_EVENT_M = gql`
+  mutation DeleteEvent($eventId: String!) {
+    deleteEvent(eventID: $eventId)
+  }
+`;
