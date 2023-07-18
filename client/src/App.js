@@ -61,8 +61,7 @@ import Admin_DeleteEvent from './pages/AdminPages/DeleteEvent'
 import Admin_AddSurfHack from './pages/AdminPages/AddSurfHack';
 import Admin_UpdateSurfHack from './pages/AdminPages/UpdateSurfHack';
 import Admin_DeleteSurfHack from './pages/AdminPages/DeleteSurfHack';
-import Admin_DeleteShaper from './pages/AdminPages/DeleteShaper';
-import Admin_AddShaper from './pages/AdminPages/AddShaper';
+import Admin_AddDeleteShaper from './pages/AdminPages/AddDeleteShaper';
 import Admin_PushNotifications from './pages/AdminPages/PushNotifications';
 
 
@@ -107,8 +106,7 @@ export default function App() {
         <Route path="/admin/addSurfHack" element={<Admin_AddSurfHack />} />
         <Route path="/admin/deleteSurfHack" element={<Admin_DeleteSurfHack />} />
         <Route path="/admin/updateSurfHack/:surfHackID" element={<Admin_UpdateSurfHack />} />
-        <Route path="/admin/deleteShaper" element={<Admin_DeleteShaper />} />
-        <Route path="/admin/addShaper" element={<Admin_AddShaper />} />
+        <Route path="/admin/shaperListUpdate" element={<Admin_AddDeleteShaper />} />
         <Route path="/admin/pushNotifications" element={<Admin_PushNotifications />} />
       </Routes>
     </Router>
