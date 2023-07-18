@@ -1,6 +1,8 @@
 
 const seedEventDB = require('./events-seeds');
 const seedSurfSessionDB = require('./surf-session-seeds');
+const seedSurfHackDB = require('./surf-hack-seeds');
+const seedShaperListDB = require('./shaper-list-seeds');
 
 //* DB Connection
 const mongodb = require('../mongoConnection');
@@ -8,14 +10,20 @@ const mongodb = require('../mongoConnection');
 // const sequelize = require('../sqlConnection');
 
 const seedAll = async () => {
-  // await sequelize.sync({ force: true });
-  // console.log('\n\x1b[43m ~~~ DATABASE SYNCED ~~~ \x1b[0m\n');
 
-  await seedEventDB();
-  console.log('\n\x1b[43m ~~~ EVENTS SEEDED ~~~ \x1b[0m\n');
+  // await seedEventDB();
+  // console.log('\n\x1b[43m ~~~ EVENTS SEEDED ~~~ \x1b[0m\n');
 
   // await seedSurfSessionDB();
   // console.log('\n\x1b[43m ~~~ SURF SESSIONS SEEDED~~~ \x1b[0m\n');
+
+  
+  console.log('\n\x1b[43m ~~~ SURF HACKS SEEDED ~~~ \x1b[0m\n');
+  await seedSurfHackDB();
+
+
+  await seedShaperListDB();
+  console.log('\n\x1b[43m ~~~ SHAPER LIST SEEDED ~~~ \x1b[0m\n');
 
   return true;
 };
