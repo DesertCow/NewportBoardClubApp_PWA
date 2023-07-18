@@ -23,6 +23,7 @@ const typeDefs = `#graphql
     getShaperList: [Shaper]
     uploadSurfHackPicture(pictureKey: String!): UploadURL
     uploadEventPicture(pictureKey: String!): UploadURL
+    databaseCount: DatabaseStats
   }
 
   type Mutation {
@@ -136,6 +137,14 @@ const typeDefs = `#graphql
   type UploadURL {
     secureUploadURL: String
     postedURL: String
+  }
+
+  type DatabaseStats {
+    userCount: Int
+    surfSessionCount: Int
+    eventCount: Int
+    surfHacksCount: Int
+    shaperListCount: Int
   }
 `;
 

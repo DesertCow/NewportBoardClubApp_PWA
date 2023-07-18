@@ -417,6 +417,24 @@ const resolvers = {
       console.log("   \x1b[33mShaper List Requested (" + shaperList.length + ")\x1b[0m")
 
       return shaperList;
+    },
+
+    databaseCount: async () => {
+
+      const UserList = await UserMongo.find();
+      const EventList = await EventMongo.find();
+      const SurfSessionList = await SurfSessionMongo.find();
+      const SurfHackList = await SurfHack.find();
+      const SahperList = await Shaper.find();
+
+
+      return {
+        userCount: UserList.length,
+        surfSessionCount: EventList.length,
+        eventCount: SurfSessionList.length,
+        surfHacksCount: SurfHackList.length,
+        shaperListCount: SahperList.length,
+      }
     }
   },
 
