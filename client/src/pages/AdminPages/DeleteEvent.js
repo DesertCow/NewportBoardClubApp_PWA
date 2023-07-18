@@ -21,22 +21,27 @@ const DeleteEvent = () => {
 
   var eventListHTML = []
 
-  const deleteEvent = async (event, eventID) => {
+  const deleteEvent = async (event, eventID, eventTitle) => {
     // event.preventDefault()
 
-    console.log("Delete Event (" + eventID +")")
+    console.log("Delete Event: " + eventTitle + " (" + eventID +")")
 
-    const { eventData } = await deleteEvent_M({
+    let confirmDelete = confirm("Are you sure you want to delete [" + eventTitle +"] from the Surf Hack database?");
 
-      variables: { 
-        eventId: eventID
-      },
-    });
+    if(confirmDelete){
+      const { eventData } = await deleteEvent_M({
 
-    navigate("/admin/deleteEvent");
-    location.reload()
-    window.scrollTo(0, 0);
+        variables: { 
+          eventId: eventID
+        },
+      });
 
+      navigate("/admin/deleteEvent");
+      location.reload()
+      window.scrollTo(0, 0);
+    } else {
+      navigate("/admin/deleteEvent");
+    }
   };
 
   const updateEvent = async (event, eventID) => {
@@ -49,7 +54,7 @@ const DeleteEvent = () => {
   function populateListOfEvents(eventData) {
 
     //* Create Shaper List
-    eventListHTML.push(<li className="d-flex col justify-content-center align-items-center" onClick={(event) => updateEvent(event, eventData._id)} key={eventData._id} className="shaperBox mt-4 p-3 mx-3">{eventData.eventName}<Button onClick={(event) => deleteEvent(event, eventData._id)} variant="danger" className="d-flex col justify-content-center align-items-center shaperDeleteBTN mt-3">Delete</Button></li>)
+    eventListHTML.push(<li className="d-flex col justify-content-center align-items-center" onClick={(event) => updateEvent(event, eventData._id)} key={eventData._id} className="shaperBox mt-4 p-3 mx-3">{eventData.eventName}<Button onClick={(event) => deleteEvent(event, eventData._id, eventData.eventName)} variant="danger" className="d-flex col justify-content-center align-items-center shaperDeleteBTN mt-3">Delete</Button></li>)
 
   }
 

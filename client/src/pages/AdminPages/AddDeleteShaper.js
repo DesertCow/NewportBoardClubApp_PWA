@@ -43,30 +43,34 @@ const AddShaper = () => {
   
   }
   //* Delete Shaper from shaper list
-  const deleteShaper = async (event, shaperID) => {
+  const deleteShaper = async (event, shaperID, shaperName) => {
     // event.preventDefault()
     // var location = index + arrayOffset
 
+    let confirmDelete = confirm("Are you sure you want to delete [" + shaperName +"] from the shaper list?");
+
     console.log("Delete Shaper (" + shaperID +")")
 
-    const { surfSessionData } = await deleteShaper_M({
 
-      variables: { 
-        shaperId: shaperID
-      },
-    });
+    if(confirmDelete){
+      const { surfSessionData } = await deleteShaper_M({
 
-    // navigate("/admin/deleteShaper");
-    location.reload()
-    window.scrollTo(0, 0);
+        variables: { 
+          shaperId: shaperID
+        },
+      });
 
+      // navigate("/admin/deleteShaper");
+      location.reload()
+      window.scrollTo(0, 0);
+    }
   };
 
   //* Generate HTML based off list of shapers from Database
   function populateListOfShapers(shaperData) {
 
     //* Create Shaper List
-    shaperListHTML.push(<li className="d-flex col justify-content-center align-items-center" key={shaperData._id} className="shaperBox mt-4 p-3 mx-3">{shaperData.shaperName}<Button onClick={(event) => deleteShaper(event, shaperData._id)} variant="danger" className="d-flex col justify-content-center align-items-center shaperDeleteBTN mt-3">Delete</Button></li>)
+    shaperListHTML.push(<li className="d-flex col justify-content-center align-items-center" key={shaperData._id} className="shaperBox mt-4 p-3 mx-3">{shaperData.shaperName}<Button onClick={(event) => deleteShaper(event, shaperData._id, shaperData.shaperName)} variant="danger" className="d-flex col justify-content-center align-items-center shaperDeleteBTN mt-3">Delete</Button></li>)
 
   }
 

@@ -29,7 +29,7 @@ import SurfLogHome from './pages/SurfLogHome';
 
 import CreateNewSession from './pages/CreateNewSurfSession';
 import SurfSessionsList from './pages/SurfSessionsList';
-import ViewSurfSession from './pages/ViewSurfSession';
+import ViewSurfSession from './pages/SurfSessionDetails';
 
 import UserSettings from './pages/UserSettings';
 
