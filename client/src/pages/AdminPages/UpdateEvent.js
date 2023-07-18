@@ -48,7 +48,6 @@ const UpdateEvent = () => {
     //* Get Public URL for uploaded Photo
     if(selectedFile !== undefined){
      publicURL = await HandleEventPictureUpload(); 
-    
     }
 
     const { eventData } = await updateEvent_M({
