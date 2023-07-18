@@ -192,3 +192,15 @@ export const uploadEventPicture_Q = gql`
     }
   }
 `;
+
+export const databaseStats_Q = gql `
+  query DatabaseCount {
+    databaseCount {
+      userCount
+      surfSessionCount
+      eventCount
+      surfHacksCount
+      shaperListCount
+    }
+  }
+`;
