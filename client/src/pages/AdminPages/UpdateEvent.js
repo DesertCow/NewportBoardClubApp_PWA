@@ -1,5 +1,6 @@
 
 import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
 import AdminSideBar from "../../components/AdminSidebar";
 
@@ -9,10 +10,21 @@ import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { UPDATE_EVENT_M } from '../../utils/mutations';
 
+import { uploadEventPicture_Q } from '../../utils/queries';
+import { useLazyQuery } from '@apollo/client';
+
 
 const UpdateEvent = () => {
 
   const navigate = useNavigate();
+
+  const [selectedFile, setSelectedFile] = useState();
+  const [getSecureURL, { secureURLdata } ] = useLazyQuery(uploadEventPicture_Q);
+  
+  const changeHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+    // setIsSelected(true);
+  };
 
   let eventID = window.location.href.split(`/admin/updateEvent/`)
   eventID = eventID[1]
@@ -27,20 +39,26 @@ const UpdateEvent = () => {
   const handleUpdateEvent = async (event) => {
 
     event.preventDefault();
-    console.log("Update (" + eventID + ") Surf Hack")
+    console.log("Update (" + eventID + ") Event")
 
     const eventForm = new FormData(event.target);
 
-    const { surfHackData } = await updateEvent_M({
+    let publicURL = data.getEvent.eventPhotoURL
 
-      
+    //* Get Public URL for uploaded Photo
+    if(selectedFile !== undefined){
+     publicURL = await HandleEventPictureUpload(); 
+    }
+
+    const { eventData } = await updateEvent_M({
+
       variables: {
         eventId: eventID, 
         newEventName: eventForm.get("eventName"),
         newEventSlogan: eventForm.get("eventSlogan"),
         newEventDate: eventForm.get("eventDate"),
         newEventBody: eventForm.get("eventBody"),
-        newEventPhotoUrl: eventForm.get("eventPhotoURL"),
+        newEventPhotoUrl: publicURL,
         newEventCurrent: JSON.parse(eventForm.get("eventCurrent")),
         newEventLength: eventForm.get("eventLength"),
       },
@@ -52,9 +70,34 @@ const UpdateEvent = () => {
 
   }
 
+  const HandleEventPictureUpload = async (event) => {
+  // event.preventDefault();
+
+  //* Request secure URL for upload from AWS/S3 via graphQL
+  const URLdata = await getSecureURL({
+    variables: { pictureKey: selectedFile.name},
+  });
+
+  //* Use parsed/clean URL to submit PUT request to S3 server
+  const response = await fetch(
+    URLdata.data.uploadEventPicture.secureUploadURL,
+    {
+      method: 'PUT',
+      body: selectedFile,
+      headers: {
+        "Content-Type": "image/jpg",
+      },
+    }
+  )
+
+  //* Return the URL where the photo is posted
+  return URLdata.data.uploadEventPicture.postedURL
+
+  }
+
   if(!loading){
 
-    console.log(data.getEvent)
+    // console.log(data.getEvent)
 
     return (
 
@@ -94,9 +137,17 @@ const UpdateEvent = () => {
           </div>
           <div className="d-flex flex-row justify-content-left align-items-center">
             <div className="m-4 dateFont">
-                Event Photo URL: 
+                Surf Hack Photo:
+                <img src={data.getEvent.eventPhotoURL}
+                  className="ml-3 adminSurfHackPhoto mb-3"
+                  alt={data.getEvent.eventName} 
+                />
             </div>
-            <input name="eventPhotoURL" defaultValue={data.getEvent.eventPhotoURL} className="shaperInputBox p-1"/>
+          </div>          
+          <div className="d-flex flex-row justify-content-left align-items-center">
+            <div className="m-4 dateFont">
+                Event Photo URL: {data.getEvent.eventPhotoURL}
+            </div>
           </div>
           <div className="d-flex flex-row justify-content-left align-items-center">
             <div className="m-4 dateFont">
@@ -112,6 +163,12 @@ const UpdateEvent = () => {
                 Event Body (HTML): 
             </div>
             <textarea name="eventBody" defaultValue={data.getEvent.eventBody} rows={20} cols={100} />
+          </div>
+          <div className="d-flex flex-row mt-5 justify-content-center align-items-center">
+            <div className="mt-3">
+              <h5 className="text-center">Upload Event Hack Photo</h5>
+              <input className="p-2 uploadBox" type="file" name="eventPhoto" onChange={changeHandler} />
+            </div>
           </div>
 
           <div className="d-flex flex-row justify-content-center mt-5 align-items-center">

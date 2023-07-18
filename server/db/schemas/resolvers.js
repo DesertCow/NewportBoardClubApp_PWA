@@ -278,7 +278,7 @@ const resolvers = {
 
     uploadUserProfilePicture: async (parent, { userID }) => {
 
-      console.log("\n   \x1b[33mUser (" + userID +") Has Requested Upload URL\x1b[0m");
+      console.log("\n   \x1b[33mUser (" + userID +") Has Requested Upload URL for Profile Picture\x1b[0m");
 
       //* Create Upload File Key based off USERID
       const profileUploadFileName = userID + ".jpg";
@@ -295,10 +295,65 @@ const resolvers = {
       const uploadURL = await s3.getSignedUrlPromise('putObject', s3Params)
 
       //* Return S3 generated Secure URL
-      return JSON.stringify({
-        uploadURL: uploadURL
-        // Key: profileUploadFileName
-      })
+      return {
+        secureUploadURL: uploadURL
+      }
+
+    },
+
+    uploadSurfHackPicture: async (parent, { pictureKey }) => {
+
+      console.log("\n   \x1b[33mAdmin Has Requested Upload URL for Surf Hack Picture (" + pictureKey + ")\x1b[0m");
+
+      //* Define S3 Params for URL Request
+      const s3Params = {
+        Bucket: process.env.S3_SURFHACKS_BUCKET,
+        Key: pictureKey,
+        Expires: parseInt(process.env.S3_URL_EXPIRATIONS_SECONDS),
+        ContentType: 'image/jpeg'
+      }
+
+      let pictureURL = "https://" + process.env.S3_SURFHACKS_BUCKET + ".s3." + process.env.S3_BUCKET_REGION + ".amazonaws.com/" + pictureKey
+
+      //* Request S3 Generate a Secure URL for upload
+      const uploadURL = await s3.getSignedUrlPromise('putObject', s3Params)
+
+      console.log("SURF HACK Upload URL: " + uploadURL)
+
+
+      //* Return S3 generated Secure URL
+      return {
+        secureUploadURL: uploadURL,
+        postedURL: pictureURL
+      }
+
+    },
+
+     uploadEventPicture: async (parent, { pictureKey }) => {
+
+      console.log("\n   \x1b[33mAdmin Has Requested Upload URL for Event Picture (" + pictureKey + ")\x1b[0m");
+
+      //* Define S3 Params for URL Request
+      const s3Params = {
+        Bucket: process.env.S3_EVENTS_BUCKET,
+        Key: pictureKey,
+        Expires: parseInt(process.env.S3_URL_EXPIRATIONS_SECONDS),
+        ContentType: 'image/jpeg'
+      }
+
+      let pictureURL = "https://" + process.env.S3_EVENTS_BUCKET + ".s3." + process.env.S3_BUCKET_REGION + ".amazonaws.com/" + pictureKey
+
+      //* Request S3 Generate a Secure URL for upload
+      const uploadURL = await s3.getSignedUrlPromise('putObject', s3Params)
+
+      console.log("EVENT Upload URL: " + uploadURL)
+
+
+      //* Return S3 generated Secure URL
+      return {
+        secureUploadURL: uploadURL,
+        postedURL: pictureURL
+      }
 
     },
 
