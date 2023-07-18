@@ -24,21 +24,28 @@ const UpdateSurfHack = () => {
 
   var surfHacksHTML = []
 
-  const deleteHack = async (event, hackID) => {
-    // event.preventDefault()
+  const deleteHack = async (event, hackID, hackTitle) => {
 
-    console.log("Delete Shaper (" + hackID +")")
+    console.log("Delete Surf Hack: " + hackTitle + " (" + hackID +")")
 
-    const { surfHackData } = await deleteSurfHack_M({
+    let confirmDelete = confirm("Are you sure you want to delete [" + hackTitle +"] from the Surf Hack database?");
 
-      variables: { 
-        hackId: hackID
-      },
-    });
 
-    navigate("/admin/deleteSurfHack");
-    location.reload()
-    window.scrollTo(0, 0);
+    if(confirmDelete){
+      const { surfHackData } = await deleteSurfHack_M({
+
+        variables: { 
+          hackId: hackID
+        },
+      });
+
+      navigate("/admin/deleteSurfHack");
+      location.reload()
+      window.scrollTo(0, 0);
+    }
+    else {
+      navigate("/admin/shaperListUpdate");
+    }
 
   };
 
@@ -52,7 +59,7 @@ const UpdateSurfHack = () => {
   function populateListOfHacks(hacksData) {
 
     //* Create Shaper List
-    surfHacksHTML.push(<li className="d-flex col justify-content-center align-items-center" onClick={(event) => updateHack(event, hacksData._id)} key={hacksData._id} className="shaperBox mt-4 p-3 mx-3">{hacksData.hackTitle}<Button onClick={(event) => deleteHack(event, hacksData._id)} variant="danger" className="d-flex col justify-content-center align-items-center shaperDeleteBTN mt-3">Delete</Button></li>)
+    surfHacksHTML.push(<li className="d-flex col justify-content-center align-items-center" onClick={(event) => updateHack(event, hacksData._id)} key={hacksData._id} className="shaperBox mt-4 p-3 mx-3">{hacksData.hackTitle}<Button onClick={(event) => deleteHack(event, hacksData._id, hacksData.hackTitle)} variant="danger" className="d-flex col justify-content-center align-items-center shaperDeleteBTN mt-3">Delete</Button></li>)
 
   }
 

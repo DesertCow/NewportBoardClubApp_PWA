@@ -26,10 +26,7 @@ const AdminSideBar = () => {
           <MenuItem component={<Link to="/admin/addSurfHack" />}> Add Surf Hack</MenuItem>
           <MenuItem component={<Link to="/admin/deleteSurfHack" />}> Update/Delete</MenuItem>
         </SubMenu>
-        <SubMenu label="Shaper List">
-          <MenuItem component={<Link to="/admin/addShaper" />}> Add </MenuItem>
-          <MenuItem component={<Link to="/admin/deleteShaper" />}> Delete </MenuItem>
-        </SubMenu>
+        <MenuItem component={<Link to="/admin/shaperListUpdate" />}> Update Shaper List</MenuItem>
         <MenuItem component={<Link to="/admin/pushNotifications" />}> Push Notifications </MenuItem>
       </Menu>
     </Sidebar>

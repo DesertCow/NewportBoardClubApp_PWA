@@ -1183,6 +1183,29 @@ bottom: 0;
   border-color: #303030b5;
 }
 
+.shaperFont {
+  font-family: "Catamaran-ExtraBold"
+}
+
+.shaperName{
+  
+}
+
+.addShaperBox{
+  font-family: "Catamaran-Regular";
+  border-width: 10px;
+  border-style: dashed;
+  border-color: #939393d7;
+  width: 1200px;
+}
+
+.shaperListBox{
+  border-width: 10px;
+  border-style: dashed;
+  border-color: #939393d7;
+  width: 1200px;
+}
+
 
 /*? ============= Admin Pages ============= */
 
