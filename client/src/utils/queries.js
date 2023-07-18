@@ -183,3 +183,12 @@ export const uploadSurfHackPicture_Q = gql`
     }
   }
 `;
+
+export const uploadEventPicture_Q = gql`
+  query UploadEventPicture($pictureKey: String!) {
+    uploadEventPicture(pictureKey: $pictureKey) {
+      secureUploadURL
+      postedURL
+    }
+  }
+`;

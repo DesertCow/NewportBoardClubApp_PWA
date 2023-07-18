@@ -19,7 +19,7 @@ const AddSurfHack = () => {
   const [createSurfHack, { surfHackData }] = useMutation(ADD_SURF_HACK);
   const [getSecureURL, { secureURLdata } ] = useLazyQuery(uploadSurfHackPicture_Q);
 
-   const [selectedFile, setSelectedFile] = useState();
+  const [selectedFile, setSelectedFile] = useState();
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);

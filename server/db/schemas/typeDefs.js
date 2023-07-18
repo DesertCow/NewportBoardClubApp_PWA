@@ -22,6 +22,7 @@ const typeDefs = `#graphql
     getSurfHackList: [SurfHack]
     getShaperList: [Shaper]
     uploadSurfHackPicture(pictureKey: String!): UploadURL
+    uploadEventPicture(pictureKey: String!): UploadURL
   }
 
   type Mutation {

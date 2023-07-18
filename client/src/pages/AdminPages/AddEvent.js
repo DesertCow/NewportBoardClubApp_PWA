@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 import AdminSideBar from "../../components/AdminSidebar";
 
+import { useState } from 'react';
 
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT_M } from '../../utils/mutations';
 
-
+import { uploadEventPicture_Q } from '../../utils/queries';
+import { useLazyQuery } from '@apollo/client';
 
 
 
@@ -17,6 +19,13 @@ const AddEvent = () => {
   const navigate = useNavigate();
 
   const [createEvent, { eventData }] = useMutation(ADD_EVENT_M);
+  const [getSecureURL, { secureURLdata } ] = useLazyQuery(uploadEventPicture_Q);
+  const [selectedFile, setSelectedFile] = useState();
+
+  const changeHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+    // setIsSelected(true);
+  };
 
   const handleNewEvent = async (event) => {
 
@@ -24,6 +33,9 @@ const AddEvent = () => {
     
     event.preventDefault();
     // console.log("Tigger Add Surf Hack")
+
+    //* Get Public URL for uploaded Photo
+    const publicURL = await HandleEventPictureUpload();
   
     const { eventData } = await createEvent({
 
@@ -34,7 +46,8 @@ const AddEvent = () => {
         eventDate: eventForm.get("eventDate"),
         eventLength: eventForm.get("eventLength"),
         eventBody: eventForm.get("eventBody"),
-        eventPhotoUrl: eventForm.get("eventPhotoURL"),
+        // eventPhotoUrl: eventForm.get("eventPhotoURL"),
+        eventPhotoUrl: publicURL,
         eventCurrent: JSON.parse(eventForm.get("eventCurrent")),
       },
     });
@@ -42,6 +55,31 @@ const AddEvent = () => {
     navigate("/admin/deleteEvent");
     location.reload()
     window.scrollTo(0, 0);
+  }
+
+  const HandleEventPictureUpload = async (event) => {
+  // event.preventDefault();
+
+  //* Request secure URL for upload from AWS/S3 via graphQL
+  const URLdata = await getSecureURL({
+    variables: { pictureKey: selectedFile.name},
+  });
+
+  //* Use parsed/clean URL to submit PUT request to S3 server
+  const response = await fetch(
+    URLdata.data.uploadEventPicture.secureUploadURL,
+    {
+      method: 'PUT',
+      body: selectedFile,
+      headers: {
+        "Content-Type": "image/jpg",
+      },
+    }
+  )
+
+  //* Return the URL where the photo is posted
+  return URLdata.data.uploadEventPicture.postedURL
+
   }
 
   return (
@@ -81,12 +119,6 @@ const AddEvent = () => {
         </div>
         <div className="d-flex flex-row justify-content-left align-items-center">
           <div className="m-4 dateFont">
-              Event Photo URL: 
-          </div>
-          <input name="eventPhotoURL" className="shaperInputBox p-1"/>
-        </div>
-        <div className="d-flex flex-row justify-content-left align-items-center">
-          <div className="m-4 dateFont">
               Event Current? 
           </div>
           <select name="eventCurrent" className=" p-1">
@@ -99,6 +131,12 @@ const AddEvent = () => {
               Event Body (HTML): 
           </div>
           <textarea name="eventBody" rows={10} cols={60} />
+        </div>
+        <div className="d-flex flex-row mt-5 justify-content-center align-items-center">
+          <div className="mt-3">
+            <h5 className="text-center">Upload Surf Hack Photo</h5>
+            <input className="p-2 uploadBox" type="file" name="surfHackPhoto" onChange={changeHandler} />
+          </div>
         </div>
 
         <div className="d-flex flex-row justify-content-center mt-5 align-items-center">
