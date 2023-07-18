@@ -239,23 +239,12 @@ function UserSettings() {
       const URLdata = await getSecureURL({
         variables: { userId: jwtToken.data._id},
       });
-
-      console.log("Raw Data: " + JSON.stringify(URLdata.data));  
-
-      let parsedUploadURL = URLdata.data.uploadUserProfilePicture.split(`https:`)
-
-      //* Add back HTTPS that was parsed off
-      parsedUploadURL = "https:" + parsedUploadURL[1];
-
-      //* Remove last two trailing chars to cleanup URL
-      parsedUploadURL = parsedUploadURL.substring(0, parsedUploadURL.length - 2)
-        
-      
-      console.log("Secure URL: " + parsedUploadURL);
+  
+      console.log("Secure URL: " + URLdata.data.uploadUserProfilePicture.secureUploadURL);
 
       //* Use parsed/clean URL to submit PUT request to S3 server
       const response = await fetch(
-        parsedUploadURL,
+        URLdata.data.uploadUserProfilePicture.secureUploadURL,
         {
           method: 'PUT',
           body: selectedFile,

@@ -16,11 +16,12 @@ const typeDefs = `#graphql
     getEventList: [Event]
     getAllUsersSurfSession(userID: String!): [SurfSession]
     getSurfSession(sessionID: String!): SurfSession
-    uploadUserProfilePicture(userID: String!): String
+    uploadUserProfilePicture(userID: String!): UploadURL
     uploadUserDefaultProfilePicture(userID: String!): String
     getSurfHack(surfHackID: String): SurfHack
     getSurfHackList: [SurfHack]
     getShaperList: [Shaper]
+    uploadSurfHackPicture(pictureKey: String!): UploadURL
   }
 
   type Mutation {
@@ -131,6 +132,10 @@ const typeDefs = `#graphql
     shaperName: String
   }
 
+  type UploadURL {
+    secureUploadURL: String
+    postedURL: String
+  }
 `;
 
 module.exports = typeDefs;

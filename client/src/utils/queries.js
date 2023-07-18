@@ -116,8 +116,10 @@ export const getEvent_Q = gql`
 `;
 
 export const getURLupload_Q = gql`
-  query Query($userId: String!) {
-    uploadUserProfilePicture(userID: $userId)
+  query UploadUserProfilePicture($userId: String!) {
+    uploadUserProfilePicture(userID: $userId) {
+      secureUploadURL
+    }
   }
 `;
 
@@ -169,6 +171,15 @@ export const getEventList_Q = gql`
       eventBody
       eventPhotoURL
       eventCurrent
+    }
+  }
+`;
+
+export const uploadSurfHackPicture_Q = gql`
+  query UploadSurfHackPicture($pictureKey: String!) {
+    uploadSurfHackPicture(pictureKey: $pictureKey) {
+      secureUploadURL
+      postedURL
     }
   }
 `;
