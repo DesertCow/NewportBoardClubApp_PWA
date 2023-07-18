@@ -117,9 +117,17 @@ const UpdateSurfHack = () => {
         </div>
         <div className="d-flex flex-row justify-content-left align-items-center">
           <div className="m-4 dateFont">
+              Surf Hack Photo:
+              <img src={data.getSurfHack.hackPhotoURL}
+                className="ml-3 adminSurfHackPhoto mb-3"
+                alt={data.getSurfHack.hackTitle} 
+              />
+          </div>
+        </div>
+        <div className="d-flex flex-row justify-content-left align-items-center">
+          <div className="m-4 dateFont">
               Surf Hack Photo URL: {data.getSurfHack.hackPhotoURL}
           </div>
-          {/* <input name="surfHackPhotoURL" defaultValue={data.getSurfHack.hackPhotoURL} className="shaperInputBox p-1"/> */}
         </div>
         <div className="d-flex flex-row justify-content-left align-items-center mt-3">
           <div className="m-4 dateFont text-center">

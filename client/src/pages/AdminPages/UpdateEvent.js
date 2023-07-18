@@ -137,6 +137,15 @@ const UpdateEvent = () => {
           </div>
           <div className="d-flex flex-row justify-content-left align-items-center">
             <div className="m-4 dateFont">
+                Surf Hack Photo:
+                <img src={data.getEvent.eventPhotoURL}
+                  className="ml-3 adminSurfHackPhoto mb-3"
+                  alt={data.getEvent.eventName} 
+                />
+            </div>
+          </div>          
+          <div className="d-flex flex-row justify-content-left align-items-center">
+            <div className="m-4 dateFont">
                 Event Photo URL: {data.getEvent.eventPhotoURL}
             </div>
           </div>
