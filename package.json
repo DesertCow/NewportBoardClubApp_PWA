@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./server/server.js && cd client/ && npm run start",
     "startAll": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
+    "startAllV1": "concurrently \"cd server && npm start\" \"cd client && serve -s build\"",
     "build": "cd client/ && npm install && npm run build",
     "seed": "node seeds/seed.js",
     "watch": "nodemon server.js"
@@ -19,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/DesertCow/boardClubApp/issues"
   },
-  "homepage": "https://github.com/DesertCow/boardClubApp#readme"
+  "homepage": "https://github.com/DesertCow/boardClubApp#readme",
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  }
 }
