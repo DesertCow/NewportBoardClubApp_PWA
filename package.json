@@ -10,9 +10,12 @@
     "start_OLD": "node ./server/server.js && cd client/ && npm run start",
     "startAll": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
     "start": "concurrently \"cd server && npm start\" \"cd client && serve -s build\"",
-    "startClient": "cd client && serve -s build",
+    "startClientServe": "cd client && serve -s build",
+    "startClientDev": "cd client && npm start",
     "startAPI": "cd server && npm start",
     "build_OLD": "cd client/ && npm install && npm run build",
+    "buildClient": "cd client/ && npm install && npm run build",
+    "buildServer": "cd server && npm install",
     "build": "concurrently \"cd client/ && npm install && npm run build\" \"cd server && npm install\"",
     "seed": "node seeds/seed.js",
     "watch": "nodemon server.js"
