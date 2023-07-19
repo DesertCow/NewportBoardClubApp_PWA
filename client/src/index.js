@@ -11,9 +11,14 @@ import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
+let localHost = "http://localhost:" + process.env.PORT;
+
+console.log("API HOST: " + localHost)
+
 // GraphQL Server URL
 const client = new ApolloClient({
-  uri: 'http://192.168.25.22:4001',
+  // uri: 'http://192.168.25.22:4001',
+  uri: localHost,
   cache: new InMemoryCache(),
 });
 
