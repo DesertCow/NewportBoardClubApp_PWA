@@ -11,6 +11,7 @@
     "startAll": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
     "startAllV1": "concurrently \"cd server && npm start\" \"cd client && serve -s build\"",
     "build": "cd client/ && npm install && npm run build",
+    "buildAll": "concurrently \"cd client/ && npm install && npm run build\" \"cd server && npm install\"",
     "seed": "node seeds/seed.js",
     "watch": "nodemon server.js"
   },
