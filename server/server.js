@@ -10,6 +10,7 @@ const { ApolloServer, gql } = require("@apollo/server");
 const express = require("express");
 
 const { ApolloServerPluginDrainHttpServer } = require('@apollo/server/plugin/drainHttpServer');
+const { ApolloServerPluginLandingPageDisabled } = require('@apollo/server/plugin/disabled');
 
 // import cors from 'cors';
 const cors = require("cors");
@@ -43,7 +44,9 @@ const httpServer = http.createServer(app);
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  plugins: 
+    [ApolloServerPluginDrainHttpServer({ httpServer })]
+    [ApolloServerPluginLandingPageDisabled()],
 });
 
 
