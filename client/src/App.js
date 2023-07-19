@@ -1,8 +1,7 @@
-//
-//
-//
+//* The Board Club App.js
+//* By Clayton Skaggs
+//* Version 0.5 [WW29.2]
 
-// import React from 'react';
 
 import {
   ApolloClient,
@@ -11,8 +10,6 @@ import {
   // createHttpLink,
 } from '@apollo/client';
 
-
-// import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
@@ -63,7 +60,6 @@ import Admin_UpdateSurfHack from './pages/AdminPages/UpdateSurfHack';
 import Admin_DeleteSurfHack from './pages/AdminPages/DeleteSurfHack';
 import Admin_AddDeleteShaper from './pages/AdminPages/AddDeleteShaper';
 import Admin_PushNotifications from './pages/AdminPages/PushNotifications';
-
 
 
 //* Component Import

@@ -1,12 +1,17 @@
 {
   "name": "board-club-app",
   "version": "1.0.0",
+    "engines": {
+    "node": ">=16.15.1"
+    },
   "description": "<div align=\"center\"> <h1>The Board Club App</h1>  <p align=\"center\">   <img src=\"./Dev_Docs/Art/BOARD_CLUB_LOGO_1.jpg\" width=\"350\" height=\"250\" alt=\"Demo 1\") </p> <h4>An application designed to allow members of the board club to view boards, events, rental information, and general information about the club.</h4> </div>",
   "main": "index.js",
   "scripts": {
     "start": "node ./server/server.js && cd client/ && npm run start",
     "startAll": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
+    "startAllV1": "concurrently \"cd server && npm start\" \"cd client && serve -s build\"",
     "build": "cd client/ && npm install && npm run build",
+    "buildAll": "concurrently \"cd client/ && npm install && npm run build\" \"cd server && npm install\"",
     "seed": "node seeds/seed.js",
     "watch": "nodemon server.js"
   },
@@ -19,5 +24,9 @@
   "bugs": {
     "url": "https://github.com/DesertCow/boardClubApp/issues"
   },
-  "homepage": "https://github.com/DesertCow/boardClubApp#readme"
+  "homepage": "https://github.com/DesertCow/boardClubApp#readme",
+  "dependencies": {
+    "concurrently": "^8.2.0",
+    "serve": "^14.2.0"
+  }
 }
