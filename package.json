@@ -14,6 +14,8 @@
     "startClientDev": "cd client && npm start",
     "startAPI": "cd server && npm start",
     "build_OLD": "cd client/ && npm install && npm run build",
+    "buildClient": "cd client/ && npm install && npm run build",
+    "buildServer": "cd server && npm install",
     "build": "concurrently \"cd client/ && npm install && npm run build\" \"cd server && npm install\"",
     "seed": "node seeds/seed.js",
     "watch": "nodemon server.js"
