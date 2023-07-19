@@ -107,6 +107,9 @@ The goal of this application to make members want to go surf by providing them w
 
 ## [Installation](#table-of-contents)
 
+npm run build
+npm run start
+
 <br>
 <br>
 
