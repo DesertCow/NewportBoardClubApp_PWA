@@ -19,6 +19,7 @@ const http = require('http');
 const bodyParser = require('body-parser');
 // const { json } = require("json");
 const path = require('path');
+const helmet = require("helmet");
 
 const { expressMiddleware } = require("@apollo/server/express4");
 
@@ -52,6 +53,14 @@ const server = new ApolloServer({
 
 // const server = new ApolloServer({ typeDefs, resolvers });
 
+// Set up rate limiter: maximum of twenty requests per minute
+const RateLimit = require("express-rate-limit");
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20,
+});
+
+app.use(limiter);
 
 
 
@@ -100,6 +109,11 @@ async function serverStart() {
     // an Apollo Server instance and optional configuration options
     expressMiddleware(server, {
       context: async ({ req }) => ({ token: req.headers.token }),
+    }),
+    helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net", "unpkg.com"],
+    },
     }),
   );
 
