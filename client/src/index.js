@@ -17,8 +17,8 @@ console.log("API HOST: " + localHost)
 
 // GraphQL Server URL
 const client = new ApolloClient({
-  // uri: 'http://192.168.25.22:4001',
-  uri: 'boardclubapp-production-api.up.railway.app',
+  uri: 'http://192.168.25.22:4001',
+  // uri: 'http://boardclubapp-production-api.up.railway.app',
   // uri: localHost,
   cache: new InMemoryCache(),
 });
