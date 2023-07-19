@@ -46,7 +46,7 @@ const server = new ApolloServer({
   resolvers,
   plugins: 
     [ApolloServerPluginDrainHttpServer({ httpServer })]
-    [ApolloServerPluginLandingPageDisabled()],
+    // [ApolloServerPluginLandingPageDisabled()],
 });
 
 
