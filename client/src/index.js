@@ -14,7 +14,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // GraphQL Server URL
 const client = new ApolloClient({
   // uri: 'http://192.168.25.22:4001',
-  uri: 'http://boardclubapp-production-api.up.railway.app',
+  uri: 'https://boardclubapp-production-api.up.railway.app',
   // uri: localHost,
   cache: new InMemoryCache(),
 });
