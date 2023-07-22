@@ -107,9 +107,19 @@ The goal of this application to make members want to go surf by providing them w
 
 ## [Installation](#table-of-contents)
 
-npm run build
-npm run start
+* Server/API
+```
+    1) npm run buildServer
+    2) npm run startServer
+  ```
 
+<br>
+
+* Client
+  ```
+  1) npm run buildClient
+  2) npm run startClientServe
+  ```
 <br>
 <br>
 
@@ -235,10 +245,15 @@ npm run start
 
 * <h3> Hardware/Deploy </h3>
 
-  * Railway (Databases)
-  * Back4App (Host)
-  * Version Control (gitHub)
+  * Railway (Database)
+    * MongoDB
+  * Railway (Host)
+    * Client: https://boardclubapp-production.up.railway.app/
+    * API: https://boardclubapp-production-api.up.railway.app/
+  * GitHub (Verison Control)
+    * https://github.com/DesertCow/boardClubApp
   * AWS (S3)
+    * US West 1
 
 <br>
 <br>
