@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom";
 
 import AdminSideBar from "../../components/AdminSidebar";
+import AdminLoginPage from "../../components/AdminLogin";
 
 import { useState } from 'react';
 
@@ -13,6 +14,8 @@ import { UPDATE_SURF_HACK } from '../../utils/mutations';
 
 import { uploadSurfHackPicture_Q } from '../../utils/queries';
 import { useLazyQuery } from '@apollo/client';
+
+import Auth from '../../utils/auth';
 
 
 const UpdateSurfHack = () => {
@@ -95,63 +98,73 @@ const UpdateSurfHack = () => {
 
   if(!loading){
 
-    // console.log(data.getSurfHack)
+    if(Auth.adminLoginValid()) {
 
-    return (
+      return (
 
-      //*Admin Side Bar
-      <div className="d-flex">
-        <aside className="col-2">
-          <AdminSideBar />
-        </aside>
-      <main className="col mt-5">
-        <h1 className="text-center mt-5">Surf Hack ID: {surfHackID}</h1>
+        //*Admin Side Bar
+        <div className="d-flex">
+          <aside className="col-2">
+            <AdminSideBar />
+          </aside>
+        <main className="col mt-5">
+          <h1 className="text-center mt-5">Surf Hack ID: {surfHackID}</h1>
 
-        
-        <form method="post" onSubmit={handleUpdateSurfHack} className="mt-5 row d-flex justify-content-left align-items-center">
-        <div className="d-flex flex-row justify-content-left align-items-center">
-          <div className="m-4 dateFont">
-              Surf Hack Title: 
+          
+          <form method="post" onSubmit={handleUpdateSurfHack} className="mt-5 row d-flex justify-content-left align-items-center">
+          <div className="d-flex flex-row justify-content-left align-items-center">
+            <div className="m-4 dateFont">
+                Surf Hack Title: 
+            </div>
+            <input name="surfHackTitle" defaultValue={data.getSurfHack.hackTitle} className="shaperInputBox p-1"/>
           </div>
-          <input name="surfHackTitle" defaultValue={data.getSurfHack.hackTitle} className="shaperInputBox p-1"/>
-        </div>
-        <div className="d-flex flex-row justify-content-left align-items-center">
-          <div className="m-4 dateFont">
-              Surf Hack Photo:
-              <img src={data.getSurfHack.hackPhotoURL}
-                className="ml-3 adminSurfHackPhoto mb-3"
-                alt={data.getSurfHack.hackTitle} 
-              />
+          <div className="d-flex flex-row justify-content-left align-items-center">
+            <div className="m-4 dateFont">
+                Surf Hack Photo:
+                <img src={data.getSurfHack.hackPhotoURL}
+                  className="ml-3 adminSurfHackPhoto mb-3"
+                  alt={data.getSurfHack.hackTitle} 
+                />
+            </div>
           </div>
-        </div>
-        <div className="d-flex flex-row justify-content-left align-items-center">
-          <div className="m-4 dateFont">
-              Surf Hack Photo URL: {data.getSurfHack.hackPhotoURL}
+          <div className="d-flex flex-row justify-content-left align-items-center">
+            <div className="m-4 dateFont">
+                Surf Hack Photo URL: {data.getSurfHack.hackPhotoURL}
+            </div>
           </div>
-        </div>
-        <div className="d-flex flex-row justify-content-left align-items-center mt-3">
-          <div className="m-4 dateFont text-center">
-              Surf Hack Body (HTML): 
+          <div className="d-flex flex-row justify-content-left align-items-center mt-3">
+            <div className="m-4 dateFont text-center">
+                Surf Hack Body (HTML): 
+            </div>
+            <textarea name="surfHackBody" defaultValue={data.getSurfHack.hackBody} rows={20} cols={120} />
           </div>
-          <textarea name="surfHackBody" defaultValue={data.getSurfHack.hackBody} rows={20} cols={120} />
-        </div>
-        <div className="d-flex mb-4 mt-3 flex-row justify-content-center align-items-center">
-          <div className="mt-3">
-            <h5 className="text-center">Upload Surf Hack Photo</h5>
-            <input className="p-2 uploadBox" type="file" name="surfHackPhoto" onChange={changeHandler} />
+          <div className="d-flex mb-4 mt-3 flex-row justify-content-center align-items-center">
+            <div className="mt-3">
+              <h5 className="text-center">Upload Surf Hack Photo</h5>
+              <input className="p-2 uploadBox" type="file" name="surfHackPhoto" onChange={changeHandler} />
+            </div>
           </div>
+
+          <div className="d-flex flex-row justify-content-center mt-5 align-items-center">
+            <button type="button" type="submit" className="btn addShaperSaveBTN btn-warning mx-3 mb-5">Update</button>
+          </div>
+          
+          </form>
+        </main>
+
         </div>
 
-        <div className="d-flex flex-row justify-content-center mt-5 align-items-center">
-          <button type="button" type="submit" className="btn addShaperSaveBTN btn-warning mx-3 mb-5">Update</button>
-        </div>
-        
-        </form>
-      </main>
+      )
+    }
+    else {
+      return(
+        <div className="d-flex flex-column align-items-center justify-content-center">
 
-      </div>
+          <AdminLoginPage />
 
-    )
+        </div>   
+      )
+    }
   }
 }
 

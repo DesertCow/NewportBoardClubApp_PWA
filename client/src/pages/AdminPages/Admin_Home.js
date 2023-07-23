@@ -6,6 +6,8 @@ import AdminLoginPage from "../../components/AdminLogin";
 import { databaseStats_Q } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 
+import Auth from '../../utils/auth';
+
 function Admin_Home() {
 
   var { loading, data } = useQuery(databaseStats_Q);
@@ -18,9 +20,7 @@ function Admin_Home() {
 
   if(!loading){
 
-    // if(Auth.loggedIn()) {
-    if(false) {
-
+    if(Auth.adminLoginValid()) {
 
       return(
 

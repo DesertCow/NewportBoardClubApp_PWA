@@ -832,9 +832,9 @@ background-color: #ffa85129;
 
 
 .footerLogin{
-width: 100%;
-position: fixed;
-bottom: 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }
 
 .companyName {
@@ -1224,3 +1224,24 @@ bottom: 0;
   font-size: 40px;
 }
 
+.adminLoginBox {
+  max-width: 400px;
+}
+
+.adminLoginFooter {
+  /* width: 100%; */
+  position: fixed;
+  bottom: 0;
+  /* width: 550px; */
+}
+
+.admincontactFooter {
+  opacity: 93%;
+  width: 550px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 15px 15px 0 0;
+  -webkit-border-radius: 15px 15px 0 0;
+  -moz-border-radius: 15px 15px 0 0;
+  -ms-border-radius: 15px 15px 0 0;
+  -o-border-radius: 15px 15px 0 0;
+}

@@ -22,9 +22,6 @@ const AdminLoginBox = () => {
     const loginSession = event.target;
     const loginForm = new FormData(loginSession);
 
-    console.log(loginForm.get("adminEmail"))
-    console.log(loginForm.get("adminPassword"))
-
     const { data } = await adminLogin({
       
       variables: { 
@@ -34,70 +31,71 @@ const AdminLoginBox = () => {
 
     });
 
-    console.log(data)
     //* Create JWT Token
-    // Auth.login(JSON.stringify(data.login));
+    Auth.adminLogin(JSON.stringify(data.adminLogin));
 
     setFormState({
       memberEmail: '',
       password: '',
     });
 
-    // navigate("/home")
-    // window.scrollTo(0, 0);
+    navigate("/admin")
+    window.location.reload(false);
+    window.scrollTo(0, 0);
 
   }
 
   return (
 
-   <div className="row d-flex w-100">
+   <div className="row d-flex justify-content-center w-100">
 
-        <div className="col-12 mt-3 text-center">
+        <div className="col mt-3 justify-content-center text-center">
           <img src={require("../../img/BC_Logo_Clear_1.png")}
-            className="logo"
+            className="logo "
             alt="The Board Club Logo" />
         </div>
 
-        <h1 className="adminLoginTitle text-center mb-4"> Admin Login</h1>
+        <h1 className="row adminLoginTitle justify-content-center mb-4"> Admin Login</h1>
 
-        <div className="mid col loginBox mx-5">
+        <div className="row adminLoginBox text-center mx-5"> 
+          <div className="d-flex col justify-content-center mx-5">
 
-          <form className="welcome loginBox" onSubmit={HandleLogin}>
-            <div className="text-center mt-3">
-              <div className="inputdiv loginTextLabel">
-                <p className="inputlabel">Admin Email:</p>
-                <div className="loginTextBox">
-                  <input
-                    className="startinputs loginTextBox"
-                    type="text"
-                    id="adminEmail"
-                    name="adminEmail"
-                    placeholder="Email"
-                  />
+            <form className="welcome loginBox p-3" onSubmit={HandleLogin}>
+              <div className="text-center mt-3">
+                <div className="inputdiv loginTextLabel">
+                  <p className="inputlabel">Admin Email:</p>
+                  <div className="loginTextBox">
+                    <input
+                      className="startinputs loginTextBox"
+                      type="text"
+                      id="adminEmail"
+                      name="adminEmail"
+                      placeholder="Email"
+                    />
+                  </div>
+                </div>
+
+                <div className="inputdiv mt-4">
+                  <p className="inputlabel loginTextLabel">Admin Password:</p>
+                  <div className="">
+                    <input
+                      className="startinputs loginTextBox"
+                      type="password"
+                      id="adminPassword"
+                      name="adminPassword"
+                      placeholder="Password"
+                    />
+                  </div>
                 </div>
               </div>
-
-              <div className="inputdiv mt-4">
-                <p className="inputlabel loginTextLabel">Admin Password:</p>
-                <div className="">
-                  <input
-                    className="startinputs loginTextBox"
-                    type="password"
-                    id="adminPassword"
-                    name="adminPassword"
-                    placeholder="Password"
-                  />
-                </div>
+              <div className="text-center mb-5">
+                <button className="loginbtns p-3 loginBTN" type="submit">Log in</button>
               </div>
-            </div>
-            <div className="text-center mb-5">
-              <button className="loginbtns p-3 loginBTN" type="submit">Log in</button>
-            </div>
-          </form>
-        </div >
-
-      <footer className="d-flex justify-content-center footerLogin">
-        <div className="d-flex align-items-left pt-2 px-2 pb-1 justify-content-around contactFooter">
+            </form>
+          </div >
+        </div>
+      <footer className="d-flex justify-content-center adminLoginFooter">
+        <div className="d-flex align-items-left pt-2 px-2 pb-1 justify-content-around admincontactFooter">
           <div className="d-flex flex-column">
             <a href="https://github.com/DesertCow">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000000" className="bi bi-github" viewBox="0 0 16 16">
