@@ -510,12 +510,13 @@ const resolvers = {
 
     },
 
-    adminLogin: async (parent, { adminEmail, password }) => {
+    adminLogin: async (parent, { adminEmail, adminPassword }) => {
 
       //* Logic to check for admin status
 
-      console.log("\n\x1b[36m============= ADMIN ENV EMAIL =============\x1b[0m")
-      console.log(process.env.ADMIN_ACCOUNT)
+      // console.log("\n\x1b[36m============= ADMIN ENV EMAIL =============\x1b[0m")
+      // console.log(process.env.ADMIN_ACCOUNT)
+      // console.log(adminPassword)
 
       let admin = false
 
@@ -535,10 +536,20 @@ const resolvers = {
       }
       
       if(admin){
-        //* Return Signed Token to User
-        const token = signAdminToken(adminToken);
-        // return { token, user, admin };
-        return { token };
+
+        //* Validate Admin Password
+        if( adminPassword == process.env.ADMIN_ACCOUNT_PASSWORD) {
+
+          //* Return Signed Token to User
+          const token = signAdminToken(adminToken);
+          return { token };
+
+        }
+        else {
+          const token = "INVALID ADMIN PASSWORD"
+          return { token };
+        }
+
       }
       else {
         const token = "INVALID ADMIN LOGIN"

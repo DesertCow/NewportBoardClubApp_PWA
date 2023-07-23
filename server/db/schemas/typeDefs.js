@@ -29,7 +29,7 @@ const typeDefs = `#graphql
   type Mutation {
     createUser(memberEmail: String!, password: String!, clubPassword: String!, memberFirstName: String!, memberLastName: String!): Auth
     login(memberEmail: String!, password: String!): Auth
-    adminLogin(adminEmail: String!, password: String!): Auth
+    adminLogin(adminEmail: String!, adminPassword: String!): Auth
     updateEmail(_id: String!, memberEmail: String!): Auth
     updatePassword(_id: String!, password: String!): Auth
     updateName(_id: String!, memberFirstName: String!, memberLastName: String!): Auth
