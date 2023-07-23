@@ -1,5 +1,6 @@
 
 import AdminSideBar from "../../components/AdminSidebar";
+import AdminLoginPage from "../../components/AdminLogin";
 
 import { getShaperList_Q } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
@@ -9,6 +10,7 @@ import { ADD_SHAPER, DELETE_SHAPER } from '../../utils/mutations';
 
 import Button from 'react-bootstrap/Button';
 
+import Auth from '../../utils/auth';
 
 const AddShaper = () => {
 
@@ -76,50 +78,61 @@ const AddShaper = () => {
 
   if(!loading){
 
-    data.getShaperList.forEach(populateListOfShapers)
+    if(Auth.adminLoginValid()) {
+      data.getShaperList.forEach(populateListOfShapers)
 
-    return (
+      return (
 
-      //*Admin Side Bar
-      <div className="d-flex">
-        <aside className="col-3">
-          <AdminSideBar />
-        </aside>
-      <main className="col mt-5">
+        //*Admin Side Bar
+        <div className="d-flex">
+          <aside className="col-3">
+            <AdminSideBar />
+          </aside>
+        <main className="col mt-5">
 
-        <div className="shaperListBox">
-          <h1 className="text-center mt-3 shaperFont">Shaper List:</h1>
+          <div className="shaperListBox">
+            <h1 className="text-center mt-3 shaperFont">Shaper List:</h1>
 
-          <div>
-              <ul className="row justify-content-center align-items-center text-center viewSurfSessionSpacer w-100 pr-0">
-                {shaperListHTML}
-              </ul>
+            <div>
+                <ul className="row justify-content-center align-items-center text-center viewSurfSessionSpacer w-100 pr-0">
+                  {shaperListHTML}
+                </ul>
+            </div>
           </div>
-        </div>
 
-        <div className="addShaperBox mb-5 mt-5">
-          <h1 className="text-center mt-5 shaperFont">Add Shaper</h1>
-        
-          <form method="post" onSubmit={handleNewShaper} className="mt-3 row d-flex justify-content-center align-items-center">
-            <div className="d-flex flex-row justify-content-center align-items-center">
-              <div className="m-4 shaperFont shaperName">
-                  Shaper Name: 
+          <div className="addShaperBox mb-5 mt-5">
+            <h1 className="text-center mt-5 shaperFont">Add Shaper</h1>
+          
+            <form method="post" onSubmit={handleNewShaper} className="mt-3 row d-flex justify-content-center align-items-center">
+              <div className="d-flex flex-row justify-content-center align-items-center">
+                <div className="m-4 shaperFont shaperName">
+                    Shaper Name: 
+                </div>
+                <input name="newShaper" className="shaperInputBox p-1"/>
               </div>
-              <input name="newShaper" className="shaperInputBox p-1"/>
-            </div>
 
-            <div className="d-flex flex-row justify-content-center mt-4  mb-5 align-items-center">
-              <button type="button" type="submit" className="btn addShaperSaveBTN btn-success mx-3">Add</button>
-            </div>
-            
-          </form>
+              <div className="d-flex flex-row justify-content-center mt-4  mb-5 align-items-center">
+                <button type="button" type="submit" className="btn addShaperSaveBTN btn-success mx-3">Add</button>
+              </div>
+              
+            </form>
+          </div>
+
+        </main>
+
         </div>
 
-      </main>
+      )
+    }
+    else {
+      return(
+        <div className="d-flex flex-column align-items-center justify-content-center">
 
-      </div>
+          <AdminLoginPage />
 
-    )
+        </div>   
+      )
+    }
   }
 }
 

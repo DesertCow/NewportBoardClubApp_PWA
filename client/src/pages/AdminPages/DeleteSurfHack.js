@@ -1,6 +1,7 @@
 
 
 import AdminSideBar from "../../components/AdminSidebar";
+import AdminLoginPage from "../../components/AdminLogin";
 
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +12,8 @@ import { useMutation } from '@apollo/client';
 import { DELETE_SURF_HACK_M } from '../../utils/mutations';
 
 import Button from 'react-bootstrap/Button';
+
+import Auth from '../../utils/auth';
 
 
 const UpdateSurfHack = () => {
@@ -66,28 +69,41 @@ const UpdateSurfHack = () => {
 
   if(!loading){
 
-    //* Generate List of buttons for each surf hack in database
-    data.getSurfHackList.forEach(populateListOfHacks)
+    if(Auth.adminLoginValid()) {
 
-    return (
+      //* Generate List of buttons for each surf hack in database
+      data.getSurfHackList.forEach(populateListOfHacks)
 
-      //*Admin Side Bar
-      <div className="d-flex">
-        <aside className="col-3">
-          <AdminSideBar />
-        </aside>
-      <main className="col mt-5">
-        <h1 className="text-center">Update Surf Hack Page!</h1>
+      return (
 
-        <ul className="row justify-content-center align-items-center text-center viewSurfSessionSpacer w-100 pr-0">
-          {surfHacksHTML}
-        </ul>
+        //*Admin Side Bar
+        <div className="d-flex">
+          <aside className="col-3">
+            <AdminSideBar />
+          </aside>
+        <main className="col mt-5">
+          <h1 className="text-center">Update Surf Hack Page!</h1>
+
+          <ul className="row justify-content-center align-items-center text-center viewSurfSessionSpacer w-100 pr-0">
+            {surfHacksHTML}
+          </ul>
+        
+        </main>
+
+        </div>
+
+      )
+    }    
+    else {
       
-      </main>
+      return(
+        <div className="d-flex flex-column align-items-center justify-content-center">
 
-      </div>
+          <AdminLoginPage />
 
-    )
+        </div>   
+      )
+    }
   }
 }
 

@@ -29,6 +29,7 @@ const typeDefs = `#graphql
   type Mutation {
     createUser(memberEmail: String!, password: String!, clubPassword: String!, memberFirstName: String!, memberLastName: String!): Auth
     login(memberEmail: String!, password: String!): Auth
+    adminLogin(adminEmail: String!, adminPassword: String!): Auth
     updateEmail(_id: String!, memberEmail: String!): Auth
     updatePassword(_id: String!, password: String!): Auth
     updateName(_id: String!, memberFirstName: String!, memberLastName: String!): Auth
@@ -52,7 +53,6 @@ const typeDefs = `#graphql
   # Set up an Auth type to handle returning data from a profile creating or user login
   type Auth {
     token: ID!
-    admin: Boolean
   }
 
   type Event {
@@ -146,6 +146,7 @@ const typeDefs = `#graphql
     surfHacksCount: Int
     shaperListCount: Int
   }
+  
 `;
 
 module.exports = typeDefs;

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 
 import AdminSideBar from "../../components/AdminSidebar";
+import AdminLoginPage from "../../components/AdminLogin";
 
 import { getEvent_Q } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
@@ -12,6 +13,8 @@ import { UPDATE_EVENT_M } from '../../utils/mutations';
 
 import { uploadEventPicture_Q } from '../../utils/queries';
 import { useLazyQuery } from '@apollo/client';
+
+import Auth from '../../utils/auth';
 
 
 const UpdateEvent = () => {
@@ -97,90 +100,100 @@ const UpdateEvent = () => {
 
   if(!loading){
 
-    // console.log(data.getEvent)
+    if(Auth.adminLoginValid()) {
 
-    return (
+      return (
 
-      //*Admin Side Bar
-      <div className="d-flex">
-        <aside className="col-3">
-          <AdminSideBar />
-        </aside>
-      <main className="col mt-5">
-        <h1 className="text-center">Update Event Page!</h1>
+        //*Admin Side Bar
+        <div className="d-flex">
+          <aside className="col-3">
+            <AdminSideBar />
+          </aside>
+        <main className="col mt-5">
+          <h1 className="text-center">Update Event Page!</h1>
 
 
-        <form method="post" onSubmit={handleUpdateEvent} className="mt-5 row d-flex justify-content-left align-items-center">
-          <div className="d-flex flex-row justify-content-left align-items-center">
-            <div className="m-4 dateFont">
-                Event Name: 
+          <form method="post" onSubmit={handleUpdateEvent} className="mt-5 row d-flex justify-content-left align-items-center">
+            <div className="d-flex flex-row justify-content-left align-items-center">
+              <div className="m-4 dateFont">
+                  Event Name: 
+              </div>
+              <input name="eventName" defaultValue={data.getEvent.eventName} className="shaperInputBox p-1"/>
             </div>
-            <input name="eventName" defaultValue={data.getEvent.eventName} className="shaperInputBox p-1"/>
-          </div>
-          <div className="d-flex flex-row justify-content-left align-items-center">
-            <div className="m-4 dateFont">
-                Event Slogan: 
+            <div className="d-flex flex-row justify-content-left align-items-center">
+              <div className="m-4 dateFont">
+                  Event Slogan: 
+              </div>
+              <input name="eventSlogan" defaultValue={data.getEvent.eventSlogan} className="shaperInputBox p-1"/>
             </div>
-            <input name="eventSlogan" defaultValue={data.getEvent.eventSlogan} className="shaperInputBox p-1"/>
-          </div>
-          <div className="d-flex flex-row justify-content-left align-items-center">
-            <div className="m-4 dateFont">
-                Event Date: 
+            <div className="d-flex flex-row justify-content-left align-items-center">
+              <div className="m-4 dateFont">
+                  Event Date: 
+              </div>
+              <input name="eventDate" defaultValue={data.getEvent.eventDate} className="shaperInputBox p-1"/>
             </div>
-            <input name="eventDate" defaultValue={data.getEvent.eventDate} className="shaperInputBox p-1"/>
-          </div>
-          <div className="d-flex flex-row justify-content-left align-items-center">
-            <div className="m-4 dateFont">
-                Event Length (hours): 
+            <div className="d-flex flex-row justify-content-left align-items-center">
+              <div className="m-4 dateFont">
+                  Event Length (hours): 
+              </div>
+              <input name="eventLength" defaultValue={data.getEvent.eventLength} className="shaperInputBox p-1"/>
             </div>
-            <input name="eventLength" defaultValue={data.getEvent.eventLength} className="shaperInputBox p-1"/>
-          </div>
-          <div className="d-flex flex-row justify-content-left align-items-center">
-            <div className="m-4 dateFont">
-                Surf Hack Photo:
-                <img src={data.getEvent.eventPhotoURL}
-                  className="ml-3 adminSurfHackPhoto mb-3"
-                  alt={data.getEvent.eventName} 
-                />
+            <div className="d-flex flex-row justify-content-left align-items-center">
+              <div className="m-4 dateFont">
+                  Surf Hack Photo:
+                  <img src={data.getEvent.eventPhotoURL}
+                    className="ml-3 adminSurfHackPhoto mb-3"
+                    alt={data.getEvent.eventName} 
+                  />
+              </div>
+            </div>          
+            <div className="d-flex flex-row justify-content-left align-items-center">
+              <div className="m-4 dateFont">
+                  Event Photo URL: {data.getEvent.eventPhotoURL}
+              </div>
             </div>
-          </div>          
-          <div className="d-flex flex-row justify-content-left align-items-center">
-            <div className="m-4 dateFont">
-                Event Photo URL: {data.getEvent.eventPhotoURL}
+            <div className="d-flex flex-row justify-content-left align-items-center">
+              <div className="m-4 dateFont">
+                  Event Current? 
+              </div>
+              <select name="eventCurrent" defaultValue={data.getEvent.eventCurrent} className=" p-1">
+                <option value={true}>True</option>
+                <option value={false}>False</option>
+              </select>
             </div>
-          </div>
-          <div className="d-flex flex-row justify-content-left align-items-center">
-            <div className="m-4 dateFont">
-                Event Current? 
+            <div className="d-flex flex-row justify-content-left align-items-center mt-3">
+              <div className="m-4 dateFont">
+                  Event Body (HTML): 
+              </div>
+              <textarea name="eventBody" defaultValue={data.getEvent.eventBody} rows={20} cols={100} />
             </div>
-            <select name="eventCurrent" defaultValue={data.getEvent.eventCurrent} className=" p-1">
-              <option value={true}>True</option>
-              <option value={false}>False</option>
-            </select>
-          </div>
-          <div className="d-flex flex-row justify-content-left align-items-center mt-3">
-            <div className="m-4 dateFont">
-                Event Body (HTML): 
+            <div className="d-flex flex-row mt-5 justify-content-center align-items-center">
+              <div className="mt-3">
+                <h5 className="text-center">Upload Event Hack Photo</h5>
+                <input className="p-2 uploadBox" type="file" name="eventPhoto" onChange={changeHandler} />
+              </div>
             </div>
-            <textarea name="eventBody" defaultValue={data.getEvent.eventBody} rows={20} cols={100} />
-          </div>
-          <div className="d-flex flex-row mt-5 justify-content-center align-items-center">
-            <div className="mt-3">
-              <h5 className="text-center">Upload Event Hack Photo</h5>
-              <input className="p-2 uploadBox" type="file" name="eventPhoto" onChange={changeHandler} />
-            </div>
-          </div>
 
-          <div className="d-flex flex-row justify-content-center mt-5 align-items-center">
-            <button type="button" type="submit" className="btn addShaperSaveBTN btn-warning mb-5 mx-3">Update</button>
-          </div>
-          
-        </form>
-      </main>
+            <div className="d-flex flex-row justify-content-center mt-5 align-items-center">
+              <button type="button" type="submit" className="btn addShaperSaveBTN btn-warning mb-5 mx-3">Update</button>
+            </div>
+            
+          </form>
+        </main>
 
-      </div>
+        </div>
 
-    )
+      )
+    }
+    else {
+      return(
+        <div className="d-flex flex-column align-items-center justify-content-center">
+
+          <AdminLoginPage />
+
+        </div>   
+      )
+    }
   }
 }
 

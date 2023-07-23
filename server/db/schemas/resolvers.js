@@ -13,7 +13,7 @@ const Shaper = require('../../models/Shaper')
 //* Auth Tools
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const { signToken } = require('../../utils/auth');
+const { signToken, signAdminToken } = require('../../utils/auth');
 
 // const { useState, useEffect } = require("react");
 const fetch = require("node-fetch");
@@ -303,7 +303,7 @@ const resolvers = {
 
     uploadSurfHackPicture: async (parent, { pictureKey }) => {
 
-      console.log("\n   \x1b[33mAdmin Has Requested Upload URL for Surf Hack Picture (" + pictureKey + ")\x1b[0m");
+      console.log("\n   \x1b[33m S3 Secure Upload Requested for Surf Hack Picture (" + pictureKey + ")\x1b[0m");
 
       //* Define S3 Params for URL Request
       const s3Params = {
@@ -331,7 +331,7 @@ const resolvers = {
 
      uploadEventPicture: async (parent, { pictureKey }) => {
 
-      console.log("\n   \x1b[33mAdmin Has Requested Upload URL for Event Picture (" + pictureKey + ")\x1b[0m");
+      console.log("\n   \x1b[33m S3 Secure Upload Requested for Event Picture (" + pictureKey + ")\x1b[0m");
 
       //* Define S3 Params for URL Request
       const s3Params = {
@@ -496,34 +496,64 @@ const resolvers = {
         console.log("\x1b[32m   Login Successful\x1b[0m\n");
         loginValid = true;
       }
+      
+      if(loginValid){
+        //* Return Signed Token to User
+        const token = signToken(user);
+
+        return { token };
+      }
+      else {
+        const token = "INVALID LOGIN"
+        return { token };
+      }
+
+    },
+
+    adminLogin: async (parent, { adminEmail, adminPassword }) => {
+
       //* Logic to check for admin status
 
-      // console.log("ADMIN ENV EMAIL")
+      // console.log("\n\x1b[36m============= ADMIN ENV EMAIL =============\x1b[0m")
       // console.log(process.env.ADMIN_ACCOUNT)
+      // console.log(adminPassword)
 
       let admin = false
 
-      if (process.env.ADMIN_ACCOUNT == memberEmail) {
-        console.log("\n========================================")
+      if (process.env.ADMIN_ACCOUNT == adminEmail) {
+        console.log("\n\x1b[36m========================================\x1b[0m")
         console.log("=\x1b[31m    WARNING ADMIN LOG IN DETECTED!\x1b[0m    =")
-        console.log("========================================")
+        console.log("\x1b[36m========================================\x1b[0m")
         admin = true
       }
       else {
         admin = false
       }
 
-      // console.log("USER = " + user);
+      adminToken = {
+        adminEmail: adminEmail,
+        adminValid: true
+      }
       
-      if(loginValid){
-        //* Return Signed Token to User
-        const token = signToken(user);
-        // return { token, user, admin };
-        return { token, admin };
+      if(admin){
+
+        //* Validate Admin Password
+        if( adminPassword == process.env.ADMIN_ACCOUNT_PASSWORD) {
+
+          //* Return Signed Token to User
+          const token = signAdminToken(adminToken);
+          return { token };
+
+        }
+        else {
+          const token = "INVALID ADMIN PASSWORD"
+          return { token };
+        }
+
       }
       else {
-        const token = "INVALID LOGIN"
-        return { token, admin };
+        const token = "INVALID ADMIN LOGIN"
+        return { token };
       }
 
     },
@@ -532,6 +562,7 @@ const resolvers = {
 
       //TODO: Confirm new email does not already exists in DB
       //TODO: Add Try/Catch logic to print failed update to console
+
       console.log("\n\x1b[33mUpdate User Email (MongoDB)\x1b[0m\n\x1b[0m\n   Email: \x1b[35m" + memberEmail + "\n\x1b[0m   ID: \x1b[35m" + _id);
 
       await UserMongo.updateOne({ _id: _id }, { $set: { memberEmail: memberEmail } })
@@ -541,21 +572,9 @@ const resolvers = {
       //* Get updated user data from DB via Email
       const user = await UserMongo.findOne({ memberEmail });
 
-      let admin = false
-
-      if (process.env.ADMIN_ACCOUNT == memberEmail) {
-        console.log("\n========================================")
-        console.log("=\x1b[31m    WARNING ADMIN LOG IN DETECTED!\x1b[0m    =")
-        console.log("========================================")
-        admin = true
-      }
-      else {
-        admin = false
-      }
-
       //* Return Signed Token to User
       const token = signToken(user);
-      return { token, admin };
+      return { token };
 
     },
 

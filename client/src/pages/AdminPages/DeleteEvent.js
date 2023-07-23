@@ -1,4 +1,5 @@
 import AdminSideBar from "../../components/AdminSidebar";
+import AdminLoginPage from "../../components/AdminLogin";
 
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +8,8 @@ import { useQuery } from '@apollo/client';
 
 import { useMutation } from '@apollo/client';
 import { DELETE_EVENT_M } from '../../utils/mutations';
+
+import Auth from '../../utils/auth';
 
 import Button from 'react-bootstrap/Button';
 
@@ -60,33 +63,43 @@ const DeleteEvent = () => {
 
   if(!loading){
 
-    // console.log(data.getEventList)
+    if(Auth.adminLoginValid()) {
 
-    //* Generate List of buttons for each surf hack in database
-    data.getEventList.forEach(populateListOfEvents)
+      //* Generate List of buttons for each surf hack in database
+      data.getEventList.forEach(populateListOfEvents)
 
-    return (
+      return (
 
-      //*Admin Side Bar
-      <div className="d-flex">
-        <aside className="col-3">
-          <AdminSideBar />
-        </aside>
-      <main className="col mt-5">
-        <h1 className="text-center">Update/Delete Event Page</h1>
+        //*Admin Side Bar
+        <div className="d-flex">
+          <aside className="col-3">
+            <AdminSideBar />
+          </aside>
+        <main className="col mt-5">
+          <h1 className="text-center">Update/Delete Event Page</h1>
 
-        <ul className="row justify-content-center align-items-center text-center viewSurfSessionSpacer w-100 pr-0">
-          {eventListHTML}
-        </ul>
+          <ul className="row justify-content-center align-items-center text-center viewSurfSessionSpacer w-100 pr-0">
+            {eventListHTML}
+          </ul>
 
-      </main>
-      <div className="col-1">
+        </main>
+        <div className="col-1">
 
-      </div>
+        </div>
 
-      </div>
+        </div>
 
-    )
+      )
+    }
+    else {
+      return(
+        <div className="d-flex flex-column align-items-center justify-content-center">
+
+          <AdminLoginPage />
+
+        </div>   
+      )
+    }
   }
 }
 
