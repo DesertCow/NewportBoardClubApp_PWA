@@ -146,11 +146,7 @@ const typeDefs = `#graphql
     surfHacksCount: Int
     shaperListCount: Int
   }
-
-  type AdminAuth {
-    token: ID!
-    admin: Boolean
-  }
+  
 `;
 
 module.exports = typeDefs;

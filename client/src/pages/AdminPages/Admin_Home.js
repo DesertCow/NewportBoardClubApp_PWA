@@ -1,6 +1,7 @@
 
 
 import AdminSideBar from "../../components/AdminSidebar";
+import AdminLoginPage from "../../components/AdminLogin";
 
 import { databaseStats_Q } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
@@ -17,37 +18,52 @@ function Admin_Home() {
 
   if(!loading){
 
-  return(
+    // if(Auth.loggedIn()) {
+    if(false) {
 
-    <div className="d-flex">
-      <aside className="col-3">
-        <AdminSideBar />
-      </aside>
 
-      <main className="col-6 mt-5">
-        <div className="adminWelcomeBox text-center p-3">
-          <h1 className="">Welcome to Board Club App</h1>
-          <h1 className="">Admin Console</h1>
+      return(
+
+        <div className="d-flex">
+          <aside className="col-3">
+            <AdminSideBar />
+          </aside>
+
+          <main className="col-6 mt-5">
+            <div className="adminWelcomeBox text-center p-3">
+              <h1 className="">Welcome to Board Club App</h1>
+              <h1 className="">Admin Console</h1>
+            </div>
+
+
+            <div className="adminWelcomeBox p-3 mt-5">
+              <div className="d-flex text-center justify-content-center align-items-center mt-2">
+                <h1 className="">Database Stats:</h1>
+              </div>
+              <div className="px-5 mb-3 mt-4">
+                <h3 className="row">Users: {data.databaseCount.userCount}</h3>
+                <h3 className="row mt-3">Surf Sessions: {data.databaseCount.surfSessionCount}</h3>
+                <h3 className="row mt-3">Events: {data.databaseCount.eventCount}</h3>
+                <h3 className="row mt-3">Surf Hacks: {data.databaseCount.surfHacksCount}</h3>
+                <h3 className="row mt-3">Shapers: {data.databaseCount.shaperListCount}</h3>
+              </div>
+            </div>
+
+          </main>
+
         </div>
+      )
 
+    }
+    else {
+      return(
+        <div className="d-flex flex-column align-items-center justify-content-center">
 
-        <div className="adminWelcomeBox p-3 mt-5">
-          <div className="d-flex text-center justify-content-center align-items-center mt-2">
-            <h1 className="">Database Stats:</h1>
-          </div>
-          <div className="px-5 mb-3 mt-4">
-            <h3 className="row">Users: {data.databaseCount.userCount}</h3>
-            <h3 className="row mt-3">Surf Sessions: {data.databaseCount.surfSessionCount}</h3>
-            <h3 className="row mt-3">Events: {data.databaseCount.eventCount}</h3>
-            <h3 className="row mt-3">Surf Hacks: {data.databaseCount.surfHacksCount}</h3>
-            <h3 className="row mt-3">Shapers: {data.databaseCount.shaperListCount}</h3>
-          </div>
-        </div>
+          <AdminLoginPage />
 
-      </main>
-
-    </div>
-    )
+        </div>   
+      )
+    }
   }
 }
 

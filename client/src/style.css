@@ -1219,3 +1219,8 @@ bottom: 0;
   border-color: #939393d7;
 }
 
+.adminLoginTitle {
+  font-family: "Catamaran-ExtraBold";
+  font-size: 40px;
+}
+
