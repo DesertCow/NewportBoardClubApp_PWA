@@ -99,13 +99,17 @@ const resolvers = {
       //* Get Current time and determind if club is open
       const currentTime = new Date();
         
-      // console.log("Current Time: "+ currentTime.getDay());
+      console.log("Current Day: "+ currentTime.getUTCDay());
+      console.log("Current Time (Hours Local): "+ currentTime.getHours());
+      console.log("Current Time (UTC Hours): "+ currentTime.getUTCHours());
 
       //*Confirm it's not Monday
-      if(currentTime.getDay() != 1){
+      // if(currentTime.getDay() != 1){
+      if(currentTime.getDay() != 2){
 
-        //* Check it's between 8am and 6pm
-        if((currentTime.getHours() > 8) && (currentTime.getHours() < 18)){
+        //* Check it's between 8am and 6pm ()
+        // if((currentTime.getHours() >= 8) && (currentTime.getHours() < 18)){
+        if((currentTime.getUTCHours() >= 15) || (currentTime.getUTCHours() <= 1)){
 
           // console.log("Current Time: "+ currentTime.getHours());
           finalClubStatus = true;
@@ -477,37 +481,40 @@ const resolvers = {
         // throw new AuthenticationError('No profile with this email found!');
         console.log('   \x1b[35mEmail Not Found!\x1b[0m');
         console.log("   \x1b[35mLogin Failed!\x1b[0m")
-      }
 
-      //* Validate Password via "isCorrectPassword" method
-      const correctPw = await user.isCorrectPassword(password);
-
-      // console.log("Correct Password = " + correctPw)
-
-      //* Error for incorrect password
-      if (!correctPw) {
-        console.log("\x1b[35mLogin Failed\x1b[0m")
-        loginValid = false;
-        // throw new AuthenticationError('Incorrect password!');
-      }
-
-      if(correctPw)
-      {
-        console.log("\x1b[32m   Login Successful\x1b[0m\n");
-        loginValid = true;
-      }
-      
-      if(loginValid){
-        //* Return Signed Token to User
-        const token = signToken(user);
-
-        return { token };
-      }
-      else {
         const token = "INVALID LOGIN"
         return { token };
       }
+      else {
 
+        //* Validate Password via "isCorrectPassword" method
+        const correctPw = await user.isCorrectPassword(password);
+
+        //* Error for incorrect password
+        if (!correctPw) {
+          console.log("\x1b[35mLogin Failed\x1b[0m")
+          loginValid = false;
+          // throw new AuthenticationError('Incorrect password!');
+        }
+
+        if(correctPw)
+        {
+          console.log("\x1b[32m   Login Successful\x1b[0m\n");
+          loginValid = true;
+        }
+        
+        if(loginValid){
+          //* Return Signed Token to User
+          const token = signToken(user);
+
+          return { token };
+        }
+        else {
+          const token = "INVALID LOGIN"
+          return { token };
+        }
+
+      }
     },
 
     adminLogin: async (parent, { adminEmail, adminPassword }) => {

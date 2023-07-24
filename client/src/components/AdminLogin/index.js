@@ -31,8 +31,19 @@ const AdminLoginBox = () => {
 
     });
 
-    //* Create JWT Token
-    Auth.adminLogin(JSON.stringify(data.adminLogin));
+    //TODO: Enable check that valid token is generated...
+    if( data.adminLogin.token == "INVALID ADMIN LOGIN" || data.adminLogin.token == "INVALID ADMIN PASSWORD") {
+
+      //* Bad Token Do Not Save
+      console.log(data.adminLogin.token)
+
+    }
+    else {
+
+      //* Create JWT Token
+      Auth.adminLogin(JSON.stringify(data.adminLogin));
+
+    
 
     setFormState({
       memberEmail: '',
@@ -43,6 +54,8 @@ const AdminLoginBox = () => {
     window.location.reload(false);
     window.scrollTo(0, 0);
 
+    }
+    
   }
 
   return (
