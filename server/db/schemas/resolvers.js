@@ -99,9 +99,9 @@ const resolvers = {
       //* Get Current time and determind if club is open
       const currentTime = new Date();
         
-      console.log("Current Day: "+ currentTime.getUTCDay());
-      console.log("Current Time (Hours Local): "+ currentTime.getHours());
-      console.log("Current Time (UTC Hours): "+ currentTime.getUTCHours());
+      // console.log("Current Day: "+ currentTime.getUTCDay());
+      // console.log("Current Time (Hours Local): "+ currentTime.getHours());
+      // console.log("Current Time (UTC Hours): "+ currentTime.getUTCHours());
 
       //* Confirm it's not Monday
       if(currentTime.getDay() != 1){
