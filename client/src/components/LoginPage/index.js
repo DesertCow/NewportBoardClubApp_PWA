@@ -37,6 +37,7 @@ const LoginBox = () => {
     if( data.login.token == "INVALID LOGIN") {
 
       //* Bad Token Do Not Save
+      window.alert("LOGIN Failed: Invalid Email/Password");
       console.log(data.login.token)
       window.location.reload(false);
 
