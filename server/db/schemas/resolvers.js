@@ -103,9 +103,8 @@ const resolvers = {
       console.log("Current Time (Hours Local): "+ currentTime.getHours());
       console.log("Current Time (UTC Hours): "+ currentTime.getUTCHours());
 
-      //*Confirm it's not Monday
-      // if(currentTime.getDay() != 1){
-      if(currentTime.getDay() != 2){
+      //* Confirm it's not Monday
+      if(currentTime.getDay() != 1){
 
         //* Check it's between 8am and 6pm ()
         // if((currentTime.getHours() >= 8) && (currentTime.getHours() < 18)){
