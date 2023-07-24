@@ -477,37 +477,40 @@ const resolvers = {
         // throw new AuthenticationError('No profile with this email found!');
         console.log('   \x1b[35mEmail Not Found!\x1b[0m');
         console.log("   \x1b[35mLogin Failed!\x1b[0m")
-      }
-
-      //* Validate Password via "isCorrectPassword" method
-      const correctPw = await user.isCorrectPassword(password);
-
-      // console.log("Correct Password = " + correctPw)
-
-      //* Error for incorrect password
-      if (!correctPw) {
-        console.log("\x1b[35mLogin Failed\x1b[0m")
-        loginValid = false;
-        // throw new AuthenticationError('Incorrect password!');
-      }
-
-      if(correctPw)
-      {
-        console.log("\x1b[32m   Login Successful\x1b[0m\n");
-        loginValid = true;
-      }
-      
-      if(loginValid){
-        //* Return Signed Token to User
-        const token = signToken(user);
-
-        return { token };
-      }
-      else {
+        
         const token = "INVALID LOGIN"
         return { token };
       }
+      else {
 
+        //* Validate Password via "isCorrectPassword" method
+        const correctPw = await user.isCorrectPassword(password);
+
+        //* Error for incorrect password
+        if (!correctPw) {
+          console.log("\x1b[35mLogin Failed\x1b[0m")
+          loginValid = false;
+          // throw new AuthenticationError('Incorrect password!');
+        }
+
+        if(correctPw)
+        {
+          console.log("\x1b[32m   Login Successful\x1b[0m\n");
+          loginValid = true;
+        }
+        
+        if(loginValid){
+          //* Return Signed Token to User
+          const token = signToken(user);
+
+          return { token };
+        }
+        else {
+          const token = "INVALID LOGIN"
+          return { token };
+        }
+
+      }
     },
 
     adminLogin: async (parent, { adminEmail, adminPassword }) => {
