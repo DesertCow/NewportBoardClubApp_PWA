@@ -1141,7 +1141,11 @@ background-color: #ffa85129;
 
 .sideBarMain{
   height: 950px;
-  margin-left: 0px !important;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: 0px;
+  padding-left: 0px;
 }
 
 
@@ -1263,4 +1267,9 @@ background-color: #ffa85129;
   border-color: #c3c3c3b5;
   border-width: 5px;
   width: 450px !important;
+}
+
+.adminUpdateEventTitle {
+  font-family: "Catamaran-Regular";
+  font-size: 40px;
 }
