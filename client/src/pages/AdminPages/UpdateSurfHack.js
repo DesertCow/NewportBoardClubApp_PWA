@@ -104,7 +104,7 @@ const UpdateSurfHack = () => {
 
         //*Admin Side Bar
         <div className="d-flex">
-          <aside className="col-2">
+          <aside className="col-3 sideBarMain">
             <AdminSideBar />
           </aside>
         <main className="col mt-5">
