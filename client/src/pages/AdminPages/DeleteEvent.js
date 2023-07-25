@@ -57,7 +57,7 @@ const DeleteEvent = () => {
   function populateListOfEvents(eventData) {
 
     //* Create Shaper List
-    eventListHTML.push(<li className="d-flex col justify-content-center align-items-center" onClick={(event) => updateEvent(event, eventData._id)} key={eventData._id} className="shaperBox mt-4 p-3 mx-3">{eventData.eventName}<Button onClick={(event) => deleteEvent(event, eventData._id, eventData.eventName)} variant="danger" className="d-flex col justify-content-center align-items-center shaperDeleteBTN mt-3">Delete</Button></li>)
+    eventListHTML.push(<li className="d-flex flex-row mb-5 justify-content-center align-items-center" onClick={(event) => updateEvent(event, eventData._id)} key={eventData._id} className="shaperBox my-3 p-3 mx-3">{eventData.eventName}<Button onClick={(event) => deleteEvent(event, eventData._id, eventData.eventName)} variant="danger" className="d-flex col justify-content-center align-items-center shaperDeleteBTN mt-3">Delete</Button></li>)
 
   }
 
@@ -72,24 +72,24 @@ const DeleteEvent = () => {
 
         //*Admin Side Bar
         <div className="d-flex">
-          <aside className="col-3">
+          <aside className="col-3 sideBarMain">
             <AdminSideBar />
           </aside>
-        <main className="col mt-5">
-          <h1 className="text-center">Update/Delete Event Page</h1>
+          <main className="d-flex flex-column mt-5 w-75 justify-content-center align-items-center">
+            <div className="mt-2 px-5 adminAddEventBox mb-3">
+              <h1 className=" mt-2 adminAddEventText">View/Delete Events</h1>
+            </div>
+            
+            <ul className="d-flex flex-column mt-3 w-50 justify-content-center adminAddEventBox align-items-center text-center viewSurfSessionSpacer">
+              {eventListHTML}
+            </ul>
 
-          <ul className="row justify-content-center align-items-center text-center viewSurfSessionSpacer w-100 pr-0">
-            {eventListHTML}
-          </ul>
-
-        </main>
-        <div className="col-1">
-
-        </div>
-
+          </main>
+          <div className="col-1"></div>
         </div>
 
       )
+      
     }
     else {
       return(

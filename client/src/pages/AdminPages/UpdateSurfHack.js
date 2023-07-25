@@ -104,53 +104,76 @@ const UpdateSurfHack = () => {
 
         //*Admin Side Bar
         <div className="d-flex">
-          <aside className="col-2">
+          <aside className="col-3 sideBarMain">
             <AdminSideBar />
           </aside>
-        <main className="col mt-5">
-          <h1 className="text-center mt-5">Surf Hack ID: {surfHackID}</h1>
 
-          
-          <form method="post" onSubmit={handleUpdateSurfHack} className="mt-5 row d-flex justify-content-left align-items-center">
-          <div className="d-flex flex-row justify-content-left align-items-center">
-            <div className="m-4 dateFont">
-                Surf Hack Title: 
-            </div>
-            <input name="surfHackTitle" defaultValue={data.getSurfHack.hackTitle} className="shaperInputBox p-1"/>
-          </div>
-          <div className="d-flex flex-row justify-content-left align-items-center">
-            <div className="m-4 dateFont">
-                Surf Hack Photo:
-                <img src={data.getSurfHack.hackPhotoURL}
-                  className="ml-3 adminSurfHackPhoto mb-3"
-                  alt={data.getSurfHack.hackTitle} 
-                />
-            </div>
-          </div>
-          <div className="d-flex flex-row justify-content-left align-items-center">
-            <div className="m-4 dateFont">
-                Surf Hack Photo URL: {data.getSurfHack.hackPhotoURL}
-            </div>
-          </div>
-          <div className="d-flex flex-row justify-content-left align-items-center mt-3">
-            <div className="m-4 dateFont text-center">
-                Surf Hack Body (HTML): 
-            </div>
-            <textarea name="surfHackBody" defaultValue={data.getSurfHack.hackBody} rows={20} cols={120} />
-          </div>
-          <div className="d-flex mb-4 mt-3 flex-row justify-content-center align-items-center">
-            <div className="mt-3">
-              <h5 className="text-center">Upload Surf Hack Photo</h5>
-              <input className="p-2 uploadBox" type="file" name="surfHackPhoto" onChange={changeHandler} />
-            </div>
-          </div>
+          <main className="col mt-5">
+            <h1 className="text-center mt-5 adminAddEventText">Update Surf Hack </h1>
+            <h1 className="text-center mt-5 adminUpdateEventTitle">{data.getSurfHack.hackTitle}</h1>
 
-          <div className="d-flex flex-row justify-content-center mt-5 align-items-center">
-            <button type="button" type="submit" className="btn addShaperSaveBTN btn-warning mx-3 mb-5">Update</button>
-          </div>
-          
-          </form>
-        </main>
+            
+            <form method="post" onSubmit={handleUpdateSurfHack} className="mt-4 flex-column d-flex justify-content-center align-items-center">
+              <div className="d-flex flex-row justify-content-center align-items-center adminAddEventBox w-75">
+                <div className="d-flex flex-row justify-content-left align-items-center">
+                  <div className="m-4 dateFont">
+                      Surf Hack Title: 
+                  </div>
+                  <input name="surfHackTitle" defaultValue={data.getSurfHack.hackTitle} className="shaperInputBox p-1"/>
+                </div>
+              </div>
+
+              <div className="adminAddEventBox w-75 my-4 d-flex flex-column justify-content-center align-items-center">
+                <div className="d-flex flex-column justify-content-left align-items-center">
+                  <div>
+                    <div className="mt-3 mb-2 d-flex justify-content-center align-items-center flex-row dateFont">
+                      Surf Hack Photo
+                    </div>
+                    <div>
+                      <img src={data.getSurfHack.hackPhotoURL}
+                        className="ml-3 adminSurfHackPhoto mb-3"
+                        alt={data.getSurfHack.hackTitle} 
+                      />   
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex flex-row justify-content-center align-items-center">
+                  <div className="d-flex flex-column justify-content-center align-items-center">
+                    <div className="mt-4 d-flex flex-row dateFont">
+                        Surf Hack Photo URL
+                    </div>
+                    <div className="mt-2 mb-4 d-flex flex-row dateFont text-center">
+                        {data.getSurfHack.hackPhotoURL}
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex mb-4 mt-3 flex-row justify-content-center align-items-center">
+                  <div className="mt-3 mb-4">
+                    <h5 className="text-center">Upload Surf Hack Photo</h5>
+                    <input className="p-2 adminUploadBox" type="file" name="surfHackPhoto" onChange={changeHandler} />
+                  </div>
+                </div>
+              </div>
+            
+              <div className="adminAddEventBox w-100 my-4 d-flex flex-column justify-content-center align-items-center">
+                <div className="d-flex flex-row justify-content-left align-items-center mt-4">
+                  <div>
+                    <div className="mb-4 dateFont text-center">
+                      Surf Hack Body (HTML)
+                    </div>
+                    <textarea name="eventBody" className="mb-5 mx-5" defaultValue={data.getSurfHack.hackBody} rows={30} cols={120} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="d-flex flex-row justify-content-center mt-5 align-items-center">
+                <button type="button" type="submit" className="btn addShaperSaveBTN btn-warning mx-3 mb-5">Update Surf Hack</button>
+              </div>
+            
+            </form>
+          </main>
+
+          <div className="col-1"></div>
 
         </div>
 

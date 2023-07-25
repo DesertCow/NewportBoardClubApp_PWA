@@ -1141,7 +1141,11 @@ background-color: #ffa85129;
 
 .sideBarMain{
   height: 950px;
-  margin-left: 0px !important;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: 0px;
+  padding-left: 0px;
 }
 
 
@@ -1244,4 +1248,28 @@ background-color: #ffa85129;
   -moz-border-radius: 15px 15px 0 0;
   -ms-border-radius: 15px 15px 0 0;
   -o-border-radius: 15px 15px 0 0;
+}
+
+.adminAddEventBox{
+  border-width: 10px;
+  border-style: solid;
+  border-color: #939393d7;
+}
+
+.adminAddEventText{
+  font-family: "Catamaran-ExtraBold";
+  font-size: 50px;
+}
+
+.adminUploadBox {
+  /* background-color: #1519d2; */
+  border-style: solid;
+  border-color: #c3c3c3b5;
+  border-width: 5px;
+  width: 450px !important;
+}
+
+.adminUpdateEventTitle {
+  font-family: "Catamaran-Regular";
+  font-size: 40px;
 }

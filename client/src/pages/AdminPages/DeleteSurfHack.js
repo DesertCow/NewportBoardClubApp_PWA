@@ -62,7 +62,7 @@ const UpdateSurfHack = () => {
   function populateListOfHacks(hacksData) {
 
     //* Create Shaper List
-    surfHacksHTML.push(<li className="d-flex col justify-content-center align-items-center" onClick={(event) => updateHack(event, hacksData._id)} key={hacksData._id} className="shaperBox mt-4 p-3 mx-3">{hacksData.hackTitle}<Button onClick={(event) => deleteHack(event, hacksData._id, hacksData.hackTitle)} variant="danger" className="d-flex col justify-content-center align-items-center shaperDeleteBTN mt-3">Delete</Button></li>)
+    surfHacksHTML.push(<li className="d-flex col justify-content-center align-items-center" onClick={(event) => updateHack(event, hacksData._id)} key={hacksData._id} className="shaperBox my-3 p-3 mx-3">{hacksData.hackTitle}<Button onClick={(event) => deleteHack(event, hacksData._id, hacksData.hackTitle)} variant="danger" className="d-flex col justify-content-center align-items-center shaperDeleteBTN mt-3">Delete</Button></li>)
 
   }
 
@@ -78,17 +78,19 @@ const UpdateSurfHack = () => {
 
         //*Admin Side Bar
         <div className="d-flex">
-          <aside className="col-3">
+          <aside className="col-3 sideBarMain">
             <AdminSideBar />
           </aside>
-        <main className="col mt-5">
-          <h1 className="text-center">Update Surf Hack Page!</h1>
 
-          <ul className="row justify-content-center align-items-center text-center viewSurfSessionSpacer w-100 pr-0">
-            {surfHacksHTML}
-          </ul>
-        
-        </main>
+          <main className="col d-flex flex-column mt-5 w-75 justify-content-center align-items-center">
+            <div className="mt-2 px-5 adminAddEventBox mb-3">
+              <h1 className="mt-2 text-center adminAddEventText">View/Delete Surf Hacks</h1>
+            </div>
+            
+            <ul className="d-flex flex-column mt-3 w-50 justify-content-center adminAddEventBox align-items-center text-center viewSurfSessionSpacer">
+              {surfHacksHTML}
+            </ul>
+          </main>
 
         </div>
 
