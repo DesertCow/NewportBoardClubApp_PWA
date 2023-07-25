@@ -446,8 +446,21 @@ const resolvers = {
 
       console.log("\n\x1b[33mCreate New User (MongoDB)\x1b[0m\n\x1b[0m\n   Password: \x1b[35m" + password + "\x1b[0m\n   Club Password: \x1b[35m" + clubPassword + "\x1b[0m\n   Email: " + memberEmail + "\x1b[0m\n   Name: " + memberFirstName + " " + memberLastName);
 
+      // let registerDateLocal = new Date();
+      // let utcOffset = registerDateLocal.getTimezoneOffset();
+      // let registerDateUTC = new Date(registerDateLocal.getTime() + utcOffset * 60000);
+      // let registerDate = registerDateLocal;
+      let registerDate = new Date();
+
+      // console.log("Date Local = " + registerDateLocal);
+      // console.log("UTC Offset = " + utcOffset);
+      // console.log("Date UTC = " + registerDateUTC);
+      // console.log(registerDate.getTimezoneOffset())
+
+      // let registerDate = new Date();
+
       //* Request Database create a new "User"
-      const user = await UserMongo.create({ memberEmail, password, clubPassword, memberFirstName, memberLastName });
+      const user = await UserMongo.create({ memberEmail, password, clubPassword, memberFirstName, memberLastName, registerDate });
 
       //TODO: Enable way to print this when it fails...
       //console.log("\x1b[35mAccount Creation Failed: Email already associated with an account \x1b[0m");
