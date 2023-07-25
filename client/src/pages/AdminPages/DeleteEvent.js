@@ -75,23 +75,21 @@ const DeleteEvent = () => {
           <aside className="col-3 sideBarMain">
             <AdminSideBar />
           </aside>
-        <main className="d-flex flex-column mt-5 w-75 justify-content-center align-items-center">
-          <div className="mt-2 px-5 adminAddEventBox mb-3">
-            <h1 className=" mt-2 adminAddEventText">View/Delete Events</h1>
-          </div>
-          
-          <ul className="d-flex flex-column mt-3 w-50 justify-content-center adminAddEventBox align-items-center text-center viewSurfSessionSpacer">
-            {eventListHTML}
-          </ul>
+          <main className="d-flex flex-column mt-5 w-75 justify-content-center align-items-center">
+            <div className="mt-2 px-5 adminAddEventBox mb-3">
+              <h1 className=" mt-2 adminAddEventText">View/Delete Events</h1>
+            </div>
+            
+            <ul className="d-flex flex-column mt-3 w-50 justify-content-center adminAddEventBox align-items-center text-center viewSurfSessionSpacer">
+              {eventListHTML}
+            </ul>
 
-        </main>
-        <div className="col-1">
-
-        </div>
-
+          </main>
+          <div className="col-1"></div>
         </div>
 
       )
+      
     }
     else {
       return(
