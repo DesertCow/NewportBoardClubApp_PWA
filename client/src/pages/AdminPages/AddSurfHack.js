@@ -90,34 +90,49 @@ const AddSurfHack = () => {
           <AdminSideBar />
         </aside>
       <main className="col mt-5">
-        <h1 className="text-center">Add Surf Hack Page</h1>
+        <div className="adminAddEventBox">
+          <h1 className="text-center adminAddEventText my-2">Add Surf Hack</h1>
+        </div>
+        
+        <form method="post" onSubmit={handleNewSurfHack} className="mt-5 flex-column d-flex justify-content-center align-items-center">
+          
+          <div className="d-flex flex-column justify-content-left align-items-center adminAddEventBox w-75">
+            <div className="d-flex flex-row justify-content-left align-items-center">
+              <div className="m-4 dateFont">
+                  Surf Hack Title: 
+              </div>
+              <input name="surfHackTitle" className="shaperInputBox p-1"/>
+            </div>
+          </div>
 
-        <form method="post" onSubmit={handleNewSurfHack} className="mt-5 row d-flex justify-content-left align-items-center">
-          <div className="d-flex flex-row justify-content-left align-items-center">
-            <div className="m-4 dateFont">
-                Surf Hack Title: 
-            </div>
-            <input name="surfHackTitle" className="shaperInputBox p-1"/>
-          </div>
-          <div className="d-flex mb-5 flex-row justify-content-center align-items-center">
-            <div className="mt-3">
-              <h5 className="text-center">Upload Surf Hack Photo</h5>
-              <input className="p-2 uploadBox" type="file" name="surfHackPhoto" onChange={changeHandler} />
+          <div className="d-flex flex-row justify-content-center align-items-center adminAddEventBox mt-5 w-50">
+            <div className="d-flex flex-column my-3 justify-content-center align-items-center">
+              <h5 className="text-center flex-row mt-2">Upload Surf Hack Photo</h5>
+              <input className="p-2 uploadBox mb-2" type="file" name="surfHackPhoto" onChange={changeHandler} />
             </div>
           </div>
-          <div className="d-flex flex-row justify-content-left align-items-center mt-3">
-            <div className="m-4 dateFont">
-                Surf Hack Body (HTML): 
+
+          <div className="adminAddEventBox w-100 my-4 d-flex flex-column justify-content-center align-items-center">
+            <div className="d-flex flex-row justify-content-left align-items-center mt-4">
+              <div>
+                <div className="mb-4 dateFont text-center">
+                    Surf Hack Body (HTML): 
+                </div>
+                <textarea name="surfHackBody" className="mb-5 mx-5" rows={30} cols={120} />
+              </div>
+
             </div>
-            <textarea name="surfHackBody" rows={10} cols={60} />
           </div>
 
           <div className="d-flex flex-row justify-content-center mt-5 align-items-center">
-            <button type="button" type="submit" className="btn addShaperSaveBTN btn-success mx-3">Add</button>
+            <button type="button" type="submit" className="btn addShaperSaveBTN btn-success mb-5 mx-3">Add</button>
           </div>
           
         </form>
       </main>
+        <div className="col-1">
+
+        </div>
 
       </div>
 

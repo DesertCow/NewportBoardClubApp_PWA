@@ -115,7 +115,7 @@ const UpdateEvent = () => {
 
 
           <form method="post" onSubmit={handleUpdateEvent} className="mt-4 flex-column d-flex justify-content-center align-items-center">
-            <div className="d-flex flex-row justify-content-left align-items-center adminAddEventBox w-50">
+            <div className="d-flex flex-row justify-content-center align-items-center adminAddEventBox w-75">
               <div>
                 <div className="d-flex flex-row justify-content-left align-items-center">
                   <div className="m-4 dateFont">
@@ -157,7 +157,7 @@ const UpdateEvent = () => {
               <div className="d-flex flex-column justify-content-left align-items-center">
                 <div>
                   <div className="mt-3 mb-2 d-flex justify-content-center align-items-center flex-row dateFont">
-                      Surf Hack Photo:
+                      Surf Hack Photo
                   </div>
                   <div>
                     <img src={data.getEvent.eventPhotoURL}
@@ -167,12 +167,12 @@ const UpdateEvent = () => {
                   </div>
                 </div>   
               </div>
-              <div className="d-flex flex-row justify-content-left align-items-center">
-                <div className="d-flex flex-column justify-content-left align-items-center">
+              <div className="d-flex flex-row justify-content-center align-items-center">
+                <div className="d-flex flex-column justify-content-center align-items-center">
                   <div className="mt-4 d-flex flex-row dateFont">
                       Event Photo URL:
                   </div>
-                  <div className="mt-2 mb-4 d-flex flex-row dateFont">
+                  <div className="mt-2 mb-4 d-flex flex-row dateFont text-center">
                       {data.getEvent.eventPhotoURL}
                   </div>
                 </div>
@@ -193,7 +193,7 @@ const UpdateEvent = () => {
                   <div className="mb-4 dateFont text-center">
                     Event Body (HTML)
                   </div>
-                   <textarea name="eventBody" className="mb-5" defaultValue={data.getEvent.eventBody} rows={30} cols={120} />
+                   <textarea name="eventBody" className="mb-5 mx-5" defaultValue={data.getEvent.eventBody} rows={30} cols={120} />
                 </div>
               </div>
             </div>
@@ -204,7 +204,9 @@ const UpdateEvent = () => {
             
           </form>
         </main>
+          <div className="col-1">
 
+          </div>
         </div>
 
       )
