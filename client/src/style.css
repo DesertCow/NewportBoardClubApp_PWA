@@ -548,6 +548,10 @@ background-color: #ffa85129;
   border-style: dashed;
 }
 
+.logoutBTNspacer {
+  margin-bottom: 100px;
+}
+
 .dateOBText {
   font-family: "Catamaran-ExtraBold";
   font-size: 20px;
@@ -1146,11 +1150,6 @@ background-color: #ffa85129;
   top: 0;
   margin-left: 0px;
   padding-left: 0px;
-}
-
-
-.shaperDeleteBTN{
-
 }
 
 .shaperBox {

@@ -24,8 +24,6 @@ function UserSettings() {
 
     const navigate = useNavigate();
 
-    const [passwordState, setPasswordState] = useState({ password: '', confirm: '', id: '' });
-
     const [updatePass, { passData }] = useMutation(PASS_UPDATE);
     const [updateEmail, { emailData }] = useMutation(EMAIL_UPDATE);
     const [updateName, { nameData }] = useMutation(NAME_UPDATE);
@@ -37,6 +35,8 @@ function UserSettings() {
 
     const todayDate = new Date()
     const [datevalue, setValue] = useState(todayDate);
+
+    //* Offset count from 0 for month
     const dateMonth = todayDate.getMonth() + 1;
 
     const onDateChange = useCallback((date: Date) => {
@@ -48,47 +48,15 @@ function UserSettings() {
     let jwtToken = Auth.getProfile()
     // console.log("Login! = " + JSON.stringify(login))
 
+    //* Handles Upload File
     const fileChangeHandler = (event) => {
       setSelectedFile(event.target.files[0]);
       // setIsSelected(true);
     };
 
 
-    //* update state based on form input changes
-    const handlePasswordChange = (event) => {
-      const { name, value } = event.target;
-
-      // console.log("New Password = " + value)
-
-      setPasswordState({
-        ...passwordState,
-        password: value,
-        id: jwtToken.data._id,
-      });
-
-      // console.log("Password State = ");
-      // console.log(passwordState);
-
-    }
-
-    //* update state based on form input changes
-    const handleConfirmPasswordChange = (event) => {
-      const { name, value } = event.target;
-
-      // console.log("New Confirm Password = " + value)
-
-      setPasswordState({
-        ...passwordState,
-        confirm: value,
-        id: jwtToken.data._id,
-      });
-
-      // console.log("Password State = ");
-      // console.log(passwordState);
-
-    }
-
     //* ########################### Button Handle ###########################
+
     const HandleEmailSubmit = async (event) => {
       event.preventDefault();
 
@@ -118,21 +86,16 @@ function UserSettings() {
     const HandlePasswordSubmit = async (event) => {
       event.preventDefault();
 
-      const { name, value } = event.target;
+      const updatePasswordData = event.target;
+      const passwordForm = new FormData(updatePasswordData);
 
-      // console.log("New Password Submitted!")
-      // console.log("   Password: " + passwordState.password)
-      // console.log("   Confirm : " + passwordState.confirm)
-
-      if( passwordState.password === passwordState.confirm){
+      if( passwordForm.get("password") === passwordForm.get("passwordConfirm")){
         const tokenData = await updatePass({
-          variables: { ...passwordState },
+          variables: { 
+            id: jwtToken.data._id,
+            password: passwordForm.get("password"),
+          },
         });
-
-        // console.log(tokenData)
-        
-        // toast.success("Password Has Been Updated!", toastOptions);
-        // window.location.reload(false);
         
         //* Generate Updated JWT Token
         Auth.login(JSON.stringify(tokenData.data.updatePassword));
@@ -160,11 +123,8 @@ function UserSettings() {
           id: jwtToken.data._id,
           memberFirstName: nameForm.get("memberFirstName"),
           memberLastName: nameForm.get("memberLastName"),
-      },
+        },
       });
-
-      console.log("TOKEN DATA")
-      console.log(tokenData)
 
       //* Generate Updated JWT Token
       Auth.login(JSON.stringify(tokenData.data.updateName));
@@ -196,8 +156,6 @@ function UserSettings() {
         }
       )
 
-      // console.log(response.status);
-
       //* After Fetch is complete reload page to display new user Profile Picture
       if(response.status == 200){
         window.location.reload(false);
@@ -222,6 +180,7 @@ function UserSettings() {
         location.reload()
         window.scrollTo(0, 0);
       }
+
     };
 
     return (
@@ -275,26 +234,28 @@ function UserSettings() {
           </div>
         </form>
 
-        <form className="mx-5 mt-0 applyMainFont" onSubmit={HandleEmailSubmit}>
-          <div className="form-group mx-2 my-5 text-center">
+        <form className="mx-5 mt-3 applyMainFont" onSubmit={HandleEmailSubmit}>
+          <div className="form-group mx-2 mb-5 text-center">
             <label htmlFor="exampleInputEmail1">Email address</label>
             <input type="email" className="form-control" id="memberEmail" name="memberEmail" placeholder={jwtToken.data.memberEmail}></input>
             <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" type="submit">Update Email</button>
           </div>
         </form>
 
-        <form>
-          <div className="form-group mx-2 my-5 text-center">
+        <form className="mx-5 mt-3 applyMainFont" onSubmit={HandlePasswordSubmit}>
+          <div className="form-group mx-2 mb-5 text-center">
             <label htmlFor="exampleInputPassword1">Password</label>
-            <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e) => handlePasswordChange(e)}></input>
+            <input type="password" className="form-control" id="password" name="password" placeholder="Password"></input>
             <label htmlFor="exampleInputPassword1" className="mt-3">Password Confirm</label>
-            <input type="password" className="form-control" id="passwordConfirm" placeholder="Password" onChange={(e) => handleConfirmPasswordChange(e)}></input>
-            <button type="button" className="userProfileUpdateBtn p-2 mt-3 mb-2 text-center" onClick={(event) => HandlePasswordSubmit(event)}>Update Password</button>
+            <input type="password" className="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="Password"></input>
+            <button type="button" className="userProfileUpdateBtn p-2 mt-3 mb-2 text-center" type="submit">Update Password</button>
           </div>
-          <div className="d-flex align-items-center justify-content-center mb-5 logoutBTNBox">
-            <button type="button" className="btn btn-danger text-center mt-3 mb-3 logoutBTN" onClick={(event) => handleLogout(event)}>Log Out</button>   
-          </div>
-        </form>
+        </form> 
+
+        <div className="d-flex mx-4 align-items-center justify-content-center logoutBTNspacer logoutBTNBox">
+          <button type="button" className="btn btn-danger text-center mt-3 mb-3 logoutBTN" onClick={(event) => handleLogout(event)}>Log Out</button>   
+        </div>
+        
 
         <footer className="mt-auto mb-0">
           <NavFooter />
