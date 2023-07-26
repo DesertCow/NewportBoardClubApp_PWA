@@ -24,9 +24,7 @@ function UserSettings() {
 
     const navigate = useNavigate();
 
-    const [emailState, setEmailState] = useState({ memberEmail: '', id: '' });
     const [passwordState, setPasswordState] = useState({ password: '', confirm: '', id: '' });
-    const [nameState, setNameState] = useState({ memberFirstName: '', memberLastName: '', id: '' });
 
     const [updatePass, { passData }] = useMutation(PASS_UPDATE);
     const [updateEmail, { emailData }] = useMutation(EMAIL_UPDATE);
@@ -50,35 +48,11 @@ function UserSettings() {
     let jwtToken = Auth.getProfile()
     // console.log("Login! = " + JSON.stringify(login))
 
-    
-    //* Handle Profile Picture to be uploaded
-    // const handleFileChange = (e) => {
-    //   const file = e.target.files[0];
-    //   setFile(file);
-    // };
-
-    const changeHandler = (event) => {
+    const fileChangeHandler = (event) => {
       setSelectedFile(event.target.files[0]);
       // setIsSelected(true);
     };
 
-    //* update state based on form input changes
-    const handleEmailChange = (event) => {
-      const { name, value } = event.target;
-
-      // console.log("New Email = " + value)
-      // console.log("Name = " + name)
-
-      setEmailState({
-        ...emailState,
-        memberEmail: value,
-        id: jwtToken.data._id,
-      });
-
-      // console.log("Email State = ")
-      // console.log(emailState)
-
-    }
 
     //* update state based on form input changes
     const handlePasswordChange = (event) => {
@@ -114,48 +88,18 @@ function UserSettings() {
 
     }
 
-    //* update state based on form input changes
-    const handleFirstNameChange = (event) => {
-      const { name, value } = event.target;
-
-      // console.log("New First Name = " + value)
-
-      setNameState({
-        ...nameState,
-        memberFirstName: value,
-        id: jwtToken.data._id,
-      });
-
-      // console.log("Name State = ")
-      // console.log(nameState)
-
-    }
-
-    //* update state based on form input changes
-    const handleLastNameChange = (event) => {
-      const { name, value } = event.target;
-
-      // console.log("New Last Name = " + value)
-
-      setNameState({
-        ...nameState,
-        memberLastName: value,
-        id: jwtToken.data._id,
-      });
-
-      // console.log("Name State = ")
-      // console.log(nameState)
-
-    }
-
     //* ########################### Button Handle ###########################
     const HandleEmailSubmit = async (event) => {
       event.preventDefault();
 
-      const { name, value } = event.target;
+      const emailFormData = event.target;
+      const emailForm = new FormData(emailFormData);
 
-      const  tokenData = await updateEmail({
-        variables: { ...emailState },
+      const tokenData = await updateEmail({
+        variables: { 
+          id: jwtToken.data._id,
+          memberEmail: emailForm.get("memberEmail"),
+      },
       });
 
       //TODO: Add Notification Email Updated
@@ -208,21 +152,19 @@ function UserSettings() {
     const HandleNameSubmit = async (event) => {
       event.preventDefault();
 
-      const { name, value } = event.target;
-
-      // console.log("New Name Submitted!")
-      // console.log("   First Name: " + nameState.memberFirstName)
-      // console.log("   Last Name: " + nameState.memberLastName)
+      const updateNameData = event.target;
+      const nameForm = new FormData(updateNameData);
 
       const tokenData = await updateName({
-        variables: { ...nameState },
+        variables: { 
+          id: jwtToken.data._id,
+          memberFirstName: nameForm.get("memberFirstName"),
+          memberLastName: nameForm.get("memberLastName"),
+      },
       });
 
-      // console.log("Token Data = " + JSON.stringify(tokenData.data.updateName))
-
-      // console.log(nameData)
-
-      // toast.success("Name Has Been Updated!", toastOptions);
+      console.log("TOKEN DATA")
+      console.log(tokenData)
 
       //* Generate Updated JWT Token
       Auth.login(JSON.stringify(tokenData.data.updateName));
@@ -305,24 +247,43 @@ function UserSettings() {
           </div>
           {/* <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleProfilePictureUpload(event)}>Upload Profile Picture</button> */}
           <div className="mt-3">
-            <input className="p-2 uploadBox" type="file" name="profilePictureFile" onChange={changeHandler} />
+            <input className="p-2 uploadBox" type="file" name="profilePictureFile" onChange={fileChangeHandler} />
           </div>
           <button className="mt-3 py-2 userProfileUpdateBtn" onClick={(event) => HandleProfilePictureUpload(event)}>Upload</button>
         </div>
 
-        <form className="mx-5 mt-0 applyMainFont mb-5">
+        <form className="mx-5 mt-0 applyMainFont" onSubmit={HandleNameSubmit}>
 
           <div className="form-group mx-2 my-5 text-center">
             <label htmlFor="exampleInputEmail1">Member Name</label>
-            <input type="email" className="form-control" id="memberFirstName" aria-describedby="emailHelp" placeholder={jwtToken.data.memberFirstName} onChange={(e) => handleFirstNameChange(e)}></input>
-            <input type="email" className="form-control mt-2" id="memberLastName" aria-describedby="emailHelp" placeholder={jwtToken.data.memberLastName} onChange={(e) => handleLastNameChange(e)}></input>
-            <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleNameSubmit(event)}>Update Name</button>
+            <input 
+              type="text" 
+              className="form-control" 
+              id="memberFirstName" 
+              placeholder={jwtToken.data.memberFirstName}
+              name="memberFirstName">
+            </input>
+            <input 
+              type="text" 
+              className="form-control mt-2" 
+              id="memberLastName" 
+              placeholder={jwtToken.data.memberLastName} 
+              name="memberLastName">
+              </input>
+            {/* <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleNameSubmit(event)}>Update Name</button> */}
+            <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" type="submit">Update Name</button>
           </div>
+        </form>
+
+        <form className="mx-5 mt-0 applyMainFont" onSubmit={HandleEmailSubmit}>
           <div className="form-group mx-2 my-5 text-center">
             <label htmlFor="exampleInputEmail1">Email address</label>
-            <input type="email" className="form-control" id="memberEmail" aria-describedby="emailHelp" placeholder={jwtToken.data.memberEmail} onChange={(e) => handleEmailChange(e)}></input>
-            <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" onClick={(event) => HandleEmailSubmit(event)}>Update Email</button>
+            <input type="email" className="form-control" id="memberEmail" name="memberEmail" placeholder={jwtToken.data.memberEmail}></input>
+            <button type="button" className="userProfileUpdateBtn p-2 mt-3 text-center" type="submit">Update Email</button>
           </div>
+        </form>
+
+        <form>
           <div className="form-group mx-2 my-5 text-center">
             <label htmlFor="exampleInputPassword1">Password</label>
             <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e) => handlePasswordChange(e)}></input>
