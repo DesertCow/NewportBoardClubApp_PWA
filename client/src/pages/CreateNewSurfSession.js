@@ -41,11 +41,7 @@ function CreateNewSession() {
 
     const [datevalue, setDateValue] = useState(todayDate);
 
-    // TODO: Set to Current local time
-    // const [value, setTimeValue] = useState('10:00 AM');
     const [value, setTimeValue] = useState(todayDate.getHours() + ":" + todayDate.getMinutes());
-
-    // console.log("Time: " + value)
 
     //* Submit surf session data to Database
     const handleSurfSessionSubmit = async (event) => {
@@ -58,6 +54,8 @@ function CreateNewSession() {
       //* Convert Date output from DatePicker to MM-DD-YYYY
       var surfSessionDate = new Date( datevalue );
 
+      // console.log(surfSessionDate)
+
       //* Add 1 to offset months start counting at 0
       var offsetSessionMonth = surfSessionDate.getMonth() + 1;
       // var surfSessionDateFinal = surfSessionDate.getMonth() + "-" + surfSessionDate.getDate() + "-" + surfSessionDate.getFullYear();
@@ -67,24 +65,54 @@ function CreateNewSession() {
       var surfSessionTime = new Date( value );
 
       var finalSurfSessionMin
+      var finalSurfSessionHour
 
-      //* Add truncated zero when mintues is below 10
-      if(surfSessionTime.getMinutes() < 10){
-        // console.log("Surf Min: " + "0" + surfSessionTime.getMinutes());
-        finalSurfSessionMin = "0" + surfSessionTime.getMinutes();
-      } else{
-        finalSurfSessionMin = surfSessionTime.getMinutes();
-      }
 
-      //* Convert Military Time to AM/PM Time
-      if(surfSessionTime.getHours() < 13)
-      {
-        var surfSessionTimeFinal = surfSessionTime.getHours() + ":" + finalSurfSessionMin + " AM";
+      if(isNaN(surfSessionTime.getMinutes())){
+
+        //* Use Current Time
+        if(surfSessionTime.getMinutes() < 10){
+
+          finalSurfSessionMin = "0" + todayDate.getMinutes();
+
+        } else{
+          
+          finalSurfSessionMin = todayDate.getMinutes();
+
+        }
+
+        finalSurfSessionHour = todayDate.getHours()
+
       }
       else {
-        var surfSessionTimeFinal = surfSessionTime.getHours()-12 + ":" + finalSurfSessionMin + " PM";
+        
+        //* Add truncated zero when mintues is below 10
+        if(surfSessionTime.getMinutes() < 10){
+
+          finalSurfSessionMin = "0" + surfSessionTime.getMinutes();
+
+        } else{
+          
+          finalSurfSessionMin = surfSessionTime.getMinutes();
+
+        }
+
+        finalSurfSessionHour = surfSessionTime.getHours()
+
       }
       
+      //* Convert Military Time to AM/PM Time
+      if(finalSurfSessionHour < 13)
+      {
+        var surfSessionTimeFinal = finalSurfSessionHour + ":" + finalSurfSessionMin + " AM";
+      }
+      else {
+        var surfSessionTimeFinal = finalSurfSessionHour-12 + ":" + finalSurfSessionMin + " PM";
+      }
+      
+      console.log("Final Time: " + surfSessionTimeFinal)
+      console.log("Final Date: " + surfSessionDateFinal)
+
       const { surfSessionData } = await createSurfSession({
 
         
@@ -120,20 +148,9 @@ function CreateNewSession() {
 
     function populateListOfShapers(shaperData) {
 
-      // var sessionListHTML = []
-
-      // console.log("Session ID: " + sessionData._id)
-      // console.log("Sesstion Date: " + JSON.stringify(sessionData.sessionDate));
-      // console.log("Sesstion Time: " + JSON.stringify(sessionData.sessionTime));
-      // console.log("Sesstion Location: " + JSON.stringify(sessionData.sessionLocation));
-
-      
-      //* Create Buttons based user sessions pulled from DB
-      // sessionListHTML.push(<li key={sessionData._id} onClick={(event) => displayItem(event, sessionData.sessionDate, essionData.sessionTime)} className="subMenuBtns m-4 p-2"><div variant="light">{sessionData._id}</div>{' '}</li>)
-      // sessionListHTML.push(<li key={sessionData._id} onClick={(event) => displaySurfSession(event, sessionData._id)} className="previousSurfSessionBTN mt-4 p-3">{sessionData.sessionDate} ({sessionData.sessionTime}) @ {sessionData.sessionLocation}</li>)
-      // sessionListHTML.push(<option value={shaperData.shaperName}>{shaperData.shaperName}</option>)
+      //* Create List of shapers from data pull from Database
       shaperListHTML.push(<option key={shaperData._id}>{shaperData.shaperName}</option>)
-      // console.log(sessionListHTML)
+
     }
 
     if(!loading){
@@ -179,14 +196,15 @@ function CreateNewSession() {
             <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
               Location:&nbsp;&nbsp;
               <div>
-                <input required type="text" name="surfLocation" className="locationInputBox d-flex justify-content-center align-items-center p-1" />
+                <input required type="text" defaultValue="???" name="surfLocation" className="locationInputBox d-flex justify-content-center align-items-center p-1" />
               </div>
             </div>
             <div className="d-flex flex-row justify-content-center align-items-center smallBoxRow">
               <div className="m-4 dateFont">
                   Sky Condtions: 
               </div>
-              <select name="skyConditions" defaultValue="Sunny" className="surfSessionDropDowns">
+              <select name="skyConditions" defaultValue="???" className="surfSessionDropDowns">
+                <option value="???">???</option>
                 <option value="Sunny">Sunny</option>
                 <option value="Partly Sunny">Partly Sunny</option>
                 <option value="Cloudy">Cloudy</option>
@@ -199,7 +217,8 @@ function CreateNewSession() {
               <div className="m-4 dateFont">
                   Wave Height: 
               </div>
-              <select name="waveSize" defaultValue="0-1 ft" className="surfSessionDropDowns">
+              <select name="waveSize" defaultValue="???" className="surfSessionDropDowns">
+                <option value="???">???</option>
                 <option value="0-1">0-1 ft</option>
                 <option value="1-2">1-2 ft</option>
                 <option value="2-3">2-3 ft</option>
@@ -246,7 +265,7 @@ function CreateNewSession() {
               <div className="mx-0 dateFont">
                 Direction: 
               </div>
-                <select name="tideDirection" defaultValue="Rising" className="surfSessionDropDowns">
+                <select name="tideDirection" defaultValue="???" className="surfSessionDropDowns">
                   <option value="Rising">Rising</option>
                   <option value="Falling">Falling</option>
                 </select>
@@ -285,21 +304,8 @@ function CreateNewSession() {
                   Shaper:
                 </div>
                 <select name="surfboardShaper" className="surfSessionDropDowns">
+                  <option value="???">???</option>
                   {shaperListHTML}
-                  {/* <option>Estrada Surfboard Design</option>
-                  <option value="Baltierra Surfboards">Baltierra Surfboards</option>
-                  <option value="Solid Surf">Solid Surf</option>
-                  <option value="Almond Surfboards">Almond Surfboards</option>
-                  <option value="DHD Surfboards">DHD Surfboards</option>
-                  <option value="Tanner Surfboards">Tanner Surfboards</option>
-                  <option value="Guy Takayama">Guy Takayama</option>
-                  <option value="Robert August">Robert August</option>
-                  <option value="Dano Surfboards">Dano Surfboards</option>
-                  <option value="Album Surf">Album Surf</option>
-                  <option value="Brink Surf">Brink Surf</option>
-                  <option value="Lost Surboards">Lost Surboards</option>
-                  <option value="Surf Prescriptions">Surf Prescriptions</option>
-                  <option value="Thread Surfboards">Thread Surfboards</option> */}
                 </select>
               </div>
               <div className="d-flex flex-row justify-content-left align-items-center surfboardSectionMiddle">
@@ -313,6 +319,7 @@ function CreateNewSession() {
                     Length:
                 </div>
                   <select name="surfboardLengthFeet" className="surfSessionDropDowns">
+                    <option >0</option>
                     <option >4</option>
                     <option >5</option>
                     <option >6</option>
@@ -346,6 +353,7 @@ function CreateNewSession() {
                     Volume:
                 </div>
                   <select name="surfboardVolume" className="surfSessionDropDowns">
+                    <option >00</option>
                     <option >20</option>
                     <option >21</option>
                     <option >22</option>
@@ -395,6 +403,7 @@ function CreateNewSession() {
                     Fin Setup:
                 </div>
                   <select name="surfboardFinConfig" className="surfSessionDropDowns">
+                    <option >???</option>
                     <option >Single</option>
                     <option >Twin</option>
                     <option >Thruster</option>
