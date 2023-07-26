@@ -266,6 +266,7 @@ function CreateNewSession() {
                 Direction: 
               </div>
                 <select name="tideDirection" defaultValue="???" className="surfSessionDropDowns">
+                  <option value="???">???</option>
                   <option value="Rising">Rising</option>
                   <option value="Falling">Falling</option>
                 </select>
