@@ -58,6 +58,8 @@ function CreateNewSession() {
       //* Convert Date output from DatePicker to MM-DD-YYYY
       var surfSessionDate = new Date( datevalue );
 
+      console.log(surfSessionDate)
+
       //* Add 1 to offset months start counting at 0
       var offsetSessionMonth = surfSessionDate.getMonth() + 1;
       // var surfSessionDateFinal = surfSessionDate.getMonth() + "-" + surfSessionDate.getDate() + "-" + surfSessionDate.getFullYear();
@@ -85,32 +87,32 @@ function CreateNewSession() {
         var surfSessionTimeFinal = surfSessionTime.getHours()-12 + ":" + finalSurfSessionMin + " PM";
       }
       
-      const { surfSessionData } = await createSurfSession({
+      // const { surfSessionData } = await createSurfSession({
 
         
-        variables: { 
-          userId: jwtToken.data._id,
-          sessionDate: surfSessionDateFinal,
-          sessionTime: surfSessionTimeFinal,
-          sessionLocation: surfSessionForm.get("surfLocation"),
-          skyConditions: surfSessionForm.get("skyConditions"),
-          waveSize: surfSessionForm.get("waveSize"),
-          tideLevel: parseFloat(surfSessionForm.get("tideLevel") + "." + surfSessionForm.get("tideLevelDecimal")),
-          tideDirection: surfSessionForm.get("tideDirection"),
-          sessionLength: surfSessionForm.get("sessionLengthHours") + ":" + surfSessionForm.get("sessionLengthMinutes"),
-          surfboardShaper: surfSessionForm.get("surfboardShaper"),
-          surfboardModel: surfSessionForm.get("surfboardModel"),
-          surfboardLengthFt: parseInt(surfSessionForm.get("surfboardLengthFeet")),
-          surfboardLengthIn: parseInt(surfSessionForm.get("surfboardLengthInches")),
-          surfboardVolume: parseFloat(surfSessionForm.get("surfboardVolume") + "." + surfSessionForm.get("surfboardVolumeDecimal")),
-          surfboardFinConfig: surfSessionForm.get("surfboardFinConfig"),
-          sessionNotes: surfSessionForm.get("sessionNotes"),
-          sessionRating: parseInt(surfSessionForm.get("sessionRating")),
-        },
-      });
+      //   variables: { 
+      //     userId: jwtToken.data._id,
+      //     sessionDate: surfSessionDateFinal,
+      //     sessionTime: surfSessionTimeFinal,
+      //     sessionLocation: surfSessionForm.get("surfLocation"),
+      //     skyConditions: surfSessionForm.get("skyConditions"),
+      //     waveSize: surfSessionForm.get("waveSize"),
+      //     tideLevel: parseFloat(surfSessionForm.get("tideLevel") + "." + surfSessionForm.get("tideLevelDecimal")),
+      //     tideDirection: surfSessionForm.get("tideDirection"),
+      //     sessionLength: surfSessionForm.get("sessionLengthHours") + ":" + surfSessionForm.get("sessionLengthMinutes"),
+      //     surfboardShaper: surfSessionForm.get("surfboardShaper"),
+      //     surfboardModel: surfSessionForm.get("surfboardModel"),
+      //     surfboardLengthFt: parseInt(surfSessionForm.get("surfboardLengthFeet")),
+      //     surfboardLengthIn: parseInt(surfSessionForm.get("surfboardLengthInches")),
+      //     surfboardVolume: parseFloat(surfSessionForm.get("surfboardVolume") + "." + surfSessionForm.get("surfboardVolumeDecimal")),
+      //     surfboardFinConfig: surfSessionForm.get("surfboardFinConfig"),
+      //     sessionNotes: surfSessionForm.get("sessionNotes"),
+      //     sessionRating: parseInt(surfSessionForm.get("sessionRating")),
+      //   },
+      // });
 
-      navigate("/surf_log/view_previous_sessions");
-      window.location.reload(false);
+      // navigate("/surf_log/view_previous_sessions");
+      // window.location.reload(false);
     }
 
 
@@ -120,20 +122,9 @@ function CreateNewSession() {
 
     function populateListOfShapers(shaperData) {
 
-      // var sessionListHTML = []
-
-      // console.log("Session ID: " + sessionData._id)
-      // console.log("Sesstion Date: " + JSON.stringify(sessionData.sessionDate));
-      // console.log("Sesstion Time: " + JSON.stringify(sessionData.sessionTime));
-      // console.log("Sesstion Location: " + JSON.stringify(sessionData.sessionLocation));
-
-      
-      //* Create Buttons based user sessions pulled from DB
-      // sessionListHTML.push(<li key={sessionData._id} onClick={(event) => displayItem(event, sessionData.sessionDate, essionData.sessionTime)} className="subMenuBtns m-4 p-2"><div variant="light">{sessionData._id}</div>{' '}</li>)
-      // sessionListHTML.push(<li key={sessionData._id} onClick={(event) => displaySurfSession(event, sessionData._id)} className="previousSurfSessionBTN mt-4 p-3">{sessionData.sessionDate} ({sessionData.sessionTime}) @ {sessionData.sessionLocation}</li>)
-      // sessionListHTML.push(<option value={shaperData.shaperName}>{shaperData.shaperName}</option>)
+      //* Create List of shapers from data pull from Database
       shaperListHTML.push(<option key={shaperData._id}>{shaperData.shaperName}</option>)
-      // console.log(sessionListHTML)
+
     }
 
     if(!loading){
@@ -161,7 +152,7 @@ function CreateNewSession() {
                   Date:
                 </div>
                 <div name="sessionDate">
-                  <DatePicker required="true" value={value} onChange={(newValue) => setDateValue(newValue)}/>
+                  <DatePicker required="true" value={datevalue} onChange={(newValue) => setDateValue(newValue)}/>
                 </div>
               </div>
             </div>
