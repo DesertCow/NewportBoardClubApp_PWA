@@ -1,9 +1,9 @@
 {
   "name": "board-club-app",
   "version": "1.0.0",
-    "engines": {
+  "engines": {
     "node": ">=16.15.1"
-    },
+  },
   "description": "<div align=\"center\"> <h1>The Board Club App</h1>  <p align=\"center\">   <img src=\"./Dev_Docs/Art/BOARD_CLUB_LOGO_1.jpg\" width=\"350\" height=\"250\" alt=\"Demo 1\") </p> <h4>An application designed to allow members of the board club to view boards, events, rental information, and general information about the club.</h4> </div>",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,9 @@
   },
   "homepage": "https://github.com/DesertCow/boardClubApp#readme",
   "dependencies": {
-    "concurrently": "^8.2.0",
+    "concurrently": "^8.2.0"
+  },
+  "devDependencies": {
     "serve": "^14.2.0"
   }
 }
