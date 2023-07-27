@@ -31,9 +31,7 @@
   },
   "homepage": "https://github.com/DesertCow/boardClubApp#readme",
   "dependencies": {
-    "concurrently": "^8.2.0"
-  },
-  "devDependencies": {
+    "concurrently": "^8.2.0",
     "serve": "^14.2.0"
   }
 }
