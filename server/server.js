@@ -67,7 +67,7 @@ const limiter = RateLimit({
   max: 40,
 });
 
-app.use(limiter);
+// app.use(limiter);
 
 app.options('*', cors()) // include before other routes
 
