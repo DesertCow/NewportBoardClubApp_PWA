@@ -50,7 +50,7 @@ const server = new ApolloServer({
 });
 
 var corsOptions = {
-  origin: 'https://boardclubapp-production-api.up.railway.app',
+  origin: 'https://boardclubapp-production.up.railway.app',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
