@@ -49,6 +49,10 @@ const server = new ApolloServer({
     // [ApolloServerPluginLandingPageDisabled()],
 });
 
+var corsOptions = {
+  origin: 'https://boardclubapp-production.up.railway.app',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 //* Apply Configuration to App
 // app.use(express.urlencoded({ extended: false }));
@@ -65,7 +69,7 @@ const limiter = RateLimit({
 
 app.use(limiter);
 
-
+app.options('*', cors()) // include before other routes
 
 //* Seed Function
 async function seedServer() {
@@ -105,7 +109,7 @@ async function serverStart() {
   //* Start GraphQLServer
   app.use(
     '/',
-    cors(),
+    cors(corsOptions),
     // 50mb is the limit that `startStandaloneServer` uses, but you may configure this to suit your needs
     bodyParser.json({ limit: '50mb' }),
     // expressMiddleware accepts the same arguments:
