@@ -49,6 +49,10 @@ const server = new ApolloServer({
     // [ApolloServerPluginLandingPageDisabled()],
 });
 
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 //* Apply Configuration to App
 // app.use(express.urlencoded({ extended: false }));
@@ -65,7 +69,7 @@ const limiter = RateLimit({
 
 app.use(limiter);
 
-
+app.options('*', cors()) // include before other routes
 
 //* Seed Function
 async function seedServer() {
