@@ -62,6 +62,8 @@ const resolvers = {
       let finalTideDir = "null";
       let finalClubStatus = false;
 
+      
+
       //* Fetch Surfline Live Conditions Data
       await fetch(surfline36thURL)
         .then((response) => {
@@ -98,6 +100,8 @@ const resolvers = {
 
       //* Get Current time and determind if club is open
       const currentTime = new Date();
+
+      console.log("Current Time: "+ currentTime.getHours());
         
       // console.log("Current Day: "+ currentTime.getUTCDay());
       // console.log("Current Time (Hours Local): "+ currentTime.getHours());
