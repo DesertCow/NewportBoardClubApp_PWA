@@ -112,7 +112,7 @@ const resolvers = {
 
         //* Check it's between 8am and 6pm ()
         // if((currentTime.getHours() >= 8) && (currentTime.getHours() < 18)){
-        if((currentTime.getUTCHours() >= 15) || (currentTime.getUTCHours() <= 0)){
+        if((currentTime.getUTCHours() >= 15) || (currentTime.getUTCHours() <= 1)){
 
           console.log("Current Time: "+ currentTime.getHours());
           finalClubStatus = true;
