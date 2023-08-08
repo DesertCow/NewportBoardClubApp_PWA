@@ -1,4 +1,5 @@
 
+//* Seed Lists
 const seedEventDB = require('./events-seeds');
 const seedSurfSessionDB = require('./surf-session-seeds');
 const seedSurfHackDB = require('./surf-hack-seeds');
@@ -6,8 +7,6 @@ const seedShaperListDB = require('./shaper-list-seeds');
 
 //* DB Connection
 const mongodb = require('../mongoConnection');
-
-// const sequelize = require('../sqlConnection');
 
 const seedAll = async () => {
 
@@ -31,20 +30,20 @@ const seedAll = async () => {
 //* Enable NPM seeding to call and force seed via ARGV
 if (process.argv[2]) {
 
-  console.log("ARGV = " + process.argv[2].substring(1))
+  console.log("ARGV = " + process.argv[2])
 
-  if (process.argv[2].substring(1) === 'true') {
+  if (process.argv[2] === 'seed') {
     seedAll();
   }
 
 }
 
-const seedMain = async() => {
-  await seedAll();
-  process.exit(0);
-}
+// const seedMain = async() => {
+//   await seedAll();
+//   process.exit(0);
+// }
 
-seedMain();
+// seedMain();
 
 module.exports = seedAll;
 
