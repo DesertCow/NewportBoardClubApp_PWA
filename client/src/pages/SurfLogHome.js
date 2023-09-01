@@ -78,10 +78,10 @@ function SurfLogHome() {
             <div className="d-flex justify-content-center align-items-center mt-4 mb-4">
               <div className="sessionDataBox">
                 <p className="text-center sessionDetails mt-3"><b>Session Count:</b> {data.getAllUsersSurfSession.length}</p>
-                <p className="text-center sessionDetails mt-3"><b><s>Favroite Board:</s></b> {userFavBoard}</p>
-                <p className="text-center sessionDetails mx-3"><b><s>Favroite Surf Spot:</s></b> {userFavSpot}</p>
-                <p className="text-center sessionDetails mb-3"><b><s>Longest Session:</s></b> {userLongestSession}</p>
-                <p className="text-center sessionDetails mb-3"><b><s>Last Session:</s></b> {userLastSessionDate}</p>
+                <p className="text-center sessionDetails mt-3"><b>Favroite Board:</b> {userFavBoard}</p>
+                <p className="text-center sessionDetails mx-3"><b>Favroite Surf Spot:</b> {userFavSpot}</p>
+                <p className="text-center sessionDetails mb-3"><b>Longest Session:</b> {userLongestSession}</p>
+                <p className="text-center sessionDetails mb-3"><b>Last Session:</b> {userLastSessionDate}</p>
               </div>
             </div>
           </div>
