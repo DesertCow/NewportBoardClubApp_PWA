@@ -206,7 +206,7 @@
 /*? ============= About Club Page ============= */
 
 .aboutClubPhoto {
-  width: 420px;
+  width: 80%;
   opacity: 95%;
   border-radius: 15px;
   /*border: rgb(118, 118, 118);
@@ -241,7 +241,7 @@
 }
 
 .aboutStaffPhoto {
-  width: 420px;
+  width: 80%;
   opacity: 95%;
   border-radius: 15px;
   -webkit-border-radius: 15px;
