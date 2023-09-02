@@ -1,5 +1,5 @@
 <div align="center">
-<h1>The Board Club App</h1>
+<h1>Newport Board Club (PWA)</h1>
  <p align="center">
   <img src="./Dev_Docs/Art/BOARD_CLUB_LOGO_1.jpg" width="350" height="250" alt="Demo 1")
 </p>
@@ -32,35 +32,6 @@ The goal of this application to make members want to go surf by providing them w
 
 ## [Features](#table-of-contents)
 
-<br>
-
-* ~~Surfboard Database :surfer:~~
-  * ~~Description~~
-  * ~~Specs~~
-  * ~~MFG Link~~
-  * ~~Photos~~
-  * ~~Comments/Feedback~~
-  * ~~Rating~~
-
-<br>
-
-* Rental Infromation 🧾
-  * Equipment
-  * Prices / Hours
-
-<br>
-
-* Events Page :confetti_ball:
-  * Upcoming Events
-  * Previous Events
-  * Calender View
-
-<br>
-
-* About :question:
-  * General Club Info
-  * ~~Shaper Info/Links/Deals~~
-  * ~~Club Press~~
 
 <br>
 
@@ -68,6 +39,13 @@ The goal of this application to make members want to go surf by providing them w
   * Log Each Surf Session
   * Review previous surf Sessions
   * Track surf progression
+
+<br>
+
+* Events Page :confetti_ball:
+  * Upcoming Events
+  * Previous Events
+  * Calender View
 
 <br>
 
@@ -80,39 +58,31 @@ The goal of this application to make members want to go surf by providing them w
 
 <br>
 
+* Rental Infromation 🧾
+  * Equipment
+  * Prices / Hours
+
+<br>
+
+* About :question:
+  * General Club Info
+  * Club Staff
+
+<br>
+
 * Surf Resources :open_book:
-  * ~~Beginner Videos~~
-  * ~~Equipment Tips~~
   * Surf Hacks
-  * Local Surf Spots Beta
-  * Newport Surf Map
 
-
-<br>
-
-* Push Notification :loudspeaker:
-  * Surfboard Overdue
-  * New Surfboards
-  * Upcoming Events
-  * Swell / Conditions
-
-<br>
-
-* Features Pushed to React Native Version :iphone:
-  * Push Notification
-  * Member Forum
- 
-<br>
 <br>
 
 ## [Installation](#table-of-contents)
 
 * Server/API
+
 ```
     1) npm run buildServer
     2) npm run startServer
-  ```
-
+```
 <br>
 
 * Client
@@ -188,7 +158,7 @@ The goal of this application to make members want to go surf by providing them w
 <br>
 
   * **Server** (Node 18.6.0)
-    * Packages
+    * NPM Packages
       * @apollo/server (4.7.4)
       * @aws-sdk/credential-providers (3.369.0)
       * @aws-sdk/hash-node (3.369.0)
@@ -214,7 +184,7 @@ The goal of this application to make members want to go surf by providing them w
 <br>
 
   * **Client** (React 18.2.0)
-    * Packages
+    * NPM Packages
       * @apollo/client (3.7.15)
       * @emotion/react (11.11.1)
       * @emotion/styled (11.11.0)
@@ -245,23 +215,33 @@ The goal of this application to make members want to go surf by providing them w
 
 * <h3> Hardware/Deploy </h3>
 
-  * Railway (Database)
-    * MongoDB
-  * Railway (Host)
+  * Host: Railway
     * Client: https://boardclubapp-production.up.railway.app/
     * API: https://boardclubapp-production-api.up.railway.app/
-  * GitHub (Verison Control)
+  * Database: Self Host via Docker
+    * MongoDB
+  * Version Control: GitHub
     * https://github.com/DesertCow/boardClubApp
-  * AWS (S3)
-    * US West 1
+  * Cloud Storeage: AWS
+    * S3 - US West 1
 
 <br>
 <br>
 
 ## [Demo](#table-of-contents)
 
+<div align="center">
+<h2>Client Demo</h2>
+<div/>
  <p align="center">
-  <img src="./Dev_Docs/Art/Technical_Difficulties.png" width="774" height="486" alt="Demo 1"/img>
+  <img src="./Dev_Docs/The_Board_Club_App_Demo1.gif" alt="Demo 1"/img>
+</p>
+
+<div align="center">
+<h2>Admin Demo</h2>
+<div/>
+ <p align="center">
+  <img  src="./Dev_Docs/The_Board_Club_Admin_Demo1.gif" alt="Demo 1"/img>
 </p>
 
 <br>

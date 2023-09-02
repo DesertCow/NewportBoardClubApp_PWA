@@ -67,7 +67,7 @@ function UserSettings() {
         variables: { 
           id: jwtToken.data._id,
           memberEmail: emailForm.get("memberEmail"),
-      },
+        },
       });
 
       //TODO: Add Notification Email Updated

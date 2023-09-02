@@ -24,6 +24,12 @@ const NavFooter = () => {
     window.scrollTo(0, 0);
   };
 
+  const handleEventClicked = async (event) => {
+    event.preventDefault();
+    navigate("/club_events");
+    window.scrollTo(0, 0);
+  };
+
   const handleUserSettingsClicked = async (event) => {
     event.preventDefault();
     navigate("/user_settings");
@@ -33,21 +39,27 @@ const NavFooter = () => {
 
   return (
 
-    <div className="mb-0 mt-3">
+    <div className="mb-0 mt-2 footerContainer">
       <Navbar className="d-flex FooterClass" fixed="bottom" expand="lg">
-        <Container className="p-0 justify-content-center">
+        <Container className="p-0 justify-content-center footerContainer">
           <Nav className="d-flex flex-row p-0">
-            <Nav.Link className="col mx-5 px-2" onClick={(event) => handleHomeClicked(event)}>
+            <Nav.Link className="col mx-3 px-2" onClick={(event) => handleHomeClicked(event)}>
               <div className="text-center">
                 <MaterialSymbol icon="house" size={60} fill grade={-25} color='black' />
               </div>
             </Nav.Link>
-            <Nav.Link className="col mx-5 px-2" onClick={(event) => handleSurfLogClicked(event)}>
+            <Nav.Link className="col mx-3 px-2" onClick={(event) => handleSurfLogClicked(event)}>
               <div className="text-center">
-                <MaterialSymbol icon="import_contacts" size={60} fill grade={-25} color='black' />
+                {/* <MaterialSymbol icon="import_contacts" size={60} fill grade={-25} color='black' /> */}
+                <img src={require("../../img/surfing_icon.png")} className='mt-2' alt="Surfing Icon" />
               </div>
             </Nav.Link>
-            <Nav.Link className="col mx-5 px-2" onClick={(event) => handleUserSettingsClicked(event)}>
+            <Nav.Link className="col mx-3 px-2" onClick={(event) => handleEventClicked(event)}>
+              <div className="text-center">
+                <img src={require("../../img/event_icon.png")} className='mt-2' alt="Event Icon" />
+              </div>
+            </Nav.Link>
+            <Nav.Link className="col mx-3 px-2" onClick={(event) => handleUserSettingsClicked(event)}>
               <div className="text-center">
                 <MaterialSymbol icon="settings" size={60} fill grade={-25} color='black' />
               </div>
